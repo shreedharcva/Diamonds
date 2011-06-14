@@ -15,13 +15,11 @@
 
 @synthesize context;
 
-// You must implement this method
 + (Class)layerClass
 {
     return [CAEAGLLayer class];
 }
 
-//The EAGL view is stored in the nib file. When it's unarchived it's sent -initWithCoder:.
 - (id)initWithCoder:(NSCoder*)coder
 {
     self = [super initWithCoder:coder];
@@ -116,6 +114,10 @@
         
         glViewport(0, 0, framebufferWidth, framebufferHeight);
     }
+}
+
+- (void) createResources
+{
 }
 
 - (BOOL)presentFramebuffer

@@ -26,7 +26,8 @@
 
 @property (nonatomic, retain) EAGLContext *context;
 
-- (void)setFramebuffer;
-- (BOOL)presentFramebuffer;
+- (void) setFramebuffer;
+- (void) createResources;
+- (BOOL) presentFramebuffer;
 
 @end

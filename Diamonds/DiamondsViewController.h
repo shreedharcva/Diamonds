@@ -13,7 +13,7 @@
 
 @interface DiamondsViewController : UIViewController {
 @private
-    EAGLContext *context;
+    EAGLContext *glcontext;
     GLuint program;
     
     BOOL animating;

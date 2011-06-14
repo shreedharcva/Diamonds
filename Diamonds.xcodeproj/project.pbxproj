@@ -27,6 +27,7 @@
 		134DFF5313A79FE900DA67FC /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 134DFF5113A79FE900DA67FC /* InfoPlist.strings */; };
 		134DFF5613A79FE900DA67FC /* DiamondsTests.h in Resources */ = {isa = PBXBuildFile; fileRef = 134DFF5513A79FE900DA67FC /* DiamondsTests.h */; };
 		134DFF5813A79FE900DA67FC /* DiamondsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 134DFF5713A79FE900DA67FC /* DiamondsTests.m */; };
+		13E98FAD13A7AF360003E7D2 /* ruby.png in Resources */ = {isa = PBXBuildFile; fileRef = 13E98FAC13A7AF360003E7D2 /* ruby.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,6 +67,7 @@
 		134DFF5413A79FE900DA67FC /* DiamondsTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DiamondsTests-Prefix.pch"; sourceTree = "<group>"; };
 		134DFF5513A79FE900DA67FC /* DiamondsTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DiamondsTests.h; sourceTree = "<group>"; };
 		134DFF5713A79FE900DA67FC /* DiamondsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DiamondsTests.m; sourceTree = "<group>"; };
+		13E98FAC13A7AF360003E7D2 /* ruby.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ruby.png; path = Resources/ruby.png; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,6 +115,7 @@
 		134DFF0E13A79FE900DA67FC = {
 			isa = PBXGroup;
 			children = (
+				13E98FAB13A7AF1C0003E7D2 /* Resources */,
 				134DFF2713A79FE900DA67FC /* Diamonds */,
 				134DFF4E13A79FE900DA67FC /* DiamondsTests */,
 				134DFF1C13A79FE900DA67FC /* Frameworks */,
@@ -190,6 +193,15 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		13E98FAB13A7AF1C0003E7D2 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				13E98FAC13A7AF360003E7D2 /* ruby.png */,
+			);
+			name = Resources;
+			path = Diamonds;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -265,6 +277,7 @@
 				132041B513A7A64100D3F66D /* MainWindow-iPad.xib in Resources */,
 				132041BA13A7A7E200D3F66D /* MainWindow-iPhone.xib in Resources */,
 				132041BD13A7A80700D3F66D /* DiamondsViewController.xib in Resources */,
+				13E98FAD13A7AF360003E7D2 /* ruby.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

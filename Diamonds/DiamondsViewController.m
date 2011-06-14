@@ -11,6 +11,7 @@
 enum 
 {
     UNIFORM_TRANSLATE,
+    UNIFORM_TEXTURE,
     NUM_UNIFORMS
 };
 
@@ -21,24 +22,28 @@ enum
 {
     ATTRIB_VERTEX,
     ATTRIB_COLOR,
+    ATTRIB_TEXCOORD,
     NUM_ATTRIBUTES
 };
 
+GLuint texture;
+
 @interface DiamondsViewController ()
 
-@property (nonatomic, retain) EAGLContext *context;
+@property (nonatomic, retain) EAGLContext *glcontext;
 @property (nonatomic, assign) CADisplayLink *displayLink;
 
-- (BOOL)loadShaders;
-- (BOOL)compileShader:(GLuint *)shader type:(GLenum)type file:(NSString *)file;
-- (BOOL)linkProgram:(GLuint)prog;
-- (BOOL)validateProgram:(GLuint)prog;
+- (BOOL) loadShaders;
+- (void) loadTextures;
+- (BOOL) compileShader:(GLuint *)shader type:(GLenum)type file:(NSString *)file;
+- (BOOL) linkProgram:(GLuint)prog;
+- (BOOL) validateProgram:(GLuint)prog;
 
 @end
 
 @implementation DiamondsViewController
 
-@synthesize animating, context, displayLink;
+@synthesize animating, glcontext, displayLink;
 
 - (void)awakeFromNib
 {
@@ -51,14 +56,16 @@ enum
     if (![EAGLContext setCurrentContext:aContext])
         NSLog(@"Failed to set ES context current");
     
-	self.context = aContext;
+	self.glcontext = aContext;
 	[aContext release];
 	
-    [(EAGLView *)self.view setContext:context];
+   
+    [(EAGLView *)self.view setContext:glcontext];
     [(EAGLView *)self.view setFramebuffer];
+    [(EAGLView *)self.view createResources];
     
-    if ([context API] == kEAGLRenderingAPIOpenGLES2)
-        [self loadShaders];
+    [self loadShaders];
+    [self loadTextures];
     
     animating = FALSE;
     animationFrameInterval = 1;
@@ -74,10 +81,10 @@ enum
     }
     
     // Tear down context.
-    if ([EAGLContext currentContext] == context)
+    if ([EAGLContext currentContext] == glcontext)
         [EAGLContext setCurrentContext:nil];
     
-    [context release];
+    [glcontext release];
     
     [super dealloc];
 }
@@ -115,9 +122,9 @@ enum
     }
 
     // Tear down context.
-    if ([EAGLContext currentContext] == context)
+    if ([EAGLContext currentContext] == glcontext)
         [EAGLContext setCurrentContext:nil];
-	self.context = nil;	
+	self.glcontext = nil;	
 }
 
 - (NSInteger)animationFrameInterval
@@ -183,50 +190,48 @@ enum
         255,   0, 255, 255,
     };
     
+    static const GLfloat texCoords[] = {
+        0.0, 1.0,
+        1.0, 1.0,
+        0.0, 0.0,
+        1.0, 0.0
+    };
+    
     static float transY = 0.0f;
     
-    glClearColor(0.5f, 0.5f, 0.5f, 1.0f);
+    glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT);
     
-    if ([context API] == kEAGLRenderingAPIOpenGLES2) 
-    {
-        // Use shader program.
-        glUseProgram(program);
+    
+    // Use shader program.
+    glUseProgram(program);
+    
+    // Update uniform value.
+    glUniform1f(uniforms[UNIFORM_TRANSLATE], (GLfloat)transY);
+    transY += 0.075f;	
+
+    glActiveTexture(0);
+    glBindTexture(GL_TEXTURE_2D, texture);
+    glUniform1i(uniforms[UNIFORM_TEXTURE], 0);
+
+    
+    // Update attribute values.
+    glVertexAttribPointer(ATTRIB_VERTEX, 2, GL_FLOAT, 0, 0, squareVertices);
+    glEnableVertexAttribArray(ATTRIB_VERTEX);
+    glVertexAttribPointer(ATTRIB_COLOR, 4, GL_UNSIGNED_BYTE, 1, 0, squareColors);
+    glEnableVertexAttribArray(ATTRIB_COLOR);
+    glVertexAttribPointer(ATTRIB_TEXCOORD, 2, GL_FLOAT, 0, 0, texCoords);
+    glEnableVertexAttribArray(ATTRIB_TEXCOORD);
         
-        // Update uniform value.
-        glUniform1f(uniforms[UNIFORM_TRANSLATE], (GLfloat)transY);
-        transY += 0.075f;	
-        
-        // Update attribute values.
-        glVertexAttribPointer(ATTRIB_VERTEX, 2, GL_FLOAT, 0, 0, squareVertices);
-        glEnableVertexAttribArray(ATTRIB_VERTEX);
-        glVertexAttribPointer(ATTRIB_COLOR, 4, GL_UNSIGNED_BYTE, 1, 0, squareColors);
-        glEnableVertexAttribArray(ATTRIB_COLOR);
-        
-        // Validate program before drawing. This is a good check, but only really necessary in a debug build.
-        // DEBUG macro must be defined in your debug configurations if that's not already the case.
+    // Validate program before drawing. This is a good check, but only really necessary in a debug build.
+    // DEBUG macro must be defined in your debug configurations if that's not already the case.
 #if defined(DEBUG)
-        if (![self validateProgram:program]) 
-        {
-            NSLog(@"Failed to validate program: %d", program);
-            return;
-        }
-#endif
-    } 
-    else 
+    if (![self validateProgram:program]) 
     {
-        glMatrixMode(GL_PROJECTION);
-        glLoadIdentity();
-        glMatrixMode(GL_MODELVIEW);
-        glLoadIdentity();
-        glTranslatef(0.0f, (GLfloat)(sinf(transY)/2.0f), 0.0f);
-        transY += 0.075f;
-        
-        glVertexPointer(2, GL_FLOAT, 0, squareVertices);
-        glEnableClientState(GL_VERTEX_ARRAY);
-        glColorPointer(4, GL_UNSIGNED_BYTE, 0, squareColors);
-        glEnableClientState(GL_COLOR_ARRAY);
+        NSLog(@"Failed to validate program: %d", program);
+        return;
     }
+#endif
     
     glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
     
@@ -256,8 +261,9 @@ enum
     {
         GLchar *log = (GLchar *)malloc(logLength);
         glGetShaderInfoLog(*shader, logLength, &logLength, log);
-        NSLog(@"Shader compile log:\n%s", log);
+        NSLog(@"File: %@\nShader compile log:\n%s", file, log);
         free(log);
+        assert(false);
     }
 #endif
     
@@ -351,6 +357,7 @@ enum
     // This needs to be done prior to linking.
     glBindAttribLocation(program, ATTRIB_VERTEX, "position");
     glBindAttribLocation(program, ATTRIB_COLOR, "color");
+    glBindAttribLocation(program, ATTRIB_TEXCOORD, "texcoord");
     
     // Link program.
     if (![self linkProgram:program])
@@ -378,6 +385,7 @@ enum
     
     // Get uniform locations.
     uniforms[UNIFORM_TRANSLATE] = glGetUniformLocation(program, "translate");
+    uniforms[UNIFORM_TEXTURE] = glGetUniformLocation(program, "texture");
     
     // Release vertex and fragment shaders.
     if (vertShader)
@@ -386,6 +394,45 @@ enum
         glDeleteShader(fragShader);
     
     return TRUE;
+}
+
+-  (void) loadTextures
+{
+    glGenTextures(1, &texture);
+    glBindTexture(GL_TEXTURE_2D, texture);
+    
+    glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_LINEAR); 
+    glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_LINEAR);
+    
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"ruby" ofType:@"png"];
+    NSData *texData = [[NSData alloc] initWithContentsOfFile:path];
+    UIImage *image = [[UIImage alloc] initWithData:texData];
+    if (image == nil)
+        NSLog(@"Do real error checking here");
+    
+    GLuint width = CGImageGetWidth(image.CGImage);
+    GLuint height = CGImageGetHeight(image.CGImage);
+    
+    CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
+    
+    void *imageData = malloc( height * width * 4 );
+    
+    CGContextRef context = CGBitmapContextCreate( imageData, width, height, 8, 4 * width, colorSpace, kCGImageAlphaPremultipliedLast | kCGBitmapByteOrder32Big );
+    
+    CGColorSpaceRelease( colorSpace );
+    
+    CGContextClearRect( context, CGRectMake( 0, 0, width, height ) );
+    CGContextTranslateCTM( context, 0, height - height );
+    CGContextDrawImage( context, CGRectMake( 0, 0, width, height ), image.CGImage );
+    
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, imageData);
+    
+    CGContextRelease(context);
+    
+    free(imageData);
+    
+    [image release];
+    [texData release];    
 }
 
 @end
