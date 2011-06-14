@@ -1,0 +1,485 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		134DFF1E13A79FE900DA67FC /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 134DFF1D13A79FE900DA67FC /* UIKit.framework */; };
+		134DFF2013A79FE900DA67FC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 134DFF1F13A79FE900DA67FC /* Foundation.framework */; };
+		134DFF2213A79FE900DA67FC /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 134DFF2113A79FE900DA67FC /* CoreGraphics.framework */; };
+		134DFF2413A79FE900DA67FC /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 134DFF2313A79FE900DA67FC /* QuartzCore.framework */; };
+		134DFF2613A79FE900DA67FC /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 134DFF2513A79FE900DA67FC /* OpenGLES.framework */; };
+		134DFF2C13A79FE900DA67FC /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 134DFF2A13A79FE900DA67FC /* InfoPlist.strings */; };
+		134DFF2F13A79FE900DA67FC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 134DFF2E13A79FE900DA67FC /* main.m */; };
+		134DFF3213A79FE900DA67FC /* DiamondsAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 134DFF3113A79FE900DA67FC /* DiamondsAppDelegate.m */; };
+		134DFF3513A79FE900DA67FC /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 134DFF3313A79FE900DA67FC /* MainWindow.xib */; };
+		134DFF3713A79FE900DA67FC /* Shader.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 134DFF3613A79FE900DA67FC /* Shader.fsh */; };
+		134DFF3913A79FE900DA67FC /* Shader.vsh in Resources */ = {isa = PBXBuildFile; fileRef = 134DFF3813A79FE900DA67FC /* Shader.vsh */; };
+		134DFF3C13A79FE900DA67FC /* EAGLView.m in Sources */ = {isa = PBXBuildFile; fileRef = 134DFF3B13A79FE900DA67FC /* EAGLView.m */; };
+		134DFF3F13A79FE900DA67FC /* DiamondsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 134DFF3E13A79FE900DA67FC /* DiamondsViewController.m */; };
+		134DFF4213A79FE900DA67FC /* DiamondsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 134DFF4013A79FE900DA67FC /* DiamondsViewController.xib */; };
+		134DFF4913A79FE900DA67FC /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 134DFF1D13A79FE900DA67FC /* UIKit.framework */; };
+		134DFF4A13A79FE900DA67FC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 134DFF1F13A79FE900DA67FC /* Foundation.framework */; };
+		134DFF4B13A79FE900DA67FC /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 134DFF2113A79FE900DA67FC /* CoreGraphics.framework */; };
+		134DFF5313A79FE900DA67FC /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 134DFF5113A79FE900DA67FC /* InfoPlist.strings */; };
+		134DFF5613A79FE900DA67FC /* DiamondsTests.h in Resources */ = {isa = PBXBuildFile; fileRef = 134DFF5513A79FE900DA67FC /* DiamondsTests.h */; };
+		134DFF5813A79FE900DA67FC /* DiamondsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 134DFF5713A79FE900DA67FC /* DiamondsTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		134DFF4C13A79FE900DA67FC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 134DFF1013A79FE900DA67FC /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 134DFF1813A79FE900DA67FC;
+			remoteInfo = Diamonds;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		134DFF1913A79FE900DA67FC /* Diamonds.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Diamonds.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		134DFF1D13A79FE900DA67FC /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		134DFF1F13A79FE900DA67FC /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		134DFF2113A79FE900DA67FC /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		134DFF2313A79FE900DA67FC /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		134DFF2513A79FE900DA67FC /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
+		134DFF2913A79FE900DA67FC /* Diamonds-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Diamonds-Info.plist"; sourceTree = "<group>"; };
+		134DFF2B13A79FE900DA67FC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		134DFF2D13A79FE900DA67FC /* Diamonds-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Diamonds-Prefix.pch"; sourceTree = "<group>"; };
+		134DFF2E13A79FE900DA67FC /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		134DFF3013A79FE900DA67FC /* DiamondsAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DiamondsAppDelegate.h; sourceTree = "<group>"; };
+		134DFF3113A79FE900DA67FC /* DiamondsAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DiamondsAppDelegate.m; sourceTree = "<group>"; };
+		134DFF3413A79FE900DA67FC /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainWindow.xib; sourceTree = "<group>"; };
+		134DFF3613A79FE900DA67FC /* Shader.fsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; name = Shader.fsh; path = Shaders/Shader.fsh; sourceTree = "<group>"; };
+		134DFF3813A79FE900DA67FC /* Shader.vsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; name = Shader.vsh; path = Shaders/Shader.vsh; sourceTree = "<group>"; };
+		134DFF3A13A79FE900DA67FC /* EAGLView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EAGLView.h; sourceTree = "<group>"; };
+		134DFF3B13A79FE900DA67FC /* EAGLView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EAGLView.m; sourceTree = "<group>"; };
+		134DFF3D13A79FE900DA67FC /* DiamondsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DiamondsViewController.h; sourceTree = "<group>"; };
+		134DFF3E13A79FE900DA67FC /* DiamondsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DiamondsViewController.m; sourceTree = "<group>"; };
+		134DFF4113A79FE900DA67FC /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/DiamondsViewController.xib; sourceTree = "<group>"; };
+		134DFF4813A79FE900DA67FC /* DiamondsTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DiamondsTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		134DFF5013A79FE900DA67FC /* DiamondsTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "DiamondsTests-Info.plist"; sourceTree = "<group>"; };
+		134DFF5213A79FE900DA67FC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		134DFF5413A79FE900DA67FC /* DiamondsTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DiamondsTests-Prefix.pch"; sourceTree = "<group>"; };
+		134DFF5513A79FE900DA67FC /* DiamondsTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DiamondsTests.h; sourceTree = "<group>"; };
+		134DFF5713A79FE900DA67FC /* DiamondsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DiamondsTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		134DFF1613A79FE900DA67FC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				134DFF1E13A79FE900DA67FC /* UIKit.framework in Frameworks */,
+				134DFF2013A79FE900DA67FC /* Foundation.framework in Frameworks */,
+				134DFF2213A79FE900DA67FC /* CoreGraphics.framework in Frameworks */,
+				134DFF2413A79FE900DA67FC /* QuartzCore.framework in Frameworks */,
+				134DFF2613A79FE900DA67FC /* OpenGLES.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		134DFF4413A79FE900DA67FC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				134DFF4913A79FE900DA67FC /* UIKit.framework in Frameworks */,
+				134DFF4A13A79FE900DA67FC /* Foundation.framework in Frameworks */,
+				134DFF4B13A79FE900DA67FC /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		134DFF0E13A79FE900DA67FC = {
+			isa = PBXGroup;
+			children = (
+				134DFF2713A79FE900DA67FC /* Diamonds */,
+				134DFF4E13A79FE900DA67FC /* DiamondsTests */,
+				134DFF1C13A79FE900DA67FC /* Frameworks */,
+				134DFF1A13A79FE900DA67FC /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		134DFF1A13A79FE900DA67FC /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				134DFF1913A79FE900DA67FC /* Diamonds.app */,
+				134DFF4813A79FE900DA67FC /* DiamondsTests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		134DFF1C13A79FE900DA67FC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				134DFF1D13A79FE900DA67FC /* UIKit.framework */,
+				134DFF1F13A79FE900DA67FC /* Foundation.framework */,
+				134DFF2113A79FE900DA67FC /* CoreGraphics.framework */,
+				134DFF2313A79FE900DA67FC /* QuartzCore.framework */,
+				134DFF2513A79FE900DA67FC /* OpenGLES.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		134DFF2713A79FE900DA67FC /* Diamonds */ = {
+			isa = PBXGroup;
+			children = (
+				134DFF3013A79FE900DA67FC /* DiamondsAppDelegate.h */,
+				134DFF3113A79FE900DA67FC /* DiamondsAppDelegate.m */,
+				134DFF3313A79FE900DA67FC /* MainWindow.xib */,
+				134DFF3613A79FE900DA67FC /* Shader.fsh */,
+				134DFF3813A79FE900DA67FC /* Shader.vsh */,
+				134DFF3A13A79FE900DA67FC /* EAGLView.h */,
+				134DFF3B13A79FE900DA67FC /* EAGLView.m */,
+				134DFF3D13A79FE900DA67FC /* DiamondsViewController.h */,
+				134DFF3E13A79FE900DA67FC /* DiamondsViewController.m */,
+				134DFF4013A79FE900DA67FC /* DiamondsViewController.xib */,
+				134DFF2813A79FE900DA67FC /* Supporting Files */,
+			);
+			path = Diamonds;
+			sourceTree = "<group>";
+		};
+		134DFF2813A79FE900DA67FC /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				134DFF2913A79FE900DA67FC /* Diamonds-Info.plist */,
+				134DFF2A13A79FE900DA67FC /* InfoPlist.strings */,
+				134DFF2D13A79FE900DA67FC /* Diamonds-Prefix.pch */,
+				134DFF2E13A79FE900DA67FC /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		134DFF4E13A79FE900DA67FC /* DiamondsTests */ = {
+			isa = PBXGroup;
+			children = (
+				134DFF5513A79FE900DA67FC /* DiamondsTests.h */,
+				134DFF5713A79FE900DA67FC /* DiamondsTests.m */,
+				134DFF4F13A79FE900DA67FC /* Supporting Files */,
+			);
+			path = DiamondsTests;
+			sourceTree = "<group>";
+		};
+		134DFF4F13A79FE900DA67FC /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				134DFF5013A79FE900DA67FC /* DiamondsTests-Info.plist */,
+				134DFF5113A79FE900DA67FC /* InfoPlist.strings */,
+				134DFF5413A79FE900DA67FC /* DiamondsTests-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		134DFF1813A79FE900DA67FC /* Diamonds */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 134DFF5B13A79FE900DA67FC /* Build configuration list for PBXNativeTarget "Diamonds" */;
+			buildPhases = (
+				134DFF1513A79FE900DA67FC /* Sources */,
+				134DFF1613A79FE900DA67FC /* Frameworks */,
+				134DFF1713A79FE900DA67FC /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Diamonds;
+			productName = Diamonds;
+			productReference = 134DFF1913A79FE900DA67FC /* Diamonds.app */;
+			productType = "com.apple.product-type.application";
+		};
+		134DFF4713A79FE900DA67FC /* DiamondsTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 134DFF5E13A79FE900DA67FC /* Build configuration list for PBXNativeTarget "DiamondsTests" */;
+			buildPhases = (
+				134DFF4313A79FE900DA67FC /* Sources */,
+				134DFF4413A79FE900DA67FC /* Frameworks */,
+				134DFF4513A79FE900DA67FC /* Resources */,
+				134DFF4613A79FE900DA67FC /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				134DFF4D13A79FE900DA67FC /* PBXTargetDependency */,
+			);
+			name = DiamondsTests;
+			productName = DiamondsTests;
+			productReference = 134DFF4813A79FE900DA67FC /* DiamondsTests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		134DFF1013A79FE900DA67FC /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				ORGANIZATIONNAME = Crytek;
+			};
+			buildConfigurationList = 134DFF1313A79FE900DA67FC /* Build configuration list for PBXProject "Diamonds" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 134DFF0E13A79FE900DA67FC;
+			productRefGroup = 134DFF1A13A79FE900DA67FC /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				134DFF1813A79FE900DA67FC /* Diamonds */,
+				134DFF4713A79FE900DA67FC /* DiamondsTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		134DFF1713A79FE900DA67FC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				134DFF2C13A79FE900DA67FC /* InfoPlist.strings in Resources */,
+				134DFF3513A79FE900DA67FC /* MainWindow.xib in Resources */,
+				134DFF3713A79FE900DA67FC /* Shader.fsh in Resources */,
+				134DFF3913A79FE900DA67FC /* Shader.vsh in Resources */,
+				134DFF4213A79FE900DA67FC /* DiamondsViewController.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		134DFF4513A79FE900DA67FC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				134DFF5313A79FE900DA67FC /* InfoPlist.strings in Resources */,
+				134DFF5613A79FE900DA67FC /* DiamondsTests.h in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		134DFF4613A79FE900DA67FC /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		134DFF1513A79FE900DA67FC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				134DFF2F13A79FE900DA67FC /* main.m in Sources */,
+				134DFF3213A79FE900DA67FC /* DiamondsAppDelegate.m in Sources */,
+				134DFF3C13A79FE900DA67FC /* EAGLView.m in Sources */,
+				134DFF3F13A79FE900DA67FC /* DiamondsViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		134DFF4313A79FE900DA67FC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				134DFF5813A79FE900DA67FC /* DiamondsTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		134DFF4D13A79FE900DA67FC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 134DFF1813A79FE900DA67FC /* Diamonds */;
+			targetProxy = 134DFF4C13A79FE900DA67FC /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		134DFF2A13A79FE900DA67FC /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				134DFF2B13A79FE900DA67FC /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		134DFF3313A79FE900DA67FC /* MainWindow.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				134DFF3413A79FE900DA67FC /* en */,
+			);
+			name = MainWindow.xib;
+			sourceTree = "<group>";
+		};
+		134DFF4013A79FE900DA67FC /* DiamondsViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				134DFF4113A79FE900DA67FC /* en */,
+			);
+			name = DiamondsViewController.xib;
+			sourceTree = "<group>";
+		};
+		134DFF5113A79FE900DA67FC /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				134DFF5213A79FE900DA67FC /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		134DFF5913A79FE900DA67FC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		134DFF5A13A79FE900DA67FC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+			};
+			name = Release;
+		};
+		134DFF5C13A79FE900DA67FC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Diamonds/Diamonds-Prefix.pch";
+				"GCC_THUMB_SUPPORT[arch=armv6]" = "";
+				INFOPLIST_FILE = "Diamonds/Diamonds-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		134DFF5D13A79FE900DA67FC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Diamonds/Diamonds-Prefix.pch";
+				"GCC_THUMB_SUPPORT[arch=armv6]" = "";
+				INFOPLIST_FILE = "Diamonds/Diamonds-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				VALIDATE_PRODUCT = YES;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		134DFF5F13A79FE900DA67FC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Diamonds.app/Diamonds";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "DiamondsTests/DiamondsTests-Prefix.pch";
+				INFOPLIST_FILE = "DiamondsTests/DiamondsTests-Info.plist";
+				OTHER_LDFLAGS = (
+					"-framework",
+					SenTestingKit,
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		134DFF6013A79FE900DA67FC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Diamonds.app/Diamonds";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "DiamondsTests/DiamondsTests-Prefix.pch";
+				INFOPLIST_FILE = "DiamondsTests/DiamondsTests-Info.plist";
+				OTHER_LDFLAGS = (
+					"-framework",
+					SenTestingKit,
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		134DFF1313A79FE900DA67FC /* Build configuration list for PBXProject "Diamonds" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				134DFF5913A79FE900DA67FC /* Debug */,
+				134DFF5A13A79FE900DA67FC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		134DFF5B13A79FE900DA67FC /* Build configuration list for PBXNativeTarget "Diamonds" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				134DFF5C13A79FE900DA67FC /* Debug */,
+				134DFF5D13A79FE900DA67FC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		134DFF5E13A79FE900DA67FC /* Build configuration list for PBXNativeTarget "DiamondsTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				134DFF5F13A79FE900DA67FC /* Debug */,
+				134DFF6013A79FE900DA67FC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 134DFF1013A79FE900DA67FC /* Project object */;
+}

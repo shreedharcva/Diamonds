@@ -1,0 +1,22 @@
+#.gitignore file 
+
+.perforce
+.DS_Store
+.p4config
+
+# XCode user data
+*.pbxuser
+*.mode*
+*.xcworkspacedata
+xcuserdata*
+*.xcuserdatad
+*.xcworkspace
+*.xcuserstate
+
+.metadata
+
+build/*
+
+#python related
+*.pyc
+*.orig
