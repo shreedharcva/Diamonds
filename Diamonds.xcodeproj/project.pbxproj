@@ -10,7 +10,6 @@
 		132041B513A7A64100D3F66D /* MainWindow-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 132041B313A7A64100D3F66D /* MainWindow-iPad.xib */; };
 		132041BA13A7A7E200D3F66D /* MainWindow-iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 132041B813A7A7E200D3F66D /* MainWindow-iPhone.xib */; };
 		132041BD13A7A80700D3F66D /* DiamondsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 132041BB13A7A80700D3F66D /* DiamondsViewController.xib */; };
-		132041C013A7A81B00D3F66D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 132041BE13A7A81B00D3F66D /* InfoPlist.strings */; };
 		134DFF1E13A79FE900DA67FC /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 134DFF1D13A79FE900DA67FC /* UIKit.framework */; };
 		134DFF2013A79FE900DA67FC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 134DFF1F13A79FE900DA67FC /* Foundation.framework */; };
 		134DFF2213A79FE900DA67FC /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 134DFF2113A79FE900DA67FC /* CoreGraphics.framework */; };
@@ -44,7 +43,6 @@
 		132041B413A7A64100D3F66D /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = "iPad/en.lproj/MainWindow-iPad.xib"; sourceTree = "<group>"; };
 		132041B913A7A7E200D3F66D /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = "iPhone/en.lproj/MainWindow-iPhone.xib"; sourceTree = "<group>"; };
 		132041BC13A7A80700D3F66D /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = iPhone/en.lproj/DiamondsViewController.xib; sourceTree = "<group>"; };
-		132041BF13A7A81B00D3F66D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = iPhone/en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		134DFF1913A79FE900DA67FC /* Diamonds.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Diamonds.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		134DFF1D13A79FE900DA67FC /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		134DFF1F13A79FE900DA67FC /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -150,13 +148,13 @@
 				132041B213A7A64000D3F66D /* iPad */,
 				134DFF3013A79FE900DA67FC /* DiamondsAppDelegate.h */,
 				134DFF3113A79FE900DA67FC /* DiamondsAppDelegate.m */,
-				132041BB13A7A80700D3F66D /* DiamondsViewController.xib */,
 				134DFF3613A79FE900DA67FC /* Shader.fsh */,
 				134DFF3813A79FE900DA67FC /* Shader.vsh */,
 				134DFF3A13A79FE900DA67FC /* EAGLView.h */,
 				134DFF3B13A79FE900DA67FC /* EAGLView.m */,
 				134DFF3D13A79FE900DA67FC /* DiamondsViewController.h */,
 				134DFF3E13A79FE900DA67FC /* DiamondsViewController.m */,
+				132041BB13A7A80700D3F66D /* DiamondsViewController.xib */,
 				134DFF2813A79FE900DA67FC /* Supporting Files */,
 			);
 			path = Diamonds;
@@ -165,7 +163,6 @@
 		134DFF2813A79FE900DA67FC /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				132041BE13A7A81B00D3F66D /* InfoPlist.strings */,
 				134DFF2913A79FE900DA67FC /* Diamonds-Info.plist */,
 				134DFF2D13A79FE900DA67FC /* Diamonds-Prefix.pch */,
 				134DFF2E13A79FE900DA67FC /* main.m */,
@@ -268,7 +265,6 @@
 				132041B513A7A64100D3F66D /* MainWindow-iPad.xib in Resources */,
 				132041BA13A7A7E200D3F66D /* MainWindow-iPhone.xib in Resources */,
 				132041BD13A7A80700D3F66D /* DiamondsViewController.xib in Resources */,
-				132041C013A7A81B00D3F66D /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -352,14 +348,6 @@
 				132041BC13A7A80700D3F66D /* en */,
 			);
 			name = DiamondsViewController.xib;
-			sourceTree = "<group>";
-		};
-		132041BE13A7A81B00D3F66D /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				132041BF13A7A81B00D3F66D /* en */,
-			);
-			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
 		134DFF5113A79FE900DA67FC /* InfoPlist.strings */ = {

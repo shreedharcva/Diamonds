@@ -8,26 +8,32 @@
 #import "EAGLView.h"
 
 // Uniform index.
-enum {
+enum 
+{
     UNIFORM_TRANSLATE,
     NUM_UNIFORMS
 };
+
 GLint uniforms[NUM_UNIFORMS];
 
 // Attribute index.
-enum {
+enum 
+{
     ATTRIB_VERTEX,
     ATTRIB_COLOR,
     NUM_ATTRIBUTES
 };
 
 @interface DiamondsViewController ()
+
 @property (nonatomic, retain) EAGLContext *context;
 @property (nonatomic, assign) CADisplayLink *displayLink;
+
 - (BOOL)loadShaders;
 - (BOOL)compileShader:(GLuint *)shader type:(GLenum)type file:(NSString *)file;
 - (BOOL)linkProgram:(GLuint)prog;
 - (BOOL)validateProgram:(GLuint)prog;
+
 @end
 
 @implementation DiamondsViewController
@@ -38,13 +44,11 @@ enum {
 {
     EAGLContext *aContext = [[EAGLContext alloc] initWithAPI:kEAGLRenderingAPIOpenGLES2];
     
-    if (!aContext) {
-        aContext = [[EAGLContext alloc] initWithAPI:kEAGLRenderingAPIOpenGLES1];
-    }
     
     if (!aContext)
         NSLog(@"Failed to create ES context");
-    else if (![EAGLContext setCurrentContext:aContext])
+    else 
+    if (![EAGLContext setCurrentContext:aContext])
         NSLog(@"Failed to set ES context current");
     
 	self.context = aContext;
@@ -63,7 +67,8 @@ enum {
 
 - (void)dealloc
 {
-    if (program) {
+    if (program) 
+    {
         glDeleteProgram(program);
         program = 0;
     }
@@ -103,7 +108,8 @@ enum {
 {
 	[super viewDidUnload];
 	
-    if (program) {
+    if (program) 
+    {
         glDeleteProgram(program);
         program = 0;
     }
@@ -125,7 +131,8 @@ enum {
 	 Frame interval defines how many display frames must pass between each time the display link fires.
 	 The display link will only fire 30 times a second when the frame internal is two on a display that refreshes 60 times a second. The default frame interval setting of one will fire 60 times a second when the display refreshes at 60 times a second. A frame interval setting of less than one results in undefined behavior.
 	 */
-    if (frameInterval >= 1) {
+    if (frameInterval >= 1) 
+    {
         animationFrameInterval = frameInterval;
         
         if (animating) {
@@ -149,7 +156,8 @@ enum {
 
 - (void)stopAnimation
 {
-    if (animating) {
+    if (animating) 
+    {
         [self.displayLink invalidate];
         self.displayLink = nil;
         animating = FALSE;
@@ -180,7 +188,8 @@ enum {
     glClearColor(0.5f, 0.5f, 0.5f, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT);
     
-    if ([context API] == kEAGLRenderingAPIOpenGLES2) {
+    if ([context API] == kEAGLRenderingAPIOpenGLES2) 
+    {
         // Use shader program.
         glUseProgram(program);
         
@@ -197,12 +206,15 @@ enum {
         // Validate program before drawing. This is a good check, but only really necessary in a debug build.
         // DEBUG macro must be defined in your debug configurations if that's not already the case.
 #if defined(DEBUG)
-        if (![self validateProgram:program]) {
+        if (![self validateProgram:program]) 
+        {
             NSLog(@"Failed to validate program: %d", program);
             return;
         }
 #endif
-    } else {
+    } 
+    else 
+    {
         glMatrixMode(GL_PROJECTION);
         glLoadIdentity();
         glMatrixMode(GL_MODELVIEW);

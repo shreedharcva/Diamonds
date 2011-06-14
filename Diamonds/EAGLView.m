@@ -25,7 +25,8 @@
 - (id)initWithCoder:(NSCoder*)coder
 {
     self = [super initWithCoder:coder];
-	if (self) {
+	if (self) 
+    {
         CAEAGLLayer *eaglLayer = (CAEAGLLayer *)self.layer;
         
         eaglLayer.opaque = TRUE;
@@ -48,7 +49,8 @@
 
 - (void)setContext:(EAGLContext *)newContext
 {
-    if (context != newContext) {
+    if (context != newContext) 
+    {
         [self deleteFramebuffer];
         
         [context release];
@@ -60,7 +62,8 @@
 
 - (void)createFramebuffer
 {
-    if (context && !defaultFramebuffer) {
+    if (context && !defaultFramebuffer) 
+    {
         [EAGLContext setCurrentContext:context];
         
         // Create default framebuffer object.
@@ -83,10 +86,12 @@
 
 - (void)deleteFramebuffer
 {
-    if (context) {
+    if (context)
+    {
         [EAGLContext setCurrentContext:context];
         
-        if (defaultFramebuffer) {
+        if (defaultFramebuffer) 
+        {
             glDeleteFramebuffers(1, &defaultFramebuffer);
             defaultFramebuffer = 0;
         }
@@ -100,7 +105,8 @@
 
 - (void)setFramebuffer
 {
-    if (context) {
+    if (context) 
+    {
         [EAGLContext setCurrentContext:context];
         
         if (!defaultFramebuffer)
@@ -116,7 +122,8 @@
 {
     BOOL success = FALSE;
     
-    if (context) {
+    if (context) 
+    {
         [EAGLContext setCurrentContext:context];
         
         glBindRenderbuffer(GL_RENDERBUFFER, colorRenderbuffer);
