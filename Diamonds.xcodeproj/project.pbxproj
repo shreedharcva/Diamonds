@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		132041B513A7A64100D3F66D /* MainWindow-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 132041B313A7A64100D3F66D /* MainWindow-iPad.xib */; };
 		134DFF1E13A79FE900DA67FC /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 134DFF1D13A79FE900DA67FC /* UIKit.framework */; };
 		134DFF2013A79FE900DA67FC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 134DFF1F13A79FE900DA67FC /* Foundation.framework */; };
 		134DFF2213A79FE900DA67FC /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 134DFF2113A79FE900DA67FC /* CoreGraphics.framework */; };
@@ -15,7 +16,7 @@
 		134DFF2C13A79FE900DA67FC /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 134DFF2A13A79FE900DA67FC /* InfoPlist.strings */; };
 		134DFF2F13A79FE900DA67FC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 134DFF2E13A79FE900DA67FC /* main.m */; };
 		134DFF3213A79FE900DA67FC /* DiamondsAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 134DFF3113A79FE900DA67FC /* DiamondsAppDelegate.m */; };
-		134DFF3513A79FE900DA67FC /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 134DFF3313A79FE900DA67FC /* MainWindow.xib */; };
+		134DFF3513A79FE900DA67FC /* MainWindow-iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 134DFF3313A79FE900DA67FC /* MainWindow-iPhone.xib */; };
 		134DFF3713A79FE900DA67FC /* Shader.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 134DFF3613A79FE900DA67FC /* Shader.fsh */; };
 		134DFF3913A79FE900DA67FC /* Shader.vsh in Resources */ = {isa = PBXBuildFile; fileRef = 134DFF3813A79FE900DA67FC /* Shader.vsh */; };
 		134DFF3C13A79FE900DA67FC /* EAGLView.m in Sources */ = {isa = PBXBuildFile; fileRef = 134DFF3B13A79FE900DA67FC /* EAGLView.m */; };
@@ -40,6 +41,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		132041B413A7A64100D3F66D /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = "iPad/en.lproj/MainWindow-iPad.xib"; sourceTree = "<group>"; };
 		134DFF1913A79FE900DA67FC /* Diamonds.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Diamonds.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		134DFF1D13A79FE900DA67FC /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		134DFF1F13A79FE900DA67FC /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -52,7 +54,7 @@
 		134DFF2E13A79FE900DA67FC /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		134DFF3013A79FE900DA67FC /* DiamondsAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DiamondsAppDelegate.h; sourceTree = "<group>"; };
 		134DFF3113A79FE900DA67FC /* DiamondsAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DiamondsAppDelegate.m; sourceTree = "<group>"; };
-		134DFF3413A79FE900DA67FC /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainWindow.xib; sourceTree = "<group>"; };
+		134DFF3413A79FE900DA67FC /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = "en.lproj/MainWindow-iPhone.xib"; sourceTree = "<group>"; };
 		134DFF3613A79FE900DA67FC /* Shader.fsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; name = Shader.fsh; path = Shaders/Shader.fsh; sourceTree = "<group>"; };
 		134DFF3813A79FE900DA67FC /* Shader.vsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; name = Shader.vsh; path = Shaders/Shader.vsh; sourceTree = "<group>"; };
 		134DFF3A13A79FE900DA67FC /* EAGLView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EAGLView.h; sourceTree = "<group>"; };
@@ -94,6 +96,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		132041B213A7A64000D3F66D /* iPad */ = {
+			isa = PBXGroup;
+			children = (
+				132041B313A7A64100D3F66D /* MainWindow-iPad.xib */,
+			);
+			name = iPad;
+			sourceTree = "<group>";
+		};
+		132041B613A7A66400D3F66D /* iPhone */ = {
+			isa = PBXGroup;
+			children = (
+				134DFF3313A79FE900DA67FC /* MainWindow-iPhone.xib */,
+			);
+			name = iPhone;
+			sourceTree = "<group>";
+		};
 		134DFF0E13A79FE900DA67FC = {
 			isa = PBXGroup;
 			children = (
@@ -128,9 +146,10 @@
 		134DFF2713A79FE900DA67FC /* Diamonds */ = {
 			isa = PBXGroup;
 			children = (
+				132041B613A7A66400D3F66D /* iPhone */,
+				132041B213A7A64000D3F66D /* iPad */,
 				134DFF3013A79FE900DA67FC /* DiamondsAppDelegate.h */,
 				134DFF3113A79FE900DA67FC /* DiamondsAppDelegate.m */,
-				134DFF3313A79FE900DA67FC /* MainWindow.xib */,
 				134DFF3613A79FE900DA67FC /* Shader.fsh */,
 				134DFF3813A79FE900DA67FC /* Shader.vsh */,
 				134DFF3A13A79FE900DA67FC /* EAGLView.h */,
@@ -245,10 +264,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				134DFF2C13A79FE900DA67FC /* InfoPlist.strings in Resources */,
-				134DFF3513A79FE900DA67FC /* MainWindow.xib in Resources */,
+				134DFF3513A79FE900DA67FC /* MainWindow-iPhone.xib in Resources */,
 				134DFF3713A79FE900DA67FC /* Shader.fsh in Resources */,
 				134DFF3913A79FE900DA67FC /* Shader.vsh in Resources */,
 				134DFF4213A79FE900DA67FC /* DiamondsViewController.xib in Resources */,
+				132041B513A7A64100D3F66D /* MainWindow-iPad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -310,6 +330,14 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		132041B313A7A64100D3F66D /* MainWindow-iPad.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				132041B413A7A64100D3F66D /* en */,
+			);
+			name = "MainWindow-iPad.xib";
+			sourceTree = "<group>";
+		};
 		134DFF2A13A79FE900DA67FC /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -318,12 +346,12 @@
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
-		134DFF3313A79FE900DA67FC /* MainWindow.xib */ = {
+		134DFF3313A79FE900DA67FC /* MainWindow-iPhone.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
 				134DFF3413A79FE900DA67FC /* en */,
 			);
-			name = MainWindow.xib;
+			name = "MainWindow-iPhone.xib";
 			sourceTree = "<group>";
 		};
 		134DFF4013A79FE900DA67FC /* DiamondsViewController.xib */ = {
@@ -387,7 +415,9 @@
 				GCC_PREFIX_HEADER = "Diamonds/Diamonds-Prefix.pch";
 				"GCC_THUMB_SUPPORT[arch=armv6]" = "";
 				INFOPLIST_FILE = "Diamonds/Diamonds-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -401,7 +431,9 @@
 				GCC_PREFIX_HEADER = "Diamonds/Diamonds-Prefix.pch";
 				"GCC_THUMB_SUPPORT[arch=armv6]" = "";
 				INFOPLIST_FILE = "Diamonds/Diamonds-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;
 			};
@@ -470,6 +502,7 @@
 				134DFF5D13A79FE900DA67FC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		134DFF5E13A79FE900DA67FC /* Build configuration list for PBXNativeTarget "DiamondsTests" */ = {
 			isa = XCConfigurationList;
@@ -478,6 +511,7 @@
 				134DFF6013A79FE900DA67FC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
