@@ -146,11 +146,11 @@
 		134DFF2713A79FE900DA67FC /* Diamonds */ = {
 			isa = PBXGroup;
 			children = (
-				132041BB13A7A80700D3F66D /* DiamondsViewController.xib */,
 				132041B613A7A66400D3F66D /* iPhone */,
 				132041B213A7A64000D3F66D /* iPad */,
 				134DFF3013A79FE900DA67FC /* DiamondsAppDelegate.h */,
 				134DFF3113A79FE900DA67FC /* DiamondsAppDelegate.m */,
+				132041BB13A7A80700D3F66D /* DiamondsViewController.xib */,
 				134DFF3613A79FE900DA67FC /* Shader.fsh */,
 				134DFF3813A79FE900DA67FC /* Shader.vsh */,
 				134DFF3A13A79FE900DA67FC /* EAGLView.h */,
