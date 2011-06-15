@@ -9,33 +9,9 @@
 
 #import "Engine.h"
 
-
-// Uniform index.
-enum 
-{
-    UNIFORM_TRANSLATE,
-    UNIFORM_TEXTURE,
-    NUM_UNIFORMS
-};
-
-GLint uniforms[NUM_UNIFORMS];
-
-// Attribute index.
-enum 
-{
-    ATTRIB_VERTEX,
-    ATTRIB_COLOR,
-    ATTRIB_TEXCOORD,
-    NUM_ATTRIBUTES
-};
-
-
-
 @interface DiamondsViewController ()
 
 @property (nonatomic, assign) CADisplayLink *displayLink;
-
-- (BOOL) loadShaders;
 
 @end
 
@@ -47,7 +23,7 @@ enum
 {
     engine = [[Engine alloc] initWithView: (EAGLView*) self.view];
     
-    [self loadShaders];
+    [engine loadShaders];
     [engine loadTextures];
     
     animating = FALSE;
@@ -138,83 +114,11 @@ enum
     }
 }
 
-- (void)drawFrame
+- (void) drawFrame
 {
-    [(EAGLView *)self.view setFramebuffer];
-    
-    // Replace the implementation of this method to do your own custom drawing.
-    static const GLfloat squareVertices[] = {
-        -0.5f, -0.33f,
-        0.5f, -0.33f,
-        -0.5f,  0.33f,
-        0.5f,  0.33f,
-    };
-    
-    static const GLubyte squareColors[] = {
-        255, 255,   0, 255,
-        0,   255, 255, 255,
-        0,     0,   0,   0,
-        255,   0, 255, 255,
-    };
-    
-    static const GLfloat texCoords[] = {
-        0.0, 1.0,
-        1.0, 1.0,
-        0.0, 0.0,
-        1.0, 0.0
-    };
-    
-    static float transY = 0.0f;
-    
-    glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
-    glClear(GL_COLOR_BUFFER_BIT);
-    
-    
-    // Use shader program.
-    glUseProgram(engine.program);
-    
-    // Update uniform value.
-    glUniform1f(uniforms[UNIFORM_TRANSLATE], (GLfloat)transY);
-    transY += 0.075f;	
-
-    glActiveTexture(0);
-    glBindTexture(GL_TEXTURE_2D, engine.texture);
-    glUniform1i(uniforms[UNIFORM_TEXTURE], 0);
-
-    
-    // Update attribute values.
-    glVertexAttribPointer(ATTRIB_VERTEX, 2, GL_FLOAT, 0, 0, squareVertices);
-    glEnableVertexAttribArray(ATTRIB_VERTEX);
-    glVertexAttribPointer(ATTRIB_COLOR, 4, GL_UNSIGNED_BYTE, 1, 0, squareColors);
-    glEnableVertexAttribArray(ATTRIB_COLOR);
-    glVertexAttribPointer(ATTRIB_TEXCOORD, 2, GL_FLOAT, 0, 0, texCoords);
-    glEnableVertexAttribArray(ATTRIB_TEXCOORD);
-        
-    // Validate program before drawing. This is a good check, but only really necessary in a debug build.
-    // DEBUG macro must be defined in your debug configurations if that's not already the case.
-#if defined(DEBUG)
-    if (![engine validateProgram:engine.program]) 
-    {
-        NSLog(@"Failed to validate program: %d", engine.program);
-        return;
-    }
-#endif
-    
-    glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
-    
-    [(EAGLView *) self.view presentFramebuffer];
+    [engine drawFrame];
 }
 
-- (BOOL)loadShaders
-{
-    [engine loadShaders];
-    
-    // Get uniform locations.
-    uniforms[UNIFORM_TRANSLATE] = glGetUniformLocation(engine.program, "translate");
-    uniforms[UNIFORM_TEXTURE] = glGetUniformLocation(engine.program, "texture");
-
-    return TRUE;
-}
 
 
 @end
