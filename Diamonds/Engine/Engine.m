@@ -54,7 +54,6 @@
 { 
     [shaderProgram release];
     
-    // Tear down context.
     if ([EAGLContext currentContext] == glcontext)
         [EAGLContext setCurrentContext:nil];
     
@@ -159,7 +158,7 @@
 #if defined(DEBUG)
     if (![shaderProgram validate]) 
     {
-        NSLog(@"Failed to validate program: %d", shaderProgram.program);
+        NSLog(@"Failed to validate shader program");
         return;
     }
 #endif

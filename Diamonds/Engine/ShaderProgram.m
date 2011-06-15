@@ -13,7 +13,6 @@
     if (program) 
     {
         glDeleteProgram(program);
-        program = 0;
     }
 }
 
@@ -115,7 +114,6 @@
     GLuint vertShader, fragShader;
     NSString *vertShaderPathname, *fragShaderPathname;
     
-    // Create and compile vertex shader.
     vertShaderPathname = [[NSBundle mainBundle] pathForResource:@"Shader" ofType:@"vsh"];
     if (![self compileShader:&vertShader type:GL_VERTEX_SHADER file:vertShaderPathname])
     {
@@ -123,7 +121,6 @@
         return;
     }
     
-    // Create and compile fragment shader.
     fragShaderPathname = [[NSBundle mainBundle] pathForResource:@"Shader" ofType:@"fsh"];
     if (![self compileShader:&fragShader type:GL_FRAGMENT_SHADER file:fragShaderPathname])
     {
