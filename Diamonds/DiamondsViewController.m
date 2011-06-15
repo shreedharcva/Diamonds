@@ -19,7 +19,7 @@
 
 @synthesize animating, displayLink;
 
-- (void)awakeFromNib
+- (void) awakeFromNib
 {
     engine = [[Engine alloc] initWithView: (EAGLView*) self.view];
     
