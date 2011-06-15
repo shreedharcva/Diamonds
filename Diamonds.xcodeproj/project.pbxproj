@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		130CA76913A8E64B008C7B66 /* ShaderProgram.m in Sources */ = {isa = PBXBuildFile; fileRef = 130CA76813A8E64B008C7B66 /* ShaderProgram.m */; };
 		132041B513A7A64100D3F66D /* MainWindow-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 132041B313A7A64100D3F66D /* MainWindow-iPad.xib */; };
 		132041BA13A7A7E200D3F66D /* MainWindow-iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 132041B813A7A7E200D3F66D /* MainWindow-iPhone.xib */; };
 		132041BD13A7A80700D3F66D /* DiamondsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 132041BB13A7A80700D3F66D /* DiamondsViewController.xib */; };
@@ -42,6 +43,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		130CA76713A8E64B008C7B66 /* ShaderProgram.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ShaderProgram.h; path = Diamonds/Engine/ShaderProgram.h; sourceTree = "<group>"; };
+		130CA76813A8E64B008C7B66 /* ShaderProgram.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ShaderProgram.m; path = Diamonds/Engine/ShaderProgram.m; sourceTree = "<group>"; };
 		132041B413A7A64100D3F66D /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = "iPad/en.lproj/MainWindow-iPad.xib"; sourceTree = "<group>"; };
 		132041B913A7A7E200D3F66D /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = "iPhone/en.lproj/MainWindow-iPhone.xib"; sourceTree = "<group>"; };
 		132041BC13A7A80700D3F66D /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = iPhone/en.lproj/DiamondsViewController.xib; sourceTree = "<group>"; };
@@ -209,6 +212,8 @@
 		13E98FB913A8BAC50003E7D2 /* Engine */ = {
 			isa = PBXGroup;
 			children = (
+				130CA76713A8E64B008C7B66 /* ShaderProgram.h */,
+				130CA76813A8E64B008C7B66 /* ShaderProgram.m */,
 				13E98FBA13A8BB250003E7D2 /* Engine.m */,
 				13E98FBB13A8BB250003E7D2 /* Engine.h */,
 			);
@@ -331,6 +336,7 @@
 				134DFF3C13A79FE900DA67FC /* EAGLView.m in Sources */,
 				134DFF3F13A79FE900DA67FC /* DiamondsViewController.m in Sources */,
 				13E98FBC13A8BB250003E7D2 /* Engine.m in Sources */,
+				130CA76913A8E64B008C7B66 /* ShaderProgram.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

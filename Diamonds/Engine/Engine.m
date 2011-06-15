@@ -3,219 +3,9 @@
 //  Diamonds
 
 #import "Engine.h"
+#import "ShaderProgram.h"
+
 #import "EAGLView.h"
-
-
-// Uniform index.
-enum 
-{
-    UNIFORM_TRANSLATE,
-    UNIFORM_TEXTURE,
-    NUM_UNIFORMS
-};
-
-GLint uniforms[NUM_UNIFORMS];
-
-// Attribute index.
-enum 
-{
-    ATTRIB_VERTEX,
-    ATTRIB_COLOR,
-    ATTRIB_TEXCOORD,
-    NUM_ATTRIBUTES
-};
-
-GLint uniforms[NUM_UNIFORMS];
-
-
-@interface ShaderProgram : NSObject 
-{
-    GLuint program;
-}
-
-@property (assign, nonatomic) GLuint program;
-
-- (void) load;
-- (bool) validate;
-
-@end
-
-@implementation ShaderProgram
-
-@synthesize program;
-
-- (void) dealloc
-{
-    if (program) 
-    {
-        glDeleteProgram(program);
-        program = 0;
-    }
-}
-
-- (BOOL) compileShader:(GLuint *)shader type:(GLenum)type file:(NSString *)file
-{
-    GLint status;
-    const GLchar *source;
-    
-    source = (GLchar *)[[NSString stringWithContentsOfFile:file encoding:NSUTF8StringEncoding error:nil] UTF8String];
-    if (!source)
-    {
-        NSLog(@"Failed to load vertex shader");
-        return FALSE;
-    }
-    
-    *shader = glCreateShader(type);
-    glShaderSource(*shader, 1, &source, NULL);
-    glCompileShader(*shader);
-    
-#if defined(DEBUG)
-    GLint logLength;
-    glGetShaderiv(*shader, GL_INFO_LOG_LENGTH, &logLength);
-    if (logLength > 0)
-    {
-        GLchar *log = (GLchar *)malloc(logLength);
-        glGetShaderInfoLog(*shader, logLength, &logLength, log);
-        NSLog(@"File: %@\nShader compile log:\n%s", file, log);
-        free(log);
-        assert(false);
-    }
-#endif
-    
-    glGetShaderiv(*shader, GL_COMPILE_STATUS, &status);
-    if (status == 0)
-    {
-        glDeleteShader(*shader);
-        return FALSE;
-    }
-    
-    return TRUE;
-}
-
-
-- (BOOL) linkProgram:(GLuint)prog
-{
-    GLint status;
-    
-    glLinkProgram(prog);
-    
-#if defined(DEBUG)
-    GLint logLength;
-    glGetProgramiv(prog, GL_INFO_LOG_LENGTH, &logLength);
-    if (logLength > 0)
-    {
-        GLchar *log = (GLchar *)malloc(logLength);
-        glGetProgramInfoLog(prog, logLength, &logLength, log);
-        NSLog(@"Program link log:\n%s", log);
-        free(log);
-    }
-#endif
-    
-    glGetProgramiv(prog, GL_LINK_STATUS, &status);
-    if (status == 0)
-        return FALSE;
-    
-    return TRUE;
-}
-
-- (BOOL)validateProgram:(GLuint)prog
-{
-    GLint logLength, status;
-    
-    glValidateProgram(prog);
-    glGetProgramiv(prog, GL_INFO_LOG_LENGTH, &logLength);
-    if (logLength > 0)
-    {
-        GLchar *log = (GLchar *)malloc(logLength);
-        glGetProgramInfoLog(prog, logLength, &logLength, log);
-        NSLog(@"Program validate log:\n%s", log);
-        free(log);
-    }
-    
-    glGetProgramiv(prog, GL_VALIDATE_STATUS, &status);
-    if (status == 0)
-        return FALSE;
-    
-    return TRUE;
-}
-
-- (bool) validate
-{
-    return [self validateProgram: program];
-}
-
-- (void) load
-{
-    program = glCreateProgram();
-    
-    GLuint vertShader, fragShader;
-    NSString *vertShaderPathname, *fragShaderPathname;
-    
-    // Create and compile vertex shader.
-    vertShaderPathname = [[NSBundle mainBundle] pathForResource:@"Shader" ofType:@"vsh"];
-    if (![self compileShader:&vertShader type:GL_VERTEX_SHADER file:vertShaderPathname])
-    {
-        NSLog(@"Failed to compile vertex shader");
-        return;
-    }
-    
-    // Create and compile fragment shader.
-    fragShaderPathname = [[NSBundle mainBundle] pathForResource:@"Shader" ofType:@"fsh"];
-    if (![self compileShader:&fragShader type:GL_FRAGMENT_SHADER file:fragShaderPathname])
-    {
-        NSLog(@"Failed to compile fragment shader");
-        return;
-    }
-    
-    // Attach vertex shader to program.
-    glAttachShader(self.program, vertShader);
-    
-    // Attach fragment shader to program.
-    glAttachShader(self.program, fragShader);
-    
-    // Bind attribute locations.
-    // This needs to be done prior to linking.
-    glBindAttribLocation(self.program, ATTRIB_VERTEX, "position");
-    glBindAttribLocation(self.program, ATTRIB_COLOR, "color");
-    glBindAttribLocation(self.program, ATTRIB_TEXCOORD, "texcoord");
-    
-    // Link program.
-    if (![self linkProgram:self.program])
-    {
-        NSLog(@"Failed to link program: %d", self.program);
-        
-        if (vertShader)
-        {
-            glDeleteShader(vertShader);
-            vertShader = 0;
-        }
-        if (fragShader)
-        {
-            glDeleteShader(fragShader);
-            fragShader = 0;
-        }
-        if (self.program)
-        {
-            glDeleteProgram(self.program);
-            self.program = 0;
-        }
-        
-        return;
-    }
-    
-    // Release vertex and fragment shaders.
-    if (vertShader)
-        glDeleteShader(vertShader);
-    if (fragShader)
-        glDeleteShader(fragShader);
-    
-    // Get uniform locations.
-    uniforms[UNIFORM_TRANSLATE] = glGetUniformLocation(program, "translate");
-    uniforms[UNIFORM_TEXTURE] = glGetUniformLocation(program, "texture");    
-}
-
-@end
-
 
 @implementation Engine
 
@@ -325,21 +115,24 @@ GLint uniforms[NUM_UNIFORMS];
     [view setFramebuffer];
     
     // Replace the implementation of this method to do your own custom drawing.
-    static const GLfloat squareVertices[] = {
+    static const GLfloat squareVertices[] = 
+    {
         -0.5f, -0.33f,
         0.5f, -0.33f,
         -0.5f,  0.33f,
         0.5f,  0.33f,
     };
     
-    static const GLubyte squareColors[] = {
+    static const GLubyte squareColors[] = 
+    {
         255, 255,   0, 255,
         0,   255, 255, 255,
         0,     0,   0,   0,
         255,   0, 255, 255,
     };
     
-    static const GLfloat texCoords[] = {
+    static const GLfloat texCoords[] = 
+    {
         0.0, 1.0,
         1.0, 1.0,
         0.0, 0.0,
@@ -350,19 +143,11 @@ GLint uniforms[NUM_UNIFORMS];
     
     glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT);
-    
-    // Use shader program.
-    glUseProgram(shaderProgram.program);
-    
-    // Update uniform value.
-    glUniform1f(uniforms[UNIFORM_TRANSLATE], (GLfloat)transY);
-    transY += 0.075f;	
-    
-    glActiveTexture(0);
-    glBindTexture(GL_TEXTURE_2D, texture);
-    glUniform1i(uniforms[UNIFORM_TEXTURE], 0);
-    
-    
+
+    [shaderProgram use];
+    [shaderProgram setParamter: UNIFORM_TRANSLATE with1f: transY];
+    [shaderProgram setParamter: UNIFORM_TEXTURE withTexture: texture];
+           
     // Update attribute values.
     glVertexAttribPointer(ATTRIB_VERTEX, 2, GL_FLOAT, 0, 0, squareVertices);
     glEnableVertexAttribArray(ATTRIB_VERTEX);
