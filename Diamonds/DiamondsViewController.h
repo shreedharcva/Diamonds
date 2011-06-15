@@ -11,21 +11,23 @@
 #import <OpenGLES/ES2/gl.h>
 #import <OpenGLES/ES2/glext.h>
 
+@class Engine;
+
 @interface DiamondsViewController : UIViewController 
 {
 @private
-    EAGLContext *glcontext;
-    GLuint program;
-    
+
     BOOL animating;
     NSInteger animationFrameInterval;
-    CADisplayLink *displayLink;
+    CADisplayLink* displayLink;
+    
+    Engine* engine;
 }
 
 @property (readonly, nonatomic, getter=isAnimating) BOOL animating;
 @property (nonatomic) NSInteger animationFrameInterval;
 
-- (void)startAnimation;
-- (void)stopAnimation;
+- (void) startAnimation;
+- (void) stopAnimation;
 
 @end
