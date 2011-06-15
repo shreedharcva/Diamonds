@@ -182,7 +182,7 @@
     glUseProgram(program);
 }
 
-- (void) setParamter: (int) uniform with1f: (float) value
+- (void) setParameter: (int) uniform with1f: (float) value
 {
     glUniform1f(uniforms[uniform], (GLfloat) value);
 }

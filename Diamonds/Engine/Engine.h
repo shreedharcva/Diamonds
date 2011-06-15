@@ -13,9 +13,8 @@
 
 - (id) initWithView: (EAGLView*) glview;
 
-- (void) loadShaders;
-- (void) loadTextures;
-
+- (void) beginFrame;
+- (void) endFrame;
 - (void) drawFrame;
 
 @end

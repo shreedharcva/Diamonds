@@ -2,7 +2,6 @@
 //  ShaderProgram.h
 //  Diamonds
 
-
 enum 
 {
     UNIFORM_TRANSLATE,
@@ -27,7 +26,7 @@ enum
 
 - (void) use;
 
-- (void) setParamter: (int) uniform with1f: (float) value;
+- (void) setParameter: (int) uniform with1f: (float) value;
 - (void) setParameter: (int) uniform withTextureObject: (Texture*) texture;
 
 @end

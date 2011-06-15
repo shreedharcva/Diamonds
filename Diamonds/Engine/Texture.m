@@ -4,6 +4,9 @@
 
 #import "Texture.h"
 
+#import <OpenGLES/ES2/gl.h>
+#import <OpenGLES/ES2/glext.h>
+
 @interface Texture () 
 {
     GLuint texture;
@@ -12,7 +15,6 @@
 @end
 
 @implementation Texture
-
 
 - (void) load
 {
