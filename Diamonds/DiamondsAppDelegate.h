@@ -13,7 +13,6 @@
 }
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
-
 @property (nonatomic, retain) IBOutlet DiamondsViewController *viewController;
 @property (nonatomic, retain) IBOutlet EAGLView *glView;
 

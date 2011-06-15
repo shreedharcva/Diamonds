@@ -11,7 +11,8 @@
 #import <OpenGLES/ES2/gl.h>
 #import <OpenGLES/ES2/glext.h>
 
-@interface DiamondsViewController : UIViewController {
+@interface DiamondsViewController : UIViewController 
+{
 @private
     EAGLContext *glcontext;
     GLuint program;

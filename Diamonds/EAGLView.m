@@ -7,8 +7,10 @@
 #import "EAGLView.h"
 
 @interface EAGLView (PrivateMethods)
-- (void)createFramebuffer;
-- (void)deleteFramebuffer;
+
+- (void) createFramebuffer;
+- (void) deleteFramebuffer;
+
 @end
 
 @implementation EAGLView
@@ -37,7 +39,7 @@
     return self;
 }
 
-- (void)dealloc
+- (void) dealloc
 {
     [self deleteFramebuffer];    
     [context release];
@@ -45,7 +47,7 @@
     [super dealloc];
 }
 
-- (void)setContext:(EAGLContext *)newContext
+- (void) setContext:(EAGLContext *)newContext
 {
     if (context != newContext) 
     {
@@ -58,7 +60,7 @@
     }
 }
 
-- (void)createFramebuffer
+- (void) createFramebuffer
 {
     if (context && !defaultFramebuffer) 
     {
@@ -82,7 +84,7 @@
     }
 }
 
-- (void)deleteFramebuffer
+- (void) deleteFramebuffer
 {
     if (context)
     {
@@ -101,7 +103,7 @@
     }
 }
 
-- (void)setFramebuffer
+- (void) setFramebuffer
 {
     if (context) 
     {
@@ -120,7 +122,7 @@
 {
 }
 
-- (BOOL)presentFramebuffer
+- (BOOL) presentFramebuffer
 {
     BOOL success = FALSE;
     
@@ -136,7 +138,7 @@
     return success;
 }
 
-- (void)layoutSubviews
+- (void) layoutSubviews
 {
     // The framebuffer will be re-created at the beginning of the next setFramebuffer method call.
     [self deleteFramebuffer];
