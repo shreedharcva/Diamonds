@@ -22,10 +22,7 @@
 - (void) awakeFromNib
 {
     engine = [[Engine alloc] initWithView: (EAGLView*) self.view];
-    
-    [engine loadShaders];
-    [engine loadTextures];
-    
+        
     animating = FALSE;
     animationFrameInterval = 1;
     self.displayLink = nil;

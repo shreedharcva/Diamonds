@@ -35,4 +35,6 @@
 - (BOOL) linkProgram:(GLuint)prog;
 - (BOOL) validateProgram:(GLuint)prog;
 
+- (void) drawFrame;
+
 @end

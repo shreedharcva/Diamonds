@@ -65,8 +65,8 @@ GLint uniforms[NUM_UNIFORMS];
     [self.view setFramebuffer];
     [self.view createResources];
     
-//    [self loadShaders];
-//    [self loadTextures];
+    [self loadShaders];
+    [self loadTextures];
 
    
     return self;
