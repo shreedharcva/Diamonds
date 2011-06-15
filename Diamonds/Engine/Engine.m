@@ -3,16 +3,30 @@
 //  Diamonds
 
 #import "Engine.h"
+#import "Texture.h"
 #import "ShaderProgram.h"
 
 #import "EAGLView.h"
 
+#import <QuartzCore/QuartzCore.h>
+
+#import <OpenGLES/ES2/gl.h>
+#import <OpenGLES/ES2/glext.h>
+
+@interface Engine ()
+{
+    EAGLView* view;
+    
+    EAGLContext *glcontext;
+    
+    ShaderProgram* shaderProgram;
+    Texture* textureObject;
+}
+
+@end
+
+
 @implementation Engine
-
-@synthesize view;
-
-@synthesize glcontext;
-@synthesize texture;
 
 - (id) initWithView: (EAGLView*) glview
 {
@@ -20,7 +34,7 @@
     if (self == nil)
         return nil;
 
-    self.view = glview;    
+    view = glview;    
     
     EAGLContext *aContext = [[EAGLContext alloc] initWithAPI:kEAGLRenderingAPIOpenGLES2];
     
@@ -38,9 +52,9 @@
 	glcontext = aContext;
 	[aContext release];
     
-    [self.view setContext: glcontext];
-    [self.view setFramebuffer];
-    [self.view createResources];
+    [view setContext: glcontext];
+    [view setFramebuffer];
+    [view createResources];
     
     shaderProgram = [ShaderProgram new];
 
@@ -53,6 +67,7 @@
 - (void) dealloc
 { 
     [shaderProgram release];
+    [textureObject release];
     
     if ([EAGLContext currentContext] == glcontext)
         [EAGLContext setCurrentContext:nil];
@@ -71,41 +86,8 @@
 
 -  (void) loadTextures
 {
-    glGenTextures(1, &texture);
-    glBindTexture(GL_TEXTURE_2D, texture);
-    
-    glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_LINEAR); 
-    glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_LINEAR);
-    
-    NSString *path = [[NSBundle mainBundle] pathForResource:@"ruby" ofType:@"png"];
-    NSData *texData = [[NSData alloc] initWithContentsOfFile:path];
-    UIImage *image = [[UIImage alloc] initWithData:texData];
-    if (image == nil)
-        NSLog(@"Do real error checking here");
-    
-    GLuint width = CGImageGetWidth(image.CGImage);
-    GLuint height = CGImageGetHeight(image.CGImage);
-    
-    CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
-    
-    void *imageData = malloc( height * width * 4 );
-    
-    CGContextRef context = CGBitmapContextCreate( imageData, width, height, 8, 4 * width, colorSpace, kCGImageAlphaPremultipliedLast | kCGBitmapByteOrder32Big );
-    
-    CGColorSpaceRelease( colorSpace );
-    
-    CGContextClearRect( context, CGRectMake( 0, 0, width, height ) );
-    CGContextTranslateCTM( context, 0, height - height );
-    CGContextDrawImage( context, CGRectMake( 0, 0, width, height ), image.CGImage );
-    
-    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, imageData);
-    
-    CGContextRelease(context);
-    
-    free(imageData);
-    
-    [image release];
-    [texData release];    
+    textureObject = [Texture new];
+    [textureObject load];
 }
 
 
@@ -145,7 +127,7 @@
 
     [shaderProgram use];
     [shaderProgram setParamter: UNIFORM_TRANSLATE with1f: transY];
-    [shaderProgram setParamter: UNIFORM_TEXTURE withTexture: texture];
+    [shaderProgram setParameter: UNIFORM_TEXTURE withTextureObject: textureObject];
            
     // Update attribute values.
     glVertexAttribPointer(ATTRIB_VERTEX, 2, GL_FLOAT, 0, 0, squareVertices);
@@ -165,7 +147,7 @@
     
     glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
     
-    [self.view presentFramebuffer];
+    [view presentFramebuffer];
 }
 
 

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		130CA76913A8E64B008C7B66 /* ShaderProgram.m in Sources */ = {isa = PBXBuildFile; fileRef = 130CA76813A8E64B008C7B66 /* ShaderProgram.m */; };
+		130CA76D13A8F4A0008C7B66 /* Texture.m in Sources */ = {isa = PBXBuildFile; fileRef = 130CA76C13A8F4A0008C7B66 /* Texture.m */; };
 		132041B513A7A64100D3F66D /* MainWindow-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 132041B313A7A64100D3F66D /* MainWindow-iPad.xib */; };
 		132041BA13A7A7E200D3F66D /* MainWindow-iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 132041B813A7A7E200D3F66D /* MainWindow-iPhone.xib */; };
 		132041BD13A7A80700D3F66D /* DiamondsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 132041BB13A7A80700D3F66D /* DiamondsViewController.xib */; };
@@ -45,6 +46,8 @@
 /* Begin PBXFileReference section */
 		130CA76713A8E64B008C7B66 /* ShaderProgram.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ShaderProgram.h; path = Diamonds/Engine/ShaderProgram.h; sourceTree = "<group>"; };
 		130CA76813A8E64B008C7B66 /* ShaderProgram.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ShaderProgram.m; path = Diamonds/Engine/ShaderProgram.m; sourceTree = "<group>"; };
+		130CA76B13A8F4A0008C7B66 /* Texture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Texture.h; path = Diamonds/Engine/Texture.h; sourceTree = "<group>"; };
+		130CA76C13A8F4A0008C7B66 /* Texture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Texture.m; path = Diamonds/Engine/Texture.m; sourceTree = "<group>"; };
 		132041B413A7A64100D3F66D /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = "iPad/en.lproj/MainWindow-iPad.xib"; sourceTree = "<group>"; };
 		132041B913A7A7E200D3F66D /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = "iPhone/en.lproj/MainWindow-iPhone.xib"; sourceTree = "<group>"; };
 		132041BC13A7A80700D3F66D /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = iPhone/en.lproj/DiamondsViewController.xib; sourceTree = "<group>"; };
@@ -212,10 +215,12 @@
 		13E98FB913A8BAC50003E7D2 /* Engine */ = {
 			isa = PBXGroup;
 			children = (
+				130CA76B13A8F4A0008C7B66 /* Texture.h */,
+				130CA76C13A8F4A0008C7B66 /* Texture.m */,
 				130CA76713A8E64B008C7B66 /* ShaderProgram.h */,
 				130CA76813A8E64B008C7B66 /* ShaderProgram.m */,
-				13E98FBA13A8BB250003E7D2 /* Engine.m */,
 				13E98FBB13A8BB250003E7D2 /* Engine.h */,
+				13E98FBA13A8BB250003E7D2 /* Engine.m */,
 			);
 			name = Engine;
 			sourceTree = "<group>";
@@ -337,6 +342,7 @@
 				134DFF3F13A79FE900DA67FC /* DiamondsViewController.m in Sources */,
 				13E98FBC13A8BB250003E7D2 /* Engine.m in Sources */,
 				130CA76913A8E64B008C7B66 /* ShaderProgram.m in Sources */,
+				130CA76D13A8F4A0008C7B66 /* Texture.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -407,6 +413,10 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				OTHER_CFLAGS = (
+					"-Xclang\\ -fobjc-nonfragile-abi2",
+				);
+				OTHER_CPLUSPLUSFLAGS = "$(OTHER_CFLAGS)";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -421,7 +431,11 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
-				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				OTHER_CFLAGS = (
+					"-DNS_BLOCK_ASSERTIONS=1",
+					"-Xclang\\ -fobjc-nonfragile-abi2",
+				);
+				OTHER_CPLUSPLUSFLAGS = "$(OTHER_CFLAGS)";
 				SDKROOT = iphoneos;
 			};
 			name = Release;

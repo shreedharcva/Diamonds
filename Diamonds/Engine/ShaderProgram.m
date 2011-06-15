@@ -3,10 +3,20 @@
 //  Diamonds
 
 #import "ShaderProgram.h"
+#import "Texture.h"
+
+#import <OpenGLES/ES2/gl.h>
+#import <OpenGLES/ES2/glext.h>
+
+@interface ShaderProgram ()
+{
+    GLuint program;
+    GLint uniforms[NUM_UNIFORMS];
+}
+
+@end
 
 @implementation ShaderProgram
-
-// @synthesize program;
 
 - (void) dealloc
 {
@@ -81,7 +91,7 @@
     return TRUE;
 }
 
-- (BOOL)validateProgram:(GLuint)prog
+- (BOOL) validateProgram:(GLuint)prog
 {
     GLint logLength, status;
     
@@ -177,11 +187,12 @@
     glUniform1f(uniforms[uniform], (GLfloat) value);
 }
 
-- (void) setParamter: (int) uniform withTexture: (int) texture
+- (void) setParameter: (int) uniform withTextureObject: (Texture*) texture
 {
     glActiveTexture(0);
-    glBindTexture(GL_TEXTURE_2D, texture);
+    [texture bind];
     glUniform1i(uniforms[uniform], 0);
+   
 }
 
 

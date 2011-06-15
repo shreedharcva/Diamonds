@@ -3,9 +3,6 @@
 //  Diamonds
 
 
-#import <OpenGLES/ES2/gl.h>
-#import <OpenGLES/ES2/glext.h>
-
 enum 
 {
     UNIFORM_TRANSLATE,
@@ -21,13 +18,9 @@ enum
     NUM_ATTRIBUTES
 };
 
-extern GLint uniforms[NUM_UNIFORMS];
+@class Texture;
 
 @interface ShaderProgram : NSObject 
-{
-    GLuint program;
-    GLint uniforms[NUM_UNIFORMS];
-}
 
 - (void) load;
 - (bool) validate;
@@ -35,7 +28,6 @@ extern GLint uniforms[NUM_UNIFORMS];
 - (void) use;
 
 - (void) setParamter: (int) uniform with1f: (float) value;
-- (void) setParamter: (int) uniform withTexture: (int) texture;
-
+- (void) setParameter: (int) uniform withTextureObject: (Texture*) texture;
 
 @end
