@@ -2,9 +2,9 @@
 //  Engine.m
 //  Diamonds
 
-
 #import "Engine.h"
 #import "EAGLView.h"
+
 
 // Uniform index.
 enum 
@@ -28,49 +28,21 @@ enum
 GLint uniforms[NUM_UNIFORMS];
 
 
-@implementation Engine
-
-@synthesize view;
-
-@synthesize glcontext;
-@synthesize program;
-@synthesize texture;
-
-- (id) initWithView: (EAGLView*) glview
+@interface ShaderProgram : NSObject 
 {
-    self = [super init];
-    if (self == nil)
-        return nil;
-    
-    self.view = glview;
-    
-    
-    EAGLContext *aContext = [[EAGLContext alloc] initWithAPI:kEAGLRenderingAPIOpenGLES2];
-    
-    if (!aContext)
-    {
-        NSLog(@"Failed to create ES context");
-        return nil;
-    }
-    if (![EAGLContext setCurrentContext:aContext])
-    {
-        NSLog(@"Failed to set ES context current");
-        return nil;
-    }
-    
-	glcontext = aContext;
-	[aContext release];
-    
-    [self.view setContext: glcontext];
-    [self.view setFramebuffer];
-    [self.view createResources];
-    
-    [self loadShaders];
-    [self loadTextures];
-
-   
-    return self;
+    GLuint program;
 }
+
+@property (assign, nonatomic) GLuint program;
+
+- (void) load;
+- (bool) validate;
+
+@end
+
+@implementation ShaderProgram
+
+@synthesize program;
 
 - (void) dealloc
 {
@@ -79,14 +51,6 @@ GLint uniforms[NUM_UNIFORMS];
         glDeleteProgram(program);
         program = 0;
     }
-    
-    // Tear down context.
-    if ([EAGLContext currentContext] == glcontext)
-        [EAGLContext setCurrentContext:nil];
-    
-    [glcontext release];
-
-    [super dealloc];
 }
 
 - (BOOL) compileShader:(GLuint *)shader type:(GLenum)type file:(NSString *)file
@@ -129,7 +93,7 @@ GLint uniforms[NUM_UNIFORMS];
 }
 
 
-- (BOOL)linkProgram:(GLuint)prog
+- (BOOL) linkProgram:(GLuint)prog
 {
     GLint status;
     
@@ -175,13 +139,17 @@ GLint uniforms[NUM_UNIFORMS];
     return TRUE;
 }
 
-- (void) loadShaders
+- (bool) validate
 {
+    return [self validateProgram: program];
+}
+
+- (void) load
+{
+    program = glCreateProgram();
+    
     GLuint vertShader, fragShader;
     NSString *vertShaderPathname, *fragShaderPathname;
-    
-    // Create shader program.
-    self.program = glCreateProgram();
     
     // Create and compile vertex shader.
     vertShaderPathname = [[NSBundle mainBundle] pathForResource:@"Shader" ofType:@"vsh"];
@@ -234,7 +202,7 @@ GLint uniforms[NUM_UNIFORMS];
         
         return;
     }
-        
+    
     // Release vertex and fragment shaders.
     if (vertShader)
         glDeleteShader(vertShader);
@@ -243,7 +211,71 @@ GLint uniforms[NUM_UNIFORMS];
     
     // Get uniform locations.
     uniforms[UNIFORM_TRANSLATE] = glGetUniformLocation(program, "translate");
-    uniforms[UNIFORM_TEXTURE] = glGetUniformLocation(program, "texture");
+    uniforms[UNIFORM_TEXTURE] = glGetUniformLocation(program, "texture");    
+}
+
+@end
+
+
+@implementation Engine
+
+@synthesize view;
+
+@synthesize glcontext;
+@synthesize texture;
+
+- (id) initWithView: (EAGLView*) glview
+{
+    self = [super init];
+    if (self == nil)
+        return nil;
+
+    self.view = glview;    
+    
+    EAGLContext *aContext = [[EAGLContext alloc] initWithAPI:kEAGLRenderingAPIOpenGLES2];
+    
+    if (!aContext)
+    {
+        NSLog(@"Failed to create ES context");
+        return nil;
+    }
+    if (![EAGLContext setCurrentContext:aContext])
+    {
+        NSLog(@"Failed to set ES context current");
+        return nil;
+    }
+    
+	glcontext = aContext;
+	[aContext release];
+    
+    [self.view setContext: glcontext];
+    [self.view setFramebuffer];
+    [self.view createResources];
+    
+    shaderProgram = [ShaderProgram new];
+
+    [self loadShaders];
+    [self loadTextures];
+   
+    return self;
+}
+
+- (void) dealloc
+{ 
+    [shaderProgram release];
+    
+    // Tear down context.
+    if ([EAGLContext currentContext] == glcontext)
+        [EAGLContext setCurrentContext:nil];
+    
+    [glcontext release];
+
+    [super dealloc];
+}
+
+- (void) loadShaders
+{    
+    [shaderProgram load];
 
     return;
 }
@@ -320,7 +352,7 @@ GLint uniforms[NUM_UNIFORMS];
     glClear(GL_COLOR_BUFFER_BIT);
     
     // Use shader program.
-    glUseProgram(program);
+    glUseProgram(shaderProgram.program);
     
     // Update uniform value.
     glUniform1f(uniforms[UNIFORM_TRANSLATE], (GLfloat)transY);
@@ -339,12 +371,10 @@ GLint uniforms[NUM_UNIFORMS];
     glVertexAttribPointer(ATTRIB_TEXCOORD, 2, GL_FLOAT, 0, 0, texCoords);
     glEnableVertexAttribArray(ATTRIB_TEXCOORD);
     
-    // Validate program before drawing. This is a good check, but only really necessary in a debug build.
-    // DEBUG macro must be defined in your debug configurations if that's not already the case.
 #if defined(DEBUG)
-    if (![self validateProgram:program]) 
+    if (![shaderProgram validate]) 
     {
-        NSLog(@"Failed to validate program: %d", program);
+        NSLog(@"Failed to validate program: %d", shaderProgram.program);
         return;
     }
 #endif
