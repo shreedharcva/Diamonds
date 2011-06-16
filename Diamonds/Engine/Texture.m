@@ -16,6 +16,8 @@
 
 @implementation Texture
 
+@synthesize size;
+
 - (void) load
 {
     glGenTextures(1, &texture);
@@ -30,22 +32,22 @@
     if (image == nil)
         NSLog(@"Do real error checking here");
     
-    GLuint width = CGImageGetWidth(image.CGImage);
-    GLuint height = CGImageGetHeight(image.CGImage);
+    size.width = CGImageGetWidth(image.CGImage);
+    size.height = CGImageGetHeight(image.CGImage);
     
     CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
     
-    void *imageData = malloc( height * width * 4 );
+    void* imageData = malloc(size.height * size.width * 4);
     
-    CGContextRef context = CGBitmapContextCreate( imageData, width, height, 8, 4 * width, colorSpace, kCGImageAlphaPremultipliedLast | kCGBitmapByteOrder32Big );
+    CGContextRef context = CGBitmapContextCreate(imageData, size.width, size.height, 8, 4 * size.width, colorSpace, kCGImageAlphaPremultipliedLast | kCGBitmapByteOrder32Big );
     
     CGColorSpaceRelease( colorSpace );
     
-    CGContextClearRect( context, CGRectMake( 0, 0, width, height ) );
-    CGContextTranslateCTM( context, 0, height - height );
-    CGContextDrawImage( context, CGRectMake( 0, 0, width, height ), image.CGImage );
+    CGContextClearRect( context, CGRectMake(0, 0, size.width, size.height ) );
+    CGContextTranslateCTM( context, 0, size.height - size.height );
+    CGContextDrawImage( context, CGRectMake( 0, 0, size.width, size.height ), image.CGImage );
     
-    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, imageData);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, size.width, size.height, 0, GL_RGBA, GL_UNSIGNED_BYTE, imageData);
     
     CGContextRelease(context);
     

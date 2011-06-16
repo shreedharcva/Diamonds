@@ -8,9 +8,6 @@
 @class EAGLView;
 
 @interface DiamondsAppDelegate : NSObject <UIApplicationDelegate> 
-{
-    EAGLView* glView;
-}
 
 @property (nonatomic, retain) IBOutlet UIWindow* window;
 @property (nonatomic, retain) IBOutlet UIWindow* controllerWindow;

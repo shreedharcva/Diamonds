@@ -18,10 +18,10 @@
 @implementation DiamondsAppDelegate
 
 
-@synthesize window=_window;
+@synthesize window;
 @synthesize controllerWindow;
 
-@synthesize viewController=_viewController;
+@synthesize viewController;
 @synthesize glView;
 
 - (BOOL) application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
@@ -112,8 +112,8 @@
 
 - (void) dealloc
 {
-    [_window release];
-    [_viewController release];
+    [window release];
+    [viewController release];
     [super dealloc];
 }
 
