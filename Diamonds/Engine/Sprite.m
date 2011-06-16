@@ -25,7 +25,6 @@
     textureObject = [Texture new];
     
     [textureObject load];
-    
     return self;
 }
 

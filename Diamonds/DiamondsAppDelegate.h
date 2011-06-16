@@ -12,8 +12,10 @@
     EAGLView* glView;
 }
 
-@property (nonatomic, retain) IBOutlet UIWindow *window;
-@property (nonatomic, retain) IBOutlet DiamondsViewController *viewController;
-@property (nonatomic, retain) IBOutlet EAGLView *glView;
+@property (nonatomic, retain) IBOutlet UIWindow* window;
+@property (nonatomic, retain) IBOutlet UIWindow* controllerWindow;
+
+@property (nonatomic, retain) IBOutlet DiamondsViewController* viewController;
+@property (nonatomic, retain) IBOutlet EAGLView* glView;
 
 @end

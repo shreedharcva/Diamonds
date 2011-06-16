@@ -8,10 +8,18 @@
 
 #import "DiamondsViewController.h"
 
+@interface DiamondsAppDelegate () 
+{
+    UIScreen* externalScreen;    
+}
+
+@end
+
 @implementation DiamondsAppDelegate
 
 
 @synthesize window=_window;
+@synthesize controllerWindow;
 
 @synthesize viewController=_viewController;
 @synthesize glView;
@@ -20,6 +28,42 @@
 {
     // Override point for customization after application launch.
     self.window.rootViewController = self.viewController;
+    
+    [self.window makeKeyAndVisible];
+    
+    if ([[UIScreen screens] count] > 1)
+    {
+        NSLog(@"Found external monitor...");
+        
+        NSArray* screenModes;
+        
+        externalScreen = [[[UIScreen screens] objectAtIndex: 1] retain];
+        screenModes = externalScreen.availableModes;
+        
+        NSLog(@"Available modes:\n%@", screenModes);
+        
+        UIScreenMode* screenMode = [screenModes objectAtIndex: 0];
+        self.window.screen = externalScreen;
+         
+        CGRect rect = CGRectZero;
+        rect.size = screenMode.size;
+        
+        self.window.frame = rect;
+        self.window.clipsToBounds = YES;
+        self.window.hidden = NO;
+        
+        [self.window makeKeyAndVisible];
+        [self.controllerWindow makeKeyAndVisible];
+    }
+    else
+    {
+        controllerWindow.frame = CGRectZero;;
+        controllerWindow.clipsToBounds = YES;
+        controllerWindow.hidden = YES;
+
+        [controllerWindow resignKeyWindow];
+    }
+    
     return YES;
 }
 
@@ -64,6 +108,7 @@
      */
     [self.viewController stopAnimation];
 }
+
 
 - (void) dealloc
 {
