@@ -173,6 +173,7 @@
     if (fragShader)
         glDeleteShader(fragShader);
     
+    uniforms[UNIFORM_MODEL_VIEW_PROJECTION_MATRIX] = glGetUniformLocation(program, "modelViewProjectionMatrix");
     uniforms[UNIFORM_TRANSLATE] = glGetUniformLocation(program, "translate");
     uniforms[UNIFORM_TEXTURE] = glGetUniformLocation(program, "texture");    
 }
@@ -180,6 +181,11 @@
 - (void) use
 {
     glUseProgram(program);
+}
+
+- (void) setParameter: (int) uniform withMatrix4f: (float*) matrix
+{
+    glUniformMatrix4fv(uniforms[uniform], 1, NO, matrix);
 }
 
 - (void) setParameter: (int) uniform with1f: (float) value
@@ -191,8 +197,7 @@
 {
     glActiveTexture(0);
     [texture bind];
-    glUniform1i(uniforms[uniform], 0);
-   
+    glUniform1i(uniforms[uniform], 0);   
 }
 
 

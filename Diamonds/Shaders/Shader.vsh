@@ -9,13 +9,14 @@ attribute vec2 texcoord;
 varying vec4 colorVarying;
 varying vec2 texcoordVarying;
 
-uniform float translate;
+uniform mat4  modelViewProjectionMatrix;
 
 void main()
 {
+    
     gl_Position = position;
-//    gl_Position.y += sin(translate) / 2.0;
-
+    gl_Position *= modelViewProjectionMatrix;
+    
     colorVarying = color;
     texcoordVarying = texcoord;
 }

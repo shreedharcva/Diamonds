@@ -13,6 +13,7 @@
 		130CA78813AA4089008C7B66 /* diamonds_114.png in Resources */ = {isa = PBXBuildFile; fileRef = 130CA78513AA4089008C7B66 /* diamonds_114.png */; };
 		130CA78913AA4089008C7B66 /* diamonds_72.png in Resources */ = {isa = PBXBuildFile; fileRef = 130CA78613AA4089008C7B66 /* diamonds_72.png */; };
 		130CA78A13AA4089008C7B66 /* diamonds_57.png in Resources */ = {isa = PBXBuildFile; fileRef = 130CA78713AA4089008C7B66 /* diamonds_57.png */; };
+		130CA78C13AB8C92008C7B66 /* diamond.png in Resources */ = {isa = PBXBuildFile; fileRef = 130CA78B13AB8C92008C7B66 /* diamond.png */; };
 		132041B513A7A64100D3F66D /* MainWindow-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 132041B313A7A64100D3F66D /* MainWindow-iPad.xib */; };
 		132041BA13A7A7E200D3F66D /* MainWindow-iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 132041B813A7A7E200D3F66D /* MainWindow-iPhone.xib */; };
 		132041BD13A7A80700D3F66D /* DiamondsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 132041BB13A7A80700D3F66D /* DiamondsViewController.xib */; };
@@ -57,6 +58,7 @@
 		130CA78513AA4089008C7B66 /* diamonds_114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = diamonds_114.png; path = Resources/diamonds_114.png; sourceTree = SOURCE_ROOT; };
 		130CA78613AA4089008C7B66 /* diamonds_72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = diamonds_72.png; path = Resources/diamonds_72.png; sourceTree = SOURCE_ROOT; };
 		130CA78713AA4089008C7B66 /* diamonds_57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = diamonds_57.png; path = Resources/diamonds_57.png; sourceTree = SOURCE_ROOT; };
+		130CA78B13AB8C92008C7B66 /* diamond.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = diamond.png; path = Resources/diamond.png; sourceTree = SOURCE_ROOT; };
 		132041B413A7A64100D3F66D /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = "iPad/en.lproj/MainWindow-iPad.xib"; sourceTree = "<group>"; };
 		132041B913A7A7E200D3F66D /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = "iPhone/en.lproj/MainWindow-iPhone.xib"; sourceTree = "<group>"; };
 		132041BC13A7A80700D3F66D /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = iPhone/en.lproj/DiamondsViewController.xib; sourceTree = "<group>"; };
@@ -225,6 +227,7 @@
 			children = (
 				130CA78413AA3FD2008C7B66 /* Icons */,
 				13E98FAC13A7AF360003E7D2 /* ruby.png */,
+				130CA78B13AB8C92008C7B66 /* diamond.png */,
 			);
 			name = Resources;
 			path = Diamonds;
@@ -326,6 +329,7 @@
 				130CA78813AA4089008C7B66 /* diamonds_114.png in Resources */,
 				130CA78913AA4089008C7B66 /* diamonds_72.png in Resources */,
 				130CA78A13AA4089008C7B66 /* diamonds_57.png in Resources */,
+				130CA78C13AB8C92008C7B66 /* diamond.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

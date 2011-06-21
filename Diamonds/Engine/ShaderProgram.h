@@ -4,6 +4,7 @@
 
 enum 
 {
+    UNIFORM_MODEL_VIEW_PROJECTION_MATRIX,
     UNIFORM_TRANSLATE,
     UNIFORM_TEXTURE,
     NUM_UNIFORMS
@@ -26,6 +27,7 @@ enum
 
 - (void) use;
 
+- (void) setParameter: (int) uniform withMatrix4f: (float*) matrix;
 - (void) setParameter: (int) uniform with1f: (float) value;
 - (void) setParameter: (int) uniform withTextureObject: (Texture*) texture;
 
