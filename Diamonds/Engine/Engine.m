@@ -50,7 +50,6 @@
     }
     
 	glcontext = aContext;
-	[aContext release];
     
     [view setContext: glcontext];
     [view setFramebuffer];
@@ -62,22 +61,17 @@
 
 - (void) dealloc
 { 
-    [sprite.shaderProgram release];
-    [sprite.textureObject release];
-    
-    [sprite release];
-    
     if ([EAGLContext currentContext] == glcontext)
         [EAGLContext setCurrentContext:nil];
     
-    [glcontext release];
-
-    [super dealloc];
 }
 
 - (void) beginFrame
 {
     [view setFramebuffer];
+    
+    glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+    glClear(GL_COLOR_BUFFER_BIT);
 }
 
 - (void) endFrame

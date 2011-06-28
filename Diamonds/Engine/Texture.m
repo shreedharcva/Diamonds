@@ -53,8 +53,6 @@
     
     free(imageData);
     
-    [image release];
-    [texData release];    
 }
 
 - (void) bind

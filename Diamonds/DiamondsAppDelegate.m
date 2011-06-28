@@ -37,7 +37,7 @@
         
         NSArray* screenModes;
         
-        externalScreen = [[[UIScreen screens] objectAtIndex: 1] retain];
+        externalScreen = [[UIScreen screens] objectAtIndex: 1];
         screenModes = externalScreen.availableModes;
         
         NSLog(@"Available modes:\n%@", screenModes);
@@ -110,11 +110,5 @@
 }
 
 
-- (void) dealloc
-{
-    [window release];
-    [viewController release];
-    [super dealloc];
-}
 
 @end

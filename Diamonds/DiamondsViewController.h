@@ -19,7 +19,7 @@
 
     BOOL animating;
     NSInteger animationFrameInterval;
-    CADisplayLink* displayLink;
+    CADisplayLink* __unsafe_unretained displayLink;
     
     Engine* engine;
 }

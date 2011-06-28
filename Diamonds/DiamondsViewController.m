@@ -28,12 +28,6 @@
     self.displayLink = nil;
 }
 
-- (void)dealloc
-{
-    [engine release];
-    
-    [super dealloc];
-}
 
 - (void) didReceiveMemoryWarning
 {
@@ -61,7 +55,6 @@
 {
 	[super viewDidUnload];
 
-    [engine release];
     engine = nil;
 }
 
