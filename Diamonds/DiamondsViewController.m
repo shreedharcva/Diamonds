@@ -63,6 +63,11 @@
     return animationFrameInterval;
 }
 
+- (BOOL) shouldAutorotateToInterfaceOrientation: (UIInterfaceOrientation) toInterfaceOrientation
+{
+    return UIInterfaceOrientationIsLandscape(toInterfaceOrientation);    
+}
+
 - (void) setAnimationFrameInterval: (NSInteger) frameInterval
 {
     /*

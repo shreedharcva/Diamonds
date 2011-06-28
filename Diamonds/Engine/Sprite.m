@@ -11,7 +11,25 @@
 #import <OpenGLES/ES2/gl.h>
 #import <OpenGLES/ES2/glext.h>
 
+#import <GLKit/GLKMath.h>
+
+void getProjectionMatrix(GLKMatrix4* matrix)
+{
+    GLfloat viewport[4];
+    glGetFloatv(GL_VIEWPORT, viewport);
+    
+    float width = (float) viewport[2];
+    float height = (float) viewport[3];
+    
+    *matrix = GLKMatrix4MakeOrtho(0, width, height, 0, -1, 1);
+    *matrix = GLKMatrix4Transpose(*matrix);
+}
+
 @implementation Sprite
+{
+    float x;
+    float y;
+}
 
 @synthesize textureObject;
 @synthesize shaderProgram;
@@ -30,13 +48,21 @@
     return self;
 }
 
-- (void) draw
+- (void) applyShader 
 {
+    GLKMatrix4 projMatrix;
+    getProjectionMatrix(&projMatrix);
 
-    GLfloat viewport[4];
-    glGetFloatv(GL_VIEWPORT, viewport);
-    
-    
+    [shaderProgram use];
+    [shaderProgram setParameter: UNIFORM_MODEL_VIEW_PROJECTION_MATRIX withMatrix4f: projMatrix.m];
+    [shaderProgram setParameter: UNIFORM_TRANSLATE with1f: 0.0];
+    [shaderProgram setParameter: UNIFORM_TEXTURE withTextureObject: textureObject];
+
+}
+- (void)drawQuad 
+{
+  GLfloat squareVertices[8];
+  
     static const GLubyte squareColors[] = 
     {
         255, 255,   0, 255,
@@ -51,26 +77,7 @@
         1.0, 1.0,
         0.0, 0.0,
         1.0, 0.0
-    };
-            
-    float matrix[16] = {
-        0.0, 0.0,  0.0, -1.0,
-        0.0, 0.0,  0.0, -1.0,
-        0.0, 0.0, -1.0,  0.0,
-        0.0, 0.0,  0.0,  1.0 };
-    
-    matrix[0] = 2.0 / (float) viewport[2];
-    matrix[5] = 2.0 / (float) viewport[3];    
-
-    [shaderProgram use];
-    [shaderProgram setParameter: UNIFORM_MODEL_VIEW_PROJECTION_MATRIX withMatrix4f: matrix];
-    [shaderProgram setParameter: UNIFORM_TRANSLATE with1f: 0.0];
-    [shaderProgram setParameter: UNIFORM_TEXTURE withTextureObject: textureObject];
-
-    GLfloat squareVertices[8];
-    
-    float x = 0;
-    float y = 0;
+    };            
     
     float width = textureObject.size.width;
     float height = textureObject.size.height;
@@ -103,6 +110,13 @@
 #endif
     
     glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
+
+}
+
+- (void) draw
+{ 
+    [self applyShader];
+    [self drawQuad];
 }
 
 @end

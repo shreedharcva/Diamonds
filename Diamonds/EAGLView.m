@@ -3,6 +3,7 @@
 //  OpenGLES_iPhone
 
 #import <QuartzCore/QuartzCore.h>
+#import <GLKit/GLKMath.h>
 
 #import "EAGLView.h"
 
@@ -102,17 +103,20 @@
 
 - (void) setFramebuffer
 {
-    if (context) 
+    if (!context) 
+        return;
+
+    [EAGLContext setCurrentContext:context];
+    
+    if (!defaultFramebuffer)
     {
-        [EAGLContext setCurrentContext:context];
-        
-        if (!defaultFramebuffer)
-            [self createFramebuffer];
-        
-        glBindFramebuffer(GL_FRAMEBUFFER, defaultFramebuffer);
-        
-        glViewport(0, 0, framebufferWidth, framebufferHeight);
+        [self createFramebuffer];
     }
+    
+    
+    glBindFramebuffer(GL_FRAMEBUFFER, defaultFramebuffer);
+    
+    glViewport(0, 0, framebufferWidth, framebufferHeight);
 }
 
 - (void) createResources
@@ -121,23 +125,18 @@
 
 - (BOOL) presentFramebuffer
 {
-    BOOL success = FALSE;
+    if (!context) 
+        return false;
     
-    if (context) 
-    {
-        [EAGLContext setCurrentContext:context];
-        
-        glBindRenderbuffer(GL_RENDERBUFFER, colorRenderbuffer);
-        
-        success = [context presentRenderbuffer:GL_RENDERBUFFER];
-    }
+    [EAGLContext setCurrentContext:context];
     
-    return success;
-}
+    glBindRenderbuffer(GL_RENDERBUFFER, colorRenderbuffer);
+    
+    return [context presentRenderbuffer:GL_RENDERBUFFER];
+ }
 
 - (void) layoutSubviews
 {
-    // The framebuffer will be re-created at the beginning of the next setFramebuffer method call.
     [self deleteFramebuffer];
 }
 
