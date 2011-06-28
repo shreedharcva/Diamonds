@@ -142,7 +142,6 @@
     glAttachShader(program, fragShader);
     
     glBindAttribLocation(program, ATTRIB_VERTEX, "position");
-    glBindAttribLocation(program, ATTRIB_COLOR, "color");
     glBindAttribLocation(program, ATTRIB_TEXCOORD, "texcoord");
     
     if (![self linkProgram: program])

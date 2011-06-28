@@ -13,7 +13,6 @@ enum
 enum 
 {
     ATTRIB_VERTEX,
-    ATTRIB_COLOR,
     ATTRIB_TEXCOORD,
     NUM_ATTRIBUTES
 };

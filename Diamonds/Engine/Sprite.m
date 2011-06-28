@@ -57,31 +57,15 @@ void getProjectionMatrix(GLKMatrix4* matrix)
     [shaderProgram setParameter: UNIFORM_MODEL_VIEW_PROJECTION_MATRIX withMatrix4f: projMatrix.m];
     [shaderProgram setParameter: UNIFORM_TRANSLATE with1f: 0.0];
     [shaderProgram setParameter: UNIFORM_TEXTURE withTextureObject: textureObject];
-
 }
-- (void)drawQuad 
-{
-  GLfloat squareVertices[8];
-  
-    static const GLubyte squareColors[] = 
-    {
-        255, 255,   0, 255,
-        0,   255, 255, 255,
-        0,     0,   0,   0,
-        255,   0, 255, 255,
-    };
-    
-    static const GLfloat texCoords[] = 
-    {
-        0.0, 1.0,
-        1.0, 1.0,
-        0.0, 0.0,
-        1.0, 0.0
-    };            
-    
+
+- (void) drawQuad 
+{      
     float width = textureObject.size.width;
     float height = textureObject.size.height;
-    
+ 
+    GLfloat squareVertices[8];
+
     squareVertices[0] = x;
     squareVertices[1] = y;
     
@@ -96,8 +80,15 @@ void getProjectionMatrix(GLKMatrix4* matrix)
 
     glVertexAttribPointer(ATTRIB_VERTEX, 2, GL_FLOAT, 0, 0, squareVertices);
     glEnableVertexAttribArray(ATTRIB_VERTEX);
-    glVertexAttribPointer(ATTRIB_COLOR, 4, GL_UNSIGNED_BYTE, 1, 0, squareColors);
-    glEnableVertexAttribArray(ATTRIB_COLOR);
+    
+    static const GLfloat texCoords[] = 
+    {
+        0.0, 1.0,
+        1.0, 1.0,
+        0.0, 0.0,
+        1.0, 0.0
+    };            
+
     glVertexAttribPointer(ATTRIB_TEXCOORD, 2, GL_FLOAT, 0, 0, texCoords);
     glEnableVertexAttribArray(ATTRIB_TEXCOORD);
     
@@ -110,7 +101,10 @@ void getProjectionMatrix(GLKMatrix4* matrix)
 #endif
     
     glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
+}
 
+- (void) moveTo: (Position) position
+{
 }
 
 - (void) draw

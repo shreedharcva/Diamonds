@@ -75,8 +75,8 @@
 		134DFF2E13A79FE900DA67FC /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		134DFF3013A79FE900DA67FC /* DiamondsAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DiamondsAppDelegate.h; sourceTree = "<group>"; };
 		134DFF3113A79FE900DA67FC /* DiamondsAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DiamondsAppDelegate.m; sourceTree = "<group>"; };
-		134DFF3613A79FE900DA67FC /* Shader.fsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; name = Shader.fsh; path = Shaders/Shader.fsh; sourceTree = "<group>"; };
-		134DFF3813A79FE900DA67FC /* Shader.vsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; name = Shader.vsh; path = Shaders/Shader.vsh; sourceTree = "<group>"; };
+		134DFF3613A79FE900DA67FC /* Shader.fsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; name = Shader.fsh; path = Diamonds/Shaders/Shader.fsh; sourceTree = "<group>"; };
+		134DFF3813A79FE900DA67FC /* Shader.vsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; name = Shader.vsh; path = Diamonds/Shaders/Shader.vsh; sourceTree = "<group>"; };
 		134DFF3A13A79FE900DA67FC /* EAGLView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = EAGLView.h; path = Diamonds/EAGLView.h; sourceTree = "<group>"; };
 		134DFF3B13A79FE900DA67FC /* EAGLView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = EAGLView.m; path = Diamonds/EAGLView.m; sourceTree = "<group>"; };
 		134DFF3D13A79FE900DA67FC /* DiamondsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DiamondsViewController.h; sourceTree = "<group>"; };
@@ -145,6 +145,15 @@
 			name = iPhone;
 			sourceTree = "<group>";
 		};
+		134BFF7B13BA28F300ACA82F /* Shaders */ = {
+			isa = PBXGroup;
+			children = (
+				134DFF3613A79FE900DA67FC /* Shader.fsh */,
+				134DFF3813A79FE900DA67FC /* Shader.vsh */,
+			);
+			name = Shaders;
+			sourceTree = "<group>";
+		};
 		134DFF0E13A79FE900DA67FC = {
 			isa = PBXGroup;
 			children = (
@@ -186,8 +195,6 @@
 				132041B213A7A64000D3F66D /* iPad */,
 				134DFF3013A79FE900DA67FC /* DiamondsAppDelegate.h */,
 				134DFF3113A79FE900DA67FC /* DiamondsAppDelegate.m */,
-				134DFF3613A79FE900DA67FC /* Shader.fsh */,
-				134DFF3813A79FE900DA67FC /* Shader.vsh */,
 				134DFF3D13A79FE900DA67FC /* DiamondsViewController.h */,
 				134DFF3E13A79FE900DA67FC /* DiamondsViewController.m */,
 				132041BB13A7A80700D3F66D /* DiamondsViewController.xib */,
@@ -240,6 +247,7 @@
 		13E98FB913A8BAC50003E7D2 /* Engine */ = {
 			isa = PBXGroup;
 			children = (
+				134BFF7B13BA28F300ACA82F /* Shaders */,
 				130CA76E13A90213008C7B66 /* Sprite.h */,
 				130CA76F13A90213008C7B66 /* Sprite.m */,
 				134DFF3A13A79FE900DA67FC /* EAGLView.h */,
