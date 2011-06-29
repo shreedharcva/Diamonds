@@ -12,6 +12,7 @@
 @interface Engine : NSObject 
 
 @property (readonly) int contentScale;
+@property (readonly) CGSize windowSize;
 
 - (id) initWithView: (EAGLView*) glview;
 

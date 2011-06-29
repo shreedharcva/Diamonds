@@ -20,7 +20,8 @@
     EAGLView* view;    
     EAGLContext *glcontext;
     
-    Sprite* sprite;
+    Sprite* sprite1;
+    Sprite* sprite2;
 }
 
 @end
@@ -60,7 +61,14 @@
     [view setContext: glcontext];
     [view setFramebuffer];
     
-    sprite = [Sprite new];
+    sprite1 = [Sprite new];
+    sprite2 = [Sprite new];
+    
+    Position sprite1Pos = { 0, 0 };
+    Position sprite2Pos = { 200, 0 };
+    
+    [sprite1 moveTo: sprite1Pos];
+    [sprite2 moveTo: sprite2Pos];
        
     return self;
 }
@@ -82,6 +90,18 @@
         return 1.0;
 }
 
+- (CGSize) windowSize
+{
+    GLfloat viewport[4];
+    glGetFloatv(GL_VIEWPORT, viewport);
+    
+    CGSize size;    
+    size.width = (float) viewport[2] * self.contentScale;
+    size.height = (float) viewport[3] * self.contentScale;
+    
+    return size;
+}
+
 - (void) beginFrame
 {
     [view setFramebuffer];
@@ -98,7 +118,8 @@
 - (void) drawFrame
 {
     [self beginFrame];
-    [sprite drawUsingEngine: self];
+    [sprite1 drawUsingEngine: self];
+    [sprite2 drawUsingEngine: self];
     [self endFrame];   
 }
 

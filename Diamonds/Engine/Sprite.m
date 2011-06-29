@@ -16,13 +16,9 @@
 
 void getProjectionMatrix(Engine* engine, GLKMatrix4* matrix)
 {
-    GLfloat viewport[4];
-    glGetFloatv(GL_VIEWPORT, viewport);
+    CGSize windowSize = engine.windowSize;
     
-    float width = (float) viewport[2] * engine.contentScale;
-    float height = (float) viewport[3] * engine.contentScale;
-    
-    *matrix = GLKMatrix4MakeOrtho(0, width, height, 0, -1, 1);
+    *matrix = GLKMatrix4MakeOrtho(0, windowSize.width, windowSize.height, 0, -1, 1);
     *matrix = GLKMatrix4Transpose(*matrix);
 }
 
@@ -106,6 +102,8 @@ void getProjectionMatrix(Engine* engine, GLKMatrix4* matrix)
 
 - (void) moveTo: (Position) position
 {
+    x = position.x;
+    y = position.y;
 }
 
 - (void) drawUsingEngine: (Engine*) engine
