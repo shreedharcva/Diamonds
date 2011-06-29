@@ -14,10 +14,10 @@
 #import <OpenGLES/ES2/gl.h>
 #import <OpenGLES/ES2/glext.h>
 
+
 @interface Engine ()
-{
-    EAGLView* view;
-    
+{    
+    EAGLView* view;    
     EAGLContext *glcontext;
     
     Sprite* sprite;
@@ -35,6 +35,12 @@
         return nil;
 
     view = glview;    
+    
+    int w = [[UIScreen mainScreen] currentMode].size.width;
+    if (w == 640)
+    {
+        view.contentScaleFactor = 2.0f;
+    }
     
     EAGLContext *aContext = [[EAGLContext alloc] initWithAPI:kEAGLRenderingAPIOpenGLES2];
     
@@ -62,8 +68,18 @@
 - (void) dealloc
 { 
     if ([EAGLContext currentContext] == glcontext)
-        [EAGLContext setCurrentContext:nil];
-    
+    {
+        [EAGLContext setCurrentContext: nil];
+    }    
+}
+
+- (int) contentScale
+{
+    int w = [[UIScreen mainScreen] currentMode].size.width;
+    if (w == 320)
+        return 2.0;
+    else
+        return 1.0;
 }
 
 - (void) beginFrame
@@ -79,15 +95,12 @@
     [view presentFramebuffer];
 }
 
-
 - (void) drawFrame
 {
     [self beginFrame];
- 
-    [sprite draw];
-
+    [sprite drawUsingEngine: self];
     [self endFrame];   
 }
 
-
 @end
+

@@ -5,6 +5,7 @@
 #import "Sprite.h"
 #import "ShaderProgram.h"
 #import "Texture.h"
+#import "Engine.h"
 
 #import <QuartzCore/QuartzCore.h>
 
@@ -13,13 +14,13 @@
 
 #import <GLKit/GLKMath.h>
 
-void getProjectionMatrix(GLKMatrix4* matrix)
+void getProjectionMatrix(Engine* engine, GLKMatrix4* matrix)
 {
     GLfloat viewport[4];
     glGetFloatv(GL_VIEWPORT, viewport);
     
-    float width = (float) viewport[2];
-    float height = (float) viewport[3];
+    float width = (float) viewport[2] * engine.contentScale;
+    float height = (float) viewport[3] * engine.contentScale;
     
     *matrix = GLKMatrix4MakeOrtho(0, width, height, 0, -1, 1);
     *matrix = GLKMatrix4Transpose(*matrix);
@@ -27,12 +28,12 @@ void getProjectionMatrix(GLKMatrix4* matrix)
 
 @implementation Sprite
 {
+    ShaderProgram* shaderProgram;
+    Texture* textureObject;
+
     float x;
     float y;
 }
-
-@synthesize textureObject;
-@synthesize shaderProgram;
 
 - (id) init
 {
@@ -48,10 +49,10 @@ void getProjectionMatrix(GLKMatrix4* matrix)
     return self;
 }
 
-- (void) applyShader 
+- (void) applyShaderUsing: (Engine*) engine 
 {
     GLKMatrix4 projMatrix;
-    getProjectionMatrix(&projMatrix);
+    getProjectionMatrix(engine, &projMatrix);
 
     [shaderProgram use];
     [shaderProgram setParameter: UNIFORM_MODEL_VIEW_PROJECTION_MATRIX withMatrix4f: projMatrix.m];
@@ -107,9 +108,9 @@ void getProjectionMatrix(GLKMatrix4* matrix)
 {
 }
 
-- (void) draw
+- (void) drawUsingEngine: (Engine*) engine
 { 
-    [self applyShader];
+    [self applyShaderUsing: engine];
     [self drawQuad];
 }
 

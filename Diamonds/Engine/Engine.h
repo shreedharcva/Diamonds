@@ -11,6 +11,8 @@
 
 @interface Engine : NSObject 
 
+@property (readonly) int contentScale;
+
 - (id) initWithView: (EAGLView*) glview;
 
 - (void) beginFrame;

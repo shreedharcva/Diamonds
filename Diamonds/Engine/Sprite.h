@@ -5,6 +5,7 @@
 
 @class ShaderProgram;
 @class Texture;
+@class Engine;
 
 typedef struct Position
 {
@@ -14,15 +15,8 @@ typedef struct Position
 Position;
 
 @interface Sprite : NSObject 
-{
-    ShaderProgram* shaderProgram;
-    Texture* textureObject;
-}
-
-@property (nonatomic, retain) ShaderProgram* shaderProgram;
-@property (nonatomic, retain) Texture* textureObject;
 
 - (void) moveTo: (Position) position;
-- (void) draw;
+- (void) drawUsingEngine: (Engine*) engine;
 
 @end
