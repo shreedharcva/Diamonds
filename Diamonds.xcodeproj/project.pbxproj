@@ -18,6 +18,7 @@
 		132041BA13A7A7E200D3F66D /* MainWindow-iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 132041B813A7A7E200D3F66D /* MainWindow-iPhone.xib */; };
 		132041BD13A7A80700D3F66D /* DiamondsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 132041BB13A7A80700D3F66D /* DiamondsViewController.xib */; };
 		134BFF7A13BA0ED400ACA82F /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 134BFF7913BA0ED400ACA82F /* GLKit.framework */; };
+		134BFF7F13BB711A00ACA82F /* Entitlements.entitlements in Resources */ = {isa = PBXBuildFile; fileRef = 134BFF7E13BB711A00ACA82F /* Entitlements.entitlements */; };
 		134DFF1E13A79FE900DA67FC /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 134DFF1D13A79FE900DA67FC /* UIKit.framework */; };
 		134DFF2013A79FE900DA67FC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 134DFF1F13A79FE900DA67FC /* Foundation.framework */; };
 		134DFF2213A79FE900DA67FC /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 134DFF2113A79FE900DA67FC /* CoreGraphics.framework */; };
@@ -64,6 +65,7 @@
 		132041B913A7A7E200D3F66D /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = "iPhone/en.lproj/MainWindow-iPhone.xib"; sourceTree = "<group>"; };
 		132041BC13A7A80700D3F66D /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = iPhone/en.lproj/DiamondsViewController.xib; sourceTree = "<group>"; };
 		134BFF7913BA0ED400ACA82F /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
+		134BFF7E13BB711A00ACA82F /* Entitlements.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Entitlements.entitlements; sourceTree = "<group>"; };
 		134DFF1913A79FE900DA67FC /* Diamonds.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Diamonds.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		134DFF1D13A79FE900DA67FC /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		134DFF1F13A79FE900DA67FC /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -207,6 +209,7 @@
 			isa = PBXGroup;
 			children = (
 				134DFF2913A79FE900DA67FC /* Diamonds-Info.plist */,
+				134BFF7E13BB711A00ACA82F /* Entitlements.entitlements */,
 				134DFF2D13A79FE900DA67FC /* Diamonds-Prefix.pch */,
 				134DFF2E13A79FE900DA67FC /* main.m */,
 			);
@@ -342,6 +345,7 @@
 				130CA78913AA4089008C7B66 /* diamonds_72.png in Resources */,
 				130CA78A13AA4089008C7B66 /* diamonds_57.png in Resources */,
 				130CA78C13AB8C92008C7B66 /* diamond.png in Resources */,
+				134BFF7F13BB711A00ACA82F /* Entitlements.entitlements in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -446,6 +450,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CODE_SIGN_ENTITLEMENTS = Entitlements.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -454,12 +459,14 @@
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				ONLY_ACTIVE_ARCH = YES;
 				OTHER_CFLAGS = (
 					"-Xclang\\ -fobjc-nonfragile-abi2",
 				);
 				OTHER_CPLUSPLUSFLAGS = "$(OTHER_CFLAGS)";
 				SDKROOT = iphoneos;
+				VALID_ARCHS = "armv7 armv7f armv7k i386";
 			};
 			name = Debug;
 		};
@@ -467,18 +474,21 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CODE_SIGN_ENTITLEMENTS = Entitlements.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				ONLY_ACTIVE_ARCH = YES;
 				OTHER_CFLAGS = (
 					"-DNS_BLOCK_ASSERTIONS=1",
 					"-Xclang\\ -fobjc-nonfragile-abi2",
 				);
 				OTHER_CPLUSPLUSFLAGS = "$(OTHER_CFLAGS)";
 				SDKROOT = iphoneos;
+				VALID_ARCHS = "armv7 armv7f armv7k i386";
 			};
 			name = Release;
 		};
