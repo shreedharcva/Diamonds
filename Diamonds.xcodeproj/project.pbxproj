@@ -36,6 +36,7 @@
 		134DFF5313A79FE900DA67FC /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 134DFF5113A79FE900DA67FC /* InfoPlist.strings */; };
 		134DFF5613A79FE900DA67FC /* DiamondsTests.h in Resources */ = {isa = PBXBuildFile; fileRef = 134DFF5513A79FE900DA67FC /* DiamondsTests.h */; };
 		134DFF5813A79FE900DA67FC /* DiamondsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 134DFF5713A79FE900DA67FC /* DiamondsTests.m */; };
+		13827F1D13BBD57300C90A92 /* TestSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = 13827F1C13BBD57300C90A92 /* TestSprite.m */; };
 		13E98FAD13A7AF360003E7D2 /* ruby.png in Resources */ = {isa = PBXBuildFile; fileRef = 13E98FAC13A7AF360003E7D2 /* ruby.png */; };
 		13E98FBC13A8BB250003E7D2 /* Engine.m in Sources */ = {isa = PBXBuildFile; fileRef = 13E98FBA13A8BB250003E7D2 /* Engine.m */; };
 /* End PBXBuildFile section */
@@ -89,6 +90,9 @@
 		134DFF5413A79FE900DA67FC /* DiamondsTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DiamondsTests-Prefix.pch"; sourceTree = "<group>"; };
 		134DFF5513A79FE900DA67FC /* DiamondsTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DiamondsTests.h; sourceTree = "<group>"; };
 		134DFF5713A79FE900DA67FC /* DiamondsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DiamondsTests.m; sourceTree = "<group>"; };
+		13827F0D13BB907A00C90A92 /* Testing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Testing.h; sourceTree = "<group>"; };
+		13827F1B13BBD57300C90A92 /* TestSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestSprite.h; sourceTree = "<group>"; };
+		13827F1C13BBD57300C90A92 /* TestSprite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestSprite.m; sourceTree = "<group>"; };
 		13E98FAC13A7AF360003E7D2 /* ruby.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ruby.png; path = Resources/ruby.png; sourceTree = SOURCE_ROOT; };
 		13E98FBA13A8BB250003E7D2 /* Engine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Engine.m; path = Diamonds/Engine/Engine.m; sourceTree = "<group>"; };
 		13E98FBB13A8BB250003E7D2 /* Engine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Engine.h; path = Diamonds/Engine/Engine.h; sourceTree = "<group>"; };
@@ -219,6 +223,8 @@
 		134DFF4E13A79FE900DA67FC /* DiamondsTests */ = {
 			isa = PBXGroup;
 			children = (
+				13827F1E13BBD58200C90A92 /* Engine */,
+				13827F0D13BB907A00C90A92 /* Testing.h */,
 				134DFF5513A79FE900DA67FC /* DiamondsTests.h */,
 				134DFF5713A79FE900DA67FC /* DiamondsTests.m */,
 				134DFF4F13A79FE900DA67FC /* Supporting Files */,
@@ -234,6 +240,15 @@
 				134DFF5413A79FE900DA67FC /* DiamondsTests-Prefix.pch */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		13827F1E13BBD58200C90A92 /* Engine */ = {
+			isa = PBXGroup;
+			children = (
+				13827F1B13BBD57300C90A92 /* TestSprite.h */,
+				13827F1C13BBD57300C90A92 /* TestSprite.m */,
+			);
+			name = Engine;
 			sourceTree = "<group>";
 		};
 		13E98FAB13A7AF1C0003E7D2 /* Resources */ = {
@@ -397,6 +412,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				134DFF5813A79FE900DA67FC /* DiamondsTests.m in Sources */,
+				13827F1D13BBD57300C90A92 /* TestSprite.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
