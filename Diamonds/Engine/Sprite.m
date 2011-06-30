@@ -58,7 +58,8 @@ void getProjectionMatrix(Engine* engine, GLKMatrix4* matrix)
 }
 
 - (void) drawQuad 
-{      
+{
+    
     float width = textureObject.size.width;
     float height = textureObject.size.height;
  
@@ -102,6 +103,7 @@ void getProjectionMatrix(Engine* engine, GLKMatrix4* matrix)
 #endif
     
     glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
+
 }
 
 - (void) moveTo: (CGPoint) newPosition
@@ -116,8 +118,14 @@ void getProjectionMatrix(Engine* engine, GLKMatrix4* matrix)
 
 - (void) drawUsingEngine: (Engine*) engine
 { 
+    SpriteBatch* batch = [SpriteBatch new];
+    
+    [batch begin];
+
     [self applyShaderUsing: engine];
     [self drawQuad];
+    
+    [batch end];
 }
 
 - (void) drawIn: (SpriteBatch*) batch
