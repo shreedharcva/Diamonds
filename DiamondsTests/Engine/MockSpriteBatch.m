@@ -23,23 +23,21 @@
 @implementation MockSpriteBatch
 {
     int spritesDrawn;
-    Position lastDrawnSpritePosition;
+    
+    CGPoint posiionOfTheLastSprite;
+    CGSize sizeOfTheLastSprite;
 }
 
-- (int) spritesDrawn
-{
-    return spritesDrawn;
-}
+@synthesize spritesDrawn;
+@synthesize posiionOfTheLastSprite;
+@synthesize sizeOfTheLastSprite;
 
-- (Position) lastDrawnSpritePosition
-{
-    return lastDrawnSpritePosition;
-}
-
-- (void) drawQuad: (Position) position
+- (void) drawQuad: (CGPoint) position size: (CGSize) size;
 {
     ++spritesDrawn;
-    lastDrawnSpritePosition = position;
+    
+    posiionOfTheLastSprite = position;
+    sizeOfTheLastSprite = size;
 }
 
 @end

@@ -67,7 +67,7 @@
 - (void) testSpriteIsDrawnInTheCorrectPosition
 {
     Sprite* sprite = [Sprite new];
-    Position position = { 100, 120 };
+    CGPoint position = CGPointMake(100, 120);
     
     [sprite moveTo: position];
                          
@@ -75,8 +75,23 @@
     [sprite drawIn: batch];
     [batch end];
     
-    assertEquals(position.x, [batch lastDrawnSpritePosition].x);
-    assertEquals(position.y, [batch lastDrawnSpritePosition].y);
+    assertEquals(position.x, [batch posiionOfTheLastSprite].x);
+    assertEquals(position.y, [batch posiionOfTheLastSprite].y);
+}
+
+- (void) testSpriteIsDrawnWithTheCorrectSize
+{
+    Sprite* sprite = [Sprite new];
+    CGSize size = CGSizeMake(100, 200);
+    
+    [sprite resizeTo: size];
+    
+    [batch begin];
+    [sprite drawIn: batch];
+    [batch end];
+    
+    assertEquals(size.width, [batch sizeOfTheLastSprite].width);
+    assertEquals(size.height, [batch sizeOfTheLastSprite].height);
 }
 
 @end

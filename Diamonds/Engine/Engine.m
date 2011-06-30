@@ -64,11 +64,8 @@
     sprite1 = [Sprite new];
     sprite2 = [Sprite new];
     
-    Position sprite1Pos = { 0, 0 };
-    Position sprite2Pos = { 200, 0 };
-    
-    [sprite1 moveTo: sprite1Pos];
-    [sprite2 moveTo: sprite2Pos];
+    [sprite1 moveTo: CGPointMake(0, 0)];
+    [sprite2 moveTo: CGPointMake(200, 0)];
        
     return self;
 }

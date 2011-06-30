@@ -15,6 +15,6 @@
 - (void) begin;
 - (void) end;
 
-- (void) drawQuad: (Position) position;
+- (void) drawQuad: (CGPoint) position size: (CGSize) size;
 
 @end

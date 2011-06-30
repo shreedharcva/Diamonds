@@ -28,8 +28,8 @@ void getProjectionMatrix(Engine* engine, GLKMatrix4* matrix)
     ShaderProgram* shaderProgram;
     Texture* textureObject;
 
-    float x;
-    float y;
+    CGPoint position;
+    CGSize size;
 }
 
 - (id) init
@@ -63,7 +63,10 @@ void getProjectionMatrix(Engine* engine, GLKMatrix4* matrix)
     float height = textureObject.size.height;
  
     GLfloat squareVertices[8];
-
+    
+    float x = position.x;
+    float y = position.y;
+    
     squareVertices[0] = x;
     squareVertices[1] = y;
     
@@ -101,10 +104,14 @@ void getProjectionMatrix(Engine* engine, GLKMatrix4* matrix)
     glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
 }
 
-- (void) moveTo: (Position) position
+- (void) moveTo: (CGPoint) newPosition
 {
-    x = position.x;
-    y = position.y;
+    position = newPosition;
+}
+
+- (void) resizeTo: (CGSize) newSize
+{
+    size = newSize;
 }
 
 - (void) drawUsingEngine: (Engine*) engine
@@ -115,8 +122,7 @@ void getProjectionMatrix(Engine* engine, GLKMatrix4* matrix)
 
 - (void) drawIn: (SpriteBatch*) batch
 {    
-    Position position = { x, y };
-    [batch drawQuad: position];
+    [batch drawQuad: position size: size];
 }
 
 @end

@@ -6,16 +6,11 @@
 @class Engine;
 @class SpriteBatch;
 
-typedef struct Position
-{
-    float x;
-    float y;
-} 
-Position;
-
 @interface Sprite : NSObject 
 
-- (void) moveTo: (Position) position;
+- (void) moveTo: (CGPoint) newPosition;
+- (void) resizeTo: (CGSize) size;
+
 - (void) drawUsingEngine: (Engine*) engine;
 - (void) drawIn: (SpriteBatch*) batch;
 

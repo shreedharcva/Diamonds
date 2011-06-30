@@ -20,6 +20,9 @@
 
 - (int) spritesDrawn;
 
-- (Position) lastDrawnSpritePosition;
+@property (readonly) int spritesDrawn;
+
+@property (readonly) CGPoint posiionOfTheLastSprite;
+@property (readonly) CGSize sizeOfTheLastSprite;
 
 @end

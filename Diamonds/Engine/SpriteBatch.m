@@ -50,7 +50,7 @@
 {
 }
 
-- (void) drawQuad: (Position) position
+- (void) drawQuad: (CGPoint) position size: (CGSize) size;
 {
 }
 
