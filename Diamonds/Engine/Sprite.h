@@ -3,9 +3,8 @@
 //  Diamonds
 
 
-@class ShaderProgram;
-@class Texture;
 @class Engine;
+@class SpriteBatch;
 
 typedef struct Position
 {
@@ -18,5 +17,21 @@ Position;
 
 - (void) moveTo: (Position) position;
 - (void) drawUsingEngine: (Engine*) engine;
+- (void) drawIn: (SpriteBatch*) batch;
+
+@end
+
+@interface SpriteBatch : NSObject 
+
+@property (readonly) Engine* engine;
+
+- (id) initWithEngine: (Engine*) theEngine;
+
+- (bool) isEmpty;
+
+- (void) begin;
+- (void) end;
+
+- (void) drawQuad: (Position) position;
 
 @end

@@ -112,4 +112,50 @@ void getProjectionMatrix(Engine* engine, GLKMatrix4* matrix)
     [self drawQuad];
 }
 
+- (void) drawIn: (SpriteBatch*) batch
+{    
+    Position position = { x, y };
+    [batch drawQuad: position];
+}
+
+@end
+
+@implementation SpriteBatch
+{
+    Engine* engine;
+}
+
+- (id) initWithEngine: (Engine*) theEngine
+{
+    self = [super init];
+    if (self == nil)
+        return nil;
+    
+    engine = theEngine;
+    
+    return self;    
+}
+
+- (Engine*) engine
+{
+    return engine;
+}
+
+- (bool) isEmpty
+{
+    return YES;
+}
+
+- (void) begin
+{
+}
+
+- (void) end
+{
+}
+
+- (void) drawQuad: (Position) position
+{
+}
+
 @end

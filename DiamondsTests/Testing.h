@@ -4,6 +4,8 @@
 
 #import <SenTestingKit/SenTestingKit.h>
 
-#define assertEquals(a1, a2) STAssertEquals(a1, a2, @"")
+#define assertEquals(expected, actual) STAssertEquals(actual, expected, @"")
+#define assertTrue(expr) STAssertTrue(expr, @"");
+#define assertEqualObjects(expected, actual) STAssertEqualObjects(actual, expected, @"");
 
 typedef SenTestCase TestCase;
