@@ -4,61 +4,10 @@
 
 
 #import "TestSprite.h"
+
+#import "MockSpriteBatch.h"
 #import "Sprite.h"
 #import "Engine.h"
-
-@interface MockEngine: Engine
-@end
-
-@implementation MockEngine
-@end
-
-@interface SpriteBatch (Testing)
-
-@property (readonly) int spritesDrawn;
-
-@end
-
-@implementation SpriteBatch (Testing)
-
-- (int) spritesDrawn
-{
-    return 0;
-}
-
-@end
-
-@interface MockSpriteBatch : SpriteBatch 
-
-- (int) spritesDrawn;
-
-- (Position) lastDrawnSpritePosition;
-
-@end
-
-@implementation MockSpriteBatch
-{
-    int spritesDrawn;
-    Position lastDrawnSpritePosition;
-}
-
-- (int) spritesDrawn
-{
-    return spritesDrawn;
-}
-
-- (Position) lastDrawnSpritePosition
-{
-    return lastDrawnSpritePosition;
-}
-
-- (void) drawQuad: (Position) position
-{
-    ++spritesDrawn;
-    lastDrawnSpritePosition = position;
-}
-
-@end
 
 @interface TestSpriteBatch : TestCase
 

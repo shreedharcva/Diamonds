@@ -20,18 +20,3 @@ Position;
 - (void) drawIn: (SpriteBatch*) batch;
 
 @end
-
-@interface SpriteBatch : NSObject 
-
-@property (readonly) Engine* engine;
-
-- (id) initWithEngine: (Engine*) theEngine;
-
-- (bool) isEmpty;
-
-- (void) begin;
-- (void) end;
-
-- (void) drawQuad: (Position) position;
-
-@end

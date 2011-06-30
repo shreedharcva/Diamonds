@@ -39,6 +39,9 @@
 		13827F1D13BBD57300C90A92 /* TestSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = 13827F1C13BBD57300C90A92 /* TestSprite.m */; };
 		13E98FAD13A7AF360003E7D2 /* ruby.png in Resources */ = {isa = PBXBuildFile; fileRef = 13E98FAC13A7AF360003E7D2 /* ruby.png */; };
 		13E98FBC13A8BB250003E7D2 /* Engine.m in Sources */ = {isa = PBXBuildFile; fileRef = 13E98FBA13A8BB250003E7D2 /* Engine.m */; };
+		13F6A99113BCB7D300A17DE8 /* SpriteBatch.m in Sources */ = {isa = PBXBuildFile; fileRef = 13F6A99013BCB7D300A17DE8 /* SpriteBatch.m */; };
+		13F6A99213BCB7D300A17DE8 /* SpriteBatch.m in Sources */ = {isa = PBXBuildFile; fileRef = 13F6A99013BCB7D300A17DE8 /* SpriteBatch.m */; };
+		13F6A99613BCBA0800A17DE8 /* MockSpriteBatch.m in Sources */ = {isa = PBXBuildFile; fileRef = 13F6A99513BCBA0800A17DE8 /* MockSpriteBatch.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -96,6 +99,10 @@
 		13E98FAC13A7AF360003E7D2 /* ruby.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ruby.png; path = Resources/ruby.png; sourceTree = SOURCE_ROOT; };
 		13E98FBA13A8BB250003E7D2 /* Engine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Engine.m; path = Diamonds/Engine/Engine.m; sourceTree = "<group>"; };
 		13E98FBB13A8BB250003E7D2 /* Engine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Engine.h; path = Diamonds/Engine/Engine.h; sourceTree = "<group>"; };
+		13F6A98F13BCB7D300A17DE8 /* SpriteBatch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SpriteBatch.h; path = Diamonds/Engine/SpriteBatch.h; sourceTree = "<group>"; };
+		13F6A99013BCB7D300A17DE8 /* SpriteBatch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SpriteBatch.m; path = Diamonds/Engine/SpriteBatch.m; sourceTree = "<group>"; };
+		13F6A99413BCBA0800A17DE8 /* MockSpriteBatch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MockSpriteBatch.h; path = Engine/MockSpriteBatch.h; sourceTree = "<group>"; };
+		13F6A99513BCBA0800A17DE8 /* MockSpriteBatch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MockSpriteBatch.m; path = Engine/MockSpriteBatch.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -245,6 +252,8 @@
 		13827F1E13BBD58200C90A92 /* Engine */ = {
 			isa = PBXGroup;
 			children = (
+				13F6A99413BCBA0800A17DE8 /* MockSpriteBatch.h */,
+				13F6A99513BCBA0800A17DE8 /* MockSpriteBatch.m */,
 				13827F1B13BBD57300C90A92 /* TestSprite.h */,
 				13827F1C13BBD57300C90A92 /* TestSprite.m */,
 			);
@@ -268,6 +277,8 @@
 				134BFF7B13BA28F300ACA82F /* Shaders */,
 				130CA76E13A90213008C7B66 /* Sprite.h */,
 				130CA76F13A90213008C7B66 /* Sprite.m */,
+				13F6A98F13BCB7D300A17DE8 /* SpriteBatch.h */,
+				13F6A99013BCB7D300A17DE8 /* SpriteBatch.m */,
 				134DFF3A13A79FE900DA67FC /* EAGLView.h */,
 				134DFF3B13A79FE900DA67FC /* EAGLView.m */,
 				130CA76B13A8F4A0008C7B66 /* Texture.h */,
@@ -404,6 +415,7 @@
 				130CA76913A8E64B008C7B66 /* ShaderProgram.m in Sources */,
 				130CA76D13A8F4A0008C7B66 /* Texture.m in Sources */,
 				130CA77013A90213008C7B66 /* Sprite.m in Sources */,
+				13F6A99113BCB7D300A17DE8 /* SpriteBatch.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -413,6 +425,8 @@
 			files = (
 				134DFF5813A79FE900DA67FC /* DiamondsTests.m in Sources */,
 				13827F1D13BBD57300C90A92 /* TestSprite.m in Sources */,
+				13F6A99213BCB7D300A17DE8 /* SpriteBatch.m in Sources */,
+				13F6A99613BCBA0800A17DE8 /* MockSpriteBatch.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

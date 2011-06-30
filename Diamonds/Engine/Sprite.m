@@ -3,6 +3,7 @@
 //  Diamonds
 
 #import "Sprite.h"
+#import "SpriteBatch.h"
 #import "ShaderProgram.h"
 #import "Texture.h"
 #import "Engine.h"
@@ -116,46 +117,6 @@ void getProjectionMatrix(Engine* engine, GLKMatrix4* matrix)
 {    
     Position position = { x, y };
     [batch drawQuad: position];
-}
-
-@end
-
-@implementation SpriteBatch
-{
-    Engine* engine;
-}
-
-- (id) initWithEngine: (Engine*) theEngine
-{
-    self = [super init];
-    if (self == nil)
-        return nil;
-    
-    engine = theEngine;
-    
-    return self;    
-}
-
-- (Engine*) engine
-{
-    return engine;
-}
-
-- (bool) isEmpty
-{
-    return YES;
-}
-
-- (void) begin
-{
-}
-
-- (void) end
-{
-}
-
-- (void) drawQuad: (Position) position
-{
 }
 
 @end
