@@ -34,6 +34,8 @@
 
 - (void) drawQuad: (CGPoint) position size: (CGSize) size;
 {
+    [super drawQuad: position size: size];
+    
     ++spritesDrawn;
     
     posiionOfTheLastSprite = position;

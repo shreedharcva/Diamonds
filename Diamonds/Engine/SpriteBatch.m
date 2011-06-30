@@ -19,6 +19,8 @@
 @implementation SpriteBatch
 {
     Engine* engine;
+    
+    bool spriteBatchStarted;
 }
 
 - (id) initWithEngine: (Engine*) theEngine
@@ -44,14 +46,20 @@
 
 - (void) begin
 {
+    spriteBatchStarted = true;
 }
 
 - (void) end
 {
+    spriteBatchStarted = false;
 }
 
 - (void) drawQuad: (CGPoint) position size: (CGSize) size;
 {
+    if (!spriteBatchStarted)
+    {
+        @throw [NSException exceptionWithName:@"SpriteBatch" reason: @"SpriteBatch wasnt open" userInfo: nil];
+    }
 }
 
 @end
