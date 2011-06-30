@@ -38,17 +38,6 @@
     size = newSize;
 }
 
-- (void) drawUsingEngine: (Engine*) engine
-{ 
-    SpriteBatch* batch = [[SpriteBatch alloc] initWithEngine: engine];
-        
-    [batch begin];
-
-    [self drawIn: batch];
-    
-    [batch end];
-}
-
 - (void) drawIn: (SpriteBatch*) batch
 {        
     [batch drawQuad: position size: size texture: textureObject];

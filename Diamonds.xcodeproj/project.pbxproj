@@ -36,7 +36,8 @@
 		134DFF5313A79FE900DA67FC /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 134DFF5113A79FE900DA67FC /* InfoPlist.strings */; };
 		134DFF5613A79FE900DA67FC /* DiamondsTests.h in Resources */ = {isa = PBXBuildFile; fileRef = 134DFF5513A79FE900DA67FC /* DiamondsTests.h */; };
 		134DFF5813A79FE900DA67FC /* DiamondsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 134DFF5713A79FE900DA67FC /* DiamondsTests.m */; };
-		13827F1D13BBD57300C90A92 /* TestSpriteBatch.m in Sources */ = {isa = PBXBuildFile; fileRef = 13827F1C13BBD57300C90A92 /* TestSpriteBatch.m */; };
+		13C9455713BCF806008565D6 /* TestResourceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 13C9455213BCF7CA008565D6 /* TestResourceManager.m */; };
+		13C9455813BCF815008565D6 /* TestSpriteBatch.m in Sources */ = {isa = PBXBuildFile; fileRef = 13C9455413BCF7CA008565D6 /* TestSpriteBatch.m */; };
 		13D8E7E413BCD6A7007472E2 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 134DFF2513A79FE900DA67FC /* OpenGLES.framework */; };
 		13E98FAD13A7AF360003E7D2 /* ruby.png in Resources */ = {isa = PBXBuildFile; fileRef = 13E98FAC13A7AF360003E7D2 /* ruby.png */; };
 		13E98FBC13A8BB250003E7D2 /* Engine.m in Sources */ = {isa = PBXBuildFile; fileRef = 13E98FBA13A8BB250003E7D2 /* Engine.m */; };
@@ -95,8 +96,9 @@
 		134DFF5513A79FE900DA67FC /* DiamondsTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DiamondsTests.h; sourceTree = "<group>"; };
 		134DFF5713A79FE900DA67FC /* DiamondsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DiamondsTests.m; sourceTree = "<group>"; };
 		13827F0D13BB907A00C90A92 /* Testing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Testing.h; sourceTree = "<group>"; };
-		13827F1B13BBD57300C90A92 /* TestSpriteBatch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestSpriteBatch.h; sourceTree = "<group>"; };
-		13827F1C13BBD57300C90A92 /* TestSpriteBatch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestSpriteBatch.m; sourceTree = "<group>"; };
+		13C9455213BCF7CA008565D6 /* TestResourceManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TestResourceManager.m; path = Engine/TestResourceManager.m; sourceTree = "<group>"; };
+		13C9455313BCF7CA008565D6 /* TestSpriteBatch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TestSpriteBatch.h; path = Engine/TestSpriteBatch.h; sourceTree = "<group>"; };
+		13C9455413BCF7CA008565D6 /* TestSpriteBatch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TestSpriteBatch.m; path = Engine/TestSpriteBatch.m; sourceTree = "<group>"; };
 		13E98FAC13A7AF360003E7D2 /* ruby.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ruby.png; path = Resources/ruby.png; sourceTree = SOURCE_ROOT; };
 		13E98FBA13A8BB250003E7D2 /* Engine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Engine.m; path = Diamonds/Engine/Engine.m; sourceTree = "<group>"; };
 		13E98FBB13A8BB250003E7D2 /* Engine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Engine.h; path = Diamonds/Engine/Engine.h; sourceTree = "<group>"; };
@@ -254,10 +256,11 @@
 		13827F1E13BBD58200C90A92 /* Engine */ = {
 			isa = PBXGroup;
 			children = (
+				13C9455213BCF7CA008565D6 /* TestResourceManager.m */,
+				13C9455313BCF7CA008565D6 /* TestSpriteBatch.h */,
+				13C9455413BCF7CA008565D6 /* TestSpriteBatch.m */,
 				13F6A99413BCBA0800A17DE8 /* MockSpriteBatch.h */,
 				13F6A99513BCBA0800A17DE8 /* MockSpriteBatch.m */,
-				13827F1B13BBD57300C90A92 /* TestSpriteBatch.h */,
-				13827F1C13BBD57300C90A92 /* TestSpriteBatch.m */,
 			);
 			name = Engine;
 			sourceTree = "<group>";
@@ -426,9 +429,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				134DFF5813A79FE900DA67FC /* DiamondsTests.m in Sources */,
-				13827F1D13BBD57300C90A92 /* TestSpriteBatch.m in Sources */,
 				13F6A99213BCB7D300A17DE8 /* SpriteBatch.m in Sources */,
 				13F6A99613BCBA0800A17DE8 /* MockSpriteBatch.m in Sources */,
+				13C9455713BCF806008565D6 /* TestResourceManager.m in Sources */,
+				13C9455813BCF815008565D6 /* TestSpriteBatch.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
