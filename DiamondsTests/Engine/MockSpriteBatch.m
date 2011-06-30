@@ -11,15 +11,6 @@
 @implementation MockEngine
 @end
 
-@implementation SpriteBatch (Testing)
-
-- (int) spritesDrawn
-{
-    return 0;
-}
-
-@end
-
 @implementation MockSpriteBatch
 {
     int spritesDrawn;
@@ -32,9 +23,9 @@
 @synthesize posiionOfTheLastSprite;
 @synthesize sizeOfTheLastSprite;
 
-- (void) drawQuad: (CGPoint) position size: (CGSize) size;
+- (void) drawQuad: (CGPoint) position size: (CGSize) size texture: (Texture*)texture
 {
-    [super drawQuad: position size: size];
+    [super drawQuad: position size: size texture: texture];
     
     ++spritesDrawn;
     

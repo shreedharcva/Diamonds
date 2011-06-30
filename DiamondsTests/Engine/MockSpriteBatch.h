@@ -10,15 +10,7 @@
 @interface MockEngine: Engine
 @end
 
-@interface SpriteBatch (Testing)
-
-@property (readonly) int spritesDrawn;
-
-@end
-
 @interface MockSpriteBatch : SpriteBatch 
-
-- (int) spritesDrawn;
 
 @property (readonly) int spritesDrawn;
 

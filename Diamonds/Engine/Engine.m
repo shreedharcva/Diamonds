@@ -5,6 +5,7 @@
 #import "Engine.h"
 #import "Texture.h"
 #import "ShaderProgram.h"
+#import "SpriteBatch.h"
 #import "Sprite.h"
 
 #import "EAGLView.h"
@@ -19,6 +20,8 @@
 {    
     EAGLView* view;    
     EAGLContext *glcontext;
+    
+    SpriteBatch* batch;
     
     Sprite* sprite1;
     Sprite* sprite2;
@@ -61,6 +64,8 @@
     [view setContext: glcontext];
     [view setFramebuffer];
     
+    batch = [[SpriteBatch alloc] initWithEngine: self];
+
     sprite1 = [Sprite new];
     sprite2 = [Sprite new];
     
@@ -114,10 +119,12 @@
 
 - (void) drawFrame
 {
-    [self beginFrame];
-    [sprite1 drawUsingEngine: self];
-    [sprite2 drawUsingEngine: self];
-    [self endFrame];   
+    [batch begin];
+    
+    [sprite1 drawIn: batch];
+    [sprite2 drawIn: batch];
+    
+    [batch end];
 }
 
 @end

@@ -26,16 +26,16 @@
 - (id) initWithCoder:(NSCoder*)coder
 {
     self = [super initWithCoder:coder];
-	if (self) 
-    {
-        CAEAGLLayer *eaglLayer = (CAEAGLLayer *)self.layer;
+	if (self == nil)
+        return nil;
         
-        eaglLayer.opaque = TRUE;
-        eaglLayer.drawableProperties = [NSDictionary dictionaryWithObjectsAndKeys:
-                                        [NSNumber numberWithBool:FALSE], kEAGLDrawablePropertyRetainedBacking,
-                                        kEAGLColorFormatRGBA8, kEAGLDrawablePropertyColorFormat,
-                                        nil];
-    }
+    CAEAGLLayer* eaglLayer = (CAEAGLLayer *)self.layer;
+    
+    eaglLayer.opaque = TRUE;
+    eaglLayer.drawableProperties = [NSDictionary dictionaryWithObjectsAndKeys:
+                                    [NSNumber numberWithBool:FALSE], kEAGLDrawablePropertyRetainedBacking,
+                                    kEAGLColorFormatRGBA8, kEAGLDrawablePropertyColorFormat,
+                                    nil];
     
     return self;
 }
@@ -121,9 +121,6 @@
     glViewport(0, 0, framebufferWidth, framebufferHeight);
 }
 
-- (void) createResources
-{
-}
 
 - (BOOL) presentFramebuffer
 {

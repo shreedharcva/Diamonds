@@ -78,7 +78,8 @@
     {
         animationFrameInterval = frameInterval;
         
-        if (animating) {
+        if (animating) 
+        {
             [self stopAnimation];
             [self startAnimation];
         }
@@ -91,7 +92,7 @@
     {
         CADisplayLink *aDisplayLink = [[UIScreen mainScreen] displayLinkWithTarget: self selector:@selector(drawFrame)];
         
-        [aDisplayLink setFrameInterval:animationFrameInterval];
+        [aDisplayLink setFrameInterval: animationFrameInterval];
         [aDisplayLink addToRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
         self.displayLink = aDisplayLink;
         
@@ -111,9 +112,9 @@
 
 - (void) drawFrame
 {
+    [engine beginFrame];
     [engine drawFrame];
+    [engine endFrame];
 }
-
-
 
 @end
