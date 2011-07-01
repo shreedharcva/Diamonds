@@ -176,9 +176,9 @@
 			children = (
 				134BFF7913BA0ED400ACA82F /* GLKit.framework */,
 				13E98FB913A8BAC50003E7D2 /* Engine */,
-				13E98FAB13A7AF1C0003E7D2 /* Resources */,
-				134DFF2713A79FE900DA67FC /* Diamonds */,
 				134DFF4E13A79FE900DA67FC /* DiamondsTests */,
+				134DFF2713A79FE900DA67FC /* Diamonds */,
+				13E98FAB13A7AF1C0003E7D2 /* Resources */,
 				134DFF1C13A79FE900DA67FC /* Frameworks */,
 				134DFF1A13A79FE900DA67FC /* Products */,
 			);

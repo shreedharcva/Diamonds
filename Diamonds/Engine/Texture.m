@@ -1,5 +1,5 @@
 //
-//  ShaderProgram.m
+//  Texture.m
 //  Diamonds
 
 #import "Texture.h"
@@ -7,16 +7,62 @@
 #import <OpenGLES/ES2/gl.h>
 #import <OpenGLES/ES2/glext.h>
 
-@interface Texture () 
+@implementation ResourceManager
 {
-    GLuint texture;
+    NSMutableDictionary* textures;
+}
+
+- (id) init
+{
+    self = [super init];
+    if (self == nil)
+    {
+        return nil;
+    }
+    
+    textureFactory = [TextureFactory new];
+    textures = [NSMutableDictionary dictionary];
+    
+    return self;
+}
+
+- (Texture*) loadTexture: (NSString*) name
+{
+    Texture* texture = [textures objectForKey: name];
+    if (texture == nil)
+    {
+        texture = [textureFactory create: name];
+        [textures setObject: texture forKey: name];
+        [texture load];
+    }
+    return texture;
 }
 
 @end
 
 @implementation Texture
+{
+    NSString* name;
+    
+    GLuint texture;
+    CGSize size;
+}
 
 @synthesize size;
+@synthesize name;
+
+- (id) initWithName: (NSString*) textureName
+{
+    self = [super init];
+    if (self == nil)
+    {
+        return nil;
+    }
+
+    name = textureName;
+    
+    return self;
+}
 
 - (void) load
 {
@@ -29,8 +75,11 @@
     NSString *path = [[NSBundle mainBundle] pathForResource:@"diamond" ofType:@"png"];
     NSData *texData = [[NSData alloc] initWithContentsOfFile:path];
     UIImage *image = [[UIImage alloc] initWithData:texData];
+    
     if (image == nil)
+    {
         NSLog(@"Do real error checking here");
+    }
     
     size.width = CGImageGetWidth(image.CGImage);
     size.height = CGImageGetHeight(image.CGImage);
@@ -51,8 +100,7 @@
     
     CGContextRelease(context);
     
-    free(imageData);
-    
+    free(imageData);    
 }
 
 - (void) bind
@@ -62,3 +110,11 @@
 
 @end
 
+@implementation TextureFactory
+
+- (Texture*) create: (NSString*) name
+{
+    return [[Texture alloc] initWithName: name];
+}
+
+@end
