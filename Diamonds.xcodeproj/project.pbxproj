@@ -14,6 +14,7 @@
 		130CA78913AA4089008C7B66 /* diamonds_72.png in Resources */ = {isa = PBXBuildFile; fileRef = 130CA78613AA4089008C7B66 /* diamonds_72.png */; };
 		130CA78A13AA4089008C7B66 /* diamonds_57.png in Resources */ = {isa = PBXBuildFile; fileRef = 130CA78713AA4089008C7B66 /* diamonds_57.png */; };
 		130CA78C13AB8C92008C7B66 /* diamond.png in Resources */ = {isa = PBXBuildFile; fileRef = 130CA78B13AB8C92008C7B66 /* diamond.png */; };
+		130E9A4C13BE0D1400802767 /* TestSpriteLoading.m in Sources */ = {isa = PBXBuildFile; fileRef = 130E9A4A13BE0D1400802767 /* TestSpriteLoading.m */; };
 		132041B513A7A64100D3F66D /* MainWindow-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 132041B313A7A64100D3F66D /* MainWindow-iPad.xib */; };
 		132041BA13A7A7E200D3F66D /* MainWindow-iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 132041B813A7A7E200D3F66D /* MainWindow-iPhone.xib */; };
 		132041BD13A7A80700D3F66D /* DiamondsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 132041BB13A7A80700D3F66D /* DiamondsViewController.xib */; };
@@ -69,6 +70,9 @@
 		130CA78613AA4089008C7B66 /* diamonds_72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = diamonds_72.png; path = Resources/diamonds_72.png; sourceTree = SOURCE_ROOT; };
 		130CA78713AA4089008C7B66 /* diamonds_57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = diamonds_57.png; path = Resources/diamonds_57.png; sourceTree = SOURCE_ROOT; };
 		130CA78B13AB8C92008C7B66 /* diamond.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = diamond.png; path = Resources/diamond.png; sourceTree = SOURCE_ROOT; };
+		130E9A4913BE0C7100802767 /* TestResourceManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TestResourceManager.h; path = Engine/TestResourceManager.h; sourceTree = "<group>"; };
+		130E9A4A13BE0D1400802767 /* TestSpriteLoading.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TestSpriteLoading.m; path = Engine/TestSpriteLoading.m; sourceTree = "<group>"; };
+		130E9A4B13BE0D1400802767 /* TestSpriteLoading.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TestSpriteLoading.h; path = Engine/TestSpriteLoading.h; sourceTree = "<group>"; };
 		132041B413A7A64100D3F66D /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = "iPad/en.lproj/MainWindow-iPad.xib"; sourceTree = "<group>"; };
 		132041B913A7A7E200D3F66D /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = "iPhone/en.lproj/MainWindow-iPhone.xib"; sourceTree = "<group>"; };
 		132041BC13A7A80700D3F66D /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = iPhone/en.lproj/DiamondsViewController.xib; sourceTree = "<group>"; };
@@ -180,7 +184,6 @@
 		134DFF0E13A79FE900DA67FC = {
 			isa = PBXGroup;
 			children = (
-				134BFF7913BA0ED400ACA82F /* GLKit.framework */,
 				13E98FB913A8BAC50003E7D2 /* Engine */,
 				134DFF4E13A79FE900DA67FC /* DiamondsTests */,
 				134DFF2713A79FE900DA67FC /* Diamonds */,
@@ -202,6 +205,7 @@
 		134DFF1C13A79FE900DA67FC /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				134BFF7913BA0ED400ACA82F /* GLKit.framework */,
 				134DFF1D13A79FE900DA67FC /* UIKit.framework */,
 				134DFF1F13A79FE900DA67FC /* Foundation.framework */,
 				134DFF2113A79FE900DA67FC /* CoreGraphics.framework */,
@@ -264,7 +268,10 @@
 			children = (
 				13C1F44F13BE02CC00E67EC0 /* MockTexture.h */,
 				13C1F45013BE02CC00E67EC0 /* MockTexture.m */,
+				130E9A4913BE0C7100802767 /* TestResourceManager.h */,
 				13C9455213BCF7CA008565D6 /* TestResourceManager.m */,
+				130E9A4B13BE0D1400802767 /* TestSpriteLoading.h */,
+				130E9A4A13BE0D1400802767 /* TestSpriteLoading.m */,
 				13C9455313BCF7CA008565D6 /* TestSpriteBatch.h */,
 				13C9455413BCF7CA008565D6 /* TestSpriteBatch.m */,
 				13F6A99413BCBA0800A17DE8 /* MockSpriteBatch.h */,
@@ -445,6 +452,7 @@
 				13F6A99613BCBA0800A17DE8 /* MockSpriteBatch.m in Sources */,
 				13C9455713BCF806008565D6 /* TestResourceManager.m in Sources */,
 				13C9455813BCF815008565D6 /* TestSpriteBatch.m in Sources */,
+				130E9A4C13BE0D1400802767 /* TestSpriteLoading.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -554,6 +562,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_AFTER_BUILD = YES;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -571,6 +580,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_AFTER_BUILD = YES;
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;
 			};

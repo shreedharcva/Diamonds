@@ -2,38 +2,35 @@
 //  TestResourceManager.m
 //  Diamonds
 
-
-#import "Testing.h"
+#import "TestResourceManager.h"
 
 #import "ResourceManager.h"
 #import "MockTexture.h"
 
-@interface ResourceManager (Testing) 
+@implementation MockResourceManager
+{
+    MockTexture* lastTextureLoaded;
+}
 
-- (void) setTextureFactory: (TextureFactory*) newFactory;
-
-@end
-
-@implementation ResourceManager (Testing)
+- (Texture*) loadTexture:(NSString *)name
+{
+    Texture* texture = [super loadTexture: name];
+    lastTextureLoaded = (MockTexture*) texture;
+    return texture;
+}
 
 - (void) setTextureFactory: (TextureFactory*) newFactory
 {
     textureFactory = newFactory;    
 }
 
-- (TextureFactory *) textureFactory
+- (MockTexture*) lastTextureLoaded
 {
-    return textureFactory;    
+    return lastTextureLoaded;
 }
 
 @end
 
-@interface TestResourceManager : TestCase
-{
-    ResourceManager* manager;
-}
-
-@end
 
 @implementation TestResourceManager
 
@@ -41,22 +38,26 @@
 {
     [super setUp];
 
-    manager = [ResourceManager new];
+    manager = [MockResourceManager new];
     [manager setTextureFactory: [MockTextureFactory new]];
 }
 
 - (void) testResourceManagerLoadsATextureWithTheCorrectName
 {
-    Texture* texture = [manager loadTexture: @"test"];
-
-    assertEqualObjects(@"test", texture.name);
+    [manager loadTexture: @"test"];    
+    assertEqualObjects(@"test", [manager lastTextureLoaded].name);
 }
 
 - (void) testResourceManagerLoadsATextureWithADifferentName
 {
-    Texture* texture = [manager loadTexture: @"test2"];
-    
-    assertEqualObjects(@"test2", texture.name);
+    [manager loadTexture: @"test2"];    
+    assertEqualObjects(@"test2", [manager lastTextureLoaded].name);
+}
+
+- (void) testResourceManagerContainesOneTextureAfterATextureIsLoaded
+{
+    [manager loadTexture: @"test2"];        
+    assertEquals(1, [manager numberOfTextures]);
 }
 
 - (void) testResourceManagerLoadReturnesTheSameTextureWhenTwoLoadsAreRequestedWithTheSameName
@@ -69,8 +70,8 @@
 
 - (void) testResourceManagerCallsLoadOnANewTexture
 {
-    MockTexture* texture = (MockTexture*) [manager loadTexture: @"test"];
-    assertTrue(texture.loadWasCalled);
+    [manager loadTexture: @"test"];
+    assertTrue([manager lastTextureLoaded].loadWasCalled);
 }
 
 @end

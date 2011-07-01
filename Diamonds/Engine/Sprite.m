@@ -5,6 +5,7 @@
 #import "Sprite.h"
 #import "SpriteBatch.h"
 #import "Texture.h"
+#import "ResourceManager.h"
 
 @implementation Sprite
 {
@@ -12,6 +13,18 @@
 
     CGPoint position;
     CGSize size;
+}
+
+- (id) initWithTextureName: (NSString*) name from: (ResourceManager*) resources
+{
+    self = [super init];
+    if (self == nil)
+        return nil;
+    
+    textureObject = [resources loadTexture: name];
+    size = textureObject.size;
+
+    return self;
 }
 
 - (id) init

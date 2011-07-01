@@ -1,0 +1,4 @@
+//
+//  TestSpriteLoading.h
+//  Diamonds
+

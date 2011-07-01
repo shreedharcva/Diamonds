@@ -10,6 +10,8 @@
     TextureFactory* textureFactory;
 }
 
+@property (readonly) int numberOfTextures;
+
 - (Texture*) loadTexture: (NSString*) name;
 
 @end

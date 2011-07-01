@@ -6,6 +6,7 @@
 
 @class ShaderProgram;
 @class Texture;
+@class Engine;
 
 @interface SpriteBatch : NSObject 
 {

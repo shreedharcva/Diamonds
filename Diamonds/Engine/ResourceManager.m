@@ -25,6 +25,12 @@
     return self;
 }
 
+
+- (int) numberOfTextures
+{
+    return [textures count];
+}
+
 - (Texture*) loadTexture: (NSString*) name
 {
     Texture* texture = [textures objectForKey: name];
