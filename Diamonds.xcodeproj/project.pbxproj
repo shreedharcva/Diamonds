@@ -47,6 +47,9 @@
 		13F6A99113BCB7D300A17DE8 /* SpriteBatch.m in Sources */ = {isa = PBXBuildFile; fileRef = 13F6A99013BCB7D300A17DE8 /* SpriteBatch.m */; };
 		13F6A99213BCB7D300A17DE8 /* SpriteBatch.m in Sources */ = {isa = PBXBuildFile; fileRef = 13F6A99013BCB7D300A17DE8 /* SpriteBatch.m */; };
 		13F6A99613BCBA0800A17DE8 /* MockSpriteBatch.m in Sources */ = {isa = PBXBuildFile; fileRef = 13F6A99513BCBA0800A17DE8 /* MockSpriteBatch.m */; };
+		13FB534613BE1DDC00852C87 /* TestGame.m in Sources */ = {isa = PBXBuildFile; fileRef = 13FB534513BE1DDC00852C87 /* TestGame.m */; };
+		13FB534A13BE1F8100852C87 /* Game.m in Sources */ = {isa = PBXBuildFile; fileRef = 13FB534913BE1F8100852C87 /* Game.m */; };
+		13FB534B13BE1F8100852C87 /* Game.m in Sources */ = {isa = PBXBuildFile; fileRef = 13FB534913BE1F8100852C87 /* Game.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -116,6 +119,10 @@
 		13F6A99013BCB7D300A17DE8 /* SpriteBatch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SpriteBatch.m; path = Diamonds/Engine/SpriteBatch.m; sourceTree = "<group>"; };
 		13F6A99413BCBA0800A17DE8 /* MockSpriteBatch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MockSpriteBatch.h; path = Engine/MockSpriteBatch.h; sourceTree = "<group>"; };
 		13F6A99513BCBA0800A17DE8 /* MockSpriteBatch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MockSpriteBatch.m; path = Engine/MockSpriteBatch.m; sourceTree = "<group>"; };
+		13FB534413BE1DDC00852C87 /* TestGame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestGame.h; sourceTree = "<group>"; };
+		13FB534513BE1DDC00852C87 /* TestGame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestGame.m; sourceTree = "<group>"; };
+		13FB534813BE1F8100852C87 /* Game.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Game.h; sourceTree = "<group>"; };
+		13FB534913BE1F8100852C87 /* Game.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Game.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -184,6 +191,7 @@
 		134DFF0E13A79FE900DA67FC = {
 			isa = PBXGroup;
 			children = (
+				13FB534713BE1F6800852C87 /* Game */,
 				13E98FB913A8BAC50003E7D2 /* Engine */,
 				134DFF4E13A79FE900DA67FC /* DiamondsTests */,
 				134DFF2713A79FE900DA67FC /* Diamonds */,
@@ -244,6 +252,7 @@
 		134DFF4E13A79FE900DA67FC /* DiamondsTests */ = {
 			isa = PBXGroup;
 			children = (
+				13FB534213BE1D3300852C87 /* Game */,
 				13827F1E13BBD58200C90A92 /* Engine */,
 				13827F0D13BB907A00C90A92 /* Testing.h */,
 				134DFF5513A79FE900DA67FC /* DiamondsTests.h */,
@@ -311,6 +320,24 @@
 				13E98FBA13A8BB250003E7D2 /* Engine.m */,
 			);
 			name = Engine;
+			sourceTree = "<group>";
+		};
+		13FB534213BE1D3300852C87 /* Game */ = {
+			isa = PBXGroup;
+			children = (
+				13FB534413BE1DDC00852C87 /* TestGame.h */,
+				13FB534513BE1DDC00852C87 /* TestGame.m */,
+			);
+			name = Game;
+			sourceTree = "<group>";
+		};
+		13FB534713BE1F6800852C87 /* Game */ = {
+			isa = PBXGroup;
+			children = (
+				13FB534813BE1F8100852C87 /* Game.h */,
+				13FB534913BE1F8100852C87 /* Game.m */,
+			);
+			name = Game;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -440,6 +467,7 @@
 				13F6A99113BCB7D300A17DE8 /* SpriteBatch.m in Sources */,
 				13C1F45113BE02CC00E67EC0 /* MockTexture.m in Sources */,
 				13C1F45713BE040200E67EC0 /* ResourceManager.m in Sources */,
+				13FB534A13BE1F8100852C87 /* Game.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -453,6 +481,8 @@
 				13C9455713BCF806008565D6 /* TestResourceManager.m in Sources */,
 				13C9455813BCF815008565D6 /* TestSpriteBatch.m in Sources */,
 				130E9A4C13BE0D1400802767 /* TestSpriteLoading.m in Sources */,
+				13FB534613BE1DDC00852C87 /* TestGame.m in Sources */,
+				13FB534B13BE1F8100852C87 /* Game.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
