@@ -36,6 +36,8 @@
 		134DFF5313A79FE900DA67FC /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 134DFF5113A79FE900DA67FC /* InfoPlist.strings */; };
 		134DFF5613A79FE900DA67FC /* DiamondsTests.h in Resources */ = {isa = PBXBuildFile; fileRef = 134DFF5513A79FE900DA67FC /* DiamondsTests.h */; };
 		134DFF5813A79FE900DA67FC /* DiamondsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 134DFF5713A79FE900DA67FC /* DiamondsTests.m */; };
+		13C1F45113BE02CC00E67EC0 /* MockTexture.m in Sources */ = {isa = PBXBuildFile; fileRef = 13C1F45013BE02CC00E67EC0 /* MockTexture.m */; };
+		13C1F45713BE040200E67EC0 /* ResourceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 13C1F45613BE040200E67EC0 /* ResourceManager.m */; };
 		13C9455713BCF806008565D6 /* TestResourceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 13C9455213BCF7CA008565D6 /* TestResourceManager.m */; };
 		13C9455813BCF815008565D6 /* TestSpriteBatch.m in Sources */ = {isa = PBXBuildFile; fileRef = 13C9455413BCF7CA008565D6 /* TestSpriteBatch.m */; };
 		13D8E7E413BCD6A7007472E2 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 134DFF2513A79FE900DA67FC /* OpenGLES.framework */; };
@@ -96,6 +98,10 @@
 		134DFF5513A79FE900DA67FC /* DiamondsTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DiamondsTests.h; sourceTree = "<group>"; };
 		134DFF5713A79FE900DA67FC /* DiamondsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DiamondsTests.m; sourceTree = "<group>"; };
 		13827F0D13BB907A00C90A92 /* Testing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Testing.h; sourceTree = "<group>"; };
+		13C1F44F13BE02CC00E67EC0 /* MockTexture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MockTexture.h; sourceTree = "<group>"; };
+		13C1F45013BE02CC00E67EC0 /* MockTexture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MockTexture.m; sourceTree = "<group>"; };
+		13C1F45513BE040200E67EC0 /* ResourceManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ResourceManager.h; path = Diamonds/Engine/ResourceManager.h; sourceTree = "<group>"; };
+		13C1F45613BE040200E67EC0 /* ResourceManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ResourceManager.m; path = Diamonds/Engine/ResourceManager.m; sourceTree = "<group>"; };
 		13C9455213BCF7CA008565D6 /* TestResourceManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TestResourceManager.m; path = Engine/TestResourceManager.m; sourceTree = "<group>"; };
 		13C9455313BCF7CA008565D6 /* TestSpriteBatch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TestSpriteBatch.h; path = Engine/TestSpriteBatch.h; sourceTree = "<group>"; };
 		13C9455413BCF7CA008565D6 /* TestSpriteBatch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TestSpriteBatch.m; path = Engine/TestSpriteBatch.m; sourceTree = "<group>"; };
@@ -256,6 +262,8 @@
 		13827F1E13BBD58200C90A92 /* Engine */ = {
 			isa = PBXGroup;
 			children = (
+				13C1F44F13BE02CC00E67EC0 /* MockTexture.h */,
+				13C1F45013BE02CC00E67EC0 /* MockTexture.m */,
 				13C9455213BCF7CA008565D6 /* TestResourceManager.m */,
 				13C9455313BCF7CA008565D6 /* TestSpriteBatch.h */,
 				13C9455413BCF7CA008565D6 /* TestSpriteBatch.m */,
@@ -288,6 +296,8 @@
 				134DFF3B13A79FE900DA67FC /* EAGLView.m */,
 				130CA76B13A8F4A0008C7B66 /* Texture.h */,
 				130CA76C13A8F4A0008C7B66 /* Texture.m */,
+				13C1F45513BE040200E67EC0 /* ResourceManager.h */,
+				13C1F45613BE040200E67EC0 /* ResourceManager.m */,
 				130CA76713A8E64B008C7B66 /* ShaderProgram.h */,
 				130CA76813A8E64B008C7B66 /* ShaderProgram.m */,
 				13E98FBB13A8BB250003E7D2 /* Engine.h */,
@@ -421,6 +431,8 @@
 				130CA76D13A8F4A0008C7B66 /* Texture.m in Sources */,
 				130CA77013A90213008C7B66 /* Sprite.m in Sources */,
 				13F6A99113BCB7D300A17DE8 /* SpriteBatch.m in Sources */,
+				13C1F45113BE02CC00E67EC0 /* MockTexture.m in Sources */,
+				13C1F45713BE040200E67EC0 /* ResourceManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

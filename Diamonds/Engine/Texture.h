@@ -7,15 +7,6 @@
 @class Texture;
 @class TextureFactory;
 
-@interface ResourceManager : NSObject 
-{
-    TextureFactory* textureFactory;
-}
-
-- (Texture*) loadTexture: (NSString*) name;
-
-@end
-
 @interface Texture : NSObject 
 
 @property (readonly, nonatomic) NSString* name;

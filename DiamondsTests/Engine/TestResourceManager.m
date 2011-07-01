@@ -4,33 +4,9 @@
 
 
 #import "Testing.h"
-#import "Texture.h"
 
-@interface MockTexture : Texture
-@property (readonly) bool loadWasCalled;
-@end
-
-@implementation MockTexture
-@synthesize loadWasCalled;
-
-- (void) load;
-{
-    loadWasCalled = true;
-}
-
-@end
-
-@interface MockTextureFactory : TextureFactory 
-@end
-
-@implementation MockTextureFactory
-
-- (Texture*) create: (NSString*) name
-{
-    return [[MockTexture alloc] initWithName: name];
-}
-
-@end
+#import "ResourceManager.h"
+#import "MockTexture.h"
 
 @interface ResourceManager (Testing) 
 

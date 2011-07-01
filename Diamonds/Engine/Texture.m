@@ -7,39 +7,6 @@
 #import <OpenGLES/ES2/gl.h>
 #import <OpenGLES/ES2/glext.h>
 
-@implementation ResourceManager
-{
-    NSMutableDictionary* textures;
-}
-
-- (id) init
-{
-    self = [super init];
-    if (self == nil)
-    {
-        return nil;
-    }
-    
-    textureFactory = [TextureFactory new];
-    textures = [NSMutableDictionary dictionary];
-    
-    return self;
-}
-
-- (Texture*) loadTexture: (NSString*) name
-{
-    Texture* texture = [textures objectForKey: name];
-    if (texture == nil)
-    {
-        texture = [textureFactory create: name];
-        [textures setObject: texture forKey: name];
-        [texture load];
-    }
-    return texture;
-}
-
-@end
-
 @implementation Texture
 {
     NSString* name;
