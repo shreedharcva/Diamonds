@@ -17,7 +17,7 @@
 #import <OpenGLES/ES2/gl.h>
 #import <OpenGLES/ES2/glext.h>
 
-@interface Engine ()
+@implementation Engine
 {    
     EAGLView* view;    
     EAGLContext *glcontext;
@@ -27,10 +27,6 @@
     Sprite* sprite1;
     Sprite* sprite2;
 }
-
-@end
-
-@implementation Engine
 
 - (id) initWithView: (EAGLView*) glview
 {
@@ -66,8 +62,6 @@
     
     ResourceManager* resources = [ResourceManager new];
     
-    batch = [[SpriteBatch alloc] initWithEngine: self];
-
     sprite1 = [[Sprite alloc] initWithTextureName: @"diamond" from: resources];
     sprite2 = [[Sprite alloc] initWithTextureName: @"ruby" from: resources];
     
@@ -121,6 +115,8 @@
 
 - (void) drawFrame
 {
+    batch = [[SpriteBatch alloc] initWithEngine: self];
+
     [batch begin];
     
     [sprite1 drawIn: batch];

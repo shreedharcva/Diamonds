@@ -9,10 +9,6 @@
 @class Engine;
 
 @interface SpriteBatch : NSObject 
-{
-    @public
-    ShaderProgram* shaderProgram;
-}
 
 @property (readonly) Engine* engine;
 @property (readonly) ShaderProgram* shaderProgram;

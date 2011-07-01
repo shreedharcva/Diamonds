@@ -9,13 +9,10 @@
 #import "Texture.h"
 #import "Engine.h"
 
-#import <QuartzCore/QuartzCore.h>
-
 #import <OpenGLES/ES2/gl.h>
 #import <OpenGLES/ES2/glext.h>
 
 #import <GLKit/GLKMath.h>
-
 
 void getProjectionMatrix(Engine* engine, GLKMatrix4* matrix)
 {
@@ -25,10 +22,13 @@ void getProjectionMatrix(Engine* engine, GLKMatrix4* matrix)
     *matrix = GLKMatrix4Transpose(*matrix);
 }
 
+static ShaderProgram* program;
+
 @implementation SpriteBatch
 {
     Engine* engine;
-    
+    ShaderProgram* shaderProgram;
+
     bool spriteBatchStarted;
 }
 
@@ -40,9 +40,14 @@ void getProjectionMatrix(Engine* engine, GLKMatrix4* matrix)
     
     engine = theEngine;
 
-    shaderProgram = [ShaderProgram new];
-    [shaderProgram load];
-
+    if (program == 0)
+    {
+        program = [ShaderProgram new];
+        [program load];
+    }
+    
+    shaderProgram = program;
+    
     return self;    
 }
 
