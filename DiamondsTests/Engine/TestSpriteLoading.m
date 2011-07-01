@@ -25,7 +25,24 @@
 {
     [[Sprite alloc] initWithTextureName: @"test" from: manager]; 
 
-    assertTrue([manager lastTextureLoaded].loadWasCalled);
+    assertTrue([manager lastTexture].loadWasCalled);
 }
+
+- (void) testOneTextureIsLoadedWhenTwoSpritesAreCreatedWithTheSameTexture
+{    
+    [[Sprite alloc] initWithTextureName: @"test" from: manager]; 
+    [[Sprite alloc] initWithTextureName: @"test" from: manager]; 
+    
+    assertEquals(1, [manager numberOfTextures]);
+}
+
+- (void) testTwoTexturesAreLoadedWhenTwoSpritesAreCreatedWithDifferentTexture
+{    
+    [[Sprite alloc] initWithTextureName: @"test" from: manager]; 
+    [[Sprite alloc] initWithTextureName: @"test2" from: manager]; 
+    
+    assertEquals(2, [manager numberOfTextures]);
+}
+
 
 @end

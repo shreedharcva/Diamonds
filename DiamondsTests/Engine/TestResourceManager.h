@@ -12,13 +12,13 @@
 @interface MockResourceManager : ResourceManager 
 
 - (void) setTextureFactory: (TextureFactory*) newFactory;
-- (MockTexture*) lastTextureLoaded;
+- (MockTexture*) lastTexture;
 
 @end
 
 @interface TestResourceManager : TestCase
 {
-    MockResourceManager* manager;
+    MockResourceManager* resources;
 }
 
 @end

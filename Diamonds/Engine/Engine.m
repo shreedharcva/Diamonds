@@ -3,6 +3,8 @@
 //  Diamonds
 
 #import "Engine.h"
+
+#import "ResourceManager.h"
 #import "Texture.h"
 #import "ShaderProgram.h"
 #import "SpriteBatch.h"
@@ -14,7 +16,6 @@
 
 #import <OpenGLES/ES2/gl.h>
 #import <OpenGLES/ES2/glext.h>
-
 
 @interface Engine ()
 {    
@@ -28,7 +29,6 @@
 }
 
 @end
-
 
 @implementation Engine
 
@@ -64,10 +64,12 @@
     [view setContext: glcontext];
     [view setFramebuffer];
     
+    ResourceManager* resources = [ResourceManager new];
+    
     batch = [[SpriteBatch alloc] initWithEngine: self];
 
-    sprite1 = [Sprite new];
-    sprite2 = [Sprite new];
+    sprite1 = [[Sprite alloc] initWithTextureName: @"diamond" from: resources];
+    sprite2 = [[Sprite alloc] initWithTextureName: @"ruby" from: resources];
     
     [sprite1 moveTo: CGPointMake(0, 0)];
     [sprite2 moveTo: CGPointMake(200, 0)];

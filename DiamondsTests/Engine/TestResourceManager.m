@@ -24,13 +24,12 @@
     textureFactory = newFactory;    
 }
 
-- (MockTexture*) lastTextureLoaded
+- (MockTexture*) lastTexture
 {
     return lastTextureLoaded;
 }
 
 @end
-
 
 @implementation TestResourceManager
 
@@ -38,40 +37,40 @@
 {
     [super setUp];
 
-    manager = [MockResourceManager new];
-    [manager setTextureFactory: [MockTextureFactory new]];
+    resources = [MockResourceManager new];
+    [resources setTextureFactory: [MockTextureFactory new]];
 }
 
 - (void) testResourceManagerLoadsATextureWithTheCorrectName
 {
-    [manager loadTexture: @"test"];    
-    assertEqualObjects(@"test", [manager lastTextureLoaded].name);
+    [resources loadTexture: @"test"];    
+    assertEqualObjects(@"test", [resources lastTexture].name);
 }
 
 - (void) testResourceManagerLoadsATextureWithADifferentName
 {
-    [manager loadTexture: @"test2"];    
-    assertEqualObjects(@"test2", [manager lastTextureLoaded].name);
+    [resources loadTexture: @"test2"];    
+    assertEqualObjects(@"test2", [resources lastTexture].name);
 }
 
-- (void) testResourceManagerContainesOneTextureAfterATextureIsLoaded
+- (void) testResourceManagerContainsOneTextureAfterATextureIsLoaded
 {
-    [manager loadTexture: @"test2"];        
-    assertEquals(1, [manager numberOfTextures]);
+    [resources loadTexture: @"test2"];        
+    assertEquals(1, [resources numberOfTextures]);
 }
 
 - (void) testResourceManagerLoadReturnesTheSameTextureWhenTwoLoadsAreRequestedWithTheSameName
 {
-    Texture* texture1 = [manager loadTexture: @"test"];
-    Texture* texture2 = [manager loadTexture: @"test"];
+    Texture* texture1 = [resources loadTexture: @"test"];
+    Texture* texture2 = [resources loadTexture: @"test"];
     
     assertEqualObjects(texture1, texture2);
 }
 
 - (void) testResourceManagerCallsLoadOnANewTexture
 {
-    [manager loadTexture: @"test"];
-    assertTrue([manager lastTextureLoaded].loadWasCalled);
+    [resources loadTexture: @"test"];
+    assertTrue([resources lastTexture].loadWasCalled);
 }
 
 @end

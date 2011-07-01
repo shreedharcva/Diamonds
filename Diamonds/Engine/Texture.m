@@ -39,7 +39,7 @@
     glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_LINEAR); 
     glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_LINEAR);
     
-    NSString *path = [[NSBundle mainBundle] pathForResource:@"diamond" ofType:@"png"];
+    NSString *path = [[NSBundle mainBundle] pathForResource: self.name ofType:@"png"];
     NSData *texData = [[NSData alloc] initWithContentsOfFile:path];
     UIImage *image = [[UIImage alloc] initWithData:texData];
     
