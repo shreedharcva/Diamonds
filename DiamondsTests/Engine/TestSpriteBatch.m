@@ -5,9 +5,11 @@
 
 #import "TestSpriteBatch.h"
 
-#import "MockSpriteBatch.h"
 #import "Sprite.h"
 #import "Engine.h"
+
+#import "MockEngine.h"
+#import "MockSpriteBatch.h"
 
 @interface TestSpriteBatch : TestCase
 

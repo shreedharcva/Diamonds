@@ -9,7 +9,6 @@
 #import <OpenGLES/ES2/gl.h>
 #import <OpenGLES/ES2/glext.h>
 
-@class Engine;
 
 @interface DiamondsViewController : UIViewController 
 {
@@ -18,8 +17,6 @@
     BOOL animating;
     NSInteger animationFrameInterval;
     CADisplayLink* __unsafe_unretained displayLink;
-    
-    Engine* engine;
 }
 
 @property (readonly, nonatomic, getter=isAnimating) BOOL animating;

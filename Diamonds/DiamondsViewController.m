@@ -8,6 +8,11 @@
 #import "EAGLView.h"
 
 #import "Engine.h"
+#import "Sprite.h"
+#import "SpriteBatch.h"
+#import "ResourceManager.h"
+
+#import "DiamondsGame.h"
 
 @interface DiamondsViewController ()
 
@@ -16,16 +21,23 @@
 @end
 
 @implementation DiamondsViewController
+{
+    DiamondsGame* game;
+}
 
 @synthesize animating, displayLink;
 
 - (void) awakeFromNib
-{
-    engine = [[Engine alloc] initWithView: (EAGLView*) self.view];
-        
+{    
     animating = FALSE;
     animationFrameInterval = 1;
     self.displayLink = nil;
+
+    Engine* engine = [[Engine alloc] initWithView: (EAGLView*) self.view];
+    game = [[DiamondsGame alloc] initWithEngine: engine];
+    
+    ResourceManager* resources = [ResourceManager new];
+    [game loadResources: resources];
 }
 
 
@@ -55,7 +67,7 @@
 {
 	[super viewDidUnload];
 
-    engine = nil;
+    game = nil;
 }
 
 - (NSInteger) animationFrameInterval
@@ -112,9 +124,7 @@
 
 - (void) drawFrame
 {
-    [engine beginFrame];
-    [engine drawFrame];
-    [engine endFrame];
+    [game drawFrame];
 }
 
 @end

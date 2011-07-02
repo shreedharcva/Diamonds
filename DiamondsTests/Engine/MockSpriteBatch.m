@@ -8,8 +8,8 @@
 #import "SpriteBatch.h"
 #import "Engine.h"
 
-@implementation MockEngine
-@end
+#import "MockEngine.h"
+
 
 @implementation MockSpriteBatch
 {

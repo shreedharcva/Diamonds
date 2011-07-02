@@ -21,11 +21,6 @@
 {    
     EAGLView* view;    
     EAGLContext *glcontext;
-    
-    SpriteBatch* batch;
-    
-    Sprite* sprite1;
-    Sprite* sprite2;
 }
 
 - (id) initWithView: (EAGLView*) glview
@@ -59,15 +54,7 @@
     
     [view setContext: glcontext];
     [view setFramebuffer];
-    
-    ResourceManager* resources = [ResourceManager new];
-    
-    sprite1 = [[Sprite alloc] initWithTextureName: @"diamond" from: resources];
-    sprite2 = [[Sprite alloc] initWithTextureName: @"ruby" from: resources];
-    
-    [sprite1 moveTo: CGPointMake(0, 0)];
-    [sprite2 moveTo: CGPointMake(200, 0)];
-       
+           
     return self;
 }
 
@@ -115,14 +102,6 @@
 
 - (void) drawFrame
 {
-    batch = [[SpriteBatch alloc] initWithEngine: self];
-
-    [batch begin];
-    
-    [sprite1 drawIn: batch];
-    [sprite2 drawIn: batch];
-    
-    [batch end];
 }
 
 @end

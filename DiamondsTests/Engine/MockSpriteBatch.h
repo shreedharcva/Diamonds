@@ -6,10 +6,6 @@
 #import "Engine.h"
 #import "SpriteBatch.h"
 
-
-@interface MockEngine: Engine
-@end
-
 @interface MockSpriteBatch : SpriteBatch 
 
 @property (readonly) int spritesDrawn;

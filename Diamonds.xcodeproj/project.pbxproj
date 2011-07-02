@@ -41,6 +41,10 @@
 		13C1F45713BE040200E67EC0 /* ResourceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 13C1F45613BE040200E67EC0 /* ResourceManager.m */; };
 		13C9455713BCF806008565D6 /* TestResourceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 13C9455213BCF7CA008565D6 /* TestResourceManager.m */; };
 		13C9455813BCF815008565D6 /* TestSpriteBatch.m in Sources */ = {isa = PBXBuildFile; fileRef = 13C9455413BCF7CA008565D6 /* TestSpriteBatch.m */; };
+		13C9456013BF1B4D008565D6 /* Game.m in Sources */ = {isa = PBXBuildFile; fileRef = 13C9455F13BF1B4D008565D6 /* Game.m */; };
+		13C9456113BF1B4D008565D6 /* Game.m in Sources */ = {isa = PBXBuildFile; fileRef = 13C9455F13BF1B4D008565D6 /* Game.m */; };
+		13C9456413BF1F21008565D6 /* MockEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 13C9456313BF1F21008565D6 /* MockEngine.m */; };
+		13C9456713BF269D008565D6 /* DiamondsGame.m in Sources */ = {isa = PBXBuildFile; fileRef = 13C9456613BF269D008565D6 /* DiamondsGame.m */; };
 		13D8E7E413BCD6A7007472E2 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 134DFF2513A79FE900DA67FC /* OpenGLES.framework */; };
 		13E98FAD13A7AF360003E7D2 /* ruby.png in Resources */ = {isa = PBXBuildFile; fileRef = 13E98FAC13A7AF360003E7D2 /* ruby.png */; };
 		13E98FBC13A8BB250003E7D2 /* Engine.m in Sources */ = {isa = PBXBuildFile; fileRef = 13E98FBA13A8BB250003E7D2 /* Engine.m */; };
@@ -48,8 +52,6 @@
 		13F6A99213BCB7D300A17DE8 /* SpriteBatch.m in Sources */ = {isa = PBXBuildFile; fileRef = 13F6A99013BCB7D300A17DE8 /* SpriteBatch.m */; };
 		13F6A99613BCBA0800A17DE8 /* MockSpriteBatch.m in Sources */ = {isa = PBXBuildFile; fileRef = 13F6A99513BCBA0800A17DE8 /* MockSpriteBatch.m */; };
 		13FB534613BE1DDC00852C87 /* TestGame.m in Sources */ = {isa = PBXBuildFile; fileRef = 13FB534513BE1DDC00852C87 /* TestGame.m */; };
-		13FB534A13BE1F8100852C87 /* Game.m in Sources */ = {isa = PBXBuildFile; fileRef = 13FB534913BE1F8100852C87 /* Game.m */; };
-		13FB534B13BE1F8100852C87 /* Game.m in Sources */ = {isa = PBXBuildFile; fileRef = 13FB534913BE1F8100852C87 /* Game.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -112,6 +114,12 @@
 		13C9455213BCF7CA008565D6 /* TestResourceManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TestResourceManager.m; path = Engine/TestResourceManager.m; sourceTree = "<group>"; };
 		13C9455313BCF7CA008565D6 /* TestSpriteBatch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TestSpriteBatch.h; path = Engine/TestSpriteBatch.h; sourceTree = "<group>"; };
 		13C9455413BCF7CA008565D6 /* TestSpriteBatch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TestSpriteBatch.m; path = Engine/TestSpriteBatch.m; sourceTree = "<group>"; };
+		13C9455E13BF1B4D008565D6 /* Game.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Game.h; path = Diamonds/Game/Game.h; sourceTree = "<group>"; };
+		13C9455F13BF1B4D008565D6 /* Game.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Game.m; path = Diamonds/Game/Game.m; sourceTree = "<group>"; };
+		13C9456213BF1F21008565D6 /* MockEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MockEngine.h; sourceTree = "<group>"; };
+		13C9456313BF1F21008565D6 /* MockEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MockEngine.m; sourceTree = "<group>"; };
+		13C9456513BF269D008565D6 /* DiamondsGame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiamondsGame.h; sourceTree = "<group>"; };
+		13C9456613BF269D008565D6 /* DiamondsGame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiamondsGame.m; sourceTree = "<group>"; };
 		13E98FAC13A7AF360003E7D2 /* ruby.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ruby.png; path = Resources/ruby.png; sourceTree = SOURCE_ROOT; };
 		13E98FBA13A8BB250003E7D2 /* Engine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Engine.m; path = Diamonds/Engine/Engine.m; sourceTree = "<group>"; };
 		13E98FBB13A8BB250003E7D2 /* Engine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Engine.h; path = Diamonds/Engine/Engine.h; sourceTree = "<group>"; };
@@ -121,8 +129,6 @@
 		13F6A99513BCBA0800A17DE8 /* MockSpriteBatch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MockSpriteBatch.m; path = Engine/MockSpriteBatch.m; sourceTree = "<group>"; };
 		13FB534413BE1DDC00852C87 /* TestGame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestGame.h; sourceTree = "<group>"; };
 		13FB534513BE1DDC00852C87 /* TestGame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestGame.m; sourceTree = "<group>"; };
-		13FB534813BE1F8100852C87 /* Game.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Game.h; sourceTree = "<group>"; };
-		13FB534913BE1F8100852C87 /* Game.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Game.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -233,6 +239,8 @@
 				134DFF3D13A79FE900DA67FC /* DiamondsViewController.h */,
 				134DFF3E13A79FE900DA67FC /* DiamondsViewController.m */,
 				132041BB13A7A80700D3F66D /* DiamondsViewController.xib */,
+				13C9456513BF269D008565D6 /* DiamondsGame.h */,
+				13C9456613BF269D008565D6 /* DiamondsGame.m */,
 				134DFF2813A79FE900DA67FC /* Supporting Files */,
 			);
 			path = Diamonds;
@@ -275,6 +283,8 @@
 		13827F1E13BBD58200C90A92 /* Engine */ = {
 			isa = PBXGroup;
 			children = (
+				13C9456213BF1F21008565D6 /* MockEngine.h */,
+				13C9456313BF1F21008565D6 /* MockEngine.m */,
 				13C1F44F13BE02CC00E67EC0 /* MockTexture.h */,
 				13C1F45013BE02CC00E67EC0 /* MockTexture.m */,
 				130E9A4913BE0C7100802767 /* TestResourceManager.h */,
@@ -334,8 +344,8 @@
 		13FB534713BE1F6800852C87 /* Game */ = {
 			isa = PBXGroup;
 			children = (
-				13FB534813BE1F8100852C87 /* Game.h */,
-				13FB534913BE1F8100852C87 /* Game.m */,
+				13C9455E13BF1B4D008565D6 /* Game.h */,
+				13C9455F13BF1B4D008565D6 /* Game.m */,
 			);
 			name = Game;
 			sourceTree = "<group>";
@@ -467,7 +477,8 @@
 				13F6A99113BCB7D300A17DE8 /* SpriteBatch.m in Sources */,
 				13C1F45113BE02CC00E67EC0 /* MockTexture.m in Sources */,
 				13C1F45713BE040200E67EC0 /* ResourceManager.m in Sources */,
-				13FB534A13BE1F8100852C87 /* Game.m in Sources */,
+				13C9456013BF1B4D008565D6 /* Game.m in Sources */,
+				13C9456713BF269D008565D6 /* DiamondsGame.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -482,7 +493,8 @@
 				13C9455813BCF815008565D6 /* TestSpriteBatch.m in Sources */,
 				130E9A4C13BE0D1400802767 /* TestSpriteLoading.m in Sources */,
 				13FB534613BE1DDC00852C87 /* TestGame.m in Sources */,
-				13FB534B13BE1F8100852C87 /* Game.m in Sources */,
+				13C9456113BF1B4D008565D6 /* Game.m in Sources */,
+				13C9456413BF1F21008565D6 /* MockEngine.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
