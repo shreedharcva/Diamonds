@@ -19,8 +19,8 @@
 
 - (void) loadResources: (ResourceManager*) resources
 {        
-    sprite1 = [[Sprite alloc] initWithTextureName: @"diamond" from: resources];
-    sprite2 = [[Sprite alloc] initWithTextureName: @"ruby" from: resources];
+    sprite1 = [[Sprite alloc] initWithTexture: [resources loadTexture: @"diamond"]];
+    sprite2 = [[Sprite alloc] initWithTexture: [resources loadTexture: @"ruby"]];
     
     [sprite1 moveTo: CGPointMake(0, 0)];
     [sprite2 moveTo: CGPointMake(200, 0)];

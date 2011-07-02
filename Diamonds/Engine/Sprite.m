@@ -15,15 +15,15 @@
     CGSize size;
 }
 
-- (id) initWithTextureName: (NSString*) name from: (ResourceManager*) resources
+- (id) initWithTexture: (Texture*) texture
 {
     self = [super init];
     if (self == nil)
         return nil;
     
-    textureObject = [resources loadTexture: name];
+    textureObject = texture;
     size = textureObject.size;
-
+    
     return self;
 }
 

@@ -3,11 +3,12 @@
 //  Diamonds
 
 @class SpriteBatch;
+@class Texture;
 @class ResourceManager;
 
 @interface Sprite : NSObject 
 
-- (id) initWithTextureName: (NSString*) name from: (ResourceManager*) resources;
+- (id) initWithTexture: (Texture*) texture;
 
 - (void) moveTo: (CGPoint) newPosition;
 - (void) resizeTo: (CGSize) size;
