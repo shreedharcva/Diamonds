@@ -10,6 +10,7 @@
 
 #import "MockEngine.h"
 #import "MockSpriteBatch.h"
+#import "MockTexture.h"
 
 @interface TestSpriteBatch : TestCase
 
@@ -73,7 +74,6 @@
         [[Sprite new] drawIn: batch];
     });
 
-
     [batch begin];
     [batch end];    
 }
@@ -117,6 +117,28 @@
     
     assertEquals(size.width, [batch sizeOfTheLastSprite].width);
     assertEquals(size.height, [batch sizeOfTheLastSprite].height);
+}
+
+- (void) testSpriteIsDrawnWithTheCorrectSourceRectangle
+{
+    MockTexture* texture = [MockTexture new];
+    
+    CGSize size = CGSizeMake(64, 128);
+    [texture setSize: size];
+    
+    Sprite* sprite = [[Sprite alloc] initWithTexture: texture];
+    CGRect sourceRectangle = CGRectMake(0, 0, 32, 32);
+    
+    [sprite setSourceRectangle: sourceRectangle];
+    
+    [batch begin];
+    [sprite drawIn: batch];
+    [batch end];
+    
+    assertEquals(0.00f, [batch sourceRectangleOfTheLastSprite].origin.x);
+    assertEquals(0.00f, [batch sourceRectangleOfTheLastSprite].origin.y);
+    assertEquals(0.50f, [batch sourceRectangleOfTheLastSprite].size.width);
+    assertEquals(0.25f, [batch sourceRectangleOfTheLastSprite].size.height);
 }
 
 @end

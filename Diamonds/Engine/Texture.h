@@ -2,8 +2,6 @@
 //  Texture.h
 //  Diamonds
 
-#import <Foundation/Foundation.h>
-
 @class Texture;
 @class TextureFactory;
 

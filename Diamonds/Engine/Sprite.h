@@ -12,6 +12,7 @@
 
 - (void) moveTo: (CGPoint) newPosition;
 - (void) resizeTo: (CGSize) size;
+- (void) setSourceRectangle: (CGRect) rect;
 
 - (void) drawIn: (SpriteBatch*) batch;
 

@@ -20,6 +20,6 @@
 - (void) begin;
 - (void) end;
 
-- (void) drawQuad: (CGPoint) position size: (CGSize) size texture: (Texture*) texture;
+- (void) drawQuad: (CGPoint) position size: (CGSize) size texture: (Texture*) texture sourceRect: (CGRect) source;
 
 @end

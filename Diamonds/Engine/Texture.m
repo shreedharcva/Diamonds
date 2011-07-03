@@ -39,7 +39,7 @@
     glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_LINEAR); 
     glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_LINEAR);
     
-    NSString *path = [[NSBundle mainBundle] pathForResource: self.name ofType:@"png"];
+    NSString *path = [[NSBundle mainBundle] pathForResource: self.name ofType: @"png"];
     NSData *texData = [[NSData alloc] initWithContentsOfFile:path];
     UIImage *image = [[UIImage alloc] initWithData:texData];
     
@@ -60,8 +60,16 @@
     CGColorSpaceRelease( colorSpace );
     
     CGContextClearRect( context, CGRectMake(0, 0, size.width, size.height ) );
-    CGContextTranslateCTM( context, 0, size.height - size.height );
-    CGContextDrawImage( context, CGRectMake( 0, 0, size.width, size.height ), image.CGImage );
+
+    /*
+    CGAffineTransform flipVertical = CGAffineTransformMake(
+       1, 0, 0, -1, 0, size.height
+    );
+    
+    CGContextConcatCTM(context, flipVertical);  
+    */
+    
+    CGContextDrawImage(context, CGRectMake(0, 0, size.width, size.height), image.CGImage);
     
     glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, size.width, size.height, 0, GL_RGBA, GL_UNSIGNED_BYTE, imageData);
     

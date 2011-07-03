@@ -24,6 +24,13 @@
     
     [sprite1 moveTo: CGPointMake(0, 0)];
     [sprite2 moveTo: CGPointMake(200, 0)];
+
+    [sprite2 setSourceRectangle: CGRectMake(0, 0, 32, 32)];
+    [sprite2 resizeTo: CGSizeMake(32, 32)];
+}
+
+- (void) update: (GameTime*) gameTime
+{
 }
 
 - (void) draw: (GameTime*) gameTime

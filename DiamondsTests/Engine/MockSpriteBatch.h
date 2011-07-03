@@ -12,5 +12,6 @@
 
 @property (readonly) CGPoint posiionOfTheLastSprite;
 @property (readonly) CGSize sizeOfTheLastSprite;
+@property (readonly) CGRect sourceRectangleOfTheLastSprite;
 
 @end

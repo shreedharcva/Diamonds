@@ -76,7 +76,7 @@ static ShaderProgram* program;
     spriteBatchStarted = false;
 }
 
-- (void) drawQuad: (CGPoint) position size: (CGSize) size texture: (Texture*) texture
+- (void) drawQuad: (CGPoint) position size: (CGSize) size texture: (Texture*) texture sourceRect: (CGRect) source
 {
     if (!spriteBatchStarted)
     {
@@ -108,13 +108,18 @@ static ShaderProgram* program;
     glVertexAttribPointer(ATTRIB_VERTEX, 2, GL_FLOAT, 0, 0, squareVertices);
     glEnableVertexAttribArray(ATTRIB_VERTEX);
     
-    static const GLfloat texCoords[] = 
+    float src_x0 = source.origin.x;
+    float src_y0 = source.origin.y;
+    float src_x1 = source.origin.x + source.size.width;
+    float src_y1 = source.origin.y + source.size.height;
+
+    const GLfloat texCoords[8] = 
     {
-        0.0, 1.0,
-        1.0, 1.0,
-        0.0, 0.0,
-        1.0, 0.0
-    };            
+        src_x0, src_y0,
+        src_x1, src_y0,
+        src_x0, src_y1,
+        src_x1, src_y1
+    };
     
     glVertexAttribPointer(ATTRIB_TEXCOORD, 2, GL_FLOAT, 0, 0, texCoords);
     glEnableVertexAttribArray(ATTRIB_TEXCOORD);

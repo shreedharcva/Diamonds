@@ -13,6 +13,7 @@
 
     CGPoint position;
     CGSize size;
+    CGRect sourceRectangle;
 }
 
 - (id) initWithTexture: (Texture*) texture
@@ -23,20 +24,7 @@
     
     textureObject = texture;
     size = textureObject.size;
-    
-    return self;
-}
-
-- (id) init
-{
-    self = [super init];
-    if (self == nil)
-        return nil;
-
-    textureObject = [Texture new];
-    [textureObject load];
-    
-    size = textureObject.size;
+    sourceRectangle = CGRectMake(0.0, 0.0, 1.0, 1.0);
     
     return self;
 }
@@ -51,9 +39,17 @@
     size = newSize;
 }
 
+- (void) setSourceRectangle: (CGRect) rect
+{
+    sourceRectangle.origin.x = rect.origin.x / textureObject.size.width;
+    sourceRectangle.origin.y = rect.origin.y / textureObject.size.height;
+    sourceRectangle.size.width = rect.size.width / textureObject.size.width;
+    sourceRectangle.size.height = rect.size.height / textureObject.size.height;
+}
+
 - (void) drawIn: (SpriteBatch*) batch
 {        
-    [batch drawQuad: position size: size texture: textureObject];
+    [batch drawQuad: position size: size texture: textureObject sourceRect: sourceRectangle];
 }
 
 @end

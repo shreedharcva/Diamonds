@@ -287,14 +287,14 @@
 				13C9456313BF1F21008565D6 /* MockEngine.m */,
 				13C1F44F13BE02CC00E67EC0 /* MockTexture.h */,
 				13C1F45013BE02CC00E67EC0 /* MockTexture.m */,
+				13F6A99413BCBA0800A17DE8 /* MockSpriteBatch.h */,
+				13F6A99513BCBA0800A17DE8 /* MockSpriteBatch.m */,
 				130E9A4913BE0C7100802767 /* TestResourceManager.h */,
 				13C9455213BCF7CA008565D6 /* TestResourceManager.m */,
 				130E9A4B13BE0D1400802767 /* TestSpriteLoading.h */,
 				130E9A4A13BE0D1400802767 /* TestSpriteLoading.m */,
 				13C9455313BCF7CA008565D6 /* TestSpriteBatch.h */,
 				13C9455413BCF7CA008565D6 /* TestSpriteBatch.m */,
-				13F6A99413BCBA0800A17DE8 /* MockSpriteBatch.h */,
-				13F6A99513BCBA0800A17DE8 /* MockSpriteBatch.m */,
 			);
 			name = Engine;
 			sourceTree = "<group>";
