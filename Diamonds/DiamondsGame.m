@@ -26,7 +26,7 @@
     [sprite2 moveTo: CGPointMake(200, 0)];
 }
 
-- (void) draw
+- (void) draw: (GameTime*) gameTime
 {
     batch = [[SpriteBatch alloc] initWithEngine: self.engine];
     
