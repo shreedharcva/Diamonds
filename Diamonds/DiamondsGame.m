@@ -27,7 +27,7 @@
 }
 
 - (void) draw: (GameTime*) gameTime
-{
+{    
     batch = [[SpriteBatch alloc] initWithEngine: self.engine];
     
     [batch begin];
