@@ -8,6 +8,8 @@
 
 @interface Sprite : NSObject 
 
+@property (readonly) CGSize size;
+
 - (id) initWithTexture: (Texture*) texture;
 
 - (void) moveTo: (CGPoint) newPosition;

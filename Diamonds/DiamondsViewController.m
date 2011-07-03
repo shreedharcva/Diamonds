@@ -124,6 +124,7 @@
 
 - (void) drawFrame
 {
+    [game updateFrame];
     [game drawFrame];
 }
 

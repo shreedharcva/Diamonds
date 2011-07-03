@@ -16,6 +16,8 @@
     CGRect sourceRectangle;
 }
 
+@synthesize size;
+
 - (id) initWithTexture: (Texture*) texture
 {
     self = [super init];

@@ -31,6 +31,12 @@
 
 - (void) update: (GameTime*) gameTime
 {
+    static float y = 0.0;
+    if (y + sprite2.size.height < self.engine.windowSize.height)
+    {
+        y += [gameTime elapsedTimeInMilliseconds] * 0.1;
+    }
+    [sprite2 moveTo: CGPointMake(200, y)];
 }
 
 - (void) draw: (GameTime*) gameTime
