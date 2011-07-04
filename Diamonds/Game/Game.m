@@ -3,46 +3,45 @@
 //  Diamonds
 
 #import "Game.h"
-
 #import "Engine.h"
 
 @implementation GameTime
 {
-    float elapsedTimeInMilliseconds;
     float milliseconds;
+    float elapsedTimeInMilliseconds;
 }
 
-- (float) milliseconds
-{
-    return milliseconds;
-}
+@synthesize milliseconds;
+@synthesize elapsedTimeInMilliseconds;
 
-- (float) elapsedTimeInMilliseconds
-{
-    return elapsedTimeInMilliseconds;
-}
-
-- (void) setTime: (float) newMilliseconds
+- (void) setMilliseconds: (float) newMilliseconds
 {
     elapsedTimeInMilliseconds = newMilliseconds - milliseconds;
-    milliseconds = newMilliseconds;    
+    milliseconds = newMilliseconds;
+}
+
++ (GameTime*) gameTime: (float) milliseconds
+{
+    GameTime* time = [GameTime new];
+    [time setMilliseconds: milliseconds];
+    return time;
 }
 
 @end
 
 @implementation GameTimer
 {
-    GameTime* time;
+    GameTime* gameTime;
     NSDate* start;
 }
 
 - (id) init
 {
-    self = [super init];
+    self = [super self];
     if (self == nil)
-        return nil;
+        return self;
     
-    time = [GameTime new];
+    gameTime = [GameTime gameTime: 0];
     start = [NSDate date];
     
     return self;
@@ -55,12 +54,11 @@
 
 - (GameTime*) getTime
 {
-    [time setTime: [self milliseconds]];
-    return time;    
+    [gameTime setMilliseconds: [self milliseconds]];
+    return gameTime;
 }
 
 @end
-
 
 @implementation Game
 {
@@ -70,27 +68,7 @@
 
 @synthesize engine;
 
-- (id) initWithEngine: (Engine*) theEngine
-{
-    self = [super init];
-    if (self == nil)
-        return nil;
-    
-    engine = theEngine;
-    
-    return self;
-}
-
-- (GameTimer*) timer
-{
-    if (timer == nil)
-    {
-        timer = [GameTimer new];
-    }
-    return timer;
-}
-
-- (void) loadResources: (ResourceManager*) manager
+- (void) loadResources: (ResourceManager*) resources
 {
 }
 
@@ -102,16 +80,40 @@
 {
 }
 
-- (void) updateFrame
+@end
+
+@implementation Game (Private)
+
+- (GameTimer*) timer
 {
-    [self update: [[self timer] getTime]];
+    if (timer == nil)
+    {
+        timer = [GameTimer new];
+    }
+    return timer;    
+}
+
+- (id) initWithEngine: (Engine*) theEngine
+{
+    self = [super init];
+    if (self == nil)
+        return nil; 
+
+    engine = theEngine;
+    
+    return self;
+}
+
+- (void) updateFrame
+{    
+    [self update: [self.timer getTime]];    
 }
 
 - (void) drawFrame
 {
     [self.engine beginFrame];
-    [self draw: [[self timer] getTime]];
-    [self.engine endFrame];    
+    [self draw: [self.timer getTime]];
+    [self.engine endFrame];
 }
 
 @end
