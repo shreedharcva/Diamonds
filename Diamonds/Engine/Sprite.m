@@ -7,6 +7,12 @@
 #import "Texture.h"
 #import "ResourceManager.h"
 
+CGVector CGVectorMake(float x, float y)
+{
+    return CGPointMake(x, y);
+}
+
+
 @implementation Sprite
 {
     Texture* textureObject;
@@ -17,6 +23,7 @@
 }
 
 @synthesize size;
+@synthesize position;
 
 - (id) initWithTexture: (Texture*) texture
 {
@@ -31,22 +38,28 @@
     return self;
 }
 
-- (void) moveTo: (CGPoint) newPosition
-{
-    position = newPosition;
-}
-
-- (void) resizeTo: (CGSize) newSize
-{
-    size = newSize;
-}
-
 - (void) setSourceRectangle: (CGRect) rect
 {
     sourceRectangle.origin.x = rect.origin.x / textureObject.size.width;
     sourceRectangle.origin.y = rect.origin.y / textureObject.size.height;
     sourceRectangle.size.width = rect.size.width / textureObject.size.width;
     sourceRectangle.size.height = rect.size.height / textureObject.size.height;
+}
+
+- (void) moveTo: (CGPoint) newPosition
+{
+    position = newPosition;
+}
+
+- (void) moveBy: (CGVector) speed;
+{
+    position.x += speed.x;
+    position.y += speed.y;
+}
+
+- (void) resizeTo: (CGSize) newSize
+{
+    size = newSize;
 }
 
 - (void) drawIn: (SpriteBatch*) batch

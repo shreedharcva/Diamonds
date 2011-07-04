@@ -13,14 +13,20 @@
 {
     SpriteBatch* batch;
     
+    Sprite* grid;
+    
     Sprite* sprite1;
     Sprite* sprite2;
 }
 
 - (void) loadResources: (ResourceManager*) resources
 {        
+    grid = [[Sprite alloc] initWithTexture: [resources loadTexture: @"grid"]];
+    
     sprite1 = [[Sprite alloc] initWithTexture: [resources loadTexture: @"diamond"]];
     sprite2 = [[Sprite alloc] initWithTexture: [resources loadTexture: @"ruby"]];
+    
+    [grid moveTo: CGPointMake(0, 0)];
     
     [sprite1 moveTo: CGPointMake(0, 0)];
     [sprite2 moveTo: CGPointMake(200, 0)];
@@ -31,12 +37,15 @@
 
 - (void) update: (GameTime*) gameTime
 {
-    static float y = 0.0;
-    if (y + sprite2.size.height < self.engine.windowSize.height)
+    float speed = 0.0;
+    if (sprite2.position.y + sprite2.size.height < self.engine.windowSize.height)
     {
-        y += [gameTime elapsedTimeInMilliseconds] * 0.1;
+        speed = [gameTime elapsedTimeInMilliseconds] * 0.1;
     }
-    [sprite2 moveTo: CGPointMake(200, y)];
+    
+    [sprite2 moveBy: CGVectorMake(0, speed)];
+    
+    NSLog(@"game time = %2.1f height = %2.1f", [gameTime elapsedTimeInMilliseconds], sprite2.position.y); 
 }
 
 - (void) draw: (GameTime*) gameTime
@@ -45,6 +54,7 @@
     
     [batch begin];
     
+    [grid drawIn: batch];
     [sprite1 drawIn: batch];
     [sprite2 drawIn: batch];
     
