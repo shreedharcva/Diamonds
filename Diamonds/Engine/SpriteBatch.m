@@ -69,6 +69,9 @@ static ShaderProgram* program;
     [shaderProgram use];
     [shaderProgram setParameter: UNIFORM_MODEL_VIEW_PROJECTION_MATRIX withMatrix4f: projMatrix.m];
     [shaderProgram setParameter: UNIFORM_TRANSLATE with1f: 0.0];
+    
+    glEnable (GL_BLEND);
+    glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 }
 
 - (void) end
