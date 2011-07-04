@@ -48,6 +48,7 @@
 		13DEF2A313C1F285003C2B66 /* Game.m in Sources */ = {isa = PBXBuildFile; fileRef = 13DEF2A113C1F285003C2B66 /* Game.m */; };
 		13DEF2A713C1F352003C2B66 /* TestSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = 13DEF2A513C1F352003C2B66 /* TestSprite.m */; };
 		13DEF2AB13C1FD83003C2B66 /* grid.png in Resources */ = {isa = PBXBuildFile; fileRef = 13DEF2AA13C1FD83003C2B66 /* grid.png */; };
+		13DEF2AF13C2072C003C2B66 /* back000.png in Resources */ = {isa = PBXBuildFile; fileRef = 13DEF2AE13C2072C003C2B66 /* back000.png */; };
 		13E98FAD13A7AF360003E7D2 /* ruby.png in Resources */ = {isa = PBXBuildFile; fileRef = 13E98FAC13A7AF360003E7D2 /* ruby.png */; };
 		13E98FBC13A8BB250003E7D2 /* Engine.m in Sources */ = {isa = PBXBuildFile; fileRef = 13E98FBA13A8BB250003E7D2 /* Engine.m */; };
 		13F6A99113BCB7D300A17DE8 /* SpriteBatch.m in Sources */ = {isa = PBXBuildFile; fileRef = 13F6A99013BCB7D300A17DE8 /* SpriteBatch.m */; };
@@ -125,6 +126,7 @@
 		13DEF2A413C1F352003C2B66 /* TestSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestSprite.h; sourceTree = "<group>"; };
 		13DEF2A513C1F352003C2B66 /* TestSprite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestSprite.m; sourceTree = "<group>"; };
 		13DEF2AA13C1FD83003C2B66 /* grid.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = grid.png; sourceTree = "<group>"; };
+		13DEF2AE13C2072C003C2B66 /* back000.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back000.png; sourceTree = "<group>"; };
 		13E98FAC13A7AF360003E7D2 /* ruby.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ruby.png; path = Resources/ruby.png; sourceTree = SOURCE_ROOT; };
 		13E98FBA13A8BB250003E7D2 /* Engine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Engine.m; path = Diamonds/Engine/Engine.m; sourceTree = "<group>"; };
 		13E98FBB13A8BB250003E7D2 /* Engine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Engine.h; path = Diamonds/Engine/Engine.h; sourceTree = "<group>"; };
@@ -313,6 +315,7 @@
 				13E98FAC13A7AF360003E7D2 /* ruby.png */,
 				130CA78B13AB8C92008C7B66 /* diamond.png */,
 				13DEF2AA13C1FD83003C2B66 /* grid.png */,
+				13DEF2AE13C2072C003C2B66 /* back000.png */,
 			);
 			name = Resources;
 			path = Diamonds;
@@ -440,6 +443,7 @@
 				130CA78C13AB8C92008C7B66 /* diamond.png in Resources */,
 				134BFF7F13BB711A00ACA82F /* Entitlements.entitlements in Resources */,
 				13DEF2AB13C1FD83003C2B66 /* grid.png in Resources */,
+				13DEF2AF13C2072C003C2B66 /* back000.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

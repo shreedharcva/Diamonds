@@ -14,6 +14,7 @@
     SpriteBatch* batch;
     
     Sprite* grid;
+    Sprite* background;
     
     Sprite* sprite1;
     Sprite* sprite2;
@@ -21,11 +22,13 @@
 
 - (void) loadResources: (ResourceManager*) resources
 {        
+    background = [[Sprite alloc] initWithTexture: [resources loadTexture: @"back000"]];
     grid = [[Sprite alloc] initWithTexture: [resources loadTexture: @"grid"]];
     
     sprite1 = [[Sprite alloc] initWithTexture: [resources loadTexture: @"diamond"]];
     sprite2 = [[Sprite alloc] initWithTexture: [resources loadTexture: @"ruby"]];
     
+    [background moveTo: CGPointMake(0, 0)];
     [grid moveTo: CGPointMake(0, 0)];
     
     [sprite1 moveTo: CGPointMake(0, 0)];
@@ -54,6 +57,7 @@
     
     [batch begin];
     
+    [background drawIn: batch];
     [grid drawIn: batch];
     [sprite1 drawIn: batch];
     [sprite2 drawIn: batch];

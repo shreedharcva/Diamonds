@@ -43,6 +43,7 @@
     NSData *texData = [[NSData alloc] initWithContentsOfFile:path];
     UIImage *image = [[UIImage alloc] initWithData:texData];
     
+    NSLog(@"Loading %@...", path);
     if (image == nil)
     {
         NSLog(@"Do real error checking here");
@@ -60,14 +61,6 @@
     CGColorSpaceRelease( colorSpace );
     
     CGContextClearRect( context, CGRectMake(0, 0, size.width, size.height ) );
-
-    /*
-    CGAffineTransform flipVertical = CGAffineTransformMake(
-       1, 0, 0, -1, 0, size.height
-    );
-    
-    CGContextConcatCTM(context, flipVertical);  
-    */
     
     CGContextDrawImage(context, CGRectMake(0, 0, size.width, size.height), image.CGImage);
     
