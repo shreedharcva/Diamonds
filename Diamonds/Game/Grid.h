@@ -4,8 +4,9 @@
 
 typedef enum GemType 
 {
-    NoGem = 0,
+    EmptyGem = 0,
     Diamond = 1,
+    Ruby = 2,
 }
 GemType;
 

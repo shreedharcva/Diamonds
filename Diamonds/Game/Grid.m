@@ -39,7 +39,7 @@ GridPosition MakePosition(int column, int row)
 
 @implementation Grid
 {
-    Gem* gem;
+    NSMutableSet* gems;
 }
 
 - (id) init
@@ -48,22 +48,37 @@ GridPosition MakePosition(int column, int row)
     if (self == nil)
         return nil;
     
+    gems = [NSMutableSet new];
+    
     return self;
 }
 
 - (bool) isEmpty
 {
-    return gem == nil;
+    return [gems count] == 0;
 }
 
 - (void) put: (GemType) type at: (GridPosition) position
 {
-    gem = [[Gem alloc] initWithType: Diamond at: position] ;
+    if ([[self get: position] type] != EmptyGem)
+    {
+        @throw [NSException exceptionWithName:@"Grid" reason: @"Grid position is not empty" userInfo: nil];
+    }
+    [gems addObject: [[Gem alloc] initWithType: type at: position]];
 }
 
 - (Gem*) get: (GridPosition) position
 {
-    return gem;
+    for (Gem* gem in gems)
+    {
+        if (gem.position.column == position.column &&
+            gem.position.row == position.row)
+        {
+            return gem;
+        }
+    }
+    
+    return [[Gem alloc] initWithType: EmptyGem at: MakePosition(0, 0)];
 }
 
 
