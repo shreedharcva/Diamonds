@@ -18,9 +18,4 @@
     [super tearDown];
 }
 
-- (void) testExample
-{
-    assertEquals(0, 0);
-}
-
 @end

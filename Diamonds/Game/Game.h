@@ -5,6 +5,13 @@
 @class Engine;
 @class ResourceManager;
 
+@interface Grid : NSObject
+
+
+@end
+
+
+
 @interface GameTime : NSObject
 
 @property (readonly) float milliseconds;

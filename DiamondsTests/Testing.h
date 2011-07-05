@@ -6,6 +6,7 @@
 
 #define assertEquals(expected, actual) STAssertEquals(actual, expected, @"")
 #define assertTrue(expr) STAssertTrue(expr, @"");
+#define assertFalse(expr) STAssertFalse(expr, @"");
 #define assertEqualObjects(expected, actual) STAssertEqualObjects(actual, expected, @"");
 
 #define assertThrows(expr) \
