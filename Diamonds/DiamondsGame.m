@@ -16,8 +16,7 @@
     Sprite* grid;
     Sprite* background;
     
-    Sprite* sprite1;
-    Sprite* sprite2;
+    Sprite* sprite;
 }
 
 - (void) loadResources: (ResourceManager*) resources
@@ -25,30 +24,28 @@
     background = [[Sprite alloc] initWithTexture: [resources loadTexture: @"back000"]];
     grid = [[Sprite alloc] initWithTexture: [resources loadTexture: @"grid"]];
     
-    sprite1 = [[Sprite alloc] initWithTexture: [resources loadTexture: @"diamond"]];
-    sprite2 = [[Sprite alloc] initWithTexture: [resources loadTexture: @"ruby"]];
+    sprite = [[Sprite alloc] initWithTexture: [resources loadTexture: @"ruby"]];
     
     [background moveTo: CGPointMake(0, 0)];
     [grid moveTo: CGPointMake(0, 0)];
     
-    [sprite1 moveTo: CGPointMake(0, 0)];
-    [sprite2 moveTo: CGPointMake(200, 0)];
+    [sprite moveTo: CGPointMake(200, 0)];
 
-    [sprite2 setSourceRectangle: CGRectMake(0, 0, 32, 32)];
-    [sprite2 resizeTo: CGSizeMake(32, 32)];
+    [sprite setSourceRectangle: CGRectMake(0, 0, 32, 32)];
+    [sprite resizeTo: CGSizeMake(32, 32)];
 }
 
 - (void) update: (GameTime*) gameTime
 {
     float speed = 0.0;
-    if (sprite2.position.y + sprite2.size.height < self.engine.windowSize.height)
+    if (sprite.position.y + sprite.size.height < self.engine.windowSize.height)
     {
         speed = [gameTime elapsedTimeInMilliseconds] * 0.1;
     }
     
-    [sprite2 moveBy: CGVectorMake(0, speed)];
+    [sprite moveBy: CGVectorMake(0, speed)];
     
-    NSLog(@"game time = %2.1f height = %2.1f", [gameTime elapsedTimeInMilliseconds], sprite2.position.y); 
+    NSLog(@"game time = %2.1f height = %2.1f", [gameTime elapsedTimeInMilliseconds], sprite.position.y); 
 }
 
 - (void) draw: (GameTime*) gameTime
@@ -59,8 +56,7 @@
     
     [background drawIn: batch];
     [grid drawIn: batch];
-    [sprite1 drawIn: batch];
-    [sprite2 drawIn: batch];
+    [sprite drawIn: batch];
     
     [batch end];
 }
