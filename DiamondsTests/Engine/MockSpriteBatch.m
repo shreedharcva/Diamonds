@@ -13,14 +13,14 @@
 
 @implementation MockSpriteBatch
 {
-    int spritesDrawn;
+    int numberOfSpritesDrawn;
     
     CGPoint posiionOfTheLastSprite;
     CGSize sizeOfTheLastSprite;
     CGRect sourceRectangleOfTheLastSprite;
 }
 
-@synthesize spritesDrawn;
+@synthesize numberOfSpritesDrawn;
 @synthesize posiionOfTheLastSprite;
 @synthesize sizeOfTheLastSprite;
 @synthesize sourceRectangleOfTheLastSprite;
@@ -29,7 +29,7 @@
 {
     [super drawQuad: position size: size texture: texture sourceRect: source];
     
-    ++spritesDrawn;
+    ++numberOfSpritesDrawn;
     
     posiionOfTheLastSprite = position;
     sizeOfTheLastSprite = size;

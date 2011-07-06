@@ -8,7 +8,7 @@
 
 @interface MockSpriteBatch : SpriteBatch 
 
-@property (readonly) int spritesDrawn;
+@property (readonly) int numberOfSpritesDrawn;
 
 @property (readonly) CGPoint posiionOfTheLastSprite;
 @property (readonly) CGSize sizeOfTheLastSprite;
