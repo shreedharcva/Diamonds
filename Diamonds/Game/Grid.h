@@ -19,12 +19,17 @@ GridPosition;
 
 GridPosition MakePosition(int column, int row);
 
+@class SpriteBatch;
+@class ResourceManager;
+
 @interface Gem : NSObject
 
 @property (readonly) GemType type;
 @property (readonly) GridPosition position;
 
-- (id) initWithType: (GemType) gemType at: (GridPosition) newPosition;
+- (id) initWithType: (GemType) gemType at: (GridPosition) newPosition resources: (ResourceManager*) resources;
+
+- (void) drawIn: (SpriteBatch*) batch;
 
 @end
 

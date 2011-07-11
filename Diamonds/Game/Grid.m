@@ -4,6 +4,10 @@
 
 #import "Grid.h"
 
+#import "Sprite.h"
+#import "SpriteBatch.h"
+#import "ResourceManager.h"
+
 GridPosition MakePosition(int column, int row)
 {
     GridPosition position = { column, row };
@@ -14,11 +18,13 @@ GridPosition MakePosition(int column, int row)
 {
     GemType type; 
     GridPosition position;
+    
+    Sprite* sprite;
 }
 
 @synthesize position;
 
-- (id) initWithType: (GemType) gemType at: (GridPosition) newPosition
+- (id) initWithType: (GemType) gemType at: (GridPosition) newPosition resources: (ResourceManager*) resources
 {
     self = [super init];
     if (self == nil)
@@ -27,7 +33,14 @@ GridPosition MakePosition(int column, int row)
     type = gemType;
     position = newPosition;
     
+    sprite = [[Sprite alloc] initWithTexture: nil];
+    
     return self;
+}
+
+- (void) drawIn: (SpriteBatch*) batch
+{ 
+    [sprite drawIn: batch];
 }
 
 - (GemType) type
@@ -64,7 +77,8 @@ GridPosition MakePosition(int column, int row)
     {
         @throw [NSException exceptionWithName:@"Grid" reason: @"Grid position is not empty" userInfo: nil];
     }
-    [gems addObject: [[Gem alloc] initWithType: type at: position]];
+    
+    [gems addObject: [[Gem alloc] initWithType: type at: position resources: nil]];
 }
 
 - (Gem*) get: (GridPosition) position
@@ -78,7 +92,7 @@ GridPosition MakePosition(int column, int row)
         }
     }
     
-    return [[Gem alloc] initWithType: EmptyGem at: MakePosition(0, 0)];
+    return [[Gem alloc] initWithType: EmptyGem at: MakePosition(0, 0) resources: nil];
 }
 
 

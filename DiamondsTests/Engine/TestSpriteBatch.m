@@ -45,7 +45,7 @@
     [batch begin];
     [batch end];
     
-    assertEquals(0, batch.spritesDrawn);
+    assertEquals(0, batch.numberOfSpritesDrawn);
 }
 
 - (void) testSpriteBatchDrawsOneSpriteWhenOneSpriteIsAddedAfterBegin
@@ -54,7 +54,7 @@
     [[Sprite new] drawIn: batch];
     [batch end];
     
-    assertEquals(1, batch.spritesDrawn);
+    assertEquals(1, batch.numberOfSpritesDrawn);
 }
 
 - (void) testSpriteBatchDrawsTwoSpritesWhenTwoSpritesAreAddedAfterBegin
@@ -64,7 +64,7 @@
     [[Sprite new] drawIn: batch];
     [batch end];
     
-    assertEquals(2, batch.spritesDrawn);
+    assertEquals(2, batch.numberOfSpritesDrawn);
 }
 
 - (void) testSpriteBatchThrowsAnExceptionWhenASpriteIsAddedBeforeBeginIsCalled
