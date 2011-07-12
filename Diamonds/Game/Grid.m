@@ -24,6 +24,21 @@ GridPosition MakePosition(int column, int row)
 
 @synthesize position;
 
+- (NSString*) getTextureNameFromType: (GemType) gemType
+{
+    if (gemType == Diamond)
+        return @"diamond";
+    if (gemType == Ruby)
+        return @"ruby";
+    
+    return nil;
+}
+
+- (Texture*) getTextureFromType: (GemType) gemType resources: (ResourceManager*) resources
+{
+    return [resources loadTexture: [self getTextureNameFromType: gemType]];
+}
+
 - (id) initWithType: (GemType) gemType at: (GridPosition) newPosition resources: (ResourceManager*) resources
 {
     self = [super init];
@@ -33,13 +48,14 @@ GridPosition MakePosition(int column, int row)
     type = gemType;
     position = newPosition;
     
-    sprite = [[Sprite alloc] initWithTexture: nil];
+    sprite = [[Sprite alloc] initWithTexture: [self getTextureFromType: gemType resources: resources]];
     
     return self;
 }
 
-- (void) drawIn: (SpriteBatch*) batch
+- (void) drawIn: (SpriteBatch*) batch at: (CGPoint) origin;
 { 
+    [sprite moveTo: origin];
     [sprite drawIn: batch];
 }
 

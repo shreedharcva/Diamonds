@@ -4,7 +4,10 @@
 
 #import "TestResourceManager.h"
 #import "Sprite.h"
-        
+
+#import "MockTexture.h"
+#import "MockResourceManager.h"
+
 @interface TestSpriteLoading : TestCase 
 @end
 

@@ -10,10 +10,11 @@
 
 #import "MockEngine.h"
 
-
 @implementation MockSpriteBatch
 {
     int numberOfSpritesDrawn;
+    
+    SpriteDescriptor lastSprite;
     
     CGPoint posiionOfTheLastSprite;
     CGSize sizeOfTheLastSprite;
@@ -21,6 +22,7 @@
 }
 
 @synthesize numberOfSpritesDrawn;
+@synthesize lastSprite;
 @synthesize posiionOfTheLastSprite;
 @synthesize sizeOfTheLastSprite;
 @synthesize sourceRectangleOfTheLastSprite;
@@ -30,6 +32,9 @@
     [super drawQuad: position size: size texture: texture sourceRect: source];
     
     ++numberOfSpritesDrawn;
+    
+    lastSprite.texture = texture;
+    lastSprite.position = position;
     
     posiionOfTheLastSprite = position;
     sizeOfTheLastSprite = size;

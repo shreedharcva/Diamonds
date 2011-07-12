@@ -11,6 +11,7 @@
 
 @synthesize loadWasCalled;
 
+
 - (void) load;
 {
     loadWasCalled = true;

@@ -29,7 +29,7 @@ GridPosition MakePosition(int column, int row);
 
 - (id) initWithType: (GemType) gemType at: (GridPosition) newPosition resources: (ResourceManager*) resources;
 
-- (void) drawIn: (SpriteBatch*) batch;
+- (void) drawIn: (SpriteBatch*) batch at: (CGPoint) position;
 
 @end
 
@@ -38,7 +38,7 @@ GridPosition MakePosition(int column, int row);
 
 - (bool) isEmpty;
 
-- (void) put: (GemType) type at: (GridPosition) position;
+- (void) put: (GemType) type at: (GridPosition) origin;
 - (Gem*) get: (GridPosition) position;
 
 @end

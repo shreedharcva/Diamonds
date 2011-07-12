@@ -12,7 +12,6 @@ CGVector CGVectorMake(float x, float y)
     return CGPointMake(x, y);
 }
 
-
 @implementation Sprite
 {
     Texture* textureObject;
