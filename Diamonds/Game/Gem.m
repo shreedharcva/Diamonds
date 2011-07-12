@@ -58,7 +58,7 @@
     CGPoint spritePosition = info.origin;
     
     spritePosition.x += info.cellSize.width * self.position.column; 
-    spritePosition.y -= info.cellSize.height * self.position.row; 
+    spritePosition.y -= info.cellSize.height * self.position.row - (info.cellSize.height * (info.heightInCells - 1)); 
     
     [sprite moveTo: spritePosition];
     [sprite drawIn: batch];

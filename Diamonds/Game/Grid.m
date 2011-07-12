@@ -5,6 +5,8 @@
 #import "Grid.h"
 #import "Gem.h"
 
+#import "Sprite.h"
+
 GridPosition MakePosition(int column, int row)
 {
     GridPosition position = { column, row };
@@ -69,8 +71,10 @@ GridPosition MakePosition(int column, int row)
 
 @implementation GridDrawer
 {
-    Grid* grid;
     GridPresentationInfo info;
+    Grid* grid;
+    
+    Sprite* backgroundSprite;
 }
 
 - (id) initWithGrid: (Grid*) gridToDraw info: (GridPresentationInfo) presentationInfo
@@ -85,6 +89,17 @@ GridPosition MakePosition(int column, int row)
     info = presentationInfo;
     
     return self;
+}
+
+- (void) setBackground: (Sprite*) background;
+{
+    backgroundSprite = background;
+}
+
+- (void) drawBackgroundIn: (SpriteBatch*) batch
+{
+    [backgroundSprite moveTo: info.origin];
+    [backgroundSprite drawIn: batch];    
 }
 
 - (void) drawIn: (SpriteBatch*) batch

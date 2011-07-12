@@ -29,7 +29,6 @@
 		132041BA13A7A7E200D3F66D /* MainWindow-iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 132041B813A7A7E200D3F66D /* MainWindow-iPhone.xib */; };
 		132041BD13A7A80700D3F66D /* DiamondsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 132041BB13A7A80700D3F66D /* DiamondsViewController.xib */; };
 		134BFF7A13BA0ED400ACA82F /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 134BFF7913BA0ED400ACA82F /* GLKit.framework */; };
-		134BFF7F13BB711A00ACA82F /* Entitlements.entitlements in Resources */ = {isa = PBXBuildFile; fileRef = 134BFF7E13BB711A00ACA82F /* Entitlements.entitlements */; };
 		134DFF1E13A79FE900DA67FC /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 134DFF1D13A79FE900DA67FC /* UIKit.framework */; };
 		134DFF2013A79FE900DA67FC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 134DFF1F13A79FE900DA67FC /* Foundation.framework */; };
 		134DFF2213A79FE900DA67FC /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 134DFF2113A79FE900DA67FC /* CoreGraphics.framework */; };
@@ -107,7 +106,6 @@
 		132041B913A7A7E200D3F66D /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = "iPhone/en.lproj/MainWindow-iPhone.xib"; sourceTree = "<group>"; };
 		132041BC13A7A80700D3F66D /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = iPhone/en.lproj/DiamondsViewController.xib; sourceTree = "<group>"; };
 		134BFF7913BA0ED400ACA82F /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
-		134BFF7E13BB711A00ACA82F /* Entitlements.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Entitlements.entitlements; sourceTree = "<group>"; };
 		134DFF1913A79FE900DA67FC /* Diamonds.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Diamonds.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		134DFF1D13A79FE900DA67FC /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		134DFF1F13A79FE900DA67FC /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -131,6 +129,7 @@
 		134DFF5413A79FE900DA67FC /* DiamondsTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DiamondsTests-Prefix.pch"; sourceTree = "<group>"; };
 		134DFF5513A79FE900DA67FC /* DiamondsTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DiamondsTests.h; sourceTree = "<group>"; };
 		134DFF5713A79FE900DA67FC /* DiamondsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DiamondsTests.m; sourceTree = "<group>"; };
+		1379207813CCECEB00CAB641 /* Diamonds.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Diamonds.entitlements; sourceTree = "<group>"; };
 		13827F0D13BB907A00C90A92 /* Testing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Testing.h; sourceTree = "<group>"; };
 		13C1F44F13BE02CC00E67EC0 /* MockTexture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MockTexture.h; sourceTree = "<group>"; };
 		13C1F45013BE02CC00E67EC0 /* MockTexture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MockTexture.m; sourceTree = "<group>"; };
@@ -276,8 +275,8 @@
 		134DFF2813A79FE900DA67FC /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				1379207813CCECEB00CAB641 /* Diamonds.entitlements */,
 				134DFF2913A79FE900DA67FC /* Diamonds-Info.plist */,
-				134BFF7E13BB711A00ACA82F /* Entitlements.entitlements */,
 				134DFF2D13A79FE900DA67FC /* Diamonds-Prefix.pch */,
 				134DFF2E13A79FE900DA67FC /* main.m */,
 			);
@@ -473,7 +472,6 @@
 				130CA78913AA4089008C7B66 /* diamonds_72.png in Resources */,
 				130CA78A13AA4089008C7B66 /* diamonds_57.png in Resources */,
 				130CA78C13AB8C92008C7B66 /* diamond.png in Resources */,
-				134BFF7F13BB711A00ACA82F /* Entitlements.entitlements in Resources */,
 				130EBD8F13C33FEC00E14767 /* back000.png in Resources */,
 				130EBD9013C33FEC00E14767 /* grid.png in Resources */,
 			);
@@ -649,14 +647,14 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_ENTITLEMENTS = "";
+				CODE_SIGN_ENTITLEMENTS = Diamonds/Diamonds.entitlements;
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Diamonds/Diamonds-Prefix.pch";
 				"GCC_THUMB_SUPPORT[arch=armv6]" = "";
 				INFOPLIST_FILE = "Diamonds/Diamonds-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_AFTER_BUILD = YES;
@@ -669,13 +667,13 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_ENTITLEMENTS = "";
+				CODE_SIGN_ENTITLEMENTS = Diamonds/Diamonds.entitlements;
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Diamonds/Diamonds-Prefix.pch";
 				"GCC_THUMB_SUPPORT[arch=armv6]" = "";
 				INFOPLIST_FILE = "Diamonds/Diamonds-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_AFTER_BUILD = YES;

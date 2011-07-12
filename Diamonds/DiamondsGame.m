@@ -16,7 +16,6 @@
 {
     SpriteBatch* batch;
     
-    Sprite* gridSprite;
     Sprite* background;
         
     Grid* grid;
@@ -26,19 +25,27 @@
 - (void) loadResources: (ResourceManager*) resources
 {        
     background = [[Sprite alloc] initWithTexture: [resources loadTexture: @"back000"]];
-    gridSprite = [[Sprite alloc] initWithTexture: [resources loadTexture: @"grid"]];
         
     [background moveTo: CGPointMake(0, 0)];
-    [gridSprite moveTo: CGPointMake(0, 0)];
         
     GridPresentationInfo info;
     
-    info.origin = CGPointMake(0, 0);
+    info.origin = CGPointMake(20, 32);
     info.cellSize = CGSizeMake(32, 32);
+    info.heightInCells = 14;
     
     grid = [[Grid alloc] initWithResources: resources];
-    gridDrawer = [[GridDrawer alloc] initWithGrid: grid info: info];
+
     
+    gridDrawer = [[GridDrawer alloc] initWithGrid: grid info: info];
+
+    Sprite* gridBackground = [[Sprite alloc] initWithTexture: [resources loadTexture: @"grid"]];
+
+    [gridBackground resizeTo: CGSizeMake(256, 512)];
+    [gridBackground setSourceRectangle: CGRectMake(0, 0, 256, 512)];
+    
+    [gridDrawer setBackground: gridBackground];
+
     [grid put: Ruby at: MakePosition(0, 0)];
     [grid put: Diamond at: MakePosition(1, 0)];
 }
@@ -49,13 +56,13 @@
 }
 
 - (void) draw: (GameTime*) gameTime
-{    
+{ 
     batch = [[SpriteBatch alloc] initWithEngine: self.engine];
     
     [batch begin];
     
     [background drawIn: batch];
-    [gridSprite drawIn: batch];
+    [gridDrawer drawBackgroundIn: batch];
     [gridDrawer drawIn: batch];
     
     [batch end];

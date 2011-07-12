@@ -9,6 +9,7 @@
 
 #import "MockSpriteBatch.h"
 #import "MockResourceManager.h"
+#import "MockTexture.h"
 
 @interface TestGridDrawer: TestCase 
 @end
@@ -30,8 +31,9 @@
 
     resources = [MockResourceManager new];
     
-    info.origin = CGPointMake(0, 0);
+    info.origin = CGPointMake(100, 100);
     info.cellSize = CGSizeMake(32, 32);
+    info.heightInCells = 14;
     
     grid = [[Grid alloc] initWithResources: resources];
     gridDrawer = [[GridDrawer alloc] initWithGrid: grid info: info];
@@ -49,7 +51,7 @@
 {
     CGPoint expectedPosition;
     expectedPosition.x = info.origin.x + info.cellSize.width * gridPosition.column; 
-    expectedPosition.y = info.origin.y - info.cellSize.height * gridPosition.row;
+    expectedPosition.y = info.origin.y + (info.cellSize.height * (info.heightInCells - 1)) - info.cellSize.height * gridPosition.row;
     
     return expectedPosition;
 }
@@ -59,6 +61,20 @@
     [self drawGrid];
 
     assertEquals(0, [batch numberOfSpritesDrawn]);
+}
+
+- (void) testBackgroundSpriteHasTheCorrectSourceTexture
+{
+    MockTexture* texture = [MockTexture new];
+    Sprite* background = [[Sprite alloc] initWithTexture: texture];
+    
+    [gridDrawer setBackground: background];
+    
+    [batch begin];
+    [gridDrawer drawBackgroundIn: batch];
+    [batch end];    
+    
+    assertEqualObjects(texture, [batch lastSprite].texture);
 }
 
 - (void) testOneSpriteIsDrawnByGridDrawerWhenTheGridContainsOneGem

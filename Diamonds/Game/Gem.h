@@ -6,6 +6,8 @@ typedef struct GridPresentationInfo
 {
     CGPoint origin;
     CGSize cellSize;
+
+    int heightInCells;
 }
 GridPresentationInfo;
 

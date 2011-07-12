@@ -4,8 +4,6 @@
 
 #import "Gem.h"
 
-@class ResourceManager;
-
 @interface Grid : NSObject
 
 @property (readonly) NSArray* gems;
@@ -19,11 +17,16 @@
 
 @end
 
+@class ResourceManager;
+@class Sprite;
 
 @interface GridDrawer : NSObject
 
 - (id) initWithGrid: (Grid*) gridToDraw info: (GridPresentationInfo) presentationInfo;
 
+- (void) setBackground: (Sprite*) background;
+
+- (void) drawBackgroundIn: (SpriteBatch*) batch;
 - (void) drawIn: (SpriteBatch*) batch;
 
 @end
