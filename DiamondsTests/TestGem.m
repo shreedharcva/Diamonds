@@ -85,8 +85,7 @@
     [self makeGem: Ruby];
     [self drawGem];
     
-    assertEquals(32.0f, [batch lastSprite].size.width);    
-    assertEquals(32.0f, [batch lastSprite].size.height);    
+    assertEquals(CGSizeMake(32, 32), [batch lastSprite].size);
 }
 
 - (void) testGemDrawsASpriteWithTheCorrectSourceRectangle

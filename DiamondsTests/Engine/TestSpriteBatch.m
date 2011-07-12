@@ -100,8 +100,7 @@
     [sprite drawIn: batch];
     [batch end];
     
-    assertEquals(position.x, [batch posiionOfTheLastSprite].x);
-    assertEquals(position.y, [batch posiionOfTheLastSprite].y);
+    assertEquals(position, [batch lastSprite].position);
 }
 
 - (void) testSpriteIsDrawnWithTheCorrectSize
@@ -115,8 +114,7 @@
     [sprite drawIn: batch];
     [batch end];
     
-    assertEquals(size.width, [batch sizeOfTheLastSprite].width);
-    assertEquals(size.height, [batch sizeOfTheLastSprite].height);
+    assertEquals(size, [batch lastSprite].size);
 }
 
 - (void) testSpriteIsDrawnWithTheCorrectSourceRectangle
@@ -135,10 +133,7 @@
     [sprite drawIn: batch];
     [batch end];
     
-    assertEquals(0.00f, [batch sourceRectangleOfTheLastSprite].origin.x);
-    assertEquals(0.00f, [batch sourceRectangleOfTheLastSprite].origin.y);
-    assertEquals(0.50f, [batch sourceRectangleOfTheLastSprite].size.width);
-    assertEquals(0.25f, [batch sourceRectangleOfTheLastSprite].size.height);
+    assertEquals(CGRectMake(0, 0, 0.50, 0.25), [batch lastSprite].sourceRect);
 }
 
 @end

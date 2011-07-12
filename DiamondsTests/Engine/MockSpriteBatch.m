@@ -16,16 +16,10 @@
     
     SpriteDescriptor lastSprite;
     
-    CGPoint posiionOfTheLastSprite;
-    CGSize sizeOfTheLastSprite;
-    CGRect sourceRectangleOfTheLastSprite;
 }
 
 @synthesize numberOfSpritesDrawn;
 @synthesize lastSprite;
-@synthesize posiionOfTheLastSprite;
-@synthesize sizeOfTheLastSprite;
-@synthesize sourceRectangleOfTheLastSprite;
 
 - (void) drawQuad: (CGPoint) position size: (CGSize) size texture: (Texture*) texture sourceRect: (CGRect) source
 {
@@ -37,10 +31,6 @@
     lastSprite.position = position;
     lastSprite.size = size;
     lastSprite.sourceRect = source;
-    
-    posiionOfTheLastSprite = position;
-    sizeOfTheLastSprite = size;
-    sourceRectangleOfTheLastSprite = source;
 }
 
 @end
