@@ -30,6 +30,9 @@
 
 - (Texture*) getTextureFromType: (GemType) gemType resources: (ResourceManager*) resources
 {
+    if (gemType == EmptyGem)
+        return nil;
+    
     return [resources loadTexture: [self getTextureNameFromType: gemType]];
 }
 

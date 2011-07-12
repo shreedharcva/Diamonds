@@ -17,7 +17,7 @@
 - (void) setUp
 {
     [super setUp];
-    grid = [Grid new];
+    grid = [[Grid alloc] initWithResources: nil];
 }
 
 - (void) testGridIsEmptyWhenItsCrated
