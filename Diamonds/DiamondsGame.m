@@ -9,43 +9,43 @@
 #import "SpriteBatch.h"
 #import "ResourceManager.h"
 
+#import "Grid.h"
+#import "Gem.h"
+
 @implementation DiamondsGame
 {
     SpriteBatch* batch;
     
-    Sprite* grid;
+    Sprite* gridSprite;
     Sprite* background;
-    
-    Sprite* sprite;
+        
+    Grid* grid;
+    GridDrawer* gridDrawer;
 }
 
 - (void) loadResources: (ResourceManager*) resources
 {        
     background = [[Sprite alloc] initWithTexture: [resources loadTexture: @"back000"]];
-    grid = [[Sprite alloc] initWithTexture: [resources loadTexture: @"grid"]];
-    
-    sprite = [[Sprite alloc] initWithTexture: [resources loadTexture: @"ruby"]];
-    
+    gridSprite = [[Sprite alloc] initWithTexture: [resources loadTexture: @"grid"]];
+        
     [background moveTo: CGPointMake(0, 0)];
-    [grid moveTo: CGPointMake(0, 0)];
+    [gridSprite moveTo: CGPointMake(0, 0)];
+        
+    GridPresentationInfo info;
     
-    [sprite moveTo: CGPointMake(200, 0)];
-
-    [sprite setSourceRectangle: CGRectMake(0, 0, 32, 32)];
-    [sprite resizeTo: CGSizeMake(32, 32)];
+    info.origin = CGPointMake(0, 0);
+    info.cellSize = CGSizeMake(32, 32);
+    
+    grid = [[Grid alloc] initWithResources: resources];
+    gridDrawer = [[GridDrawer alloc] initWithGrid: grid info: info];
+    
+    [grid put: Ruby at: MakePosition(0, 0)];
+    [grid put: Diamond at: MakePosition(1, 0)];
 }
 
 - (void) update: (GameTime*) gameTime
 {
-    float speed = 0.0;
-    if (sprite.position.y + sprite.size.height < self.engine.windowSize.height)
-    {
-        speed = [gameTime elapsedTimeInMilliseconds] * 0.1;
-    }
-    
-    [sprite moveBy: CGVectorMake(0, speed)];
-    
-    NSLog(@"game time = %2.1f height = %2.1f", [gameTime elapsedTimeInMilliseconds], sprite.position.y); 
+    NSLog(@"game time = %2.1f", [gameTime elapsedTimeInMilliseconds]); 
 }
 
 - (void) draw: (GameTime*) gameTime
@@ -55,8 +55,8 @@
     [batch begin];
     
     [background drawIn: batch];
-    [grid drawIn: batch];
-    [sprite drawIn: batch];
+    [gridSprite drawIn: batch];
+    [gridDrawer drawIn: batch];
     
     [batch end];
 }
