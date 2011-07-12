@@ -53,9 +53,14 @@
     return self;
 }
 
-- (void) drawIn: (SpriteBatch*) batch at: (CGPoint) origin;
+- (void) drawIn: (SpriteBatch*) batch info: (GridPresentationInfo) info;
 { 
-    [sprite moveTo: origin];
+    CGPoint spritePosition = info.origin;
+    
+    spritePosition.x += info.cellSize.width * self.position.column; 
+    spritePosition.y -= info.cellSize.height * self.position.row; 
+    
+    [sprite moveTo: spritePosition];
     [sprite drawIn: batch];
 }
 

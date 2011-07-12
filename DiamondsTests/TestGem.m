@@ -19,6 +19,8 @@
 {
     MockSpriteBatch* batch;
     Gem* gem;
+    
+    GridPresentationInfo info;
 }
 
 - (void) setUp
@@ -37,7 +39,7 @@
 - (void) drawGemAt: (CGPoint) origin
 {
     [batch begin];
-    [gem drawIn: batch at: origin];
+    [gem drawIn: batch info: info];
     [batch end];    
 }
 
@@ -72,12 +74,12 @@
 
 - (void) testGemDrawsASpriteAtTheCorrectPosition
 {
-    [self makeGem: Ruby];
+    info.origin = CGPointMake(100, 150);
+
+    [self makeGem: Ruby];  
+    [self drawGem];
     
-    CGPoint position = CGPointMake(100, 150);
-    [self drawGemAt: position];
-    
-    assertEquals(position, [batch lastSprite].position);
+    assertEquals(info.origin, [batch lastSprite].position);
 }
 
 - (void) testGemDrawsASpriteWithTheCorrectSize

@@ -2,6 +2,13 @@
 //  Gem.h
 //  Diamonds
 
+typedef struct GridPresentationInfo
+{
+    CGPoint origin;
+    CGSize cellSize;
+}
+GridPresentationInfo;
+
 typedef enum GemType 
 {
     EmptyGem = 0,
@@ -29,6 +36,6 @@ GridPosition MakePosition(int column, int row);
 
 - (id) initWithType: (GemType) gemType at: (GridPosition) gridPosition resources: (ResourceManager*) resources;
 
-- (void) drawIn: (SpriteBatch*) batch at: (CGPoint) position;
+- (void) drawIn: (SpriteBatch*) batch info: (GridPresentationInfo) info;
 
 @end

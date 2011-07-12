@@ -17,6 +17,8 @@
 {
     ResourceManager* resources;
 
+    GridPresentationInfo info;
+    
     Grid* grid;
     GridDrawer* gridDrawer;
     MockSpriteBatch* batch;
@@ -28,8 +30,11 @@
 
     resources = [MockResourceManager new];
     
+    info.origin = CGPointMake(0, 0);
+    info.cellSize = CGSizeMake(32, 32);
+    
     grid = [[Grid alloc] initWithResources: resources];
-    gridDrawer = [[GridDrawer alloc] initWithGrid: grid];
+    gridDrawer = [[GridDrawer alloc] initWithGrid: grid info: info];
     batch = [MockSpriteBatch new];
 }
 
@@ -38,6 +43,15 @@
     [batch begin];
     [gridDrawer drawIn: batch];
     [batch end];    
+}
+
+- (CGPoint) screenPositionFrom: (GridPosition) gridPosition
+{
+    CGPoint expectedPosition;
+    expectedPosition.x = info.origin.x + info.cellSize.width * gridPosition.column; 
+    expectedPosition.y = info.origin.y - info.cellSize.height * gridPosition.row;
+    
+    return expectedPosition;
 }
 
 - (void) testNoSpriteIsDrawnByGridDrawerWhenTheGridIsEmpty
@@ -72,6 +86,16 @@
     [self drawGrid];
     
     assertEqualObjects(@"ruby", [batch lastSprite].texture.name);
+}
+
+- (void) testTheSpriteIsDrawnInTheCorrectPosition
+{
+    GridPosition gridPosition = MakePosition(1, 2);
+    [grid put: Ruby at: gridPosition];
+    
+    [self drawGrid];
+
+    assertEquals([self screenPositionFrom: gridPosition], [batch lastSprite].position);
 }
 
 @end

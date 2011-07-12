@@ -70,9 +70,10 @@ GridPosition MakePosition(int column, int row)
 @implementation GridDrawer
 {
     Grid* grid;
+    GridPresentationInfo info;
 }
 
-- (id) initWithGrid: (Grid*) gridToDraw
+- (id) initWithGrid: (Grid*) gridToDraw info: (GridPresentationInfo) presentationInfo
 {
     self = [super init];
     if (self == nil)
@@ -81,6 +82,7 @@ GridPosition MakePosition(int column, int row)
     }
     
     grid = gridToDraw;
+    info = presentationInfo;
     
     return self;
 }
@@ -92,7 +94,7 @@ GridPosition MakePosition(int column, int row)
 
     for (Gem* gem in grid.gems)
     {
-        [gem drawIn: batch at: CGPointMake(0, 0)];
+        [gem drawIn: batch info: info];
     }
 }
 
