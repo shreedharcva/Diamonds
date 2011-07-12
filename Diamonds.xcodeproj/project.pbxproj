@@ -23,6 +23,8 @@
 		130EBD8F13C33FEC00E14767 /* back000.png in Resources */ = {isa = PBXBuildFile; fileRef = 130EBD8D13C33FEC00E14767 /* back000.png */; };
 		130EBD9013C33FEC00E14767 /* grid.png in Resources */ = {isa = PBXBuildFile; fileRef = 130EBD8E13C33FEC00E14767 /* grid.png */; };
 		1311E9D113CC5B9F00BA18A9 /* MockResourceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1311E9D013CC5B9F00BA18A9 /* MockResourceManager.m */; };
+		1311E9D913CC7F9B00BA18A9 /* Gem.m in Sources */ = {isa = PBXBuildFile; fileRef = 1311E9D813CC7F9B00BA18A9 /* Gem.m */; };
+		1311E9DA13CC7F9B00BA18A9 /* Gem.m in Sources */ = {isa = PBXBuildFile; fileRef = 1311E9D813CC7F9B00BA18A9 /* Gem.m */; };
 		132041B513A7A64100D3F66D /* MainWindow-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 132041B313A7A64100D3F66D /* MainWindow-iPad.xib */; };
 		132041BA13A7A7E200D3F66D /* MainWindow-iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 132041B813A7A7E200D3F66D /* MainWindow-iPhone.xib */; };
 		132041BD13A7A80700D3F66D /* DiamondsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 132041BB13A7A80700D3F66D /* DiamondsViewController.xib */; };
@@ -99,6 +101,8 @@
 		130EBD8E13C33FEC00E14767 /* grid.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = grid.png; path = Resources/grid.png; sourceTree = SOURCE_ROOT; };
 		1311E9CF13CC5B9E00BA18A9 /* MockResourceManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MockResourceManager.h; sourceTree = "<group>"; };
 		1311E9D013CC5B9F00BA18A9 /* MockResourceManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MockResourceManager.m; sourceTree = "<group>"; };
+		1311E9D713CC7F9B00BA18A9 /* Gem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Gem.h; path = Diamonds/Game/Gem.h; sourceTree = "<group>"; };
+		1311E9D813CC7F9B00BA18A9 /* Gem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Gem.m; path = Diamonds/Game/Gem.m; sourceTree = "<group>"; };
 		132041B413A7A64100D3F66D /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = "iPad/en.lproj/MainWindow-iPad.xib"; sourceTree = "<group>"; };
 		132041B913A7A7E200D3F66D /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = "iPhone/en.lproj/MainWindow-iPhone.xib"; sourceTree = "<group>"; };
 		132041BC13A7A80700D3F66D /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = iPhone/en.lproj/DiamondsViewController.xib; sourceTree = "<group>"; };
@@ -379,6 +383,8 @@
 		13FB534713BE1F6800852C87 /* Game */ = {
 			isa = PBXGroup;
 			children = (
+				1311E9D713CC7F9B00BA18A9 /* Gem.h */,
+				1311E9D813CC7F9B00BA18A9 /* Gem.m */,
 				130EBD8313C33F8500E14767 /* Grid.h */,
 				130EBD8413C33F8500E14767 /* Grid.m */,
 				13DEF2A013C1F285003C2B66 /* Game.h */,
@@ -519,6 +525,7 @@
 				13C9456713BF269D008565D6 /* DiamondsGame.m in Sources */,
 				13DEF2A213C1F285003C2B66 /* Game.m in Sources */,
 				130EBD8513C33F8500E14767 /* Grid.m in Sources */,
+				1311E9D913CC7F9B00BA18A9 /* Gem.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -541,6 +548,7 @@
 				130012ED13C381E100D6E02E /* TestGridDrawer.m in Sources */,
 				130012F113CB2A4F00D6E02E /* TestGem.m in Sources */,
 				1311E9D113CC5B9F00BA18A9 /* MockResourceManager.m in Sources */,
+				1311E9DA13CC7F9B00BA18A9 /* Gem.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

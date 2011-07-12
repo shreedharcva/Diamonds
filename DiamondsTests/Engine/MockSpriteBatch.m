@@ -35,6 +35,8 @@
     
     lastSprite.texture = texture;
     lastSprite.position = position;
+    lastSprite.size = size;
+    lastSprite.sourceRect = source;
     
     posiionOfTheLastSprite = position;
     sizeOfTheLastSprite = size;

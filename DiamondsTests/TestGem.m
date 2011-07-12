@@ -34,13 +34,22 @@
     gem = [[Gem alloc] initWithType: type at: MakePosition(0, 0) resources: resourceManager];    
 }
 
+- (void) drawGemAt: (CGPoint) origin
+{
+    [batch begin];
+    [gem drawIn: batch at: origin];
+    [batch end];    
+}
+
+- (void) drawGem
+{
+    [self drawGemAt: CGPointZero];
+}
+
 - (void) testGemDrawsASprite
 {
     [self makeGem: Diamond];
-
-    [batch begin];
-    [gem drawIn: batch at: CGPointZero];
-    [batch end];
+    [self drawGem];
 
     assertEquals(1, [batch numberOfSpritesDrawn]);
 }
@@ -48,10 +57,7 @@
 - (void) testDiamondGemDrawsASpriteWithTheCorrectTextureName
 {
     [self makeGem: Diamond];
-    
-    [batch begin];
-    [gem drawIn: batch at: CGPointZero];
-    [batch end];
+    [self drawGem];
     
     assertEqualObjects(@"diamond", [batch lastSprite].texture.name);
 }
@@ -59,10 +65,7 @@
 - (void) testRubyGemDrawsASpriteWithTheCorrectTextureName
 {
     [self makeGem: Ruby];
-    
-    [batch begin];
-    [gem drawIn: batch at: CGPointZero];
-    [batch end];
+    [self drawGem];
     
     assertEqualObjects(@"ruby", [batch lastSprite].texture.name);    
 }
@@ -72,13 +75,26 @@
     [self makeGem: Ruby];
     
     CGPoint position = CGPointMake(100, 150);
+    [self drawGemAt: position];
     
-    [batch begin];
-    [gem drawIn: batch at: position];
-    [batch end];
+    assertEquals(position, [batch lastSprite].position);
+}
+
+- (void) testGemDrawsASpriteWithTheCorrectSize
+{
+    [self makeGem: Ruby];
+    [self drawGem];
     
-    assertEquals(position.x, [batch lastSprite].position.x);    
-    assertEquals(position.y, [batch lastSprite].position.y);    
+    assertEquals(32.0f, [batch lastSprite].size.width);    
+    assertEquals(32.0f, [batch lastSprite].size.height);    
+}
+
+- (void) testGemDrawsASpriteWithTheCorrectSourceRectangle
+{
+    [self makeGem: Ruby];
+    [self drawGem];
+    
+    assertEquals(CGRectMake(0, 0, 0.5, 0.125), [batch lastSprite].sourceRect);    
 }
 
 @end

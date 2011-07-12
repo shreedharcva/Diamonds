@@ -9,7 +9,9 @@
 typedef struct SpriteDescriptor
 {    
     CGPoint position;
-
+    CGSize size;
+    CGRect sourceRect;
+    
     Texture* texture;
 } 
 SpriteDescriptor;
