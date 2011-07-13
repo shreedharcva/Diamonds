@@ -134,10 +134,9 @@
     [grid put: Diamond at: MakePosition(0, 1)];
     [grid update];
 
-    Gem* gem = [grid get: MakePosition(0, 1)];
+    Gem* gem = [grid get: MakePosition(0, 0)];
     
     assertEquals(Falling, gem.state);
-    
 }
 
 - (void) testGemWithAGemBeneathIsInStoppedState
@@ -149,7 +148,41 @@
     Gem* gem = [grid get: MakePosition(0, 1)];
     
     assertEquals(Stopped, gem.state);
+}
+
+- (void) testFallingGemMovesToTheCellBeneath
+{
+    [grid put: Diamond at: MakePosition(0, 1)];
+    [grid update];
+        
+    assertEquals(Diamond, [grid get: MakePosition(0, 0)].type);    
+}
+
+- (void) testFallingGemIsAtZeroPercentCellHeightWhenStopped
+{
+    [grid put: Diamond at: MakePosition(0, 0)];
+    [grid update];
+
+    assertAlmostEquals(0.0f, [grid get: MakePosition(0, 0)].cellHeight);
+}
+
+- (void) testFallingGemIsChangingCellHeightAtConstantRateAfterTwoUpdates
+{
+    [grid put: Diamond at: MakePosition(0, 1)];
+    [grid update];
+    [grid update];
     
+    assertAlmostEquals(0.90f, [grid get: MakePosition(0, 0)].cellHeight);
+}
+
+- (void) testFallingGemIsChangingCellHeightAtConstantRateAfterThreeUpdates
+{
+    [grid put: Diamond at: MakePosition(0, 1)];
+    [grid update];
+    [grid update];
+    [grid update];
+    
+    assertAlmostEquals(0.80f, [grid get: MakePosition(0, 0)].cellHeight);
 }
 
 @end

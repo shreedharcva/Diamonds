@@ -15,6 +15,7 @@
     GemState state;
     
     GridPosition position;
+    float cellHeight;
     
     Sprite* sprite;
 }
@@ -22,6 +23,7 @@
 @synthesize type;
 @synthesize state;
 @synthesize position;
+@synthesize cellHeight;
 
 - (NSString*) getTextureNameFromType: (GemType) gemType
 {
@@ -50,6 +52,7 @@
     type = gemType;
     state = Stopped;
     position = gridPosition;
+    cellHeight = 0.0f;
     
     sprite = [[Sprite alloc] initWithTexture: [self getTextureFromType: gemType resources: resources]];
  
@@ -61,6 +64,16 @@
 
 - (void) update: (Grid*) grid
 {
+    if (state == Falling)
+    {
+        cellHeight -= 0.10f;
+        if (cellHeight <= 0)
+        {
+            position.row -= 1;
+        }
+        return;
+    }    
+    
     GridPosition lowerPosition = self.position;
     lowerPosition.row -= 1;
     
@@ -71,6 +84,8 @@
     else    
     if ([grid get: lowerPosition].type == EmptyGem)
     {
+        position.row -= 1;
+        cellHeight = 1.00f;
         state = Falling;
     }
 }
@@ -84,6 +99,16 @@
     
     [sprite moveTo: spritePosition];
     [sprite drawIn: batch];
+}
+
+- (NSString*) description
+{
+    if (type == Diamond)
+        return @"Diamond";
+    if (type == Diamond)
+        return @"Ruby";
+    
+    return @"Empty String";
 }
 
 @end

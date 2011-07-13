@@ -43,7 +43,9 @@ GridPosition MakePosition(int column, int row);
 
 @property (readonly) GemType type;
 @property (readonly) GemState state;
+
 @property (readonly) GridPosition position;
+@property (readonly) float cellHeight;
 
 - (id) initWithType: (GemType) gemType at: (GridPosition) gridPosition resources: (ResourceManager*) resources;
 
