@@ -42,6 +42,14 @@
     return [resources loadTexture: [self getTextureNameFromType: gemType]];
 }
 
+- (void) initSpriteForType: (GemType) gemType resources: (ResourceManager*) resources   
+{
+    sprite = [[Sprite alloc] initWithTexture: [self getTextureFromType: gemType resources: resources]];
+
+    [sprite setSourceRectangle: CGRectMake(0, 0, 32, 32)];
+    [sprite resizeTo: CGSizeMake(32, 32)];
+}
+
 - (id) initWithType: (GemType) gemType at: (GridPosition) gridPosition resources: (ResourceManager*) resources
 {
     self = [super init];
@@ -49,36 +57,36 @@
         return nil;
     
     type = gemType;
-    if (type == EmptyGem)
-        state = NoGemState;
-    else
-        state = Stopped;
+    state = Stopped;
     
     position = gridPosition;
     cellHeight = 0.0f;
     
-    sprite = [[Sprite alloc] initWithTexture: [self getTextureFromType: gemType resources: resources]];
- 
-    [sprite setSourceRectangle: CGRectMake(0, 0, 32, 32)];
-    [sprite resizeTo: CGSizeMake(32, 32)];
+    [self initSpriteForType: gemType resources: resources];
+
     
     return self;
 }
 
-- (void) updateWithGravity: (float) gravity onGrid: (Grid*) grid;
+- (bool) canMoveDown: (Grid*) grid
+{
+    GridPosition newPosition = self.position;
+    newPosition.row -= 1;
+    
+    return [grid isCellEmpty: newPosition];    
+}
+
+- (void) updateWithGravity: (float) gravity onGrid: (Grid*) grid
 {
     if (state == Falling)
     {
         cellHeight -= gravity;
         
-        if (cellHeight <= 0)
+        if (cellHeight <= 0.00f)
         {
-            cellHeight += 1.0f;
+            cellHeight += 1.00f;
 
-            GridPosition lowerPosition = self.position;
-            lowerPosition.row -= 1;
-
-            if (position.row > 0 && [grid get: lowerPosition].type == EmptyGem)
+            if ([self canMoveDown: grid])
             {
                 position.row -= 1;
             }
@@ -88,16 +96,11 @@
                 cellHeight = 0.00f;
             }
         }
-    
-        return;
     }    
     else
     if (state == Stopped)
     {
-        GridPosition lowerPosition = self.position;
-        lowerPosition.row -= 1;
-        
-        if (lowerPosition.row >= 0 && [grid get: lowerPosition].type == EmptyGem)
+        if ([self canMoveDown: grid])
         {
             position.row -= 1;
             cellHeight = 1.00f - gravity;

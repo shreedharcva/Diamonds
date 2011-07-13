@@ -11,6 +11,7 @@
 - (id) initWithResources: (ResourceManager*) resourceManager;
 
 - (bool) isEmpty;
+- (bool) isCellEmpty: (GridPosition) position;
 
 - (void) put: (GemType) type at: (GridPosition) origin;
 - (Gem*) get: (GridPosition) position;

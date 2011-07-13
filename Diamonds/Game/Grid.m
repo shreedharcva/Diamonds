@@ -37,6 +37,11 @@ GridPosition MakePosition(int column, int row)
     return [gems count] == 0;
 }
 
+- (bool) isCellEmpty: (GridPosition) position
+{
+    return position.row >= 0 && [self get: position].type == EmptyGem;
+}
+
 - (NSArray*) gems
 {
     return [gems allObjects];
