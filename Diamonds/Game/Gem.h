@@ -41,6 +41,9 @@ GridPosition MakePosition(int column, int row);
 @class Grid;
 
 @interface Gem : NSObject
+{
+    float cellHeight;
+}
 
 @property (readonly) GemType type;
 @property (readonly) GemState state;

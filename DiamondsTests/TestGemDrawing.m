@@ -11,6 +11,18 @@
 #import "MockSpriteBatch.h"
 #import "MockTexture.h"
 
+@interface Gem (Testing)
+@end
+
+@implementation Gem (Testing)
+
+- (void) setCellHeight: (float) height
+{
+    cellHeight = height;
+}
+
+@end
+
 @implementation TestGemBase
 
 - (void) makeGem: (GemType) type
@@ -40,6 +52,9 @@
     [super setUp];
 
     batch = [MockSpriteBatch new];
+    
+    info.cellSize = CGSizeMake(32, 32);
+    info.heightInCells = 1;
 }
 
 - (void) drawGemAt: (CGPoint) origin
@@ -86,6 +101,16 @@
     [self drawGem];
     
     assertEquals(info.origin, [batch lastSprite].position);
+}
+
+- (void) testGemDrawsASpriteAtTheCorrectPositionWhenCellHeightIs50percent
+{
+    [self makeGem: Ruby];  
+
+    [gem setCellHeight: 0.50f];
+    [self drawGem];
+    
+    assertAlmostEquals(info.origin.y - 0.50f * info.cellSize.height, [batch lastSprite].position.y);
 }
 
 - (void) testGemDrawsASpriteWithTheCorrectSize

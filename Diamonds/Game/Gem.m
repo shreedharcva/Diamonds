@@ -15,7 +15,6 @@
     GemState state;
     
     GridPosition position;
-    float cellHeight;
     
     Sprite* sprite;
 }
@@ -113,6 +112,7 @@
     
     spritePosition.x += info.cellSize.width * self.position.column; 
     spritePosition.y -= info.cellSize.height * self.position.row - (info.cellSize.height * (info.heightInCells - 1)); 
+    spritePosition.y += (-cellHeight) * info.cellSize.height;
     
     [sprite moveTo: spritePosition];
     [sprite drawIn: batch];

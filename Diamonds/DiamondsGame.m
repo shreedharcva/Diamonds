@@ -20,6 +20,8 @@
         
     Grid* grid;
     GridDrawer* gridDrawer;
+    
+    float nextUpdateTime;
 }
 
 - (void) loadResources: (ResourceManager*) resources
@@ -46,13 +48,31 @@
     
     [gridDrawer setBackground: gridBackground];
 
-    [grid put: Ruby at: MakePosition(0, 0)];
-    [grid put: Diamond at: MakePosition(1, 0)];
+    [grid put: Ruby at: MakePosition(0, 10)];
+    
+    nextUpdateTime = 0.0f;
 }
 
 - (void) update: (GameTime*) gameTime
 {
     NSLog(@"game time = %2.1f", [gameTime elapsedTimeInMilliseconds]); 
+
+    if (nextUpdateTime == 0.0f)
+    {
+        nextUpdateTime = [gameTime milliseconds];
+    }
+    
+    if ([gameTime milliseconds] >= nextUpdateTime)
+    {
+        static int turn = 0;
+        turn++;
+        int turns = 100;
+        if (turn % turns == 0 && turn / turns < 5)
+        {
+            [grid put: Ruby at: MakePosition(turn / turns + 1, 10)];
+        }
+        [grid updateWithGravity: 0.05f];        
+    }    
 }
 
 - (void) draw: (GameTime*) gameTime
