@@ -101,7 +101,7 @@
         if (lowerPosition.row >= 0 && [grid get: lowerPosition].type == EmptyGem)
         {
             position.row -= 1;
-            cellHeight = 1.00f;
+            cellHeight = 1.00f - gravity;
             state = Falling;
         }
     }

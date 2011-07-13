@@ -182,13 +182,13 @@
     assertEquals(Diamond, [grid get: MakePosition(0, 0)].type);    
 }
 
-- (void) testFallingGemMovesToTheCellBeneathAt100CellHeight
+- (void) testFallingGemMovesToTheCellBeneathAtTheCorrectCellHeight
 {
     [grid put: Diamond at: MakePosition(0, 1)];
 
     [self updateGrid];
     
-    assertEquals(1.0f, [grid get: MakePosition(0, 0)].cellHeight);    
+    assertEquals(1.0f - gravity, [grid get: MakePosition(0, 0)].cellHeight);    
 }
 
 - (void) testFallingGemIsAtZeroPercentCellHeightWhenStopped
@@ -203,18 +203,7 @@
 - (void) testFallingGemIsChangingCellHeightAtConstantRateAfterTwoUpdates
 {
     [grid put: Diamond at: MakePosition(0, 1)];
-
-    [self updateGrid];
-    [self updateGrid];
     
-    assertAlmostEquals(0.90f, [grid get: MakePosition(0, 0)].cellHeight);
-}
-
-- (void) testFallingGemIsChangingCellHeightAtConstantRateAfterThreeUpdates
-{
-    [grid put: Diamond at: MakePosition(0, 1)];
-    
-    [self updateGrid];
     [self updateGrid];
     [self updateGrid];
     
@@ -229,7 +218,6 @@
     [self setGravity: 0.60f];
     [self updateGrid];
     [self updateGrid];
-    [self updateGrid];
     
     assertAlmostEquals(0.80f, [grid get: MakePosition(0, 0)].cellHeight);
 }
@@ -239,7 +227,6 @@
     [grid put: Diamond at: MakePosition(0, 1)];
 
     [self setGravity: 0.80f];
-    [self updateGrid];
     [self updateGrid];
     [self updateGrid];
 
@@ -253,7 +240,6 @@
     [self setGravity: 0.80f];
     [self updateGrid];
     [self updateGrid];
-    [self updateGrid];
     
     assertAlmostEquals(0.0f, [grid get: MakePosition(0, 0)].cellHeight);
 }
@@ -264,7 +250,6 @@
     [grid put: Diamond at: MakePosition(0, 0)];
     
     [self setGravity: 0.80f];
-    [self updateGrid];
     [self updateGrid];
     [self updateGrid];
 
