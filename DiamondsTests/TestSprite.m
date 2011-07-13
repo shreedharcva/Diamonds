@@ -6,6 +6,11 @@
 
 #import "Sprite.h"
 
+CGVector CGVectorMake(float x, float y)
+{
+    return CGPointMake(x, y);
+}
+
 @interface TestSprite : TestCase 
 @end
 

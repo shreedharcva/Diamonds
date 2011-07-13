@@ -50,7 +50,11 @@
         return nil;
     
     type = gemType;
-    state = Stopped;
+    if (type == EmptyGem)
+        state = NoGemState;
+    else
+        state = Stopped;
+    
     position = gridPosition;
     cellHeight = 0.0f;
     
@@ -62,15 +66,30 @@
     return self;
 }
 
-- (void) update: (Grid*) grid
+- (void) updateWithGravity: (float) gravity onGrid: (Grid*) grid;
 {
     if (state == Falling)
     {
-        cellHeight -= 0.10f;
+        cellHeight -= gravity;
+        
         if (cellHeight <= 0)
         {
-            position.row -= 1;
+            cellHeight += 1.0f;
+
+            GridPosition lowerPosition = self.position;
+            lowerPosition.row -= 1;
+
+            if (position.row > 0 && [grid get: lowerPosition].type == EmptyGem)
+            {
+                position.row -= 1;
+            }
+            else
+            {
+                state = Stopped;
+                cellHeight = 0.00f;
+            }
         }
+    
         return;
     }    
     else
@@ -79,12 +98,7 @@
         GridPosition lowerPosition = self.position;
         lowerPosition.row -= 1;
         
-        if (lowerPosition.row < 0)
-        {
-            state = Stopped;
-        }
-        else    
-        if ([grid get: lowerPosition].type == EmptyGem)
+        if (lowerPosition.row >= 0 && [grid get: lowerPosition].type == EmptyGem)
         {
             position.row -= 1;
             cellHeight = 1.00f;

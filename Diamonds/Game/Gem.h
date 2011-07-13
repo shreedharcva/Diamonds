@@ -21,8 +21,9 @@ GemType;
 
 typedef enum GemState
 {
-    Stopped = 0,
-    Falling = 1,
+    NoGemState = 0,
+    Stopped = 1,
+    Falling = 2,
 }
 GemState;
 
@@ -49,7 +50,7 @@ GridPosition MakePosition(int column, int row);
 
 - (id) initWithType: (GemType) gemType at: (GridPosition) gridPosition resources: (ResourceManager*) resources;
 
-- (void) update: (Grid*) grid;
+- (void) updateWithGravity: (float) gravity onGrid: (Grid*) grid;
 - (void) drawIn: (SpriteBatch*) batch info: (GridPresentationInfo) info;
 
 @end

@@ -15,7 +15,7 @@
 - (void) put: (GemType) type at: (GridPosition) origin;
 - (Gem*) get: (GridPosition) position;
 
-- (void) update;
+- (void) updateWithGravity: (float) gravity;
 
 @end
 
