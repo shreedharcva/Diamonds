@@ -73,20 +73,23 @@
         }
         return;
     }    
-    
-    GridPosition lowerPosition = self.position;
-    lowerPosition.row -= 1;
-    
-    if (lowerPosition.row < 0)
+    else
+    if (state == Stopped)
     {
-        state = Stopped;
-    }
-    else    
-    if ([grid get: lowerPosition].type == EmptyGem)
-    {
-        position.row -= 1;
-        cellHeight = 1.00f;
-        state = Falling;
+        GridPosition lowerPosition = self.position;
+        lowerPosition.row -= 1;
+        
+        if (lowerPosition.row < 0)
+        {
+            state = Stopped;
+        }
+        else    
+        if ([grid get: lowerPosition].type == EmptyGem)
+        {
+            position.row -= 1;
+            cellHeight = 1.00f;
+            state = Falling;
+        }
     }
 }
 
@@ -108,7 +111,7 @@
     if (type == Diamond)
         return @"Ruby";
     
-    return @"Empty String";
+    return @"EmptyGem";
 }
 
 @end
