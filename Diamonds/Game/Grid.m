@@ -67,6 +67,14 @@ GridPosition MakePosition(int column, int row)
     return [[Gem alloc] initWithType: EmptyGem at: MakePosition(0, 0) resources: resources];
 }
 
+- (void) update
+{
+    for (Gem* gem in gems)
+    {
+        [gem update: self];
+    }    
+}
+
 @end
 
 @implementation GridDrawer

@@ -19,6 +19,13 @@ typedef enum GemType
 }
 GemType;
 
+typedef enum GemState
+{
+    Stopped = 0,
+    Falling = 1,
+}
+GemState;
+
 typedef struct GridPosition
 {
     int column;
@@ -30,14 +37,17 @@ GridPosition MakePosition(int column, int row);
 
 @class SpriteBatch;
 @class ResourceManager;
+@class Grid;
 
 @interface Gem : NSObject
 
 @property (readonly) GemType type;
+@property (readonly) GemState state;
 @property (readonly) GridPosition position;
 
 - (id) initWithType: (GemType) gemType at: (GridPosition) gridPosition resources: (ResourceManager*) resources;
 
+- (void) update: (Grid*) grid;
 - (void) drawIn: (SpriteBatch*) batch info: (GridPresentationInfo) info;
 
 @end

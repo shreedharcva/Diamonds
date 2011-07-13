@@ -7,15 +7,20 @@
 #import "Sprite.h"
 #import "SpriteBatch.h"
 #import "ResourceManager.h"
+#import "Grid.h"
 
 @implementation Gem
 {
     GemType type; 
+    GemState state;
+    
     GridPosition position;
     
     Sprite* sprite;
 }
 
+@synthesize type;
+@synthesize state;
 @synthesize position;
 
 - (NSString*) getTextureNameFromType: (GemType) gemType
@@ -43,6 +48,7 @@
         return nil;
     
     type = gemType;
+    state = Stopped;
     position = gridPosition;
     
     sprite = [[Sprite alloc] initWithTexture: [self getTextureFromType: gemType resources: resources]];
@@ -51,6 +57,22 @@
     [sprite resizeTo: CGSizeMake(32, 32)];
     
     return self;
+}
+
+- (void) update: (Grid*) grid
+{
+    GridPosition lowerPosition = self.position;
+    lowerPosition.row -= 1;
+    
+    if (lowerPosition.row < 0)
+    {
+        state = Stopped;
+    }
+    else    
+    if ([grid get: lowerPosition].type == EmptyGem)
+    {
+        state = Falling;
+    }
 }
 
 - (void) drawIn: (SpriteBatch*) batch info: (GridPresentationInfo) info;
@@ -62,11 +84,6 @@
     
     [sprite moveTo: spritePosition];
     [sprite drawIn: batch];
-}
-
-- (GemType) type
-{
-    return type;
 }
 
 @end

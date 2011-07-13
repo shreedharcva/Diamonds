@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		130012ED13C381E100D6E02E /* TestGridDrawer.m in Sources */ = {isa = PBXBuildFile; fileRef = 130012EC13C381E100D6E02E /* TestGridDrawer.m */; };
-		130012F113CB2A4F00D6E02E /* TestGem.m in Sources */ = {isa = PBXBuildFile; fileRef = 130012F013CB2A4F00D6E02E /* TestGem.m */; };
+		130012F113CB2A4F00D6E02E /* TestGemDrawing.m in Sources */ = {isa = PBXBuildFile; fileRef = 130012F013CB2A4F00D6E02E /* TestGemDrawing.m */; };
 		130CA76913A8E64B008C7B66 /* ShaderProgram.m in Sources */ = {isa = PBXBuildFile; fileRef = 130CA76813A8E64B008C7B66 /* ShaderProgram.m */; };
 		130CA76D13A8F4A0008C7B66 /* Texture.m in Sources */ = {isa = PBXBuildFile; fileRef = 130CA76C13A8F4A0008C7B66 /* Texture.m */; };
 		130CA77013A90213008C7B66 /* Sprite.m in Sources */ = {isa = PBXBuildFile; fileRef = 130CA76F13A90213008C7B66 /* Sprite.m */; };
@@ -78,7 +78,7 @@
 		130012EB13C381E100D6E02E /* TestGridDrawer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestGridDrawer.h; sourceTree = "<group>"; };
 		130012EC13C381E100D6E02E /* TestGridDrawer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestGridDrawer.m; sourceTree = "<group>"; };
 		130012EF13CB2A4F00D6E02E /* TestGem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestGem.h; sourceTree = "<group>"; };
-		130012F013CB2A4F00D6E02E /* TestGem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestGem.m; sourceTree = "<group>"; };
+		130012F013CB2A4F00D6E02E /* TestGemDrawing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestGemDrawing.m; sourceTree = "<group>"; };
 		130CA76713A8E64B008C7B66 /* ShaderProgram.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ShaderProgram.h; path = Diamonds/Engine/ShaderProgram.h; sourceTree = "<group>"; };
 		130CA76813A8E64B008C7B66 /* ShaderProgram.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ShaderProgram.m; path = Diamonds/Engine/ShaderProgram.m; sourceTree = "<group>"; };
 		130CA76B13A8F4A0008C7B66 /* Texture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Texture.h; path = Diamonds/Engine/Texture.h; sourceTree = "<group>"; };
@@ -368,7 +368,7 @@
 			isa = PBXGroup;
 			children = (
 				130012EF13CB2A4F00D6E02E /* TestGem.h */,
-				130012F013CB2A4F00D6E02E /* TestGem.m */,
+				130012F013CB2A4F00D6E02E /* TestGemDrawing.m */,
 				130012EB13C381E100D6E02E /* TestGridDrawer.h */,
 				130012EC13C381E100D6E02E /* TestGridDrawer.m */,
 				130EBD7A13C33AF200E14767 /* TestGrid.h */,
@@ -544,7 +544,7 @@
 				130EBD7D13C33AF200E14767 /* TestGrid.m in Sources */,
 				130EBD8613C33F8500E14767 /* Grid.m in Sources */,
 				130012ED13C381E100D6E02E /* TestGridDrawer.m in Sources */,
-				130012F113CB2A4F00D6E02E /* TestGem.m in Sources */,
+				130012F113CB2A4F00D6E02E /* TestGemDrawing.m in Sources */,
 				1311E9D113CC5B9F00BA18A9 /* MockResourceManager.m in Sources */,
 				1311E9DA13CC7F9B00BA18A9 /* Gem.m in Sources */,
 			);

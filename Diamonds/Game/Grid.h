@@ -15,6 +15,8 @@
 - (void) put: (GemType) type at: (GridPosition) origin;
 - (Gem*) get: (GridPosition) position;
 
+- (void) update;
+
 @end
 
 @class ResourceManager;
