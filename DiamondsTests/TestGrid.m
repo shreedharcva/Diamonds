@@ -108,11 +108,24 @@
 @end
 
 @implementation TestGemFallingInGrid
+{
+    float gravity;
+}
 
+- (void) setGravity: (float) newGravity
+{
+    gravity = newGravity;
+}
+
+- (void) setUp
+{
+    [super setUp];
+    [self setGravity: 0.10f];
+}
 
 - (void) updateGrid 
 {
-    [grid updateWithGravity: 0.10f];
+    [grid updateWithGravity: gravity];
 }
 
 - (void) testGemInTheFirstRowStaysAtTheSamePositionAfterAGridUpdate
@@ -210,11 +223,13 @@
 
 - (void) testFallingGemGoesThroughCellsWithTheCorrectHeight
 {
+    
     [grid put: Diamond at: MakePosition(0, 2)];
     
-    [grid updateWithGravity: 0.60f];
-    [grid updateWithGravity: 0.60f];
-    [grid updateWithGravity: 0.60f];
+    [self setGravity: 0.60f];
+    [self updateGrid];
+    [self updateGrid];
+    [self updateGrid];
     
     assertAlmostEquals(0.80f, [grid get: MakePosition(0, 0)].cellHeight);
 }
@@ -223,9 +238,10 @@
 {
     [grid put: Diamond at: MakePosition(0, 1)];
 
-    [grid updateWithGravity: 0.80f];
-    [grid updateWithGravity: 0.80f];
-    [grid updateWithGravity: 0.80f];
+    [self setGravity: 0.80f];
+    [self updateGrid];
+    [self updateGrid];
+    [self updateGrid];
 
     assertEquals(Stopped, [grid get: MakePosition(0, 0)].state);
 }
@@ -234,9 +250,10 @@
 {
     [grid put: Diamond at: MakePosition(0, 1)];
     
-    [grid updateWithGravity: 0.80f];
-    [grid updateWithGravity: 0.80f];
-    [grid updateWithGravity: 0.80f];
+    [self setGravity: 0.80f];
+    [self updateGrid];
+    [self updateGrid];
+    [self updateGrid];
     
     assertAlmostEquals(0.0f, [grid get: MakePosition(0, 0)].cellHeight);
 }
@@ -246,9 +263,10 @@
     [grid put: Diamond at: MakePosition(0, 2)];
     [grid put: Diamond at: MakePosition(0, 0)];
     
-    [grid updateWithGravity: 0.80f];
-    [grid updateWithGravity: 0.80f];
-    [grid updateWithGravity: 0.80f];
+    [self setGravity: 0.80f];
+    [self updateGrid];
+    [self updateGrid];
+    [self updateGrid];
 
     assertEquals(Stopped, [grid get: MakePosition(0, 1)].state);
 }
