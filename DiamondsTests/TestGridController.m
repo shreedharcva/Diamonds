@@ -60,6 +60,27 @@
     [controlledGem moveLeftOn: grid];
 }
 
+- (void) update
+{
+    [self.grid updateWithGravity: 1.0f];
+    if (controlledGem.state == Stopped)
+    {
+        controlledGem = nil;
+    }
+}
+
+@end
+
+@interface GridController (test)
+@end
+
+@implementation GridController (test)
+
+- (void) setControlledGemTo: (Gem*) gem
+{
+    controlledGem = gem;
+}
+
 @end
 
 @implementation TestGridController
@@ -117,6 +138,16 @@
     [controller moveLeft];
     
     assertEquals(MakePosition(4, 13),[controller controlledGem].position);
+}
+
+- (void) testControlledGemChangesIfTheGemStopsFalling
+{    
+    Gem* gem = [controller.grid put: Diamond at: MakePosition(0, 1)];
+    [controller setControlledGemTo: gem];
+    assertEquals(gem, [controller controlledGem]);
+    
+    [controller update];
+    assertTrue(gem != [controller controlledGem]);
 }
 
 @end

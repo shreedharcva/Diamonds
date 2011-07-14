@@ -136,7 +136,10 @@
         {
             position.row -= 1;
             cellHeight = 1.00f - gravity;
-            state = Falling;
+            if (cellHeight > 0.0)
+            {
+                state = Falling;
+            }
         }
     }
 }
