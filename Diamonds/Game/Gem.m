@@ -82,7 +82,7 @@
     {
         cellHeight -= gravity;
         
-        if (cellHeight <= 0.00f)
+        if (cellHeight < 0.00f)
         {
             cellHeight += 1.00f;
 
