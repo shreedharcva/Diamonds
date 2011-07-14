@@ -11,7 +11,7 @@
 - (void) setUp
 {
     [super setUp];
-    grid = [[Grid alloc] initWithResources: nil];
+    grid = [[Grid alloc] initWithResources: nil width: 14 height: 8];
 }
 
 @end
@@ -25,6 +25,12 @@
 - (void) testGridIsEmptyWhenItsCrated
 {
     assertTrue([grid isEmpty]);
+}
+
+- (void) testGridSizeIsCorrectWhenItsCrated
+{
+    assertEquals(14, grid.width);
+    assertEquals(8, grid.height);
 }
 
 - (void) testGridIsNotEmptyWhenAGemIsPut

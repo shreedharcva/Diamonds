@@ -36,7 +36,7 @@
     info.cellSize = CGSizeMake(32, 32);
     info.heightInCells = 14;
     
-    grid = [[Grid alloc] initWithResources: resources];
+    grid = [[Grid alloc] initWithResources: resources width: 8 height: 14];
 
     
     gridDrawer = [[GridDrawer alloc] initWithGrid: grid info: info];

@@ -53,7 +53,11 @@ GridPosition MakePosition(int column, int row);
 
 - (id) initWithType: (GemType) gemType at: (GridPosition) gridPosition resources: (ResourceManager*) resources;
 
+- (void) moveRightOn: (Grid*) grid;
+- (void) moveLeftOn: (Grid*) grid;
+
 - (void) updateWithGravity: (float) gravity onGrid: (Grid*) grid;
+
 - (void) drawIn: (SpriteBatch*) batch info: (GridPresentationInfo) info;
 
 @end
