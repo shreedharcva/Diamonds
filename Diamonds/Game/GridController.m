@@ -57,7 +57,7 @@
     [self.grid updateWithGravity: gravity];
     if (controlledGem.state == Stopped)
     {
-        controlledGem = nil;
+        [self spawn];
     }
 }
 

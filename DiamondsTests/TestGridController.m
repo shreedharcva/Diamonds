@@ -75,7 +75,7 @@
     [controller spawn];
     [controller moveLeft];
     
-    assertEquals(MakePosition(4, 13),[controller controlledGem].position);
+    assertEquals(MakePosition(4, 13), [controller controlledGem].position);
 }
 
 - (void) testControlledGemChangesIfTheGemStopsFalling
@@ -88,6 +88,17 @@
     
     [controller update];
     assertTrue(gem != [controller controlledGem]);
+}
+
+- (void) testGridControllerSpawnsANewControlledGemWhenTheOldOneStopsFalling
+{    
+    [controller setGravity: 1.0f];
+    
+    Gem* gem = [controller.grid put: Diamond at: MakePosition(0, 1)];
+    [controller setControlledGemTo: gem];
+    [controller update];
+
+    assertEquals(MakePosition(4, 13),[controller controlledGem].position);
 }
 
 @end
