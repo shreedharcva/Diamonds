@@ -27,19 +27,63 @@
 
 @synthesize animating, displayLink;
 
+- (void) addGestures
+{
+    UITapGestureRecognizer* tap = [[UITapGestureRecognizer alloc] initWithTarget:self action: @selector(handleTapFrom:)];
+    
+    tap.numberOfTapsRequired = 1;
+    tap.numberOfTouchesRequired = 1;
+    
+    [self.view addGestureRecognizer: tap];
+    
+    UISwipeGestureRecognizer* swipeLeft = [[UISwipeGestureRecognizer alloc] initWithTarget: self action: @selector(handleSwipeLeftFrom:)];
+    
+    swipeLeft.direction = UISwipeGestureRecognizerDirectionLeft;
+    
+    [self.view addGestureRecognizer: swipeLeft];
+    
+    UISwipeGestureRecognizer* swipeRight = [[UISwipeGestureRecognizer alloc] initWithTarget: self action: @selector(handleSwipeRightFrom:)];
+    
+    swipeRight.direction = UISwipeGestureRecognizerDirectionRight;
+    
+    [self.view addGestureRecognizer: swipeRight];    
+}
+
+- (void) initializeGame
+{
+    Engine* engine = [[Engine alloc] initWithView: (EAGLView*) self.view];
+    game = [[DiamondsGame alloc] initWithEngine: engine];
+    
+    ResourceManager* resources = [ResourceManager new];
+    [game loadResources: resources];    
+    
+    [self addGestures];    
+}
+
+- (void) handleTapFrom: (UITapGestureRecognizer*) recognizer
+{
+    CGPoint point = [recognizer locationInView: self.view];
+    NSLog(@"Touch! (%2.1f %2.1f)", point.x, point.y);
+}
+
+- (void) handleSwipeLeftFrom: (UITapGestureRecognizer*) recognizer
+{
+    NSLog(@"Swipe Left!");
+}
+
+- (void) handleSwipeRightFrom: (UITapGestureRecognizer*) recognizer
+{
+    NSLog(@"Swipe Right!");
+}
+
 - (void) awakeFromNib
 {    
     animating = FALSE;
     animationFrameInterval = 1;
     self.displayLink = nil;
-
-    Engine* engine = [[Engine alloc] initWithView: (EAGLView*) self.view];
-    game = [[DiamondsGame alloc] initWithEngine: engine];
     
-    ResourceManager* resources = [ResourceManager new];
-    [game loadResources: resources];
+    [self initializeGame];
 }
-
 
 - (void) didReceiveMemoryWarning
 {

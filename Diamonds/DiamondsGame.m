@@ -55,7 +55,7 @@
 
 - (void) update: (GameTime*) gameTime
 {
-    NSLog(@"game time = %2.1f", [gameTime elapsedTimeInMilliseconds]); 
+//    NSLog(@"game time = %2.1f", [gameTime elapsedTimeInMilliseconds]); 
 
     if (nextUpdateTime == 0.0f)
     {
