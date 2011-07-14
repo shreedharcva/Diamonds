@@ -64,6 +64,15 @@
 {
     CGPoint point = [recognizer locationInView: self.view];
     NSLog(@"Touch! (%2.1f %2.1f)", point.x, point.y);
+
+    if (point.x < self.view.bounds.size.width / 2)
+    {
+        [game moveLeft];
+    }
+    else
+    {
+        [game moveRight];
+    }
 }
 
 - (void) handleSwipeLeftFrom: (UITapGestureRecognizer*) recognizer

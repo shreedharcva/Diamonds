@@ -4,5 +4,9 @@
 
 #import "Game.h"
 
-@interface DiamondsGame : Game 
+@interface DiamondsGame : Game
+
+- (void) moveLeft;
+- (void) moveRight;
+
 @end

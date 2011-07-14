@@ -10,6 +10,7 @@
 #import "ResourceManager.h"
 
 #import "Grid.h"
+#import "GridController.h"
 #import "Gem.h"
 
 @implementation DiamondsGame
@@ -20,8 +21,19 @@
         
     Grid* grid;
     GridDrawer* gridDrawer;
+    GridController* gridController;
     
     float nextUpdateTime;
+}
+
+- (void) moveLeft
+{
+    [gridController moveLeft];
+}
+
+- (void) moveRight
+{
+    [gridController moveRight];
 }
 
 - (void) loadResources: (ResourceManager*) resources
@@ -47,9 +59,12 @@
     [gridBackground setSourceRectangle: CGRectMake(0, 0, 256, 512)];
     
     [gridDrawer setBackground: gridBackground];
-
-    [grid put: Ruby at: MakePosition(0, 10)];
     
+    gridController = [[GridController alloc] initWithGrid: grid];
+
+    [gridController setGravity: 0.05];
+    [gridController spawn];
+        
     nextUpdateTime = 0.0f;
 }
 
@@ -61,18 +76,10 @@
     {
         nextUpdateTime = [gameTime milliseconds];
     }
-    
     if ([gameTime milliseconds] >= nextUpdateTime)
-    {
-        static int turn = 0;
-        turn++;
-        int turns = 100;
-        if (turn % turns == 0 && turn / turns < 5)
-        {
-            [grid put: Ruby at: MakePosition(turn / turns + 1, 10)];
-        }
-        [grid updateWithGravity: 0.05f];        
-    }    
+    {        
+        [gridController update];
+    }
 }
 
 - (void) draw: (GameTime*) gameTime

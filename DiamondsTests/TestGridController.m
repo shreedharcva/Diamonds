@@ -3,72 +3,10 @@
 //  Diamonds
 
 #import "TestGridController.h"
+#import "GridController.h"
 #import "Grid.h"
 
 @interface TestGridController : TestCase 
-@end
-
-@interface GridController : NSObject
-
-- (id) initWithGrid: (Grid*) grid;
-
-- (void) spawn;
-- (Gem*) controlledGem;
-
-@property (readonly, nonatomic) Grid* grid;
-
-@end
-
-@implementation GridController
-{
-    Grid* grid;
-    Gem* controlledGem;
-}
-
-@synthesize grid;
-
-- (id) initWithGrid: (Grid*) theGrid
-{
-    self = [super init];
-    if (self == nil)
-    {
-        return nil;
-    }
-    
-    grid = theGrid;
-    
-    return self;
-}
-
-- (void) spawn
-{
-    controlledGem = [grid put: Ruby at: MakePosition(grid.width / 2, grid.height - 1)];    
-}
-
-- (Gem*) controlledGem
-{
-    return controlledGem;
-}
-
-- (void) moveRight
-{
-    [controlledGem moveRightOn: grid];
-}
-
-- (void) moveLeft
-{
-    [controlledGem moveLeftOn: grid];
-}
-
-- (void) update
-{
-    [self.grid updateWithGravity: 1.0f];
-    if (controlledGem.state == Stopped)
-    {
-        controlledGem = nil;
-    }
-}
-
 @end
 
 @interface GridController (test)
@@ -142,6 +80,8 @@
 
 - (void) testControlledGemChangesIfTheGemStopsFalling
 {    
+    [controller setGravity: 1.0f];
+    
     Gem* gem = [controller.grid put: Diamond at: MakePosition(0, 1)];
     [controller setControlledGemTo: gem];
     assertEquals(gem, [controller controlledGem]);
