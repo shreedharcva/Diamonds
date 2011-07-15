@@ -27,7 +27,7 @@
 
 - (void) makeGem: (GemType) type
 {
-    [self makeGem: type at: MakePosition(0, 0)];
+    [self makeGem: type at: MakeCell(0, 0)];
 }
 
 - (void) makeGem: (GemType) type at: (GridPosition) position

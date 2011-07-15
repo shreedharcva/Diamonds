@@ -8,15 +8,19 @@
 
 @property (readonly) NSArray* gems;
 
-- (id) initWithResources: (ResourceManager*) resourceManager;
+- (id) initWithResources: (ResourceManager*) resourceManager width: (int) gridWidth height: (int) gridHeight;
 
 - (bool) isEmpty;
 - (bool) isCellEmpty: (GridPosition) position;
+- (bool) isCellValid: (GridPosition) position;
 
-- (void) put: (GemType) type at: (GridPosition) origin;
+- (Gem*) put: (GemType) type at: (GridPosition) origin;
 - (Gem*) get: (GridPosition) position;
 
 - (void) updateWithGravity: (float) gravity;
+
+@property (readonly) int width;
+@property (readonly) int height;
 
 @end
 

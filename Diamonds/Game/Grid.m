@@ -7,26 +7,41 @@
 
 #import "Sprite.h"
 
+GridCell MakeCell(int column, int row)
+{
+    GridCell cell = { column, row };
+    return cell;    
+}
+
 GridPosition MakePosition(int column, int row)
 {
-    GridPosition position = { column, row };
-    return position;
+    return MakeCell(column, row);
 }
 
 @implementation Grid
 {
     ResourceManager* resources;
+
+    int width;
+    int height;
+    
     NSMutableSet* gems;
 }
 
-- (id) initWithResources: (ResourceManager*) resourceManager
+@synthesize width;
+@synthesize height;
+
+- (id) initWithResources: (ResourceManager*) resourceManager width: (int) gridWidth height: (int) gridHeight
 {
     self = [super init];
     if (self == nil)
         return nil;
     
     resources = resourceManager;
-    
+
+    width = gridWidth;
+    height = gridHeight;
+
     gems = [NSMutableSet new];
     
     return self;
@@ -42,12 +57,20 @@ GridPosition MakePosition(int column, int row)
     return position.row >= 0 && [self get: position].type == EmptyGem;
 }
 
+- (bool) isCellValid: (GridPosition) position
+{
+    if (position.column < 0 || position.column >= self.width)
+        return false;
+    
+    return true;
+}
+
 - (NSArray*) gems
 {
     return [gems allObjects];
 }
 
-- (void) put: (GemType) type at: (GridPosition) position
+- (Gem*) put: (GemType) type at: (GridPosition) position
 {
     if ([[self get: position] type] != EmptyGem)
     {
@@ -56,6 +79,8 @@ GridPosition MakePosition(int column, int row)
     
     Gem* gem = [[Gem alloc] initWithType: type at: position resources: resources];
     [gems addObject: gem];
+    
+    return gem;
 }
 
 - (Gem*) get: (GridPosition) position

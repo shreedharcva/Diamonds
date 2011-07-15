@@ -34,7 +34,9 @@ typedef struct GridPosition
 }
 GridPosition;
 
-GridPosition MakePosition(int column, int row);
+typedef GridPosition GridCell;
+
+GridCell MakeCell(int column, int row);
 
 @class SpriteBatch;
 @class ResourceManager;
@@ -53,7 +55,11 @@ GridPosition MakePosition(int column, int row);
 
 - (id) initWithType: (GemType) gemType at: (GridPosition) gridPosition resources: (ResourceManager*) resources;
 
+- (void) moveRightOn: (Grid*) grid;
+- (void) moveLeftOn: (Grid*) grid;
+
 - (void) updateWithGravity: (float) gravity onGrid: (Grid*) grid;
+
 - (void) drawIn: (SpriteBatch*) batch info: (GridPresentationInfo) info;
 
 @end
