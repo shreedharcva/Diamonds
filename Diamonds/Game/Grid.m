@@ -52,6 +52,14 @@ GridPosition MakePosition(int column, int row)
     return position.row >= 0 && [self get: position].type == EmptyGem;
 }
 
+- (bool) isCellValid: (GridPosition) position
+{
+    if (position.column < 0 || position.column >= self.width)
+        return false;
+    
+    return true;
+}
+
 - (NSArray*) gems
 {
     return [gems allObjects];

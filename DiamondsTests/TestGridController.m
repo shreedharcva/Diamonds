@@ -27,6 +27,11 @@
     GridController* controller;
 }
 
+- (void) setControlledGemTo: (GridPosition) gridPosition
+{
+    [controller setControlledGemTo: [controller.grid put: Diamond at: gridPosition]];    
+}
+
 - (void) setUp
 {
     [super setUp];
@@ -60,6 +65,15 @@
     assertEquals(MakePosition(4, 13),[controller controlledGem].position);
 }
 
+- (void) testControlledGemDoesntMoveRightIfTheCellIsOutOfTheGrid
+{
+    [self setControlledGemTo: MakePosition(grid.width - 1, 13)];
+    
+    [controller moveRight];
+    
+    assertEquals(MakePosition(grid.width - 1, 13),[controller controlledGem].position);
+}
+
 - (void) testControlledGemMovesLeft
 {
     [controller spawn];
@@ -76,6 +90,15 @@
     [controller moveLeft];
     
     assertEquals(MakePosition(4, 13), [controller controlledGem].position);
+}
+
+- (void) testControlledGemDoesntMoveLeftIfTheCellIsOutOfTheGrid
+{
+    [self setControlledGemTo: MakePosition(0, 13)];
+    
+    [controller moveLeft];
+    
+    assertEquals(MakePosition(0, 13),[controller controlledGem].position);
 }
 
 - (void) testControlledGemChangesIfTheGemStopsFalling

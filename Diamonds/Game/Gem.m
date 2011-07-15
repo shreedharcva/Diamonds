@@ -73,6 +73,9 @@
     GridPosition newPosition = self.position;
     newPosition.column += 1;
     
+    if (![grid isCellValid: newPosition])
+        return false;
+    
     return [grid isCellEmpty: newPosition];    
 }
 
@@ -80,7 +83,10 @@
 {
     GridPosition newPosition = self.position;
     newPosition.column -= 1;
-    
+
+    if (![grid isCellValid: newPosition])
+        return false;
+
     return [grid isCellEmpty: newPosition];    
 }
 

@@ -12,6 +12,7 @@
 
 - (bool) isEmpty;
 - (bool) isCellEmpty: (GridPosition) position;
+- (bool) isCellValid: (GridPosition) position;
 
 - (Gem*) put: (GemType) type at: (GridPosition) origin;
 - (Gem*) get: (GridPosition) position;
