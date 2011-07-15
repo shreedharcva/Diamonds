@@ -79,7 +79,7 @@
 
 - (void) testOneSpriteIsDrawnByGridDrawerWhenTheGridContainsOneGem
 {
-    [grid put: Diamond at: MakePosition(0, 0)];
+    [grid put: Diamond at: MakeCell(0, 0)];
     [self drawGrid];
     
     assertEquals(1, [batch numberOfSpritesDrawn]);
@@ -87,8 +87,8 @@
 
 - (void) testTwoSpritesAreDrawnByGridDrawerWhenTheGridContainsTwoGems
 {
-    [grid put: Diamond at: MakePosition(0, 0)];
-    [grid put: Ruby at: MakePosition(1, 0)];
+    [grid put: Diamond at: MakeCell(0, 0)];
+    [grid put: Ruby at: MakeCell(1, 0)];
 
     [self drawGrid];
     
@@ -97,7 +97,7 @@
 
 - (void) testTheLastSpriteDrawnIsUsingARubyTexture
 {
-    [grid put: Ruby at: MakePosition(1, 0)];
+    [grid put: Ruby at: MakeCell(1, 0)];
     
     [self drawGrid];
     
@@ -106,7 +106,7 @@
 
 - (void) testTheSpriteIsDrawnInTheCorrectPosition
 {
-    GridPosition gridPosition = MakePosition(1, 2);
+    GridPosition gridPosition = MakeCell(1, 2);
     [grid put: Ruby at: gridPosition];
     
     [self drawGrid];

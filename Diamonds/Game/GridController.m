@@ -34,7 +34,7 @@
 
 - (void) spawn
 {
-    controlledGem = [grid put: Ruby at: MakePosition(grid.width / 2, grid.height - 1)];    
+    controlledGem = [grid put: Ruby at: MakeCell(grid.width / 2, grid.height - 1)];    
 }
 
 - (Gem*) controlledGem

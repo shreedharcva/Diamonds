@@ -44,7 +44,7 @@
 {
     [controller spawn];
     
-    assertEquals(MakePosition(4, 13),[controller controlledGem].position);
+    assertEquals(MakeCell(4, 13),[controller controlledGem].position);
 }
 
 - (void) testControlledGemMovesRight
@@ -52,26 +52,26 @@
     [controller spawn];
     [controller moveRight];
     
-    assertEquals(MakePosition(5, 13),[controller controlledGem].position);
+    assertEquals(MakeCell(5, 13),[controller controlledGem].position);
 }
 
 - (void) testControlledGemDoesntMoveRightIfTheCellIsNotEmpty
 {
-    [controller.grid put: Diamond at: MakePosition(5, 13)];
+    [controller.grid put: Diamond at: MakeCell(5, 13)];
     
     [controller spawn];
     [controller moveRight];
     
-    assertEquals(MakePosition(4, 13),[controller controlledGem].position);
+    assertEquals(MakeCell(4, 13),[controller controlledGem].position);
 }
 
 - (void) testControlledGemDoesntMoveRightIfTheCellIsOutOfTheGrid
 {
-    [self setControlledGemTo: MakePosition(grid.width - 1, 13)];
+    [self setControlledGemTo: MakeCell(grid.width - 1, 13)];
     
     [controller moveRight];
     
-    assertEquals(MakePosition(grid.width - 1, 13),[controller controlledGem].position);
+    assertEquals(MakeCell(grid.width - 1, 13),[controller controlledGem].position);
 }
 
 - (void) testControlledGemMovesLeft
@@ -79,33 +79,33 @@
     [controller spawn];
     [controller moveLeft];
     
-    assertEquals(MakePosition(3, 13),[controller controlledGem].position);
+    assertEquals(MakeCell(3, 13),[controller controlledGem].position);
 }
 
 - (void) testControlledGemDoesntMoveLeftIfTheCellIsNotEmpty
 {
-    [controller.grid put: Diamond at: MakePosition(3, 13)];
+    [controller.grid put: Diamond at: MakeCell(3, 13)];
     
     [controller spawn];
     [controller moveLeft];
     
-    assertEquals(MakePosition(4, 13), [controller controlledGem].position);
+    assertEquals(MakeCell(4, 13), [controller controlledGem].position);
 }
 
 - (void) testControlledGemDoesntMoveLeftIfTheCellIsOutOfTheGrid
 {
-    [self setControlledGemTo: MakePosition(0, 13)];
+    [self setControlledGemTo: MakeCell(0, 13)];
     
     [controller moveLeft];
     
-    assertEquals(MakePosition(0, 13),[controller controlledGem].position);
+    assertEquals(MakeCell(0, 13),[controller controlledGem].position);
 }
 
 - (void) testControlledGemChangesIfTheGemStopsFalling
 {    
     [controller setGravity: 1.0f];
     
-    Gem* gem = [controller.grid put: Diamond at: MakePosition(0, 1)];
+    Gem* gem = [controller.grid put: Diamond at: MakeCell(0, 1)];
     [controller setControlledGemTo: gem];
     assertEquals(gem, [controller controlledGem]);
     
@@ -117,11 +117,11 @@
 {    
     [controller setGravity: 1.0f];
     
-    Gem* gem = [controller.grid put: Diamond at: MakePosition(0, 1)];
+    Gem* gem = [controller.grid put: Diamond at: MakeCell(0, 1)];
     [controller setControlledGemTo: gem];
     [controller update];
 
-    assertEquals(MakePosition(4, 13),[controller controlledGem].position);
+    assertEquals(MakeCell(4, 13),[controller controlledGem].position);
 }
 
 @end

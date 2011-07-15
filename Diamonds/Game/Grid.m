@@ -7,10 +7,15 @@
 
 #import "Sprite.h"
 
+GridCell MakeCell(int column, int row)
+{
+    GridCell cell = { column, row };
+    return cell;    
+}
+
 GridPosition MakePosition(int column, int row)
 {
-    GridPosition position = { column, row };
-    return position;
+    return MakeCell(column, row);
 }
 
 @implementation Grid

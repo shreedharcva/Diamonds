@@ -34,7 +34,9 @@ typedef struct GridPosition
 }
 GridPosition;
 
-GridPosition MakePosition(int column, int row);
+typedef GridPosition GridCell;
+
+GridCell MakeCell(int column, int row);
 
 @class SpriteBatch;
 @class ResourceManager;
