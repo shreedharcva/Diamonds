@@ -30,6 +30,8 @@
         return @"diamond";
     if (gemType == Ruby)
         return @"ruby";
+    if (gemType == Sapphire)
+        return @"sapphire";
     
     return nil;
 }

@@ -51,6 +51,9 @@
 		134DFF5813A79FE900DA67FC /* DiamondsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 134DFF5713A79FE900DA67FC /* DiamondsTests.m */; };
 		13C1F45113BE02CC00E67EC0 /* MockTexture.m in Sources */ = {isa = PBXBuildFile; fileRef = 13C1F45013BE02CC00E67EC0 /* MockTexture.m */; };
 		13C1F45713BE040200E67EC0 /* ResourceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 13C1F45613BE040200E67EC0 /* ResourceManager.m */; };
+		13C3598213D1EB7300480939 /* emerald.png in Resources */ = {isa = PBXBuildFile; fileRef = 13C3597F13D1EB7300480939 /* emerald.png */; };
+		13C3598313D1EB7300480939 /* sapphire.png in Resources */ = {isa = PBXBuildFile; fileRef = 13C3598013D1EB7300480939 /* sapphire.png */; };
+		13C3598413D1EB7300480939 /* topaz.png in Resources */ = {isa = PBXBuildFile; fileRef = 13C3598113D1EB7300480939 /* topaz.png */; };
 		13C9455713BCF806008565D6 /* TestResourceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 13C9455213BCF7CA008565D6 /* TestResourceManager.m */; };
 		13C9455813BCF815008565D6 /* TestSpriteBatch.m in Sources */ = {isa = PBXBuildFile; fileRef = 13C9455413BCF7CA008565D6 /* TestSpriteBatch.m */; };
 		13C9456413BF1F21008565D6 /* MockEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 13C9456313BF1F21008565D6 /* MockEngine.m */; };
@@ -142,6 +145,9 @@
 		13C1F45013BE02CC00E67EC0 /* MockTexture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MockTexture.m; sourceTree = "<group>"; };
 		13C1F45513BE040200E67EC0 /* ResourceManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ResourceManager.h; path = Diamonds/Engine/ResourceManager.h; sourceTree = "<group>"; };
 		13C1F45613BE040200E67EC0 /* ResourceManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ResourceManager.m; path = Diamonds/Engine/ResourceManager.m; sourceTree = "<group>"; };
+		13C3597F13D1EB7300480939 /* emerald.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = emerald.png; path = Resources/emerald.png; sourceTree = SOURCE_ROOT; };
+		13C3598013D1EB7300480939 /* sapphire.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = sapphire.png; path = Resources/sapphire.png; sourceTree = SOURCE_ROOT; };
+		13C3598113D1EB7300480939 /* topaz.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = topaz.png; path = Resources/topaz.png; sourceTree = SOURCE_ROOT; };
 		13C9455213BCF7CA008565D6 /* TestResourceManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TestResourceManager.m; path = Engine/TestResourceManager.m; sourceTree = "<group>"; };
 		13C9455313BCF7CA008565D6 /* TestSpriteBatch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TestSpriteBatch.h; path = Engine/TestSpriteBatch.h; sourceTree = "<group>"; };
 		13C9455413BCF7CA008565D6 /* TestSpriteBatch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TestSpriteBatch.m; path = Engine/TestSpriteBatch.m; sourceTree = "<group>"; };
@@ -341,6 +347,9 @@
 			children = (
 				130CA78413AA3FD2008C7B66 /* Icons */,
 				13E98FAC13A7AF360003E7D2 /* ruby.png */,
+				13C3597F13D1EB7300480939 /* emerald.png */,
+				13C3598013D1EB7300480939 /* sapphire.png */,
+				13C3598113D1EB7300480939 /* topaz.png */,
 				130CA78B13AB8C92008C7B66 /* diamond.png */,
 				130EBD8D13C33FEC00E14767 /* back000.png */,
 				130EBD8E13C33FEC00E14767 /* grid.png */,
@@ -485,6 +494,9 @@
 				130CA78C13AB8C92008C7B66 /* diamond.png in Resources */,
 				130EBD8F13C33FEC00E14767 /* back000.png in Resources */,
 				130EBD9013C33FEC00E14767 /* grid.png in Resources */,
+				13C3598213D1EB7300480939 /* emerald.png in Resources */,
+				13C3598313D1EB7300480939 /* sapphire.png in Resources */,
+				13C3598413D1EB7300480939 /* topaz.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

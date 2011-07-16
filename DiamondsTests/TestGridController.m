@@ -124,4 +124,16 @@
     assertEquals(MakeCell(4, 13),[controller controlledGem].position);
 }
 
+- (void) testGridControllerDoesntSpawnANewControlledGemWhenTheMiddleColumnIsFull
+{
+    for (int i = 0; i < 14; ++i)
+    {
+        [controller.grid put: Diamond at: MakeCell(4, i)];
+    }
+    
+    [controller spawn];
+    
+    assertNil([controller controlledGem]);
+}
+
 @end

@@ -16,6 +16,7 @@ typedef enum GemType
     EmptyGem = 0,
     Diamond = 1,
     Ruby = 2,
+    Sapphire = 3,
 }
 GemType;
 

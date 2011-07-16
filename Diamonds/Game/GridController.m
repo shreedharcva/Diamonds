@@ -34,9 +34,17 @@
 
 - (void) spawn
 {
-    controlledGem = [grid put: Ruby at: MakeCell(grid.width / 2, grid.height - 1)];    
+    GridCell spawnCell = MakeCell(grid.width / 2, grid.height - 1); 
+    if ([grid isCellEmpty: spawnCell])
+    {
+        controlledGem = [grid put: Diamond at: MakeCell(grid.width / 2, grid.height - 1)];    
+    }
+    else
+    {
+        controlledGem = nil;
+    }
 }
-
+ 
 - (Gem*) controlledGem
 {
     return controlledGem;

@@ -9,8 +9,9 @@
 #define assertTrue(expr) STAssertTrue(expr, @"");
 #define assertFalse(expr) STAssertFalse(expr, @"");
 #define assertNotNil(expr) STAssertNotNil(expr, @"");
+#define assertNil(expr) STAssertNil(expr, @"");
 #define assertEqualObjects(expected, actual) STAssertEqualObjects(actual, expected, @"");
-#define assertNotNull(expected, actual) STAssertEquals(actual, expected, @"")
+//#define assertNotNull(expected, actual) STAssertEquals(actual, expected, @"")
 
 
 #define assertThrows(expr) \
