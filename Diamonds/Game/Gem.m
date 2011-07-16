@@ -9,19 +9,47 @@
 #import "ResourceManager.h"
 #import "Grid.h"
 
+@implementation Droppable
+{
+    int width;
+    int height;
+    
+@protected
+    GridCell cell;
+}
+
+@synthesize width;
+@synthesize height;
+
+@synthesize cell;
+
+- (id) initAt: (GridCell) cell_ width: (int) width_ height: (int) height_;
+{
+    self = [super init];
+    if (self == nil)
+    {
+        return nil;
+    }
+    
+    cell = cell_;
+    width = width_;
+    height = height_;
+    
+    return self;    
+}
+
+@end
+
 @implementation Gem
 {
     GemType type; 
     GemState state;
-    
-    GridPosition position;
-    
+        
     Sprite* sprite;
 }
 
 @synthesize type;
 @synthesize state;
-@synthesize position;
 @synthesize cellHeight;
 
 - (NSString*) getTextureNameFromType: (GemType) gemType
@@ -52,16 +80,15 @@
     [sprite resizeTo: CGSizeMake(32, 32)];
 }
 
-- (id) initWithType: (GemType) gemType at: (GridPosition) gridPosition resources: (ResourceManager*) resources
+- (id) initWithType: (GemType) gemType at: (GridCell) cell_ resources: (ResourceManager*) resources
 {
-    self = [super init];
+    self = [super initAt: cell_ width: 1 height: 1];
     if (self == nil)
         return nil;
     
     type = gemType;
     state = Stopped;
     
-    position = gridPosition;
     cellHeight = 0.0f;
     
     [self initSpriteForType: gemType resources: resources];
@@ -72,7 +99,7 @@
 
 - (bool) canMoveRight: (Grid*) grid
 {
-    GridPosition newPosition = self.position;
+    GridPosition newPosition = self.cell;
     newPosition.column += 1;
     
     if (![grid isCellValid: newPosition])
@@ -83,7 +110,7 @@
 
 - (bool) canMoveLeft: (Grid*) grid
 {
-    GridPosition newPosition = self.position;
+    GridPosition newPosition = self.cell;
     newPosition.column -= 1;
 
     if (![grid isCellValid: newPosition])
@@ -94,7 +121,7 @@
 
 - (bool) canMoveDown: (Grid*) grid
 {
-    GridPosition newPosition = self.position;
+    GridPosition newPosition = self.cell;
     newPosition.row -= 1;
     
     return [grid isCellEmpty: newPosition];    
@@ -104,7 +131,7 @@
 {
     if ([self canMoveRight: grid])
     {
-        position.column += 1;
+        cell.column += 1;
     }
 }
 
@@ -112,7 +139,7 @@
 {
     if ([self canMoveLeft: grid])
     {
-        position.column -= 1;
+        cell.column -= 1;
     }
 }
 
@@ -128,7 +155,7 @@
 
             if ([self canMoveDown: grid])
             {
-                position.row -= 1;
+                cell.row -= 1;
             }
             else
             {
@@ -142,7 +169,7 @@
     {
         if ([self canMoveDown: grid])
         {
-            position.row -= 1;
+            cell.row -= 1;
             cellHeight = 1.00f - gravity;
             if (cellHeight > 0.0)
             {
@@ -156,8 +183,8 @@
 { 
     CGPoint spritePosition = info.origin;
     
-    spritePosition.x += info.cellSize.width * self.position.column; 
-    spritePosition.y -= info.cellSize.height * self.position.row - (info.cellSize.height * (info.heightInCells - 1)); 
+    spritePosition.x += info.cellSize.width * self.cell.column; 
+    spritePosition.y -= info.cellSize.height * self.cell.row - (info.cellSize.height * (info.heightInCells - 1)); 
     spritePosition.y += (-cellHeight) * info.cellSize.height;
     
     [sprite moveTo: spritePosition];
@@ -170,8 +197,37 @@
         return @"Diamond";
     if (type == Diamond)
         return @"Ruby";
+    if (type == Sapphire)
+        return @"Sapphure";
     
     return @"EmptyGem";
+}
+
+@end
+
+@implementation DroppablePair
+
+@synthesize pivot;
+@synthesize buddy;
+
+- (id) initAt: (GridCell) cell_ with: (GemType[]) gems resources: (ResourceManager*) resources
+{
+    self = [super initAt: cell_ width: 1 height: 2];
+    if (self == nil)
+    {
+        return nil;
+    }
+    
+    pivot = [[Gem alloc] initWithType: gems[0] at: MakeCell(0, 0) resources: resources];
+    buddy = [[Gem alloc] initWithType: gems[1] at: MakeCell(0, 0) resources: resources];
+    
+    return self;
+}
+
+- (void) drawIn: (SpriteBatch*) batch info: (GridPresentationInfo) info
+{
+    [pivot drawIn: batch info: info];
+    [buddy drawIn: batch info: info];
 }
 
 @end

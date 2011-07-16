@@ -16,9 +16,19 @@ typedef struct SpriteDescriptor
 } 
 SpriteDescriptor;
 
+@interface SpriteDescriptorObject : NSObject
+
+@property () CGPoint position;
+@property () CGSize size;
+@property () CGRect sourceRect;
+@property (assign) Texture* texture;
+
+@end
+
 @interface MockSpriteBatch : SpriteBatch 
 
 @property (readonly) int numberOfSpritesDrawn;
 @property (readonly) SpriteDescriptor lastSprite;
+@property (readonly) NSArray* sprites;
 
 @end

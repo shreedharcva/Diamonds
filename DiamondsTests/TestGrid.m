@@ -57,39 +57,39 @@
     assertEquals(Ruby, gem.type);
 }
 
-- (void) testGridReturnsAGemWithTheCorrectPosition
+- (void) testGridReturnsAGemWithTheCorrectCell
 {
     [grid put: Diamond at: MakeCell(1, 2)];
     
     Gem* gem = [grid get: MakeCell(1, 2)];
     
-    assertEquals(1, gem.position.column);
-    assertEquals(2, gem.position.row);
+    assertEquals(1, gem.cell.column);
+    assertEquals(2, gem.cell.row);
 }
 
-- (void) testGridReturnsAGemWithTheCorrectPositionWhenASecondGemIsPutInADifferentPosition
+- (void) testGridReturnsAGemWithTheCorrectCellWhenASecondGemIsPutInADifferentCell
 {
     [grid put: Diamond at: MakeCell(1, 2)];
     [grid put: Diamond at: MakeCell(2, 3)];
 
     Gem* gem = [grid get: MakeCell(2, 3)];
     
-    assertEquals(2, gem.position.column);
-    assertEquals(3, gem.position.row);
+    assertEquals(2, gem.cell.column);
+    assertEquals(3, gem.cell.row);
 }
 
-- (void) testGridReturnsTheFirstGemWithTheCorrectPositionWhenASecondGemIsPutInADifferentPosition
+- (void) testGridReturnsTheFirstGemWithTheCorrectCellWhenASecondGemIsPutInADifferentCell
 {
     [grid put: Diamond at: MakeCell(1, 2)];
     [grid put: Diamond at: MakeCell(2, 3)];
     
     Gem* gem = [grid get: MakeCell(1, 2)];
     
-    assertEquals(1, gem.position.column);
-    assertEquals(2, gem.position.row);
+    assertEquals(1, gem.cell.column);
+    assertEquals(2, gem.cell.row);
 }
 
-- (void) testGridReturnsAGemWithEmptyTypeIfAnEmptyPositionIsQueried
+- (void) testGridReturnsAGemWithEmptyTypeIfAnEmptyCellIsQueried
 {
     [grid put: Diamond at: MakeCell(1, 2)];
     
@@ -98,7 +98,7 @@
     assertEquals(EmptyGem, gem.type);
 }
 
-- (void) testGridThrowsAnExceptionIfAGemIsPutInANonEmptyPosition
+- (void) testGridThrowsAnExceptionIfAGemIsPutInANonEmptyCell
 {
     [grid put: Diamond at: MakeCell(1, 2)];
     

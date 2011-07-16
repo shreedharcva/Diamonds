@@ -87,8 +87,8 @@ GridPosition MakePosition(int column, int row)
 {
     for (Gem* gem in gems)
     {
-        if (gem.position.column == position.column &&
-            gem.position.row == position.row)
+        if (gem.cell.column == position.column &&
+            gem.cell.row == position.row)
         {
             return gem;
         }

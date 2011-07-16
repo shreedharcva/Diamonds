@@ -43,7 +43,18 @@ GridCell MakeCell(int column, int row);
 @class ResourceManager;
 @class Grid;
 
-@interface Gem : NSObject
+@interface Droppable : NSObject
+
+@property (readonly, nonatomic) int width;
+@property (readonly, nonatomic) int height;
+
+@property (readonly) GridCell cell;
+
+- (id) initAt: (GridCell) cell_ width: (int) width_ height: (int) height_;
+
+@end
+
+@interface Gem : Droppable
 {
     float cellHeight;
 }
@@ -51,16 +62,25 @@ GridCell MakeCell(int column, int row);
 @property (readonly) GemType type;
 @property (readonly) GemState state;
 
-@property (readonly) GridPosition position;
 @property (readonly) float cellHeight;
 
-- (id) initWithType: (GemType) gemType at: (GridPosition) gridPosition resources: (ResourceManager*) resources;
+- (id) initWithType: (GemType) gemType at: (GridCell) cell resources: (ResourceManager*) resources;
 
 - (void) moveRightOn: (Grid*) grid;
 - (void) moveLeftOn: (Grid*) grid;
 
 - (void) updateWithGravity: (float) gravity onGrid: (Grid*) grid;
 
+- (void) drawIn: (SpriteBatch*) batch info: (GridPresentationInfo) info;
+
+@end
+
+@interface DroppablePair : Droppable 
+
+@property (readonly) Gem* pivot;
+@property (readonly) Gem* buddy;
+
+- (id) initAt: (GridCell) cell_ with: (GemType[]) gems resources: (ResourceManager*) resources;
 - (void) drawIn: (SpriteBatch*) batch info: (GridPresentationInfo) info;
 
 @end

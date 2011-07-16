@@ -9,6 +9,7 @@
 #import "Grid.h"
 
 #import "MockSpriteBatch.h"
+#import "MockResourceManager.h"
 #import "MockTexture.h"
 
 @interface Gem (Testing)
@@ -38,24 +39,46 @@
 
 @end
 
-@interface TestGemDrawing: TestGemBase
+@interface TestGem : TestGemBase 
 @end
 
-@implementation TestGemDrawing
+@implementation TestGem
+
+- (void) testGemSizeIs1x1
+{
+    [self makeGem: Diamond];
+    
+    assertEquals(1, gem.width);
+    assertEquals(1, gem.height);    
+}
+
+@end
+
+@interface TestGemDrawingBase : TestGemBase 
 {
     MockSpriteBatch* batch;    
     GridPresentationInfo info;
 }
+@end
+
+@implementation TestGemDrawingBase
 
 - (void) setUp
 {
     [super setUp];
-
+    
     batch = [MockSpriteBatch new];
     
     info.cellSize = CGSizeMake(32, 32);
     info.heightInCells = 1;
 }
+
+@end
+
+@interface TestGemDrawing: TestGemDrawingBase
+@end
+
+@implementation TestGemDrawing
 
 - (void) drawGemAt: (CGPoint) origin
 {
@@ -131,3 +154,48 @@
 
 @end
 
+
+@interface TestDroppablePairDrawing : TestGemDrawingBase 
+@end
+
+@implementation TestDroppablePairDrawing
+{
+    DroppablePair* pair;
+}
+
+- (void) testDroppablePairDrawsTwoSprites
+{
+    MockResourceManager* resources = [MockResourceManager new];
+
+    GemType gems[2];    
+    gems[0] = Diamond;
+    gems[1] = Ruby;
+    
+    pair = [[DroppablePair alloc] initAt: MakeCell(4, 13) with: gems resources: resources];    
+
+    [batch begin];
+    [pair drawIn: batch info: info];
+    [batch end];    
+
+    assertEquals(2, batch.numberOfSpritesDrawn);
+}
+
+- (void) testDroppablePairDrawsTwoSpritesWithTheCorrectTextures
+{
+    MockResourceManager* resources = [MockResourceManager new];
+    
+    GemType gems[2];    
+    gems[0] = Diamond;
+    gems[1] = Ruby;
+    
+    pair = [[DroppablePair alloc] initAt: MakeCell(4, 13) with: gems resources: resources];    
+    
+    [batch begin];
+    [pair drawIn: batch info: info];
+    [batch end];    
+    
+    assertEqualObjects(@"diamond", [[batch.sprites objectAtIndex: 0] texture].name);
+    assertEqualObjects(@"ruby", [[batch.sprites objectAtIndex: 1] texture].name);
+}
+
+@end

@@ -44,7 +44,7 @@
 {
     [controller spawn];
     
-    assertEquals(MakeCell(4, 13),[controller controlledGem].position);
+    assertEquals(MakeCell(4, 13),[controller controlledGem].cell);
 }
 
 - (void) testControlledGemMovesRight
@@ -52,7 +52,7 @@
     [controller spawn];
     [controller moveRight];
     
-    assertEquals(MakeCell(5, 13),[controller controlledGem].position);
+    assertEquals(MakeCell(5, 13),[controller controlledGem].cell);
 }
 
 - (void) testControlledGemDoesntMoveRightIfTheCellIsNotEmpty
@@ -62,7 +62,7 @@
     [controller spawn];
     [controller moveRight];
     
-    assertEquals(MakeCell(4, 13),[controller controlledGem].position);
+    assertEquals(MakeCell(4, 13),[controller controlledGem].cell);
 }
 
 - (void) testControlledGemDoesntMoveRightIfTheCellIsOutOfTheGrid
@@ -71,7 +71,7 @@
     
     [controller moveRight];
     
-    assertEquals(MakeCell(grid.width - 1, 13),[controller controlledGem].position);
+    assertEquals(MakeCell(grid.width - 1, 13),[controller controlledGem].cell);
 }
 
 - (void) testControlledGemMovesLeft
@@ -79,7 +79,7 @@
     [controller spawn];
     [controller moveLeft];
     
-    assertEquals(MakeCell(3, 13),[controller controlledGem].position);
+    assertEquals(MakeCell(3, 13),[controller controlledGem].cell);
 }
 
 - (void) testControlledGemDoesntMoveLeftIfTheCellIsNotEmpty
@@ -89,7 +89,7 @@
     [controller spawn];
     [controller moveLeft];
     
-    assertEquals(MakeCell(4, 13), [controller controlledGem].position);
+    assertEquals(MakeCell(4, 13), [controller controlledGem].cell);
 }
 
 - (void) testControlledGemDoesntMoveLeftIfTheCellIsOutOfTheGrid
@@ -98,7 +98,7 @@
     
     [controller moveLeft];
     
-    assertEquals(MakeCell(0, 13),[controller controlledGem].position);
+    assertEquals(MakeCell(0, 13),[controller controlledGem].cell);
 }
 
 - (void) testControlledGemChangesIfTheGemStopsFalling
@@ -121,7 +121,7 @@
     [controller setControlledGemTo: gem];
     [controller update];
 
-    assertEquals(MakeCell(4, 13),[controller controlledGem].position);
+    assertEquals(MakeCell(4, 13),[controller controlledGem].cell);
 }
 
 - (void) testGridControllerDoesntSpawnANewControlledGemWhenTheMiddleColumnIsFull
@@ -134,6 +134,44 @@
     [controller spawn];
     
     assertNil([controller controlledGem]);
+}
+
+@end
+
+@interface TestDroppablePair : TestCase 
+@end
+
+@implementation TestDroppablePair
+{
+    DroppablePair* pair;
+}
+
+- (void) setUp
+{
+    [super setUp];
+
+    GemType gems[2];    
+    gems[0] = Diamond;
+    gems[1] = Ruby;
+    
+    pair = [[DroppablePair alloc] initAt: MakeCell(4, 13) with: gems resources: nil];    
+}
+
+- (void) testDroppablePairSizeIs1x2
+{
+    assertEquals(1, pair.width);
+    assertEquals(2, pair.height);
+}
+
+- (void) testDroppablePairIsCreatedWithCorrectPivotAndBuddy
+{
+    assertEquals(Diamond, pair.pivot.type);
+    assertEquals(Ruby, pair.buddy.type);
+}
+
+- (void) testDroppablePairIsCreatedWithTheCorrectCell
+{
+    assertEquals(MakeCell(4, 13), pair.cell);    
 }
 
 @end
