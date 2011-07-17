@@ -14,6 +14,18 @@
     grid = [[Grid alloc] initWithResources: nil width: 14 height: 8];
 }
 
+- (Gem*) get: (GridCell) cell
+{
+    Droppable* droppable = [grid get: cell];
+    
+    if (![droppable isKindOfClass: [Gem class]])
+    {
+        return nil;
+    }
+    
+    return (Gem*) droppable;
+}
+
 @end
 
 @interface TestGrid : TestGridBase 
@@ -44,7 +56,7 @@
 {
     [grid put: Diamond at: MakeCell(0, 0)];
     
-    Gem* gem = [grid get: MakeCell(0, 0)];
+    Gem* gem = [self get: MakeCell(0, 0)];
     assertEquals(Diamond, gem.type);
 }
 
@@ -52,7 +64,7 @@
 {
     [grid put: Ruby at: MakeCell(0, 0)];
     
-    Gem* gem = [grid get: MakeCell(0, 0)];
+    Gem* gem = [self get: MakeCell(0, 0)];
     
     assertEquals(Ruby, gem.type);
 }
@@ -61,7 +73,7 @@
 {
     [grid put: Diamond at: MakeCell(1, 2)];
     
-    Gem* gem = [grid get: MakeCell(1, 2)];
+    Gem* gem = [self get: MakeCell(1, 2)];
     
     assertEquals(1, gem.cell.column);
     assertEquals(2, gem.cell.row);
@@ -72,7 +84,7 @@
     [grid put: Diamond at: MakeCell(1, 2)];
     [grid put: Diamond at: MakeCell(2, 3)];
 
-    Gem* gem = [grid get: MakeCell(2, 3)];
+    Gem* gem = [self get: MakeCell(2, 3)];
     
     assertEquals(2, gem.cell.column);
     assertEquals(3, gem.cell.row);
@@ -83,7 +95,7 @@
     [grid put: Diamond at: MakeCell(1, 2)];
     [grid put: Diamond at: MakeCell(2, 3)];
     
-    Gem* gem = [grid get: MakeCell(1, 2)];
+    Gem* gem = [self get: MakeCell(1, 2)];
     
     assertEquals(1, gem.cell.column);
     assertEquals(2, gem.cell.row);
@@ -93,7 +105,7 @@
 {
     [grid put: Diamond at: MakeCell(1, 2)];
     
-    Gem* gem = [grid get: MakeCell(2, 2)];
+    Gem* gem = [self get: MakeCell(2, 2)];
 
     assertEquals(EmptyGem, gem.type);
 }
@@ -138,7 +150,7 @@
 {
     [grid put: Diamond at: MakeCell(0, 0)];
 
-    Gem* gem = [grid get: MakeCell(0, 0)];
+    Gem* gem = [self get: MakeCell(0, 0)];
     
     [self updateGrid];
     
@@ -151,7 +163,7 @@
 
     [self updateGrid];
     
-    Gem* gem = [grid get: MakeCell(0, 0)];
+    Gem* gem = [self get: MakeCell(0, 0)];
 
     assertEquals(Stopped, gem.state);    
 }
@@ -162,7 +174,7 @@
 
     [self updateGrid];
 
-    Gem* gem = [grid get: MakeCell(0, 0)];
+    Gem* gem = [self get: MakeCell(0, 0)];
     
     assertEquals(Falling, gem.state);
 }
@@ -174,7 +186,7 @@
 
     [self updateGrid];
     
-    Gem* gem = [grid get: MakeCell(0, 1)];
+    Gem* gem = [self get: MakeCell(0, 1)];
     
     assertEquals(Stopped, gem.state);
 }
@@ -185,7 +197,7 @@
 
     [self updateGrid];
         
-    assertEquals(Diamond, [grid get: MakeCell(0, 0)].type);    
+    assertEquals(Diamond, [self get: MakeCell(0, 0)].type);    
 }
 
 - (void) testFallingGemMovesToTheCellBeneathAtTheCorrectCellHeight
@@ -194,7 +206,7 @@
 
     [self updateGrid];
     
-    assertEquals(1.0f - gravity, [grid get: MakeCell(0, 0)].cellHeight);    
+    assertEquals(1.0f - gravity, [self get: MakeCell(0, 0)].cellHeight);    
 }
 
 - (void) testFallingGemIsAtZeroPercentCellHeightWhenStopped
@@ -203,7 +215,7 @@
 
     [self updateGrid];
 
-    assertAlmostEquals(0.0f, [grid get: MakeCell(0, 0)].cellHeight);
+    assertAlmostEquals(0.0f, [self get: MakeCell(0, 0)].cellHeight);
 }
 
 - (void) testFallingGemIsChangingCellHeightAtConstantRateAfterTwoUpdates
@@ -213,7 +225,7 @@
     [self updateGrid];
     [self updateGrid];
     
-    assertAlmostEquals(0.80f, [grid get: MakeCell(0, 0)].cellHeight);
+    assertAlmostEquals(0.80f, [self get: MakeCell(0, 0)].cellHeight);
 }
 
 - (void) testFallingGemGoesThroughCellsWithTheCorrectHeight
@@ -225,7 +237,7 @@
     [self updateGrid];
     [self updateGrid];
     
-    assertAlmostEquals(0.80f, [grid get: MakeCell(0, 0)].cellHeight);
+    assertAlmostEquals(0.80f, [self get: MakeCell(0, 0)].cellHeight);
 }
 
 - (void) testFallingGemComesToAStopWhenItFallsOnTheGround
@@ -236,7 +248,7 @@
     [self updateGrid];
     [self updateGrid];
 
-    assertEquals(Stopped, [grid get: MakeCell(0, 0)].state);
+    assertEquals(Stopped, [self get: MakeCell(0, 0)].state);
 }
 
 - (void) testFallingGemHasCellHeightUqualsToZeroWhenItStopsFallingOnTheGround
@@ -247,7 +259,7 @@
     [self updateGrid];
     [self updateGrid];
     
-    assertAlmostEquals(0.0f, [grid get: MakeCell(0, 0)].cellHeight);
+    assertAlmostEquals(0.0f, [self get: MakeCell(0, 0)].cellHeight);
 }
 
 - (void) testFallingGemComesToAStopIfFallsOnAnotherGem
@@ -259,7 +271,7 @@
     [self updateGrid];
     [self updateGrid];
 
-    assertEquals(Stopped, [grid get: MakeCell(0, 1)].state);
+    assertEquals(Stopped, [self get: MakeCell(0, 1)].state);
 }
 
 @end

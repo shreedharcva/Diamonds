@@ -44,32 +44,32 @@ GridCell MakeCell(int column, int row);
 @class Grid;
 
 @interface Droppable : NSObject
+{
+    float cellHeight;
+}
 
 @property (readonly, nonatomic) int width;
 @property (readonly, nonatomic) int height;
 
 @property (readonly) GridCell cell;
+@property (readonly) GemState state;
+
+@property (readonly) float cellHeight;
 
 - (id) initAt: (GridCell) cell_ width: (int) width_ height: (int) height_;
 
 - (void) moveRightOn: (Grid*) grid;
 - (void) moveLeftOn: (Grid*) grid;
 
+- (void) updateWithGravity: (float) gravity onGrid: (Grid*) grid;
+
 @end
 
 @interface Gem : Droppable
-{
-    float cellHeight;
-}
 
 @property (readonly) GemType type;
-@property (readonly) GemState state;
-
-@property (readonly) float cellHeight;
 
 - (id) initWithType: (GemType) gemType at: (GridCell) cell resources: (ResourceManager*) resources;
-
-- (void) updateWithGravity: (float) gravity onGrid: (Grid*) grid;
 
 - (void) drawIn: (SpriteBatch*) batch info: (GridPresentationInfo) info;
 

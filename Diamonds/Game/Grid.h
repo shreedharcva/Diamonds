@@ -19,7 +19,8 @@
 //- (Droppable*) put: (Droppable*) droppable;
 
 - (Gem*) put: (GemType) type at: (GridCell) cell;
-- (Gem*) get: (GridCell) cell;
+
+- (Droppable*) get: (GridCell) cell;
 
 - (void) updateWithGravity: (float) gravity;
 

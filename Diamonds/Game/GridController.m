@@ -47,7 +47,7 @@
  
 - (Gem*) controlledGem
 {
-    return controlledGem;
+    return (Gem*) controlledGem;
 }
 
 - (void) moveRight
@@ -63,7 +63,7 @@
 - (void) update
 {
     [self.grid updateWithGravity: gravity];
-    if (controlledGem.state == Stopped)
+    if ([self controlledGem].state == Stopped)
     {
         [self spawn];
     }

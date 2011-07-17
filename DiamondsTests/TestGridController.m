@@ -92,18 +92,6 @@
     assertEquals(MakeCell(4, 13), [controller controlledGem].cell);
 }
 
-/*
-- (void) testControlledPairDoesntMoveLeftIfTheCellIsNotEmpty
-{
-    [controller.grid put: Diamond at: MakeCell(3, 13)];
-    
-    [controller spawn];
-    [controller moveLeft];
-    
-    assertEquals(MakeCell(4, 13), [controller controlledGem].cell);
-}
- */
-
 - (void) testControlledGemDoesntMoveLeftIfTheCellIsOutOfTheGrid
 {
     [self setControlledGemTo: MakeCell(0, 13)];

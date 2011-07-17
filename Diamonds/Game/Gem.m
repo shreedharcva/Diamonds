@@ -16,12 +16,15 @@
     
 @protected
     GridCell cell;
+    GemState state;
 }
 
 @synthesize width;
 @synthesize height;
 
 @synthesize cell;
+@synthesize state;
+@synthesize cellHeight;
 
 - (id) initAt: (GridCell) cell_ width: (int) width_ height: (int) height_;
 {
@@ -34,6 +37,9 @@
     cell = cell_;
     width = width_;
     height = height_;
+    
+    state = Stopped;    
+    cellHeight = 0.0f;
     
     return self;    
 }
@@ -87,19 +93,52 @@
     }
 }
 
+- (void) updateWithGravity: (float) gravity onGrid: (Grid*) grid
+{
+    if (state == Falling)
+    {
+        cellHeight -= gravity;
+        
+        if (cellHeight < 0.00f)
+        {
+            cellHeight += 1.00f;
+            
+            if ([self canMoveDown: grid])
+            {
+                cell.row -= 1;
+            }
+            else
+            {
+                state = Stopped;
+                cellHeight = 0.00f;
+            }
+        }
+    }    
+    else
+        if (state == Stopped)
+        {
+            if ([self canMoveDown: grid])
+            {
+                cell.row -= 1;
+                cellHeight = 1.00f - gravity;
+                if (cellHeight > 0.0)
+                {
+                    state = Falling;
+                }
+            }
+        }
+}
+
 @end
 
 @implementation Gem
 {
     GemType type; 
-    GemState state;
         
     Sprite* sprite;
 }
 
 @synthesize type;
-@synthesize state;
-@synthesize cellHeight;
 
 - (NSString*) getTextureNameFromType: (GemType) gemType
 {
@@ -136,50 +175,10 @@
         return nil;
     
     type = gemType;
-    state = Stopped;
-    
-    cellHeight = 0.0f;
     
     [self initSpriteForType: gemType resources: resources];
-
     
     return self;
-}
-
-- (void) updateWithGravity: (float) gravity onGrid: (Grid*) grid
-{
-    if (state == Falling)
-    {
-        cellHeight -= gravity;
-        
-        if (cellHeight < 0.00f)
-        {
-            cellHeight += 1.00f;
-
-            if ([self canMoveDown: grid])
-            {
-                cell.row -= 1;
-            }
-            else
-            {
-                state = Stopped;
-                cellHeight = 0.00f;
-            }
-        }
-    }    
-    else
-    if (state == Stopped)
-    {
-        if ([self canMoveDown: grid])
-        {
-            cell.row -= 1;
-            cellHeight = 1.00f - gravity;
-            if (cellHeight > 0.0)
-            {
-                state = Falling;
-            }
-        }
-    }
 }
 
 - (void) drawIn: (SpriteBatch*) batch info: (GridPresentationInfo) info;

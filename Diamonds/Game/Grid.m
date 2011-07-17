@@ -85,7 +85,7 @@ GridPosition MakePosition(int column, int row)
     return gem;
 }
 
-- (Gem*) get: (GridCell) cell
+- (Droppable*) get: (GridCell) cell
 {
     for (Gem* gem in droppables)
     {
