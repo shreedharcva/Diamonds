@@ -32,38 +32,42 @@
     gravity = newGravity;
 }
 
-- (void) spawn
+- (void) spawnAt: (GridCell) spawnCell
 {
-    GridCell spawnCell = MakeCell(grid.width / 2, grid.height - 1); 
     if ([grid isCellEmpty: spawnCell])
     {
-        controlledGem = [grid put: Diamond at: MakeCell(grid.width / 2, grid.height - 1)];    
+        droppablePair = [grid put: Diamond at: spawnCell];    
     }
     else
     {
-        controlledGem = nil;
-    }
+        droppablePair = nil;
+    }    
+}
+
+- (void) spawn
+{
+    [self spawnAt: MakeCell(grid.width / 2, grid.height - 1)];
 }
  
-- (Gem*) controlledGem
+- (Droppable*) droppablePair
 {
-    return (Gem*) controlledGem;
+    return droppablePair;
 }
 
 - (void) moveRight
 {
-    [controlledGem moveRightOn: grid];
+    [droppablePair moveRightOn: grid];
 }
 
 - (void) moveLeft
 {
-    [controlledGem moveLeftOn: grid];
+    [droppablePair moveLeftOn: grid];
 }
 
 - (void) update
 {
     [self.grid updateWithGravity: gravity];
-    if ([self controlledGem].state == Stopped)
+    if ([self droppablePair].state == Stopped)
     {
         [self spawn];
     }

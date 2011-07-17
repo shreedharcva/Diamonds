@@ -10,14 +10,12 @@
 @end
 
 @interface GridController (test)
+
+- (void) spawnAt: (GridCell) cell;
+
 @end
 
 @implementation GridController (test)
-
-- (void) setControlledGemTo: (Gem*) gem
-{
-    controlledGem = gem;
-}
 
 @end
 
@@ -25,11 +23,6 @@
 {
     Grid* grid;
     GridController* controller;
-}
-
-- (void) setControlledGemTo: (GridPosition) gridPosition
-{
-    [controller setControlledGemTo: [controller.grid put: Diamond at: gridPosition]];    
 }
 
 - (void) setUp
@@ -44,7 +37,7 @@
 {
     [controller spawn];
     
-    assertEquals(MakeCell(4, 13),[controller controlledGem].cell);
+    assertEquals(MakeCell(4, 13),[controller droppablePair].cell);
 }
 
 - (void) testControlledGemMovesRight
@@ -52,7 +45,7 @@
     [controller spawn];
     [controller moveRight];
     
-    assertEquals(MakeCell(5, 13),[controller controlledGem].cell);
+    assertEquals(MakeCell(5, 13),[controller droppablePair].cell);
 }
 
 - (void) testControlledGemDoesntMoveRightIfTheCellIsNotEmpty
@@ -62,16 +55,16 @@
     [controller spawn];
     [controller moveRight];
     
-    assertEquals(MakeCell(4, 13),[controller controlledGem].cell);
+    assertEquals(MakeCell(4, 13),[controller droppablePair].cell);
 }
 
 - (void) testControlledGemDoesntMoveRightIfTheCellIsOutOfTheGrid
 {
-    [self setControlledGemTo: MakeCell(grid.width - 1, 13)];
+    [controller spawnAt: MakeCell(grid.width - 1, 13)];
     
     [controller moveRight];
     
-    assertEquals(MakeCell(grid.width - 1, 13),[controller controlledGem].cell);
+    assertEquals(MakeCell(grid.width - 1, 13),[controller droppablePair].cell);
 }
 
 - (void) testControlledGemMovesLeft
@@ -79,7 +72,7 @@
     [controller spawn];
     [controller moveLeft];
     
-    assertEquals(MakeCell(3, 13),[controller controlledGem].cell);
+    assertEquals(MakeCell(3, 13),[controller droppablePair].cell);
 }
 
 - (void) testControlledGemDoesntMoveLeftIfTheCellIsNotEmpty
@@ -89,39 +82,38 @@
     [controller spawn];
     [controller moveLeft];
     
-    assertEquals(MakeCell(4, 13), [controller controlledGem].cell);
+    assertEquals(MakeCell(4, 13), [controller droppablePair].cell);
 }
 
 - (void) testControlledGemDoesntMoveLeftIfTheCellIsOutOfTheGrid
 {
-    [self setControlledGemTo: MakeCell(0, 13)];
+    [controller spawnAt: MakeCell(0, 13)];
     
     [controller moveLeft];
     
-    assertEquals(MakeCell(0, 13),[controller controlledGem].cell);
+    assertEquals(MakeCell(0, 13),[controller droppablePair].cell);
 }
 
 - (void) testControlledGemChangesIfTheGemStopsFalling
 {    
     [controller setGravity: 1.0f];
     
-    Gem* gem = [controller.grid put: Diamond at: MakeCell(0, 1)];
-    [controller setControlledGemTo: gem];
-    assertEquals(gem, [controller controlledGem]);
+    [controller spawnAt: MakeCell(0, 1)];
+    Gem* gem = (Gem*) [controller.grid get: MakeCell(0, 1)];
+    assertEquals(gem, [controller droppablePair]);
     
     [controller update];
-    assertTrue(gem != [controller controlledGem]);
+    assertTrue(gem != [controller droppablePair]);
 }
 
 - (void) testGridControllerSpawnsANewControlledGemWhenTheOldOneStopsFalling
 {    
     [controller setGravity: 1.0f];
     
-    Gem* gem = [controller.grid put: Diamond at: MakeCell(0, 1)];
-    [controller setControlledGemTo: gem];
+    [controller spawnAt: MakeCell(0, 1)];
     [controller update];
 
-    assertEquals(MakeCell(4, 13),[controller controlledGem].cell);
+    assertEquals(MakeCell(4, 13),[controller droppablePair].cell);
 }
 
 - (void) testGridControllerDoesntSpawnANewControlledGemWhenTheMiddleColumnIsFull
@@ -133,7 +125,7 @@
     
     [controller spawn];
     
-    assertNil([controller controlledGem]);
+    assertNil([controller droppablePair]);
 }
 
 @end

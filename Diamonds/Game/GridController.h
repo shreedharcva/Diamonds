@@ -8,7 +8,7 @@
 
 @interface GridController : NSObject
 {
-    Droppable* controlledGem;
+    Droppable* droppablePair;
 }
 
 - (id) initWithGrid: (Grid*) grid;
@@ -16,7 +16,7 @@
 - (void) setGravity: (float) newGravity;
 
 - (void) spawn;
-- (Gem*) controlledGem;
+- (Droppable*) droppablePair;
 
 - (void) moveRight;
 - (void) moveLeft;
