@@ -163,15 +163,20 @@
     DroppablePair* pair;
 }
 
-- (void) testDroppablePairDrawsTwoSprites
+- (void) makePairAt: (GridCell) cell
 {
     MockResourceManager* resources = [MockResourceManager new];
-
+    
     GemType gems[2];    
     gems[0] = Diamond;
     gems[1] = Ruby;
     
-    pair = [[DroppablePair alloc] initAt: MakeCell(4, 13) with: gems resources: resources];    
+    pair = [[DroppablePair alloc] initAt: cell with: gems resources: resources];        
+}
+
+- (void) testDroppablePairDrawsTwoSprites
+{
+    [self makePairAt: MakeCell(4, 13)];
 
     [batch begin];
     [pair drawIn: batch info: info];
@@ -182,13 +187,7 @@
 
 - (void) testDroppablePairDrawsTwoSpritesWithTheCorrectTextures
 {
-    MockResourceManager* resources = [MockResourceManager new];
-    
-    GemType gems[2];    
-    gems[0] = Diamond;
-    gems[1] = Ruby;
-    
-    pair = [[DroppablePair alloc] initAt: MakeCell(4, 13) with: gems resources: resources];    
+    [self makePairAt: MakeCell(4, 13)];
     
     [batch begin];
     [pair drawIn: batch info: info];

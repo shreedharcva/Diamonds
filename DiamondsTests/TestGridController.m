@@ -92,6 +92,18 @@
     assertEquals(MakeCell(4, 13), [controller controlledGem].cell);
 }
 
+/*
+- (void) testControlledPairDoesntMoveLeftIfTheCellIsNotEmpty
+{
+    [controller.grid put: Diamond at: MakeCell(3, 13)];
+    
+    [controller spawn];
+    [controller moveLeft];
+    
+    assertEquals(MakeCell(4, 13), [controller controlledGem].cell);
+}
+ */
+
 - (void) testControlledGemDoesntMoveLeftIfTheCellIsOutOfTheGrid
 {
     [self setControlledGemTo: MakeCell(0, 13)];
@@ -154,7 +166,7 @@
     gems[0] = Diamond;
     gems[1] = Ruby;
     
-    pair = [[DroppablePair alloc] initAt: MakeCell(4, 13) with: gems resources: nil];    
+    pair = [[DroppablePair alloc] initAt: MakeCell(4, 12) with: gems resources: nil];    
 }
 
 - (void) testDroppablePairSizeIs1x2
@@ -171,7 +183,13 @@
 
 - (void) testDroppablePairIsCreatedWithTheCorrectCell
 {
-    assertEquals(MakeCell(4, 13), pair.cell);    
+    assertEquals(MakeCell(4, 12), pair.cell);    
+}
+
+- (void) testDroppablePairCreatesTwoGemsAtTheCorrectCells
+{
+    assertEquals(MakeCell(4, 12), pair.pivot.cell);    
+    assertEquals(MakeCell(4, 13), pair.buddy.cell);    
 }
 
 @end

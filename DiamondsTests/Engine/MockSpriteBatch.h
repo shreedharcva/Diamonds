@@ -6,6 +6,8 @@
 #import "Engine.h"
 #import "SpriteBatch.h"
 
+// TODO: Remove
+
 typedef struct SpriteDescriptor
 {    
     CGPoint position;

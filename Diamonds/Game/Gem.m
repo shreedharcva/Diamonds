@@ -38,6 +38,52 @@
     return self;    
 }
 
+- (bool) canMoveRight: (Grid*) grid
+{
+    GridPosition newPosition = self.cell;
+    newPosition.column += 1;
+    
+    if (![grid isCellValid: newPosition])
+        return false;
+    
+    return [grid isCellEmpty: newPosition];    
+}
+
+- (bool) canMoveLeft: (Grid*) grid
+{
+    GridPosition newPosition = self.cell;
+    newPosition.column -= 1;
+    
+    if (![grid isCellValid: newPosition])
+        return false;
+    
+    return [grid isCellEmpty: newPosition];    
+}
+
+- (bool) canMoveDown: (Grid*) grid
+{
+    GridPosition newPosition = self.cell;
+    newPosition.row -= 1;
+    
+    return [grid isCellEmpty: newPosition];    
+}
+
+- (void) moveRightOn: (Grid*) grid
+{
+    if ([self canMoveRight: grid])
+    {
+        cell.column += 1;
+    }
+}
+
+- (void) moveLeftOn: (Grid*) grid
+{
+    if ([self canMoveLeft: grid])
+    {
+        cell.column -= 1;
+    }
+}
+
 @end
 
 @implementation Gem
@@ -95,52 +141,6 @@
 
     
     return self;
-}
-
-- (bool) canMoveRight: (Grid*) grid
-{
-    GridPosition newPosition = self.cell;
-    newPosition.column += 1;
-    
-    if (![grid isCellValid: newPosition])
-        return false;
-    
-    return [grid isCellEmpty: newPosition];    
-}
-
-- (bool) canMoveLeft: (Grid*) grid
-{
-    GridPosition newPosition = self.cell;
-    newPosition.column -= 1;
-
-    if (![grid isCellValid: newPosition])
-        return false;
-
-    return [grid isCellEmpty: newPosition];    
-}
-
-- (bool) canMoveDown: (Grid*) grid
-{
-    GridPosition newPosition = self.cell;
-    newPosition.row -= 1;
-    
-    return [grid isCellEmpty: newPosition];    
-}
-
-- (void) moveRightOn: (Grid*) grid
-{
-    if ([self canMoveRight: grid])
-    {
-        cell.column += 1;
-    }
-}
-
-- (void) moveLeftOn: (Grid*) grid
-{
-    if ([self canMoveLeft: grid])
-    {
-        cell.column -= 1;
-    }
 }
 
 - (void) updateWithGravity: (float) gravity onGrid: (Grid*) grid
@@ -218,8 +218,8 @@
         return nil;
     }
     
-    pivot = [[Gem alloc] initWithType: gems[0] at: MakeCell(0, 0) resources: resources];
-    buddy = [[Gem alloc] initWithType: gems[1] at: MakeCell(0, 0) resources: resources];
+    pivot = [[Gem alloc] initWithType: gems[0] at: self.cell resources: resources];
+    buddy = [[Gem alloc] initWithType: gems[1] at: MakeCell(self.cell.column, self.cell.row + 1) resources: resources];
     
     return self;
 }

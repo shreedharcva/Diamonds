@@ -52,6 +52,9 @@ GridCell MakeCell(int column, int row);
 
 - (id) initAt: (GridCell) cell_ width: (int) width_ height: (int) height_;
 
+- (void) moveRightOn: (Grid*) grid;
+- (void) moveLeftOn: (Grid*) grid;
+
 @end
 
 @interface Gem : Droppable
@@ -65,9 +68,6 @@ GridCell MakeCell(int column, int row);
 @property (readonly) float cellHeight;
 
 - (id) initWithType: (GemType) gemType at: (GridCell) cell resources: (ResourceManager*) resources;
-
-- (void) moveRightOn: (Grid*) grid;
-- (void) moveLeftOn: (Grid*) grid;
 
 - (void) updateWithGravity: (float) gravity onGrid: (Grid*) grid;
 
