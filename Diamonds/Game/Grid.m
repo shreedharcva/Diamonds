@@ -25,7 +25,7 @@ GridPosition MakePosition(int column, int row)
     int width;
     int height;
     
-    NSMutableSet* gems;
+    NSMutableSet* droppables;
 }
 
 @synthesize width;
@@ -42,64 +42,66 @@ GridPosition MakePosition(int column, int row)
     width = gridWidth;
     height = gridHeight;
 
-    gems = [NSMutableSet new];
+    droppables = [NSMutableSet new];
     
     return self;
 }
 
 - (bool) isEmpty
 {
-    return [gems count] == 0;
+    return [droppables count] == 0;
 }
 
-- (bool) isCellEmpty: (GridPosition) position
+- (bool) isCellEmpty: (GridCell) cell
 {
-    return position.row >= 0 && [self get: position].type == EmptyGem;
+    return [self get: cell] == Nil;
 }
 
-- (bool) isCellValid: (GridPosition) position
+- (bool) isCellValid: (GridCell) cell
 {
-    if (position.column < 0 || position.column >= self.width)
+    if (cell.column < 0 || cell.column >= self.width)
+        return false;
+    if (cell.row < 0)
         return false;
     
     return true;
 }
 
-- (NSArray*) gems
+- (NSArray*) droppables
 {
-    return [gems allObjects];
+    return [droppables allObjects];
 }
 
-- (Gem*) put: (GemType) type at: (GridPosition) position
+- (Gem*) put: (GemType) type at: (GridCell) cell
 {
-    if ([[self get: position] type] != EmptyGem)
+    if (![self isCellEmpty: cell])
     {
-        @throw [NSException exceptionWithName:@"Grid" reason: @"Grid position is not empty" userInfo: nil];
+        @throw [NSException exceptionWithName:@"Grid" reason: @"Grid cell is not empty" userInfo: nil];
     }
     
-    Gem* gem = [[Gem alloc] initWithType: type at: position resources: resources];
-    [gems addObject: gem];
+    Gem* gem = [[Gem alloc] initWithType: type at: cell resources: resources];
+    [droppables addObject: gem];
     
     return gem;
 }
 
-- (Gem*) get: (GridPosition) position
+- (Gem*) get: (GridCell) cell
 {
-    for (Gem* gem in gems)
+    for (Gem* gem in droppables)
     {
-        if (gem.cell.column == position.column &&
-            gem.cell.row == position.row)
+        if (gem.cell.column == cell.column &&
+            gem.cell.row == cell.row)
         {
             return gem;
         }
     }
     
-    return [[Gem alloc] initWithType: EmptyGem at: MakePosition(0, 0) resources: resources];
+    return nil;
 }
 
 - (void) updateWithGravity: (float) gravity
 {
-    for (Gem* gem in gems)
+    for (Gem* gem in droppables)
     {
         [gem updateWithGravity: gravity onGrid: self];
     }    
@@ -145,7 +147,7 @@ GridPosition MakePosition(int column, int row)
     if ([grid isEmpty])
         return;
 
-    for (Gem* gem in grid.gems)
+    for (Gem* gem in grid.droppables)
     {
         [gem drawIn: batch info: info];
     }

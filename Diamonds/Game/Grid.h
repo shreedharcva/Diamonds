@@ -4,18 +4,22 @@
 
 #import "Gem.h"
 
+@class Droppable;
+
 @interface Grid : NSObject
 
-@property (readonly) NSArray* gems;
+@property (readonly) NSArray* droppables;
 
 - (id) initWithResources: (ResourceManager*) resourceManager width: (int) gridWidth height: (int) gridHeight;
 
 - (bool) isEmpty;
-- (bool) isCellEmpty: (GridPosition) position;
-- (bool) isCellValid: (GridPosition) position;
+- (bool) isCellEmpty: (GridCell) cell;
+- (bool) isCellValid: (GridCell) cell;
 
-- (Gem*) put: (GemType) type at: (GridPosition) origin;
-- (Gem*) get: (GridPosition) position;
+//- (Droppable*) put: (Droppable*) droppable;
+
+- (Gem*) put: (GemType) type at: (GridCell) cell;
+- (Gem*) get: (GridCell) cell;
 
 - (void) updateWithGravity: (float) gravity;
 

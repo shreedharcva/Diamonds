@@ -40,32 +40,35 @@
 
 - (bool) canMoveRight: (Grid*) grid
 {
-    GridPosition newPosition = self.cell;
-    newPosition.column += 1;
+    GridCell newCell = self.cell;
+    newCell.column += 1;
     
-    if (![grid isCellValid: newPosition])
+    if (![grid isCellValid: newCell])
         return false;
     
-    return [grid isCellEmpty: newPosition];    
+    return [grid isCellEmpty: newCell];    
 }
 
 - (bool) canMoveLeft: (Grid*) grid
 {
-    GridPosition newPosition = self.cell;
-    newPosition.column -= 1;
+    GridCell newCell = self.cell;
+    newCell.column -= 1;
     
-    if (![grid isCellValid: newPosition])
+    if (![grid isCellValid: newCell])
         return false;
     
-    return [grid isCellEmpty: newPosition];    
+    return [grid isCellEmpty: newCell];    
 }
 
 - (bool) canMoveDown: (Grid*) grid
 {
-    GridPosition newPosition = self.cell;
-    newPosition.row -= 1;
+    GridCell newCell = self.cell;
+    newCell.row -= 1;
     
-    return [grid isCellEmpty: newPosition];    
+    if (![grid isCellValid: newCell])
+        return false;
+    
+    return [grid isCellEmpty: newCell];    
 }
 
 - (void) moveRightOn: (Grid*) grid
