@@ -36,7 +36,13 @@
 {
     if ([grid isCellEmpty: spawnCell])
     {
-        droppablePair = [grid put: Diamond at: spawnCell];    
+        GemType gems[2];    
+        gems[0] = Diamond;
+        gems[1] = Ruby;
+        
+        // TODO: create a DroppableFactory class to hide the resource manager        
+        droppablePair = [[DroppablePair alloc] initAt: spawnCell with: gems resources: grid.resources];
+        [grid put: droppablePair];
     }
     else
     {

@@ -31,6 +31,8 @@ GridPosition MakePosition(int column, int row)
 @synthesize width;
 @synthesize height;
 
+@synthesize resources;
+
 - (id) initWithResources: (ResourceManager*) resourceManager width: (int) gridWidth height: (int) gridHeight
 {
     self = [super init];
@@ -72,16 +74,21 @@ GridPosition MakePosition(int column, int row)
     return [droppables allObjects];
 }
 
-- (Gem*) put: (GemType) type at: (GridCell) cell
+- (Droppable*) put: (Droppable*) droppable
 {
-    if (![self isCellEmpty: cell])
+    if (![self isCellEmpty: droppable.cell])
     {
         @throw [NSException exceptionWithName:@"Grid" reason: @"Grid cell is not empty" userInfo: nil];
     }
-    
+
+    [droppables addObject: droppable];   
+    return droppable;
+}
+
+- (Gem*) put: (GemType) type at: (GridCell) cell
+{
     Gem* gem = [[Gem alloc] initWithType: type at: cell resources: resources];
-    [droppables addObject: gem];
-    
+    [self put: gem];
     return gem;
 }
 

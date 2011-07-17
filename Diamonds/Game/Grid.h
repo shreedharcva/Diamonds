@@ -16,7 +16,7 @@
 - (bool) isCellEmpty: (GridCell) cell;
 - (bool) isCellValid: (GridCell) cell;
 
-//- (Droppable*) put: (Droppable*) droppable;
+- (Droppable*) put: (Droppable*) droppable;
 
 - (Gem*) put: (GemType) type at: (GridCell) cell;
 
@@ -26,6 +26,8 @@
 
 @property (readonly) int width;
 @property (readonly) int height;
+
+@property (readonly) ResourceManager* resources;
 
 @end
 

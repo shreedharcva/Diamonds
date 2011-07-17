@@ -15,10 +15,6 @@
 
 @end
 
-@implementation GridController (test)
-
-@end
-
 @implementation TestGridController
 {
     Grid* grid;
@@ -94,16 +90,14 @@
     assertEquals(MakeCell(0, 13),[controller droppablePair].cell);
 }
 
-- (void) testControlledGemChangesIfTheGemStopsFalling
+- (void) testGridControllerSpawnsANewPairThatStartsFalling
 {    
-    [controller setGravity: 1.0f];
+    [controller setGravity: 0.0f];
     
-    [controller spawnAt: MakeCell(0, 1)];
-    Gem* gem = (Gem*) [controller.grid get: MakeCell(0, 1)];
-    assertEquals(gem, [controller droppablePair]);
-    
+    [controller spawnAt: MakeCell(4, 13)];
     [controller update];
-    assertTrue(gem != [controller droppablePair]);
+    
+    assertEquals(Falling, [controller droppablePair].state);
 }
 
 - (void) testGridControllerSpawnsANewControlledGemWhenTheOldOneStopsFalling
