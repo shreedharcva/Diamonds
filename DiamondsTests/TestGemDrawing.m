@@ -26,15 +26,16 @@
 
 @implementation TestGemBase
 
-- (void) makeGem: (GemType) type
+- (Gem*) makeGem: (GemType) type
 {
-    [self makeGem: type at: MakeCell(0, 0)];
+    return [self makeGem: type at: MakeCell(0, 0)];
 }
 
-- (void) makeGem: (GemType) type at: (GridPosition) position
+- (Gem*) makeGem: (GemType) type at: (GridPosition) position
 {
     ResourceManager* resourceManager = [ResourceManager new];    
     gem = [[Gem alloc] initWithType: type at: position resources: resourceManager];    
+    return gem;
 }
 
 @end
@@ -54,11 +55,62 @@
 
 @end
 
+@interface GemAggregate : Droppable 
+
+- (id) initAt: (GridCell) cell width: (int) width_ height: (int) height_;
+
+@end
+
+@implementation GemAggregate
+{
+    NSMutableArray* droppables;
+}
+
+- (id) initAt: (GridCell) cell width: (int) width_ height: (int) height_
+{
+    self = [super initAt: cell width: width_ height: height_];
+    if (self == nil)
+        return nil;
+    
+    droppables = [NSMutableArray arrayWithCapacity: self.width * self.height];
+    
+    return self;    
+}
+
+- (void) add: (Droppable*) droppable
+{
+    [droppables addObject: droppable];    
+}
+
+- (Gem*) gem: (int) index
+{
+    return (Gem*) [droppables objectAtIndex: index];
+}
+
+@end
+
+@interface TestGemAggreate : TestGemBase 
+@end
+
+@implementation TestGemAggreate
+
+- (void) testGemAggreateContainsOneGemWhenAGemIsAdded
+{
+    GemAggregate* aggregate = [[GemAggregate alloc] initAt: MakeCell(1, 1) width: 2 height: 2];
+    
+    [aggregate add: [self makeGem: Diamond at: MakeCell(0, 0)]];
+
+    assertEquals(Diamond, [aggregate gem: 0].type);
+}
+
+@end
+
 @interface TestGemDrawingBase : TestGemBase 
 {
     MockSpriteBatch* batch;    
     GridPresentationInfo info;
 }
+
 @end
 
 @implementation TestGemDrawingBase

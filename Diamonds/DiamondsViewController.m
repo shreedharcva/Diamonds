@@ -14,6 +14,10 @@
 
 #import "DiamondsGame.h"
 
+#ifdef TEST
+xxxxxx
+#endif
+
 @interface DiamondsViewController ()
 
 @property (nonatomic, assign) CADisplayLink *displayLink;
@@ -91,7 +95,9 @@
     animationFrameInterval = 1;
     self.displayLink = nil;
     
+#ifndef TEST
     [self initializeGame];
+#endif
 }
 
 - (void) didReceiveMemoryWarning

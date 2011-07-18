@@ -10,8 +10,8 @@
     Gem* gem;
 }
 
-- (void) makeGem: (GemType) type;
-- (void) makeGem: (GemType) type at: (GridPosition) position;
+- (Gem*) makeGem: (GemType) type;
+- (Gem*) makeGem: (GemType) type at: (GridPosition) position;
 
 
 @end

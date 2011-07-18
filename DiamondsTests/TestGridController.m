@@ -157,7 +157,7 @@
 }
 
 - (void) testDroppablePairIsCreatedWithCorrectPivotAndBuddy
-{
+{    
     assertEquals(Diamond, pair.pivot.type);
     assertEquals(Ruby, pair.buddy.type);
 }

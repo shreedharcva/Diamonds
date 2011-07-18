@@ -46,9 +46,7 @@
         
         // TODO: create a DroppableFactory class to hide the resource manager        
         droppablePair = [[DroppablePair alloc] initAt: spawnCell with: gems resources: grid.resources];
-        NSLog(@"pivot = %@", droppablePair);
         [grid put: droppablePair];
-        NSLog(@"pivot = %@", droppablePair);
     }
     else
     {
@@ -59,7 +57,7 @@
 - (void) spawn
 {
     [self spawnAt: MakeCell(grid.width / 2, grid.height - 1)];
-    NSLog(@"pivot = %@", droppablePair);
+    NSLog(@"spawing pair = %@", droppablePair);
 }
  
 - (DroppablePair*) droppablePair
@@ -79,8 +77,6 @@
 
 - (void) update
 {
-    NSLog(@"pivot = %@", droppablePair);
-    
     [self.grid updateWithGravity: gravity];
     if ([self droppablePair].state == Stopped)
     {

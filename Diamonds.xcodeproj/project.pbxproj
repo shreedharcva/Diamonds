@@ -722,6 +722,11 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "DiamondsTests/DiamondsTests-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					DEBUG,
+					TEST,
+				);
+				GCC_PREPROCESSOR_DEFINITIONS_NOT_USED_IN_PRECOMPS = "";
 				INFOPLIST_FILE = "DiamondsTests/DiamondsTests-Info.plist";
 				OTHER_LDFLAGS = (
 					"-framework",
@@ -729,6 +734,7 @@
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
+				WARNING_CFLAGS = "";
 				WRAPPER_EXTENSION = octest;
 			};
 			name = Debug;
@@ -747,6 +753,7 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "DiamondsTests/DiamondsTests-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS_NOT_USED_IN_PRECOMPS = "";
 				INFOPLIST_FILE = "DiamondsTests/DiamondsTests-Info.plist";
 				OTHER_LDFLAGS = (
 					"-framework",
@@ -754,6 +761,7 @@
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
+				WARNING_CFLAGS = "";
 				WRAPPER_EXTENSION = octest;
 			};
 			name = Release;

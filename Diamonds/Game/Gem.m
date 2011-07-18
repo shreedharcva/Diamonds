@@ -204,14 +204,16 @@
 
 - (NSString*) description
 {
-    if (type == Diamond)
-        return @"Diamond";
-    if (type == Diamond)
-        return @"Ruby";
-    if (type == Sapphire)
-        return @"Sapphure";
+    NSString* typeString = @"NoType";
     
-    return @"EmptyGem";
+    if (type == Diamond)
+        typeString =  @"Diamond";
+    if (type == Ruby)
+        typeString =  @"Ruby";
+    if (type == Sapphire)
+        typeString =  @"Sapphire";
+    
+    return [NSString stringWithFormat: @"[%p] %@", self, typeString]; 
 }
 
 - (Sprite*) sprite
@@ -222,6 +224,10 @@
 @end
 
 @implementation DroppablePair
+{
+    Gem* buddy;
+    Gem* pivot;
+}
 
 @synthesize pivot;
 @synthesize buddy;
@@ -233,14 +239,9 @@
     {
         return nil;
     }
-    
-    Gem* gem = [[Gem alloc] initWithType: Diamond at: self.cell resources: resources];
-    NSLog(@"pivot = %@", gem);
-    
+
     pivot = [[Gem alloc] initWithType: gems[0] at: self.cell resources: resources];
-    NSLog(@"pivot = %@", pivot);
-    buddy = [[Gem alloc] initWithType: gems[1] at: MakeCell(self.cell.column, self.cell.row + 1) resources: resources];    
-    NSLog(@"buddy = %@", buddy);
+    buddy = [[Gem alloc] initWithType: gems[1] at: MakeCell(self.cell.column, self.cell.row + 1) resources: resources];  
     
     return self;
 }
@@ -254,10 +255,7 @@
 
 - (NSString*) description
 {
-    NSLog(@"pivot = %@", pivot);
-    NSLog(@"buddy = %@", buddy);
-
-    return [NSString stringWithFormat: @"<%@, %@>", pivot, buddy];
+    return [NSString stringWithFormat: @"[%p] DroppablePair <%@, %@>", self, pivot, buddy];
 }
 
 
