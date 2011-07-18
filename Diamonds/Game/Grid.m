@@ -108,9 +108,9 @@ GridPosition MakePosition(int column, int row)
 
 - (void) updateWithGravity: (float) gravity
 {
-    for (Gem* gem in droppables)
+    for (Droppable* droppable in droppables)
     {
-        [gem updateWithGravity: gravity onGrid: self];
+        [droppable updateWithGravity: gravity onGrid: self];
     }    
 }
 
@@ -154,9 +154,9 @@ GridPosition MakePosition(int column, int row)
     if ([grid isEmpty])
         return;
 
-    for (Gem* gem in grid.droppables)
+    for (Droppable* droppable in grid.droppables)
     {
-        [gem drawIn: batch info: info];
+        [droppable drawIn: batch info: info];
     }
 }
 

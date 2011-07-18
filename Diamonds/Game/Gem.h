@@ -62,6 +62,7 @@ GridCell MakeCell(int column, int row);
 - (void) moveLeftOn: (Grid*) grid;
 
 - (void) updateWithGravity: (float) gravity onGrid: (Grid*) grid;
+- (void) drawIn: (SpriteBatch*) batch info: (GridPresentationInfo) info;
 
 @end
 
@@ -81,6 +82,7 @@ GridCell MakeCell(int column, int row);
 @property (readonly) Gem* buddy;
 
 - (id) initAt: (GridCell) cell_ with: (GemType[]) gems resources: (ResourceManager*) resources;
+
 - (void) drawIn: (SpriteBatch*) batch info: (GridPresentationInfo) info;
 
 @end

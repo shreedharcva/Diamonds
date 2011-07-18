@@ -129,6 +129,15 @@
         }
 }
 
+- (void) drawIn: (SpriteBatch*) batch info: (GridPresentationInfo) info
+{
+    
+}
+
+@end
+
+@interface Gem (private)
+@property (readonly) Sprite* sprite;
 @end
 
 @implementation Gem
@@ -205,6 +214,11 @@
     return @"EmptyGem";
 }
 
+- (Sprite*) sprite
+{
+    return sprite;
+}
+
 @end
 
 @implementation DroppablePair
@@ -220,8 +234,13 @@
         return nil;
     }
     
+    Gem* gem = [[Gem alloc] initWithType: Diamond at: self.cell resources: resources];
+    NSLog(@"pivot = %@", gem);
+    
     pivot = [[Gem alloc] initWithType: gems[0] at: self.cell resources: resources];
-    buddy = [[Gem alloc] initWithType: gems[1] at: MakeCell(self.cell.column, self.cell.row + 1) resources: resources];
+    NSLog(@"pivot = %@", pivot);
+    buddy = [[Gem alloc] initWithType: gems[1] at: MakeCell(self.cell.column, self.cell.row + 1) resources: resources];    
+    NSLog(@"buddy = %@", buddy);
     
     return self;
 }
@@ -231,5 +250,15 @@
     [pivot drawIn: batch info: info];
     [buddy drawIn: batch info: info];
 }
+
+
+- (NSString*) description
+{
+    NSLog(@"pivot = %@", pivot);
+    NSLog(@"buddy = %@", buddy);
+
+    return [NSString stringWithFormat: @"<%@, %@>", pivot, buddy];
+}
+
 
 @end

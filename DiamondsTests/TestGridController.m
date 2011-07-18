@@ -5,6 +5,13 @@
 #import "TestGridController.h"
 #import "GridController.h"
 #import "Grid.h"
+#import "Sprite.h"
+
+@interface Gem (testing)
+
+- (Sprite*) sprite;
+
+@end
 
 @interface TestGridController : TestCase 
 @end
@@ -29,14 +36,14 @@
     controller = [[GridController alloc] initWithGrid: grid];
 }
 
-- (void) testGridControllerCreatesAControlledGemAtTheCorrectCellInTheGridWhenAskedToSpawn 
+- (void) testGridControllerCreatesADroppablePairAtTheCorrectCellInTheGridWhenAskedToSpawn 
 {
     [controller spawn];
     
     assertEquals(MakeCell(4, 13),[controller droppablePair].cell);
 }
 
-- (void) testControlledGemMovesRight
+- (void) testDroppablePairMovesRight
 {
     [controller spawn];
     [controller moveRight];
@@ -44,7 +51,7 @@
     assertEquals(MakeCell(5, 13),[controller droppablePair].cell);
 }
 
-- (void) testControlledGemDoesntMoveRightIfTheCellIsNotEmpty
+- (void) testDroppablePairDoesntMoveRightIfTheCellIsNotEmpty
 {
     [controller.grid put: Diamond at: MakeCell(5, 13)];
     
@@ -54,7 +61,7 @@
     assertEquals(MakeCell(4, 13),[controller droppablePair].cell);
 }
 
-- (void) testControlledGemDoesntMoveRightIfTheCellIsOutOfTheGrid
+- (void) testDroppablePairDoesntMoveRightIfTheCellIsOutOfTheGrid
 {
     [controller spawnAt: MakeCell(grid.width - 1, 13)];
     
@@ -63,7 +70,7 @@
     assertEquals(MakeCell(grid.width - 1, 13),[controller droppablePair].cell);
 }
 
-- (void) testControlledGemMovesLeft
+- (void) testDroppablePairMovesLeft
 {
     [controller spawn];
     [controller moveLeft];
@@ -71,7 +78,7 @@
     assertEquals(MakeCell(3, 13),[controller droppablePair].cell);
 }
 
-- (void) testControlledGemDoesntMoveLeftIfTheCellIsNotEmpty
+- (void) testDroppablePairDoesntMoveLeftIfTheCellIsNotEmpty
 {
     [controller.grid put: Diamond at: MakeCell(3, 13)];
     
@@ -81,7 +88,7 @@
     assertEquals(MakeCell(4, 13), [controller droppablePair].cell);
 }
 
-- (void) testControlledGemDoesntMoveLeftIfTheCellIsOutOfTheGrid
+- (void) testDroppablePairDoesntMoveLeftIfTheCellIsOutOfTheGrid
 {
     [controller spawnAt: MakeCell(0, 13)];
     
@@ -100,7 +107,7 @@
     assertEquals(Falling, [controller droppablePair].state);
 }
 
-- (void) testGridControllerSpawnsANewControlledGemWhenTheOldOneStopsFalling
+- (void) testGridControllerSpawnsANewDroppablePairWhenTheOldOneStopsFalling
 {    
     [controller setGravity: 1.0f];
     
@@ -110,7 +117,7 @@
     assertEquals(MakeCell(4, 13),[controller droppablePair].cell);
 }
 
-- (void) testGridControllerDoesntSpawnANewControlledGemWhenTheMiddleColumnIsFull
+- (void) testGridControllerDoesntSpawnANewDroppablePairWhenTheMiddleColumnIsFull
 {
     for (int i = 0; i < 14; ++i)
     {
@@ -153,6 +160,12 @@
 {
     assertEquals(Diamond, pair.pivot.type);
     assertEquals(Ruby, pair.buddy.type);
+}
+
+- (void) testDroppablePairIsCreatedWithPivotAndBuddyAndSprites
+{    
+    assertNotNil([pair.pivot sprite]);
+    assertNotNil([pair.buddy sprite]);
 }
 
 - (void) testDroppablePairIsCreatedWithTheCorrectCell

@@ -3,12 +3,11 @@
 //  Diamonds
 
 @class Grid;
-@class Droppable;
-@class Gem;
+@class DroppablePair;
 
 @interface GridController : NSObject
 {
-    Droppable* droppablePair;
+    DroppablePair* droppablePair;
 }
 
 - (id) initWithGrid: (Grid*) grid;
@@ -16,7 +15,7 @@
 - (void) setGravity: (float) newGravity;
 
 - (void) spawn;
-- (Droppable*) droppablePair;
+- (DroppablePair*) droppablePair;
 
 - (void) moveRight;
 - (void) moveLeft;
