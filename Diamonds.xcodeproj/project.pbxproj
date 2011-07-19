@@ -59,6 +59,8 @@
 		13C9456413BF1F21008565D6 /* MockEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 13C9456313BF1F21008565D6 /* MockEngine.m */; };
 		13C9456713BF269D008565D6 /* DiamondsGame.m in Sources */ = {isa = PBXBuildFile; fileRef = 13C9456613BF269D008565D6 /* DiamondsGame.m */; };
 		13D8E7E413BCD6A7007472E2 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 134DFF2513A79FE900DA67FC /* OpenGLES.framework */; };
+		13D994C613D61BA7001066FD /* Droppable.m in Sources */ = {isa = PBXBuildFile; fileRef = 13D994C513D61BA7001066FD /* Droppable.m */; };
+		13D994C713D61BA7001066FD /* Droppable.m in Sources */ = {isa = PBXBuildFile; fileRef = 13D994C513D61BA7001066FD /* Droppable.m */; };
 		13DEF2A213C1F285003C2B66 /* Game.m in Sources */ = {isa = PBXBuildFile; fileRef = 13DEF2A113C1F285003C2B66 /* Game.m */; };
 		13DEF2A313C1F285003C2B66 /* Game.m in Sources */ = {isa = PBXBuildFile; fileRef = 13DEF2A113C1F285003C2B66 /* Game.m */; };
 		13DEF2A713C1F352003C2B66 /* TestSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = 13DEF2A513C1F352003C2B66 /* TestSprite.m */; };
@@ -155,6 +157,8 @@
 		13C9456313BF1F21008565D6 /* MockEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MockEngine.m; sourceTree = "<group>"; };
 		13C9456513BF269D008565D6 /* DiamondsGame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiamondsGame.h; sourceTree = "<group>"; };
 		13C9456613BF269D008565D6 /* DiamondsGame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiamondsGame.m; sourceTree = "<group>"; };
+		13D994C413D61BA7001066FD /* Droppable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Droppable.h; path = Diamonds/Game/Droppable.h; sourceTree = "<group>"; };
+		13D994C513D61BA7001066FD /* Droppable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Droppable.m; path = Diamonds/Game/Droppable.m; sourceTree = "<group>"; };
 		13DEF2A013C1F285003C2B66 /* Game.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Game.h; path = Diamonds/Game/Game.h; sourceTree = "<group>"; };
 		13DEF2A113C1F285003C2B66 /* Game.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Game.m; path = Diamonds/Game/Game.m; sourceTree = "<group>"; };
 		13DEF2A413C1F352003C2B66 /* TestSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestSprite.h; sourceTree = "<group>"; };
@@ -400,6 +404,8 @@
 		13FB534713BE1F6800852C87 /* Game */ = {
 			isa = PBXGroup;
 			children = (
+				13D994C413D61BA7001066FD /* Droppable.h */,
+				13D994C513D61BA7001066FD /* Droppable.m */,
 				13124F7D13CF41E700409820 /* GridController.h */,
 				13124F7E13CF41E700409820 /* GridController.m */,
 				1311E9D713CC7F9B00BA18A9 /* Gem.h */,
@@ -548,6 +554,7 @@
 				130EBD8513C33F8500E14767 /* Grid.m in Sources */,
 				1311E9D913CC7F9B00BA18A9 /* Gem.m in Sources */,
 				13124F7F13CF41E700409820 /* GridController.m in Sources */,
+				13D994C613D61BA7001066FD /* Droppable.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -573,6 +580,7 @@
 				1311E9DA13CC7F9B00BA18A9 /* Gem.m in Sources */,
 				13124F7713CF14E600409820 /* TestGridController.m in Sources */,
 				13124F8013CF41E700409820 /* GridController.m in Sources */,
+				13D994C713D61BA7001066FD /* Droppable.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -17,6 +17,7 @@
 }
 
 @synthesize grid;
+@synthesize droppablePair;
 
 - (id) initWithGrid: (Grid*) theGrid
 {
@@ -57,7 +58,6 @@
 - (void) spawn
 {
     [self spawnAt: MakeCell(grid.width / 2, grid.height - 1)];
-    NSLog(@"spawing pair = %@", droppablePair);
 }
  
 - (DroppablePair*) droppablePair
