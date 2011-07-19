@@ -13,11 +13,6 @@ GridCell MakeCell(int column, int row)
     return cell;    
 }
 
-GridPosition MakePosition(int column, int row)
-{
-    return MakeCell(column, row);
-}
-
 @implementation Grid
 {
     ResourceManager* resources;

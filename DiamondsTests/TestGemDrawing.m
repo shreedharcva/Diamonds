@@ -23,10 +23,10 @@
     return [self makeGem: type at: MakeCell(0, 0)];
 }
 
-- (Gem*) makeGem: (GemType) type at: (GridPosition) position
+- (Gem*) makeGem: (GemType) type at: (GridCell) cell
 {
     ResourceManager* resourceManager = [ResourceManager new];    
-    gem = [[Gem alloc] initWithType: type at: position resources: resourceManager];    
+    gem = [[Gem alloc] initWithType: type at: cell resources: resourceManager];    
     return gem;
 }
 

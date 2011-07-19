@@ -11,7 +11,7 @@
 }
 
 - (Gem*) makeGem: (GemType) type;
-- (Gem*) makeGem: (GemType) type at: (GridPosition) position;
+- (Gem*) makeGem: (GemType) type at: (GridCell) cell;
 
 
 @end

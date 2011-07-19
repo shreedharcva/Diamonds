@@ -47,13 +47,13 @@
     [batch end];    
 }
 
-- (CGPoint) screenPositionFrom: (GridPosition) gridPosition
+- (CGPoint) screenPositionFrom: (GridCell) cell
 {
-    CGPoint expectedPosition;
-    expectedPosition.x = info.origin.x + info.cellSize.width * gridPosition.column; 
-    expectedPosition.y = info.origin.y + (info.cellSize.height * (info.heightInCells - 1)) - info.cellSize.height * gridPosition.row;
+    CGPoint expectedCell;
+    expectedCell.x = info.origin.x + info.cellSize.width * cell.column; 
+    expectedCell.y = info.origin.y + (info.cellSize.height * (info.heightInCells - 1)) - info.cellSize.height * cell.row;
     
-    return expectedPosition;
+    return expectedCell;
 }
 
 - (void) testNoSpriteIsDrawnByGridDrawerWhenTheGridIsEmpty
@@ -106,12 +106,12 @@
 
 - (void) testTheSpriteIsDrawnInTheCorrectPosition
 {
-    GridPosition gridPosition = MakeCell(1, 2);
-    [grid put: Ruby at: gridPosition];
+    GridCell cell = MakeCell(1, 2);
+    [grid put: Ruby at: cell];
     
     [self drawGrid];
 
-    assertEquals([self screenPositionFrom: gridPosition], [batch lastSprite].position);
+    assertEquals([self screenPositionFrom: cell], [batch lastSprite].position);
 }
 
 @end

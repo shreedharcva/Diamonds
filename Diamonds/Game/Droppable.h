@@ -19,14 +19,12 @@ typedef enum DroppableState
 }
 DroppableState;
 
-typedef struct GridPosition
+typedef struct GridCell
 {
     int column;
     int row;
 }
-GridPosition;
-
-typedef GridPosition GridCell;
+GridCell;
 
 GridCell MakeCell(int column, int row);
 
