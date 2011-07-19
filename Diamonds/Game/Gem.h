@@ -88,6 +88,8 @@ GridCell MakeCell(int column, int row);
 - (void) add: (Droppable*) droppable;
 - (Gem*) gem: (int) index;
 
+- (void) releaseOn: (Grid*) grid;
+
 @end
 
 @interface DroppablePair : GemAggregate 

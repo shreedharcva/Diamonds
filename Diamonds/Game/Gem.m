@@ -323,6 +323,19 @@
     return (Gem*) [droppables objectAtIndex: index];
 }
 
+/*
+- (void) releaseOn: (Grid*) grid
+{
+    [grid remove: self];
+    
+    for (Droppable* droppable in droppables)
+    {
+        [droppable detachFromParent];
+        [grid put: droppable];
+    }
+}
+ */
+
 @end
 
 @implementation DroppablePair
