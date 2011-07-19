@@ -88,7 +88,7 @@ GridCell MakeCell(int column, int row);
 
 @end
 
-@interface DroppablePair : Droppable 
+@interface DroppablePair : GemAggregate 
 
 @property (readonly) Gem* pivot;
 @property (readonly) Gem* buddy;

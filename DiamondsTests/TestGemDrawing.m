@@ -13,15 +13,7 @@
 #import "MockTexture.h"
 
 @interface Gem (Testing)
-@end
-
-@implementation Gem (Testing)
-
-- (void) setCellHeight: (float) height
-{
-    cellHeight = height;
-}
-
+- (void) setCellHeight: (float) height;
 @end
 
 @implementation TestGemBase
@@ -56,6 +48,9 @@
 @end
 
 
+@interface GemAggregate (testing)
+- (void) setCellHeight: (float) height_;
+@end
 
 @interface TestGemAggreate : TestGemBase 
 @end
@@ -70,14 +65,14 @@
     aggregate = [[GemAggregate alloc] initAt: MakeCell(1, 1) width: 2 height: 2];
 }
 
-- (void) testGemAggreateContainsOneGemWhenAGemIsAdded
+- (void) testGemAggregateContainsOneGemWhenAGemIsAdded
 {
     [aggregate add: [self makeGem: Diamond at: MakeCell(0, 0)]];
 
     assertEquals(Diamond, [aggregate gem: 0].type);
 }
 
-- (void) testGemAggreateContainsTwoGemsWhenTwoGemsAreAdded
+- (void) testGemAggregateContainsTwoGemsWhenTwoGemsAreAdded
 {
     [aggregate add: [self makeGem: Diamond at: MakeCell(0, 0)]];
     [aggregate add: [self makeGem: Ruby at: MakeCell(0, 1)]];
@@ -86,14 +81,14 @@
     assertEquals(Ruby, [aggregate gem: 1].type);
 }
 
-- (void) testGemAggreateContainsAGemWithTheAggregateAsParent
+- (void) testGemAggregateContainsAGemWithTheAggregateAsParent
 {
     [aggregate add: [self makeGem: Ruby at: MakeCell(0, 1)]];
     
     assertEquals(aggregate, [aggregate gem: 0].parent);
 }
 
-- (void) testGemAggreateThrowsExceptionIfAGemIsAddedOnTopOfAnotherGem
+- (void) testGemAggregateThrowsExceptionIfAGemIsAddedOnTopOfAnotherGem
 {
     assertThrows(
     {
@@ -102,7 +97,7 @@
     });
 }
 
-- (void) testGemAggreateThrowsExceptionIfAGemIsAddedOutOfBounds
+- (void) testGemAggregateThrowsExceptionIfAGemIsAddedOutOfBounds
 {
     assertThrows(
     {
@@ -110,11 +105,19 @@
     });
 }
 
-- (void) testGemAggreateContainsAGemAtTheCorrectAbsolutePosition
+- (void) testGemAggregateContainsAGemAtTheCorrectAbsolutePosition
 {
     [aggregate add: [self makeGem: Ruby at: MakeCell(1, 1)]];
     
     assertEquals(MakeCell(2, 2), [aggregate gem: 0].cell);
+}
+
+- (void) testGemAggregateHeightOverridesGemHeight
+{
+    [aggregate add: [self makeGem: Ruby at: MakeCell(1, 1)]];
+    [aggregate setCellHeight: 0.5f];
+    
+    assertAlmostEquals(0.5f, [aggregate gem: 0].cellHeight);
 }
 
 @end
