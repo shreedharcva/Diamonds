@@ -94,12 +94,11 @@ GridPosition MakePosition(int column, int row)
 
 - (Droppable*) get: (GridCell) cell
 {
-    for (Gem* gem in droppables)
+    for (Droppable* droppable in droppables)
     {
-        if (gem.cell.column == cell.column &&
-            gem.cell.row == cell.row)
+        if ([droppable contains: cell])
         {
-            return gem;
+            return droppable;
         }
     }
     

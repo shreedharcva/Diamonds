@@ -51,18 +51,26 @@
 - (void) setCellHeight: (float) height_;
 @end
 
-@interface TestGemAggreate : TestGemBase 
-@end
 
-@implementation TestGemAggreate
+@interface TestGemAggregateBase : TestGemBase 
 {
     GemAggregate* aggregate;
 }
+@end
+
+@implementation TestGemAggregateBase
 
 - (void) setUp
 {
     aggregate = [[GemAggregate alloc] initAt: MakeCell(1, 1) width: 2 height: 2];
 }
+
+@end
+
+@interface TestGemAggregate : TestGemAggregateBase
+@end
+
+@implementation TestGemAggregate
 
 - (void) testGemAggregateContainsOneGemWhenAGemIsAdded
 {
@@ -136,6 +144,51 @@
 
     assertAlmostEquals(48.0f, [batch lastSprite].position.y);
 }
+
+@end
+
+@interface TestGemAggregateInGrid : TestGemAggregateBase
+@end
+
+@implementation TestGemAggregateInGrid
+{
+    Grid* grid;
+}
+
+- (void) setUp
+{
+    [super setUp];
+    
+    grid = [[Grid alloc] initWithResources: nil width: 8 height: 14];
+}
+
+- (void) testGemAggregateIsAddedToTheGrid
+{
+    [grid put: aggregate];
+  
+    assertIsKindOfClass(GemAggregate, [grid get: aggregate.cell]);
+}
+
+- (void) testGemAggregateCoversAllItsCellsInTheGrid
+{
+    [grid put: aggregate];
+    
+    GridCell cell = aggregate.cell;
+    cell.row += 1;
+    cell.column += 1;
+    
+    assertIsKindOfClass(GemAggregate, [grid get: cell]);
+}
+
+/*
+- (void) testGemAggregateReleasesItsGemsOnTheGrid
+{
+    [grid put: aggregate];    
+    [aggregate releaseOn: grid];
+    
+    assertIsKindOfClass(Gem, [grid get: aggregate.cell]);
+}
+ */
 
 @end
 

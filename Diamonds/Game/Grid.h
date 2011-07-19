@@ -17,7 +17,6 @@
 - (bool) isCellValid: (GridCell) cell;
 
 - (Droppable*) put: (Droppable*) droppable;
-
 - (Gem*) put: (GemType) type at: (GridCell) cell;
 
 - (Droppable*) get: (GridCell) cell;

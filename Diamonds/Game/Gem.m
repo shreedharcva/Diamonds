@@ -49,6 +49,14 @@
     return self;    
 }
 
+- (bool) contains: (GridCell) cell_
+{
+    GridCell droppableCell = self.cell;
+    return 
+        cell_.row >= droppableCell.row && cell_.column >= droppableCell.column &&
+        cell_.row < droppableCell.row + self.height && cell_.column < droppableCell.column + self.width;
+}
+
 - (bool) canMoveRight: (Grid*) grid
 {
     GridCell newCell = self.cell;
@@ -243,7 +251,7 @@
     if (type == Sapphire)
         typeString =  @"Sapphire";
     
-    return [NSString stringWithFormat: @"[%p] %@", self, typeString]; 
+    return [NSString stringWithFormat: @"[%p] %@ (%d %d)", self, typeString, self.cell.column, self.cell.row]; 
 }
 
 - (Sprite*) sprite

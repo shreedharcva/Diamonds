@@ -11,8 +11,8 @@
 #define assertNotNil(expr) STAssertNotNil(expr, @"");
 #define assertNil(expr) STAssertNil(expr, @"");
 #define assertEqualObjects(expected, actual) STAssertEqualObjects(actual, expected, @"");
-//#define assertNotNull(expected, actual) STAssertEquals(actual, expected, @"")
 
+#define assertIsKindOfClass(expected, expr) STAssertTrue([expr isKindOfClass: [expected class]], @"Wrong expected class");
 
 #define assertThrows(expr) \
     {   \
