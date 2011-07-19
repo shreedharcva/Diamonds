@@ -120,23 +120,22 @@
         }
     }    
     else
-        if (state == Stopped)
+    if (state == Stopped)
+    {
+        if ([self canMoveDown: grid])
         {
-            if ([self canMoveDown: grid])
+            cell.row -= 1;
+            cellHeight = 1.00f - gravity;
+            if (cellHeight > 0.0)
             {
-                cell.row -= 1;
-                cellHeight = 1.00f - gravity;
-                if (cellHeight > 0.0)
-                {
-                    state = Falling;
-                }
+                state = Falling;
             }
         }
+    }
 }
 
 - (void) drawIn: (SpriteBatch*) batch info: (GridPresentationInfo) info
 {
-    
 }
 
 - (GridCell) relativeCell
@@ -227,7 +226,7 @@
     
     spritePosition.x += info.cellSize.width * self.cell.column; 
     spritePosition.y -= info.cellSize.height * self.cell.row - (info.cellSize.height * (info.heightInCells - 1)); 
-    spritePosition.y += (-cellHeight) * info.cellSize.height;
+    spritePosition.y += (-self.cellHeight) * info.cellSize.height;
     
     [sprite moveTo: spritePosition];
     [sprite drawIn: batch];

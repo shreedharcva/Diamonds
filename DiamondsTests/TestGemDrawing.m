@@ -47,7 +47,6 @@
 
 @end
 
-
 @interface GemAggregate (testing)
 - (void) setCellHeight: (float) height_;
 @end
@@ -118,6 +117,24 @@
     [aggregate setCellHeight: 0.5f];
     
     assertAlmostEquals(0.5f, [aggregate gem: 0].cellHeight);
+}
+
+- (void) testGemAggregateDrawsSpritesInTheCorrectPositionWhenAggregateHasHeightDifferentThanZero
+{
+    MockSpriteBatch* batch = [MockSpriteBatch new];
+    
+    GridPresentationInfo info;
+    info.cellSize = CGSizeMake(32, 32);
+    info.heightInCells = 4;
+
+    [aggregate add: [self makeGem: Ruby at: MakeCell(0, 0)]];
+    [aggregate setCellHeight: 0.5f];
+
+    [batch begin];
+    [[aggregate gem: 0] drawIn: batch info: info];
+    [batch end];    
+
+    assertAlmostEquals(48.0f, [batch lastSprite].position.y);
 }
 
 @end
