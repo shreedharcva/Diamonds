@@ -21,6 +21,8 @@
 
 - (Droppable*) get: (GridCell) cell;
 
+- (void) remove: (Droppable*) droppable;
+
 - (void) updateWithGravity: (float) gravity;
 
 @property (readonly) int width;

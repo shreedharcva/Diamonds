@@ -80,6 +80,7 @@
     [self.grid updateWithGravity: gravity];
     if ([self droppablePair].state == Stopped)
     {
+        [[self droppablePair] releaseOn: self.grid];
         [self spawn];
     }
 }

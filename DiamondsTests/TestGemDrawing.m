@@ -45,6 +45,28 @@
     assertEquals(1, gem.height);    
 }
 
+- (void) testGemHasNoParentsWhenItsDetached
+{
+    Gem* parent = [self makeGem: Diamond at: MakeCell(1, 1)];
+    Gem* child = [self makeGem: Diamond at: MakeCell(1, 1)];
+    
+    child.parent = parent;
+    [child detachFromParent];
+    
+    assertNil(child.parent);    
+}
+
+- (void) testGemCellIsUpdatedWhenGemIsDetachedFromParent
+{
+    Gem* parent = [self makeGem: Diamond at: MakeCell(1, 1)];
+    Gem* child = [self makeGem: Diamond at: MakeCell(1, 1)];
+    
+    child.parent = parent;
+    [child detachFromParent];
+    
+    assertEquals(MakeCell(2, 2), child.cell);
+}
+
 @end
 
 @interface GemAggregate (testing)
@@ -180,15 +202,16 @@
     assertIsKindOfClass(GemAggregate, [grid get: cell]);
 }
 
-/*
 - (void) testGemAggregateReleasesItsGemsOnTheGrid
 {
+    [aggregate add: [self makeGem: Ruby at: MakeCell(0, 0)]];
+    [aggregate add: [self makeGem: Ruby at: MakeCell(0, 1)]];
+
     [grid put: aggregate];    
     [aggregate releaseOn: grid];
-    
+        
     assertIsKindOfClass(Gem, [grid get: aggregate.cell]);
 }
- */
 
 @end
 
@@ -292,7 +315,6 @@
 }
 
 @end
-
 
 @interface TestDroppablePairDrawing : TestGemDrawingBase 
 @end

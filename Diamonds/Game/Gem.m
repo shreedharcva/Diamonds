@@ -49,6 +49,14 @@
     return self;    
 }
 
+- (void) detachFromParent
+{
+    cell.column += self.parent.cell.column;
+    cell.row += self.parent.cell.row;
+
+    self.parent = nil;
+}
+
 - (bool) contains: (GridCell) cell_
 {
     GridCell droppableCell = self.cell;
@@ -323,7 +331,6 @@
     return (Gem*) [droppables objectAtIndex: index];
 }
 
-/*
 - (void) releaseOn: (Grid*) grid
 {
     [grid remove: self];
@@ -334,7 +341,6 @@
         [grid put: droppable];
     }
 }
- */
 
 @end
 

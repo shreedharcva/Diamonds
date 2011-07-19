@@ -60,6 +60,16 @@
     assertEquals(Diamond, gem.type);
 }
 
+- (void) testGridReturnsEmptyGemWhenTheGemIsRemoved
+{
+    [grid put: Diamond at: MakeCell(0, 0)];
+    
+    [self get: MakeCell(0, 0)];
+    [grid remove: [self get: MakeCell(0, 0)]];
+    
+    assertEquals(EmptyGem, [self get: MakeCell(0, 0)].type);
+}
+
 - (void) testGridReturnsTheCorrectGemTypeAtThePositionWhenADifferentGemTypeIsPut
 {
     [grid put: Ruby at: MakeCell(0, 0)];
@@ -230,7 +240,6 @@
 
 - (void) testFallingGemGoesThroughCellsWithTheCorrectHeight
 {
-    
     [grid put: Diamond at: MakeCell(0, 2)];
     
     [self setGravity: 0.60f];

@@ -117,6 +117,16 @@
     assertEquals(MakeCell(4, 13),[controller droppablePair].cell);
 }
 
+- (void) testTwoGemsAreCreatedWhereTheDroppablePairStopsFalling
+{    
+    [controller setGravity: 1.0f];
+    
+    [controller spawnAt: MakeCell(0, 1)];
+    [controller update];
+    
+    assertIsKindOfClass(Gem, [controller.grid get: MakeCell(0, 0)]);
+}
+
 - (void) testGridControllerDoesntSpawnANewDroppablePairWhenTheMiddleColumnIsFull
 {
     for (int i = 0; i < 14; ++i)

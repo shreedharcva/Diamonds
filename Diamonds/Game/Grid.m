@@ -105,6 +105,11 @@ GridPosition MakePosition(int column, int row)
     return nil;
 }
 
+- (void) remove: (Droppable*) droppable
+{
+    [droppables removeObject: droppable];
+}
+
 - (void) updateWithGravity: (float) gravity
 {
     for (Droppable* droppable in droppables)

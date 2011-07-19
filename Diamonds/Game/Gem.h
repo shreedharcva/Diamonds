@@ -62,6 +62,8 @@ GridCell MakeCell(int column, int row);
 
 - (id) initAt: (GridCell) cell_ width: (int) width_ height: (int) height_;
 
+- (void) detachFromParent;
+
 - (bool) contains: (GridCell) cell_;
 
 - (void) moveRightOn: (Grid*) grid;
