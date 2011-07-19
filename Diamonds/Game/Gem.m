@@ -17,6 +17,9 @@
 @protected
     GridCell cell;
     GemState state;
+    
+@private
+     Droppable* __weak parent;
 }
 
 @synthesize width;
@@ -25,6 +28,8 @@
 @synthesize cell;
 @synthesize state;
 @synthesize cellHeight;
+
+@synthesize parent;
 
 - (id) initAt: (GridCell) cell_ width: (int) width_ height: (int) height_;
 {
@@ -134,6 +139,22 @@
     
 }
 
+- (GridCell) relativeCell
+{
+    return cell;
+}
+
+- (GridCell) cell
+{
+    GridCell absoluteCell = cell;
+    GridCell parentCell = parent.cell;
+
+    absoluteCell.row += parentCell.row;
+    absoluteCell.column += parentCell.column;
+    
+    return absoluteCell;
+}
+
 @end
 
 @interface Gem (private)
@@ -223,6 +244,70 @@
 
 @end
 
+@implementation GemAggregate
+{
+    NSMutableArray* droppables;
+}
+
+- (id) initAt: (GridCell) cell_ width: (int) width_ height: (int) height_
+{
+    self = [super initAt: cell_ width: width_ height: height_];
+    if (self == nil)
+        return nil;
+    
+    droppables = [NSMutableArray arrayWithCapacity: self.width * self.height];
+    
+    return self;    
+}
+
+- (bool) isCellInBounds: (GridCell) cell_
+{
+    return 
+        cell_.column >= 0 && cell_.column < self.width &&
+        cell_.row >= 0 && cell_.row < self.height;
+}
+
+- (bool) isCellEmpty: (GridCell) cell_
+{
+    for (Droppable* droppable in droppables)
+    {
+        if (
+            droppable.relativeCell.row == cell_.row && 
+            droppable.relativeCell.column == cell_.column)
+        {
+            return false;
+        }
+    }
+    
+    return true;
+}
+
+- (bool) isDroppableValid: (Droppable*) droppable
+{
+    return 
+        [self isCellEmpty: droppable.relativeCell] &&
+        [self isCellInBounds: droppable.relativeCell];
+    
+}
+
+- (void) add: (Droppable*) droppable
+{
+    if (![self isDroppableValid: droppable])
+    {
+        @throw [NSException exceptionWithName:@"GemAggregate" reason: @"Aggregate cell is not empty" userInfo: nil];        
+    }
+    
+    droppable.parent = self;
+    [droppables addObject: droppable];    
+}
+
+- (Gem*) gem: (int) index
+{
+    return (Gem*) [droppables objectAtIndex: index];
+}
+
+@end
+
 @implementation DroppablePair
 {
     Gem* buddy;
@@ -251,7 +336,6 @@
     [pivot drawIn: batch info: info];
     [buddy drawIn: batch info: info];
 }
-
 
 - (NSString*) description
 {

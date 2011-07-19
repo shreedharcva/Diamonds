@@ -55,52 +55,66 @@
 
 @end
 
-@interface GemAggregate : Droppable 
 
-- (id) initAt: (GridCell) cell width: (int) width_ height: (int) height_;
-
-@end
-
-@implementation GemAggregate
-{
-    NSMutableArray* droppables;
-}
-
-- (id) initAt: (GridCell) cell width: (int) width_ height: (int) height_
-{
-    self = [super initAt: cell width: width_ height: height_];
-    if (self == nil)
-        return nil;
-    
-    droppables = [NSMutableArray arrayWithCapacity: self.width * self.height];
-    
-    return self;    
-}
-
-- (void) add: (Droppable*) droppable
-{
-    [droppables addObject: droppable];    
-}
-
-- (Gem*) gem: (int) index
-{
-    return (Gem*) [droppables objectAtIndex: index];
-}
-
-@end
 
 @interface TestGemAggreate : TestGemBase 
 @end
 
 @implementation TestGemAggreate
+{
+    GemAggregate* aggregate;
+}
+
+- (void) setUp
+{
+    aggregate = [[GemAggregate alloc] initAt: MakeCell(1, 1) width: 2 height: 2];
+}
 
 - (void) testGemAggreateContainsOneGemWhenAGemIsAdded
 {
-    GemAggregate* aggregate = [[GemAggregate alloc] initAt: MakeCell(1, 1) width: 2 height: 2];
-    
     [aggregate add: [self makeGem: Diamond at: MakeCell(0, 0)]];
 
     assertEquals(Diamond, [aggregate gem: 0].type);
+}
+
+- (void) testGemAggreateContainsTwoGemsWhenTwoGemsAreAdded
+{
+    [aggregate add: [self makeGem: Diamond at: MakeCell(0, 0)]];
+    [aggregate add: [self makeGem: Ruby at: MakeCell(0, 1)]];
+    
+    assertEquals(Diamond, [aggregate gem: 0].type);
+    assertEquals(Ruby, [aggregate gem: 1].type);
+}
+
+- (void) testGemAggreateContainsAGemWithTheAggregateAsParent
+{
+    [aggregate add: [self makeGem: Ruby at: MakeCell(0, 1)]];
+    
+    assertEquals(aggregate, [aggregate gem: 0].parent);
+}
+
+- (void) testGemAggreateThrowsExceptionIfAGemIsAddedOnTopOfAnotherGem
+{
+    assertThrows(
+    {
+        [aggregate add: [self makeGem: Ruby at: MakeCell(0, 1)]];
+        [aggregate add: [self makeGem: Ruby at: MakeCell(0, 1)]];
+    });
+}
+
+- (void) testGemAggreateThrowsExceptionIfAGemIsAddedOutOfBounds
+{
+    assertThrows(
+    {
+        [aggregate add: [self makeGem: Ruby at: MakeCell(5, 5)]];
+    });
+}
+
+- (void) testGemAggreateContainsAGemAtTheCorrectAbsolutePosition
+{
+    [aggregate add: [self makeGem: Ruby at: MakeCell(1, 1)]];
+    
+    assertEquals(MakeCell(2, 2), [aggregate gem: 0].cell);
 }
 
 @end
@@ -211,7 +225,7 @@
 @end
 
 @implementation TestDroppablePairDrawing
-{
+{    
     DroppablePair* pair;
 }
 

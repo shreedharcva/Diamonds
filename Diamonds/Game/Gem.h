@@ -51,10 +51,14 @@ GridCell MakeCell(int column, int row);
 @property (readonly, nonatomic) int width;
 @property (readonly, nonatomic) int height;
 
+@property (readonly) GridCell relativeCell;
 @property (readonly) GridCell cell;
+
 @property (readonly) GemState state;
 
 @property (readonly) float cellHeight;
+
+@property (weak) Droppable* parent;
 
 - (id) initAt: (GridCell) cell_ width: (int) width_ height: (int) height_;
 
@@ -73,6 +77,14 @@ GridCell MakeCell(int column, int row);
 - (id) initWithType: (GemType) gemType at: (GridCell) cell resources: (ResourceManager*) resources;
 
 - (void) drawIn: (SpriteBatch*) batch info: (GridPresentationInfo) info;
+
+@end
+
+@interface GemAggregate : Droppable 
+
+- (id) initAt: (GridCell) cell width: (int) width_ height: (int) height_;
+- (void) add: (Droppable*) droppable;
+- (Gem*) gem: (int) index;
 
 @end
 
