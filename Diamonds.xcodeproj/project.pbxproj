@@ -53,6 +53,9 @@
 		13B7AB2713D6FF2600005E5B /* GemAggregate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B7AB2513D6FF2600005E5B /* GemAggregate.m */; };
 		13B7AB2E13D7015300005E5B /* DroppablePair.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B7AB2D13D7015300005E5B /* DroppablePair.m */; };
 		13B7AB2F13D7015300005E5B /* DroppablePair.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B7AB2D13D7015300005E5B /* DroppablePair.m */; };
+		13B7AB3113D702A400005E5B /* TestGem.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B7AB3013D702A400005E5B /* TestGem.m */; };
+		13B7AB3313D7030C00005E5B /* TestGemAggregate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B7AB3213D7030C00005E5B /* TestGemAggregate.m */; };
+		13B7AB3513D703B600005E5B /* TestDroppablePair.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B7AB3413D703B500005E5B /* TestDroppablePair.m */; };
 		13C1F45113BE02CC00E67EC0 /* MockTexture.m in Sources */ = {isa = PBXBuildFile; fileRef = 13C1F45013BE02CC00E67EC0 /* MockTexture.m */; };
 		13C1F45713BE040200E67EC0 /* ResourceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 13C1F45613BE040200E67EC0 /* ResourceManager.m */; };
 		13C3598213D1EB7300480939 /* emerald.png in Resources */ = {isa = PBXBuildFile; fileRef = 13C3597F13D1EB7300480939 /* emerald.png */; };
@@ -151,6 +154,9 @@
 		13B7AB2513D6FF2600005E5B /* GemAggregate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GemAggregate.m; path = Diamonds/Game/GemAggregate.m; sourceTree = "<group>"; };
 		13B7AB2C13D7015300005E5B /* DroppablePair.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DroppablePair.h; path = Diamonds/Game/DroppablePair.h; sourceTree = "<group>"; };
 		13B7AB2D13D7015300005E5B /* DroppablePair.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DroppablePair.m; path = Diamonds/Game/DroppablePair.m; sourceTree = "<group>"; };
+		13B7AB3013D702A400005E5B /* TestGem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestGem.m; sourceTree = "<group>"; };
+		13B7AB3213D7030C00005E5B /* TestGemAggregate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestGemAggregate.m; sourceTree = "<group>"; };
+		13B7AB3413D703B500005E5B /* TestDroppablePair.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestDroppablePair.m; sourceTree = "<group>"; };
 		13C1F44F13BE02CC00E67EC0 /* MockTexture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MockTexture.h; sourceTree = "<group>"; };
 		13C1F45013BE02CC00E67EC0 /* MockTexture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MockTexture.m; sourceTree = "<group>"; };
 		13C1F45513BE040200E67EC0 /* ResourceManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ResourceManager.h; path = Diamonds/Engine/ResourceManager.h; sourceTree = "<group>"; };
@@ -395,14 +401,17 @@
 		13FB534213BE1D3300852C87 /* Game */ = {
 			isa = PBXGroup;
 			children = (
-				13124F7513CF14E600409820 /* TestGridController.h */,
-				13124F7613CF14E600409820 /* TestGridController.m */,
 				130012EF13CB2A4F00D6E02E /* TestGem.h */,
+				13B7AB3013D702A400005E5B /* TestGem.m */,
+				13B7AB3213D7030C00005E5B /* TestGemAggregate.m */,
 				130012F013CB2A4F00D6E02E /* TestGemDrawing.m */,
+				13B7AB3413D703B500005E5B /* TestDroppablePair.m */,
 				130012EB13C381E100D6E02E /* TestGridDrawer.h */,
 				130012EC13C381E100D6E02E /* TestGridDrawer.m */,
 				130EBD7A13C33AF200E14767 /* TestGrid.h */,
 				130EBD7B13C33AF200E14767 /* TestGrid.m */,
+				13124F7513CF14E600409820 /* TestGridController.h */,
+				13124F7613CF14E600409820 /* TestGridController.m */,
 				13FB534413BE1DDC00852C87 /* TestGame.h */,
 				13FB534513BE1DDC00852C87 /* TestGame.m */,
 			);
@@ -597,6 +606,9 @@
 				13D994C713D61BA7001066FD /* Droppable.m in Sources */,
 				13B7AB2713D6FF2600005E5B /* GemAggregate.m in Sources */,
 				13B7AB2F13D7015300005E5B /* DroppablePair.m in Sources */,
+				13B7AB3113D702A400005E5B /* TestGem.m in Sources */,
+				13B7AB3313D7030C00005E5B /* TestGemAggregate.m in Sources */,
+				13B7AB3513D703B600005E5B /* TestDroppablePair.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
