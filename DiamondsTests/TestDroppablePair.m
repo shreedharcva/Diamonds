@@ -82,6 +82,21 @@
 
 @implementation TestDroppablePairInGrid
 
+- (void) testDroppablePairHasVerticalTopOrientationWhenItsCreated
+{
+    [self makePairAt: MakeCell(1, 2)];
+    
+    assertEquals(VerticalUp, pair.orientation);
+}
+
+- (void) testDroppablePairHasHorizontalLeftOrientationRotatedLeft
+{
+    [self makePairAt: MakeCell(1, 2)];
+    [pair rotateLeft];
+    
+    assertEquals(HorizontalLeft, pair.orientation);
+}
+
 - (void) testDroppablePairRotatesLeft
 {
     [self makePairAt: MakeCell(1, 2)];
@@ -98,6 +113,9 @@
     
     assertEquals(MakeCell(0, 2), pair.buddy.cell);    
 }
+
+
+
 
 /*
 - (void) testDroppablePairCellIsTheBuddyCellWhenThePairIsRotatedLeftOnce

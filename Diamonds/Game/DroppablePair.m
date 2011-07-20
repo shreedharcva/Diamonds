@@ -6,6 +6,27 @@
 
 #import "Gem.h"
 
+typedef struct OrientationState
+{
+    DroppablePairOrientation left;
+    DroppablePairOrientation right;
+    
+    GridCell pivotCell;
+    GridCell buddyCell;
+
+    int width;
+    int height;    
+}
+OrientationState;
+
+OrientationState orientationStates[4] =
+{
+    { HorizontalLeft, HorizontalRight, {  0,  1 }, {  0,  0 }, 1, 2 },               // VerticalUp
+    { HorizontalLeft, HorizontalRight, { -1,  0 }, { -1,  0 }, 2, 1 },               // VerticalUp
+    { HorizontalLeft, HorizontalRight, { -1,  0 }, {  0,  0 }, 0, 0 },               // VerticalUp
+    { HorizontalLeft, HorizontalRight, { -1,  0 }, {  0,  0 }, 0, 0 },               // VerticalUp
+};
+
 @interface Droppable (private)
 
 - (void) setWidth: (int) width_;
@@ -17,10 +38,13 @@
 
 @implementation DroppablePair
 {
+    DroppablePairOrientation orientation;
+    
     Gem* buddy;
     Gem* pivot;
 }
 
+@synthesize orientation;
 @synthesize pivot;
 @synthesize buddy;
 
@@ -47,10 +71,12 @@
 
 - (DroppablePair*) rotateLeft
 {
-    [self setWidth: 2]; 
-    [self setHeight: 1];
+    orientation = orientationStates[orientation].left;
     
-    [self.buddy setCell: MakeCell(-1, 0)];
+    [self setWidth: orientationStates[orientation].width]; 
+    [self setHeight: orientationStates[orientation].height];
+    
+    [self.buddy setCell: orientationStates[orientation].buddyCell];
     
     return nil;
 }
