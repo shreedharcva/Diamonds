@@ -82,19 +82,30 @@
 
 @implementation TestDroppablePairInGrid
 
-/*
 - (void) testDroppablePairRotatesLeft
 {
-//    Grid* grid = [[Grid alloc] initWithResources: nil width: 8 height: 14];
-    
-
     [self makePairAt: MakeCell(1, 2)];
-  //  [grid put: pair];
-    
-    pair = [pair rotateLeft];
+    [pair rotateLeft];
     
     assertEquals(2, pair.width);    
     assertEquals(1, pair.height);    
+}
+
+- (void) testBuddyGemAbsolutePositionIsCorrectWhenDroppablePairRotatesLeft
+{
+    [self makePairAt: MakeCell(1, 2)];
+    [pair rotateLeft];
+    
+    assertEquals(MakeCell(0, 2), pair.buddy.cell);    
+}
+
+/*
+- (void) testDroppablePairCellIsTheBuddyCellWhenThePairIsRotatedLeftOnce
+{
+    [self makePairAt: MakeCell(1, 2)];
+    [pair rotateLeft];
+    
+    assertEquals(MakeCell(0, 2), pair.cell);
 }
  */
 

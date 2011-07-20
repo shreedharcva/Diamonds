@@ -46,6 +46,21 @@
     return self;    
 }
 
+- (void) setCell: (GridCell) cell_
+{
+    cell = cell_;
+}
+
+- (void) setWidth: (int) width_
+{
+    width = width_;
+}
+
+- (void) setHeight: (int) height_
+{
+    height = height_;
+}
+
 - (void) detachFromParent
 {
     cell.column += self.parent.cell.column;

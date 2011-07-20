@@ -6,6 +6,15 @@
 
 #import "Gem.h"
 
+@interface Droppable (private)
+
+- (void) setWidth: (int) width_;
+- (void) setHeight: (int) height_;
+
+- (void) setCell: (GridCell) cell_;
+
+@end
+
 @implementation DroppablePair
 {
     Gem* buddy;
@@ -38,6 +47,11 @@
 
 - (DroppablePair*) rotateLeft
 {
+    [self setWidth: 2]; 
+    [self setHeight: 1];
+    
+    [self.buddy setCell: MakeCell(-1, 0)];
+    
     return nil;
 }
 
