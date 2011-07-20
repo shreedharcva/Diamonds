@@ -12,6 +12,8 @@
 
 - (id) initAt: (GridCell) cell_ with: (GemType[]) gems resources: (ResourceManager*) resources;
 
+- (DroppablePair*) rotateLeft;
+
 - (void) drawIn: (SpriteBatch*) batch info: (GridPresentationInfo) info;
 
 @end

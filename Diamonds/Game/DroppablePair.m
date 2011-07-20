@@ -36,6 +36,11 @@
     return self;
 }
 
+- (DroppablePair*) rotateLeft
+{
+    return nil;
+}
+
 - (void) drawIn: (SpriteBatch*) batch info: (GridPresentationInfo) info
 {
     [pivot drawIn: batch info: info];

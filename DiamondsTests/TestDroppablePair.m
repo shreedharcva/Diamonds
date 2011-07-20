@@ -4,33 +4,47 @@
 
 #import "TestGem.h"
 
+#import "Grid.h"
+
 #import "GemAggregate.h"
 #import "DroppablePair.h"
-
 #import "Gem.h"
 
 #import "MockSpriteBatch.h"
 #import "MockResourceManager.h"
 #import "MockTexture.h"
 
-@interface TestDroppablePair : TestCase 
-@end
-
-@implementation TestDroppablePair
+@interface TestDroppablePairBase : TestCase 
 {
     DroppablePair* pair;
 }
+@end
 
-- (void) setUp
+@implementation TestDroppablePairBase
+
+- (DroppablePair*) makePairAt: (GridCell) cell
 {
-    [super setUp];
     
     GemType gems[2];    
     gems[0] = Diamond;
     gems[1] = Ruby;
     
-    pair = [[DroppablePair alloc] initAt: MakeCell(4, 12) with: gems resources: nil];    
+    pair = [[DroppablePair alloc] initAt: cell with: gems resources: nil];
+    return pair;
 }
+
+- (void) setUp
+{
+    [super setUp];
+    [self makePairAt: MakeCell(4, 12)];
+}
+
+@end
+
+@interface TestDroppablePair : TestDroppablePairBase 
+@end
+
+@implementation TestDroppablePair
 
 - (void) testDroppablePairSizeIs1x2
 {
@@ -62,6 +76,31 @@
 }
 
 @end
+
+@interface TestDroppablePairInGrid : TestDroppablePairBase 
+@end
+
+@implementation TestDroppablePairInGrid
+
+/*
+- (void) testDroppablePairRotatesLeft
+{
+//    Grid* grid = [[Grid alloc] initWithResources: nil width: 8 height: 14];
+    
+
+    [self makePairAt: MakeCell(1, 2)];
+  //  [grid put: pair];
+    
+    pair = [pair rotateLeft];
+    
+    assertEquals(2, pair.width);    
+    assertEquals(1, pair.height);    
+}
+ */
+
+@end
+
+
 
 @interface TestDroppablePairDrawing : TestGemDrawingBase 
 @end
