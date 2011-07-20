@@ -7,6 +7,8 @@
 #import "Texture.h"
 #import "ResourceManager.h"
 #import "Grid.h"
+#import "GemAggregate.h"
+#import "DroppablePair.h"
 
 #import "MockSpriteBatch.h"
 #import "MockResourceManager.h"

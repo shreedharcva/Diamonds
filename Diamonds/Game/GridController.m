@@ -5,6 +5,7 @@
 #import "GridController.h"
 #import "Grid.h"
 #import "Gem.h"
+#import "DroppablePair.h"
 
 @interface Gem (testing)
 - (Sprite*) sprite;

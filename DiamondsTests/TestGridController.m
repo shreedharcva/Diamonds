@@ -3,9 +3,13 @@
 //  Diamonds
 
 #import "TestGridController.h"
+
+#import "Sprite.h"
+
 #import "GridController.h"
 #import "Grid.h"
-#import "Sprite.h"
+#import "DroppablePair.h"
+
 
 @interface Gem (testing)
 

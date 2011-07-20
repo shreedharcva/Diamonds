@@ -23,23 +23,3 @@ GemType;
 
 @end
 
-@interface GemAggregate : Droppable 
-
-- (id) initAt: (GridCell) cell width: (int) width_ height: (int) height_;
-- (void) add: (Droppable*) droppable;
-- (Gem*) gem: (int) index;
-
-- (void) releaseOn: (Grid*) grid;
-
-@end
-
-@interface DroppablePair : GemAggregate 
-
-@property (readonly) Gem* pivot;
-@property (readonly) Gem* buddy;
-
-- (id) initAt: (GridCell) cell_ with: (GemType[]) gems resources: (ResourceManager*) resources;
-
-- (void) drawIn: (SpriteBatch*) batch info: (GridPresentationInfo) info;
-
-@end
