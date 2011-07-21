@@ -9,4 +9,7 @@
 - (void) moveLeft;
 - (void) moveRight;
 
+- (void) rotateLeft;
+- (void) rotateRight;
+
 @end

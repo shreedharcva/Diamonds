@@ -82,11 +82,13 @@ xxxxxx
 - (void) handleSwipeLeftFrom: (UITapGestureRecognizer*) recognizer
 {
     NSLog(@"Swipe Left!");
+    [game rotateLeft];
 }
 
 - (void) handleSwipeRightFrom: (UITapGestureRecognizer*) recognizer
 {
     NSLog(@"Swipe Right!");
+    [game rotateRight];
 }
 
 - (void) awakeFromNib

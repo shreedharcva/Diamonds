@@ -23,7 +23,8 @@ DroppablePairOrientation;
 
 - (id) initAt: (GridCell) cell_ with: (GemType[]) gems resources: (ResourceManager*) resources;
 
-- (DroppablePair*) rotateLeft;
+- (void) rotateLeft;
+- (void) rotateRight;
 
 - (void) drawIn: (SpriteBatch*) batch info: (GridPresentationInfo) info;
 

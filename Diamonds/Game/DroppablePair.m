@@ -42,6 +42,8 @@ OrientationState orientationStates[4] =
     
     Gem* buddy;
     Gem* pivot;
+    
+    PairOrientation orientation;
 }
 
 @synthesize orientation;
@@ -62,14 +64,16 @@ OrientationState orientationStates[4] =
     {
         return nil;
     }
-    
+
+    orientation = VerticalUp; 
+
     pivot = [self addGem: gems[0] at: MakeCell(0, 0) resources: resources];
     buddy = [self addGem: gems[1] at: MakeCell(0, 1) resources: resources];
     
     return self;
 }
 
-- (DroppablePair*) rotateLeft
+- (void) updatePairAfterRotation
 {
     orientation = orientationStates[orientation].left;
     
@@ -78,7 +82,20 @@ OrientationState orientationStates[4] =
     
     [self.buddy setCell: orientationStates[orientation].buddyCell];
     
-    return nil;
+    [self.pivot setCell: state.pivotCell];
+    [self.buddy setCell: state.buddyCell];    
+}
+
+- (void) rotateLeft
+{
+    orientation = orientations[orientation].left;
+    [self updatePairAfterRotation];
+}
+
+- (void) rotateRight
+{
+    orientation = orientations[orientation].right;
+    [self updatePairAfterRotation];    
 }
 
 - (void) drawIn: (SpriteBatch*) batch info: (GridPresentationInfo) info
