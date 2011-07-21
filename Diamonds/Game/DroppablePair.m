@@ -6,6 +6,38 @@
 
 #import "Gem.h"
 
+typedef enum PairOrientation 
+{
+    VerticalUp      = 0,
+    HorizontalLeft  = 1,
+    VerticalDown    = 2,
+    HorizontalRight = 3,
+}
+PairOrientation;
+
+typedef struct OrientationState
+{
+    PairOrientation left;
+    PairOrientation right;
+        
+    int width;
+    int height;
+    
+    GridCell pivotCell;
+    GridCell buddyCell;
+    GridCell baseCellRelativeToPivot;
+    
+} OrientationState;
+
+
+OrientationState orientations[] =
+{
+    { HorizontalLeft,   HorizontalRight,    1, 2, { 0, 0 }, { 0, 1 }, {  0,  0 } },
+    { VerticalDown,     VerticalUp,         2, 1, { 1, 0 }, { 0, 0 }, { -1,  0 } },
+    { HorizontalRight,  HorizontalLeft,     1, 2, { 0, 1 }, { 0, 0 }, {  0, -1 } },
+    { VerticalUp,       VerticalDown,       2, 1, { 0, 0 }, { 1, 0 }, {  0,  0 } },
+};
+
 @interface Droppable (private)
 
 - (void) setWidth: (int) width_;
@@ -19,6 +51,8 @@
 {
     Gem* buddy;
     Gem* pivot;
+    
+    PairOrientation orientation;
 }
 
 @synthesize pivot;
@@ -38,21 +72,42 @@
     {
         return nil;
     }
-    
+
+    orientation = VerticalUp; 
+
     pivot = [self addGem: gems[0] at: MakeCell(0, 0) resources: resources];
     buddy = [self addGem: gems[1] at: MakeCell(0, 1) resources: resources];
     
     return self;
 }
 
-- (DroppablePair*) rotateLeft
+- (void) updatePairAfterRotation
 {
-    [self setWidth: 2]; 
-    [self setHeight: 1];
+    OrientationState state = orientations[orientation]; 
     
-    [self.buddy setCell: MakeCell(-1, 0)];
+    [self setWidth: state.width]; 
+    [self setHeight: state.height]; 
     
-    return nil;
+    GridCell newBaseCell = self.pivot.cell;
+    newBaseCell.column += state.baseCellRelativeToPivot.column;
+    newBaseCell.row += state.baseCellRelativeToPivot.row;
+    
+    [self setCell: newBaseCell];
+    
+    [self.pivot setCell: state.pivotCell];
+    [self.buddy setCell: state.buddyCell];    
+}
+
+- (void) rotateLeft
+{
+    orientation = orientations[orientation].left;
+    [self updatePairAfterRotation];
+}
+
+- (void) rotateRight
+{
+    orientation = orientations[orientation].right;
+    [self updatePairAfterRotation];    
 }
 
 - (void) drawIn: (SpriteBatch*) batch info: (GridPresentationInfo) info
