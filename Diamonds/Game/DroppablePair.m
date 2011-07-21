@@ -6,15 +6,6 @@
 
 #import "Gem.h"
 
-typedef enum PairOrientation 
-{
-    VerticalUp      = 0,
-    HorizontalLeft  = 1,
-    VerticalDown    = 2,
-    HorizontalRight = 3,
-}
-PairOrientation;
-
 typedef struct OrientationState
 {
     PairOrientation left;
@@ -55,6 +46,7 @@ OrientationState orientations[] =
     PairOrientation orientation;
 }
 
+@synthesize orientation;
 @synthesize pivot;
 @synthesize buddy;
 

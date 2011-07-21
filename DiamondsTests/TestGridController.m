@@ -10,7 +10,6 @@
 #import "Grid.h"
 #import "DroppablePair.h"
 
-
 @interface Gem (testing)
 
 - (Sprite*) sprite;
@@ -141,6 +140,22 @@
     [controller spawn];
     
     assertNil([controller droppablePair]);
+}
+
+- (void) testGridControllerRotatesThePairLeft
+{
+    [controller spawn];
+    [controller rotateLeft];
+    
+    assertEquals(HorizontalLeft, [controller droppablePair].orientation);
+}
+
+- (void) testGridControllerRotatesThePairRight
+{
+    [controller spawn];
+    [controller rotateRight];
+    
+    assertEquals(HorizontalRight, [controller droppablePair].orientation);
 }
 
 @end

@@ -76,6 +76,16 @@
     [droppablePair moveLeftOn: grid];
 }
 
+- (void) rotateLeft
+{
+    [droppablePair rotateLeft];    
+}
+
+- (void) rotateRight
+{
+    [droppablePair rotateRight];    
+}
+
 - (void) update
 {
     [self.grid updateWithGravity: gravity];

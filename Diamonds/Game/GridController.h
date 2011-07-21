@@ -20,6 +20,10 @@
 
 - (void) moveRight;
 - (void) moveLeft;
+
+- (void) rotateLeft;
+- (void) rotateRight;
+
 - (void) update;
 
 @property (readonly, nonatomic) Grid* grid;
