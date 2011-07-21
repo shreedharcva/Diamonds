@@ -36,6 +36,16 @@
     [gridController moveRight];
 }
 
+- (void) rotateLeft
+{
+    [gridController rotateLeft];
+}
+
+- (void) rotateRight
+{
+    [gridController rotateRight];    
+}
+
 - (void) loadResources: (ResourceManager*) resources
 {        
     background = [[Sprite alloc] initWithTexture: [resources loadTexture: @"back000"]];

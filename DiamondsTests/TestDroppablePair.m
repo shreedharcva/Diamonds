@@ -77,10 +77,10 @@
 
 @end
 
-@interface TestDroppablePairInGrid : TestDroppablePairBase 
+@interface TestDroppablePairRotation : TestDroppablePairBase 
 @end
 
-@implementation TestDroppablePairInGrid
+@implementation TestDroppablePairRotation
 
 - (void) testDroppablePairSizeWhenItRotatesLeft
 {
@@ -220,6 +220,28 @@
     [pair rotateRight];
     
     assertEquals(MakeCell(1, 1), pair.buddy.cell);    
+}
+
+@end
+
+@interface TestDroppablePairInGrid : TestDroppablePairBase 
+@end
+
+@implementation TestDroppablePairInGrid
+{
+    Grid* grid;
+}
+
+- (void) testHorizontalDroppableGemCanMoveRight
+{
+    grid = [[Grid alloc] initWithResources: nil width: 8 height: 14];
+    [self makePairAt: MakeCell(1, 2)];
+    [grid put: pair];
+    
+    [pair rotateRight];
+    [pair moveRightOn: grid];
+    
+    assertEquals(MakeCell(2, 2), pair.cell);    
 }
 
 @end
