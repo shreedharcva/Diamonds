@@ -91,22 +91,7 @@
     assertEquals(1, pair.height);    
 }
 
-- (void) testDroppablePairHasVerticalTopOrientationWhenItsCreated
-{
-    [self makePairAt: MakeCell(1, 2)];
-    
-    assertEquals(VerticalUp, pair.orientation);
-}
-
-- (void) testDroppablePairHasHorizontalLeftOrientationRotatedLeft
-{
-    [self makePairAt: MakeCell(1, 2)];
-    [pair rotateLeft];
-    
-    assertEquals(HorizontalLeft, pair.orientation);
-}
-
-- (void) testDroppablePairRotatesLeft
+- (void) testDroppablePairSizeWhenItRotatesLeftTwice
 {
     [self makePairAt: MakeCell(1, 2)];
     [pair rotateLeft];
@@ -211,11 +196,15 @@
     assertEquals(MakeCell(0, 2), pair.buddy.cell);    
 }
 
+- (void) testBuddyGemAbsolutePositionIsCorrectWhenDroppablePairRotatesRight
+{
+    [self makePairAt: MakeCell(1, 2)];
+    [pair rotateRight];
+    
+    assertEquals(MakeCell(2, 2), pair.buddy.cell);    
+}
 
-
-
-/*
-- (void) testDroppablePairCellIsTheBuddyCellWhenThePairIsRotatedLeftOnce
+- (void) testBuddyGemAbsolutePositionIsCorrectWhenDroppablePairRotatesLeftTwice
 {
     [self makePairAt: MakeCell(1, 2)];
     [pair rotateLeft];

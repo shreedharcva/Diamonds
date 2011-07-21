@@ -8,23 +8,25 @@
 
 typedef struct OrientationState
 {
-    DroppablePairOrientation left;
-    DroppablePairOrientation right;
+    PairOrientation left;
+    PairOrientation right;
+        
+    int width;
+    int height;
     
     GridCell pivotCell;
     GridCell buddyCell;
+    GridCell baseCellRelativeToPivot;
+    
+} OrientationState;
 
-    int width;
-    int height;    
-}
-OrientationState;
 
-OrientationState orientationStates[4] =
+OrientationState orientations[] =
 {
-    { HorizontalLeft, HorizontalRight, {  0,  1 }, {  0,  0 }, 1, 2 },               // VerticalUp
-    { HorizontalLeft, HorizontalRight, { -1,  0 }, { -1,  0 }, 2, 1 },               // VerticalUp
-    { HorizontalLeft, HorizontalRight, { -1,  0 }, {  0,  0 }, 0, 0 },               // VerticalUp
-    { HorizontalLeft, HorizontalRight, { -1,  0 }, {  0,  0 }, 0, 0 },               // VerticalUp
+    { HorizontalLeft,   HorizontalRight,    1, 2, { 0, 0 }, { 0, 1 }, {  0,  0 } },
+    { VerticalDown,     VerticalUp,         2, 1, { 1, 0 }, { 0, 0 }, { -1,  0 } },
+    { HorizontalRight,  HorizontalLeft,     1, 2, { 0, 1 }, { 0, 0 }, {  0, -1 } },
+    { VerticalUp,       VerticalDown,       2, 1, { 0, 0 }, { 1, 0 }, {  0,  0 } },
 };
 
 @interface Droppable (private)
@@ -38,8 +40,6 @@ OrientationState orientationStates[4] =
 
 @implementation DroppablePair
 {
-    DroppablePairOrientation orientation;
-    
     Gem* buddy;
     Gem* pivot;
     
@@ -75,12 +75,16 @@ OrientationState orientationStates[4] =
 
 - (void) updatePairAfterRotation
 {
-    orientation = orientationStates[orientation].left;
+    OrientationState state = orientations[orientation]; 
     
-    [self setWidth: orientationStates[orientation].width]; 
-    [self setHeight: orientationStates[orientation].height];
+    [self setWidth: state.width]; 
+    [self setHeight: state.height]; 
     
-    [self.buddy setCell: orientationStates[orientation].buddyCell];
+    GridCell newBaseCell = self.pivot.cell;
+    newBaseCell.column += state.baseCellRelativeToPivot.column;
+    newBaseCell.row += state.baseCellRelativeToPivot.row;
+    
+    [self setCell: newBaseCell];
     
     [self.pivot setCell: state.pivotCell];
     [self.buddy setCell: state.buddyCell];    

@@ -5,18 +5,18 @@
 #import "Gem.h"
 #import "GemAggregate.h"
 
-typedef enum DroppablePairOrientation 
+typedef enum PairOrientation 
 {
-    VerticalUp = 0,
-    HorizontalLeft = 1,
-    VerticalDown = 2,
+    VerticalUp      = 0,
+    HorizontalLeft  = 1,
+    VerticalDown    = 2,
     HorizontalRight = 3,
 }
-DroppablePairOrientation;
+PairOrientation;
 
 @interface DroppablePair : GemAggregate 
 
-@property (readonly) DroppablePairOrientation orientation;
+@property (readonly) PairOrientation orientation;
 
 @property (readonly) Gem* pivot;
 @property (readonly) Gem* buddy;
