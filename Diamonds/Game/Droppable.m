@@ -80,7 +80,7 @@
 - (bool) canMoveRight: (Grid*) grid
 {
     GridCell newCell = self.cell;
-    newCell.column += self.width;
+    newCell.column += 1;
 
     return [grid isAreaEmptyAt: newCell width: self.width height: self.height ignore: self];
 }

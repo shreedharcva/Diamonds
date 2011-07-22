@@ -255,5 +255,14 @@
     assertEquals(MakeCell(4, 13), controller.droppablePair.cell);
 }
 
+- (void) testDroppablePairCanMoveRightOnTheRightEdgeOfTheGrid
+{
+    [controller spawnAt: MakeCell(5, 2)];
+    [controller rotateRight];
+    [controller moveRight];
+
+    assertEquals(MakeCell(6, 2), controller.droppablePair.cell);    
+}
+
 @end
 
