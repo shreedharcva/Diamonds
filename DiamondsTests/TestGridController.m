@@ -173,7 +173,7 @@
 
 @implementation TestGridControllerWithDroppablePair
 
- - (void) testVerticalDownDropPairStopsWhenItCollidesWithTwoGemsUnderneath
+ - (void) testGridControllerSpawnsANewPairWhenAVerticalDownDropPairCollidesWithTwoGemsUnderneath
 {
     [controller.grid put: Diamond at: MakeCell(1, 0)];
     [controller.grid put: Diamond at: MakeCell(1, 1)];
@@ -185,7 +185,7 @@
     [controller setGravity: 1.0f];    
     [controller update];
     
-    assertEquals(MakeCell(0, 2), controller.droppablePair.cell);
+    assertEquals(MakeCell(4, 13), controller.droppablePair.cell);
 }
 
 @end

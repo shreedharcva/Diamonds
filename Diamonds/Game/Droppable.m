@@ -73,15 +73,17 @@
 {
     GridCell droppableCell = self.cell;
     return 
-    cell_.row >= droppableCell.row && cell_.column >= droppableCell.column &&
-    cell_.row < droppableCell.row + self.height && cell_.column < droppableCell.column + self.width;
+        cell_.row >= droppableCell.row && cell_.column >= droppableCell.column &&
+        cell_.row < droppableCell.row + self.height && cell_.column < droppableCell.column + self.width;
 }
 
 - (bool) canMoveRight: (Grid*) grid
 {
     GridCell newCell = self.cell;
     newCell.column += self.width;
-    
+
+//    return [grid isAreaEmptyAt: newCell width: self.width height: self.height ignore: self];
+
     if (![grid isCellValid: newCell])
         return false;
     
@@ -145,18 +147,18 @@
         }
     }    
     else
-        if (state == Stopped)
+    if (state == Stopped)
+    {
+        if ([self canMoveDown: grid])
         {
-            if ([self canMoveDown: grid])
+            cell.row -= 1;
+            cellHeight = 1.00f - gravity;
+            if (cellHeight > 0.0)
             {
-                cell.row -= 1;
-                cellHeight = 1.00f - gravity;
-                if (cellHeight > 0.0)
-                {
-                    state = Falling;
-                }
+                state = Falling;
             }
         }
+    }
 }
 
 - (void) drawIn: (SpriteBatch*) batch info: (GridPresentationInfo) info
