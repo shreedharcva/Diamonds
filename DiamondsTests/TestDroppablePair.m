@@ -30,7 +30,7 @@
     gems[0] = Diamond;
     gems[1] = Ruby;
     
-    pair = [[DroppablePair alloc] initWithGrid: grid at: cell with: gems resources: nil];
+    pair = [[DroppablePair alloc] initWithGrid: grid at: cell with: gems];
     return pair;
 }
 
@@ -258,14 +258,12 @@
 }
 
 - (void) makePairAt: (GridCell) cell
-{
-    MockResourceManager* resources = [MockResourceManager new];
-    
+{    
     GemType gems[2];    
     gems[0] = Diamond;
     gems[1] = Ruby;
     
-    pair = [[DroppablePair alloc] initWithGrid: nil at: cell with: gems resources: resources];        
+    pair = [[DroppablePair alloc] initWithGrid: self.grid at: cell with: gems];        
 }
 
 - (void) testDroppablePairDrawsTwoSprites

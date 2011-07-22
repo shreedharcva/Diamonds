@@ -16,6 +16,19 @@
 
 
 @implementation TestGemBase
+{
+    Grid* grid;
+}
+
+@synthesize grid;
+
+- (void) setUp
+{
+    [super setUp];
+
+    MockResourceManager* resources = [MockResourceManager new];
+    grid = [[Grid alloc] initWithResources: resources width: 8 height: 14];
+}
 
 - (Gem*) makeGem: (GemType) type
 {
@@ -24,8 +37,7 @@
 
 - (Gem*) makeGem: (GemType) type at: (GridCell) cell
 {
-    ResourceManager* resourceManager = [ResourceManager new];    
-    gem = [[Gem alloc] initWithType: type at: cell grid: nil resources: resourceManager];    
+    gem = [[Gem alloc] initWithType: type at: cell grid: grid];    
     return gem;
 }
 

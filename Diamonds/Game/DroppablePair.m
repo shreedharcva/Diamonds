@@ -52,14 +52,14 @@ OrientationState orientations[] =
 @synthesize pivot;
 @synthesize buddy;
 
-- (Gem*) addGem: (GemType) gemType at: (GridCell) cell_ resources: (ResourceManager*) resources;
+- (Gem*) addGem: (GemType) gemType at: (GridCell) cell_
 {
-    Gem* gem = [[Gem alloc] initWithType: gemType at: cell_ grid: self.grid resources: resources];
+    Gem* gem = [[Gem alloc] initWithType: gemType at: cell_ grid: self.grid];
     [self add: gem];
     return gem;    
 }
 
-- (id) initWithGrid: (Grid*) grid_ at: (GridCell) cell_ with: (GemType[]) gems resources: (ResourceManager*) resources
+- (id) initWithGrid: (Grid*) grid_ at: (GridCell) cell_ with: (GemType[]) gems 
 {
     self = [super initWithGrid: grid_ at: cell_ width: 1 height: 2];
     if (self == nil)
@@ -69,8 +69,8 @@ OrientationState orientations[] =
 
     orientation = VerticalUp; 
 
-    pivot = [self addGem: gems[0] at: MakeCell(0, 0) resources: resources];
-    buddy = [self addGem: gems[1] at: MakeCell(0, 1) resources: resources];
+    pivot = [self addGem: gems[0] at: MakeCell(0, 0)];
+    buddy = [self addGem: gems[1] at: MakeCell(0, 1)];
     
     return self;
 }

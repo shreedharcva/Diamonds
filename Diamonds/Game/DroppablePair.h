@@ -21,7 +21,7 @@ PairOrientation;
 @property (readonly) Gem* pivot;
 @property (readonly) Gem* buddy;
 
-- (id) initWithGrid: (Grid*) grid_ at: (GridCell) cell_ with: (GemType[]) gems resources: (ResourceManager*) resources;
+- (id) initWithGrid: (Grid*) grid_ at: (GridCell) cell_ with: (GemType[]) gems;
 
 - (void) rotateLeft;
 - (void) rotateRight;

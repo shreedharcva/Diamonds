@@ -118,7 +118,7 @@ GridCell MakeCell(int column, int row)
 
 - (Gem*) put: (GemType) type at: (GridCell) cell
 {
-    Gem* gem = [[Gem alloc] initWithType: type at: cell grid: self resources: resources];
+    Gem* gem = [[Gem alloc] initWithType: type at: cell grid: self];
     [self put: gem];
     return gem;
 }

@@ -50,7 +50,7 @@
     [sprite resizeTo: CGSizeMake(32, 32)];
 }
 
-- (id) initWithType: (GemType) gemType at: (GridCell) cell_ grid: (Grid*) grid_ resources: (ResourceManager*) resources
+- (id) initWithType: (GemType) gemType at: (GridCell) cell_ grid: (Grid*) grid_
 {
     self = [super initWithGrid: grid_ at: cell_ width: 1 height: 1];
     if (self == nil)
@@ -58,7 +58,7 @@
     
     type = gemType;
     
-    [self initSpriteForType: gemType resources: resources];
+    [self initSpriteForType: gemType resources: self.grid.resources];
     
     return self;
 }

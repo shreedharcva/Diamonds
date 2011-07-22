@@ -7,11 +7,14 @@
 
 @class MockSpriteBatch;
 @class Sprite;
+@class Grid;
 
 @interface TestGemBase : TestCase
 {
     Gem* gem;
 }
+
+@property (readonly) Grid* grid;
 
 - (Gem*) makeGem: (GemType) type;
 - (Gem*) makeGem: (GemType) type at: (GridCell) cell;
