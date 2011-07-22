@@ -82,12 +82,7 @@
     GridCell newCell = self.cell;
     newCell.column += self.width;
 
-//    return [grid isAreaEmptyAt: newCell width: self.width height: self.height ignore: self];
-
-    if (![grid isCellValid: newCell])
-        return false;
-    
-    return [grid isCellEmpty: newCell];    
+    return [grid isAreaEmptyAt: newCell width: self.width height: self.height ignore: self];
 }
 
 - (bool) canMoveLeft: (Grid*) grid
@@ -95,10 +90,7 @@
     GridCell newCell = self.cell;
     newCell.column -= 1;
     
-    if (![grid isCellValid: newCell])
-        return false;
-    
-    return [grid isCellEmpty: newCell];    
+    return [grid isAreaEmptyAt: newCell width: self.width height: self.height ignore: self];
 }
 
 - (bool) canMoveDown: (Grid*) grid

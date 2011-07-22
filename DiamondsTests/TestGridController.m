@@ -56,10 +56,10 @@
 
 - (void) testDroppablePairMovesRight
 {
-    [controller spawn];
+    [controller spawnAt: MakeCell(1, 2)];
     [controller moveRight];
     
-    assertEquals(MakeCell(5, 13),[controller droppablePair].cell);
+    assertEquals(MakeCell(2, 2),[controller droppablePair].cell);
 }
 
 - (void) testDroppablePairDoesntMoveRightIfTheCellIsNotEmpty
@@ -83,10 +83,26 @@
 
 - (void) testDroppablePairMovesLeft
 {
+    [controller spawnAt: MakeCell(1, 2)];
+    [controller moveLeft];
+    
+    assertEquals(MakeCell(0, 2),[controller droppablePair].cell);
+}
+
+- (void) testDroppableSpawnedAtOriginDoesntMoveLeft
+{
     [controller spawn];
     [controller moveLeft];
     
-    assertEquals(MakeCell(3, 13),[controller droppablePair].cell);
+    assertEquals(MakeCell(4, 13),[controller droppablePair].cell);
+}
+
+- (void) testDroppableSpawnedAtOriginDoesntMoveRight
+{
+    [controller spawn];
+    [controller moveRight];
+    
+    assertEquals(MakeCell(4, 13),[controller droppablePair].cell);
 }
 
 - (void) testDroppablePairDoesntMoveLeftIfTheCellIsNotEmpty
