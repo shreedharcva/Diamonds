@@ -29,6 +29,8 @@ GridCell;
 GridCell MakeCell(int column, int row);
 void MoveCell(GridCell* cell, GridCell delta);
 
+bool CellIsEqualToCell(GridCell left, GridCell right);
+
 typedef enum Direction
 {
     Left    = 0,

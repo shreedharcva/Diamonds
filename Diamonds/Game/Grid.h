@@ -28,8 +28,10 @@
 
 - (void) updateWithGravity: (float) gravity;
 
-@property (readonly) int width;
-@property (readonly) int height;
+@property (readonly, nonatomic) int width;
+@property (readonly, nonatomic) int height;
+
+@property (readonly, nonatomic) GridCell spawnCell;
 
 @property (readonly) ResourceManager* resources;
 

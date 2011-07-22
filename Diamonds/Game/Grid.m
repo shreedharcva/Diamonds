@@ -19,6 +19,11 @@ void MoveCell(GridCell* cell, GridCell delta)
     cell->row += delta.row;
 }
 
+bool CellIsEqualToCell(GridCell left, GridCell right)
+{
+    return left.row == right.row && left.column == right.column;    
+}
+
 @implementation Grid
 {
     ResourceManager* resources;
@@ -96,8 +101,9 @@ void MoveCell(GridCell* cell, GridCell delta)
 
 - (bool) isCellValid: (GridCell) cell
 {
-    if (cell.column == self.width / 2 && cell.row == self.height)
+    if (CellIsEqualToCell(cell, self.spawnCell))
         return true;
+    
     if (cell.column < 0 || cell.column >= self.width)
         return false;
     if (cell.row < 0 || cell.row >= self.height)
@@ -155,6 +161,11 @@ void MoveCell(GridCell* cell, GridCell delta)
     }    
 }
 
+- (GridCell) spawnCell
+{
+    return MakeCell(self.width / 2, self.height);    
+}
+
 @end
 
 @implementation GridDrawer
@@ -200,6 +211,5 @@ void MoveCell(GridCell* cell, GridCell delta)
         [droppable drawIn: batch info: info];
     }
 }
-
 
 @end
