@@ -168,15 +168,26 @@
 
 - (void) testGridControllerRotatesThePairLeft
 {
-    [controller spawn];
+    [controller spawnAt: MakeCell(2, 2)];
     [controller rotateLeft];
     
     assertEquals(HorizontalLeft, [controller droppablePair].orientation);
 }
 
+/*
+- (void) testGridControllerDoesntRotatesThePairLeftIfTheLeftCellIsNotEmpty
+{
+    [controller spawnAt: MakeCell(2, 2)];
+    [controller.grid put: Diamond at: MakeCell(1, 2)];
+    [controller rotateLeft];
+    
+    assertEquals(VerticalUp, [controller droppablePair].orientation);
+}
+ */
+
 - (void) testGridControllerRotatesThePairRight
 {
-    [controller spawn];
+    [controller spawnAt: MakeCell(2, 2)];
     [controller rotateRight];
     
     assertEquals(HorizontalRight, [controller droppablePair].orientation);
@@ -196,7 +207,7 @@
 
     [controller spawnAt: MakeCell(0, 2)];
 
-    [controller.droppablePair rotateRight];
+    [controller rotateRight];
 
     [controller setGravity: 1.0f];    
     [controller update];

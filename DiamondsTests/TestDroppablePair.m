@@ -17,6 +17,7 @@
 @interface TestDroppablePairBase : TestCase 
 {
     DroppablePair* pair;
+    Grid* grid;
 }
 @end
 
@@ -85,7 +86,7 @@
 - (void) testDroppablePairSizeWhenItRotatesLeft
 {
     [self makePairAt: MakeCell(1, 2)];
-    [pair rotateLeft];
+    [pair rotateLeft: grid];
     
     assertEquals(2, pair.width);    
     assertEquals(1, pair.height);    
@@ -94,8 +95,8 @@
 - (void) testDroppablePairSizeWhenItRotatesLeftTwice
 {
     [self makePairAt: MakeCell(1, 2)];
-    [pair rotateLeft];
-    [pair rotateLeft];
+    [pair rotateLeft: grid];
+    [pair rotateLeft: grid];
     
     assertEquals(1, pair.width);    
     assertEquals(2, pair.height);    
@@ -104,7 +105,7 @@
 - (void) testDroppablePairSizeWhenItRotatesRight
 {
     [self makePairAt: MakeCell(1, 2)];
-    [pair rotateRight];
+    [pair rotateRight: grid];
     
     assertEquals(2, pair.width);    
     assertEquals(1, pair.height);    
@@ -113,8 +114,8 @@
 - (void) testDroppablePairSizeWhenItRotatesRightTwice
 {
     [self makePairAt: MakeCell(1, 2)];
-    [pair rotateRight];
-    [pair rotateRight];
+    [pair rotateRight: grid];
+    [pair rotateRight: grid];
     
     assertEquals(1, pair.width);    
     assertEquals(2, pair.height);    
@@ -123,7 +124,7 @@
 - (void) testDroppablePairCellIsInTheCorrectCellWhenThePairIsRotatedLeftOnce
 {
     [self makePairAt: MakeCell(1, 2)];
-    [pair rotateLeft];
+    [pair rotateLeft: grid];
     
     assertEquals(MakeCell(0, 2), pair.cell);
 }
@@ -131,7 +132,7 @@
 - (void) testDroppablePairCellIsInTheCorrectCellWhenThePairIsRotatedRightOnce
 {
     [self makePairAt: MakeCell(1, 2)];
-    [pair rotateRight];
+    [pair rotateRight: grid];
     
     assertEquals(MakeCell(1, 2), pair.cell);
 }
@@ -139,8 +140,8 @@
 - (void) testDroppablePairCellIsInTheCorrectCellWhenThePairIsRotatedLeftTwice
 {
     [self makePairAt: MakeCell(1, 2)];
-    [pair rotateLeft];
-    [pair rotateLeft];
+    [pair rotateLeft: grid];
+    [pair rotateLeft: grid];
     
     assertEquals(MakeCell(1, 1), pair.cell);
 }
@@ -148,8 +149,8 @@
 - (void) testDroppablePairCellIsInTheCorrectCellWhenThePairIsRotatedRightTwice
 {
     [self makePairAt: MakeCell(1, 2)];
-    [pair rotateRight];
-    [pair rotateRight];
+    [pair rotateRight: grid];
+    [pair rotateRight: grid];
     
     assertEquals(MakeCell(1, 1), pair.cell);
 }
@@ -157,7 +158,7 @@
 - (void) testPivotGemAbsolutePositionIsCorrectWhenDroppablePairRotatesLeft
 {
     [self makePairAt: MakeCell(1, 2)];
-    [pair rotateLeft];
+    [pair rotateLeft: grid];
     
     assertEquals(MakeCell(1, 2), pair.pivot.cell);    
 }
@@ -165,7 +166,7 @@
 - (void) testPivotGemAbsolutePositionIsCorrectWhenDroppablePairRotatesRight
 {
     [self makePairAt: MakeCell(1, 2)];
-    [pair rotateRight];
+    [pair rotateRight: grid];
     
     assertEquals(MakeCell(1, 2), pair.pivot.cell);    
 }
@@ -173,8 +174,8 @@
 - (void) testPivotGemAbsolutePositionIsCorrectWhenDroppablePairRotatesLeftTwice
 {
     [self makePairAt: MakeCell(1, 2)];
-    [pair rotateLeft];
-    [pair rotateLeft];
+    [pair rotateLeft: grid];
+    [pair rotateLeft: grid];
     
     assertEquals(MakeCell(1, 2), pair.pivot.cell);    
 }
@@ -182,8 +183,8 @@
 - (void) testPivotGemAbsolutePositionIsCorrectWhenDroppablePairRotatesRightTwice
 {
     [self makePairAt: MakeCell(1, 2)];
-    [pair rotateRight];
-    [pair rotateRight];
+    [pair rotateRight: grid];
+    [pair rotateRight: grid];
     
     assertEquals(MakeCell(1, 2), pair.pivot.cell);    
 }
@@ -191,7 +192,7 @@
 - (void) testBuddyGemAbsolutePositionIsCorrectWhenDroppablePairRotatesLeft
 {
     [self makePairAt: MakeCell(1, 2)];
-    [pair rotateLeft];
+    [pair rotateLeft: grid];
     
     assertEquals(MakeCell(0, 2), pair.buddy.cell);    
 }
@@ -199,7 +200,7 @@
 - (void) testBuddyGemAbsolutePositionIsCorrectWhenDroppablePairRotatesRight
 {
     [self makePairAt: MakeCell(1, 2)];
-    [pair rotateRight];
+    [pair rotateRight: grid];
     
     assertEquals(MakeCell(2, 2), pair.buddy.cell);    
 }
@@ -207,8 +208,8 @@
 - (void) testBuddyGemAbsolutePositionIsCorrectWhenDroppablePairRotatesLeftTwice
 {
     [self makePairAt: MakeCell(1, 2)];
-    [pair rotateLeft];
-    [pair rotateLeft];
+    [pair rotateLeft: grid];
+    [pair rotateLeft: grid];
     
     assertEquals(MakeCell(1, 1), pair.buddy.cell);
 }
@@ -216,8 +217,8 @@
 - (void) testBuddyGemAbsolutePositionIsCorrectWhenDroppablePairRotatesRightTwice
 {
     [self makePairAt: MakeCell(1, 2)];
-    [pair rotateRight];
-    [pair rotateRight];
+    [pair rotateRight: grid];
+    [pair rotateRight: grid];
     
     assertEquals(MakeCell(1, 1), pair.buddy.cell);    
 }
@@ -243,7 +244,7 @@
     [self makePairAt: MakeCell(1, 2)];
     [grid put: pair];
     
-    [pair rotateRight];
+    [pair rotateRight: grid];
     [pair moveRightOn: grid];
     
     assertEquals(MakeCell(2, 2), pair.cell);    

@@ -23,8 +23,8 @@ PairOrientation;
 
 - (id) initAt: (GridCell) cell_ with: (GemType[]) gems resources: (ResourceManager*) resources;
 
-- (void) rotateLeft;
-- (void) rotateRight;
+- (void) rotateLeft: (Grid*) grid;
+- (void) rotateRight: (Grid*) grid;
 
 - (void) updateWithGravity: (float) gravity onGrid: (Grid*) grid;
 - (void) drawIn: (SpriteBatch*) batch info: (GridPresentationInfo) info;

@@ -78,12 +78,12 @@
 
 - (void) rotateLeft
 {
-    [droppablePair rotateLeft];    
+    [droppablePair rotateLeft: self.grid];    
 }
 
 - (void) rotateRight
 {
-    [droppablePair rotateRight];    
+    [droppablePair rotateRight: self.grid];    
 }
 
 - (void) update

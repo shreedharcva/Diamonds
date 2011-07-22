@@ -4,6 +4,7 @@
 
 #import "DroppablePair.h"
 
+#import "Grid.h"
 #import "Gem.h"
 
 typedef struct OrientationState
@@ -90,13 +91,28 @@ OrientationState orientations[] =
     [self.buddy setCell: state.buddyCell];    
 }
 
-- (void) rotateLeft
+- (void) rotateLeft: (Grid*) grid
 {
+    /*
+    GridCell cellToTest = self.cell;
+    
+    if (orientation == VerticalUp )
+        cellToTest.column -= 1;
+    else
+    if (orientation == HorizontalLeft)
+        cellToTest.row -= 1;
+   
+    if (![grid isAreaEmptyAt: cellToTest width: self.width height: self.height ignore: self])
+    {
+        return;
+    }
+     */
+    
     orientation = orientations[orientation].left;
     [self updatePairAfterRotation];
 }
 
-- (void) rotateRight
+- (void) rotateRight: (Grid*) grid
 {
     orientation = orientations[orientation].right;
     [self updatePairAfterRotation];    
