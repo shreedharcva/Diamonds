@@ -28,6 +28,15 @@ GridCell;
 
 GridCell MakeCell(int column, int row);
 
+typedef enum Direction
+{
+    Left    = 0,
+    Right   = 1,
+    Up      = 2,
+    Down    = 3,    
+} 
+Direction;
+
 @class SpriteBatch;
 @class ResourceManager;
 @class Grid;
@@ -36,6 +45,8 @@ GridCell MakeCell(int column, int row);
 {
     float cellHeight;
 }
+
+@property (readonly, nonatomic) Grid* grid;
 
 @property (readonly, nonatomic) int width;
 @property (readonly, nonatomic) int height;
@@ -49,16 +60,16 @@ GridCell MakeCell(int column, int row);
 
 @property (weak) Droppable* parent;
 
-- (id) initAt: (GridCell) cell_ width: (int) width_ height: (int) height_;
+- (id) initWithGrid: (Grid*) grid_ at: (GridCell) cell_ width: (int) width_ height: (int) height_;
 
 - (void) detachFromParent;
 
 - (bool) contains: (GridCell) cell_;
 
-- (void) moveRightOn: (Grid*) grid;
-- (void) moveLeftOn: (Grid*) grid;
+- (void) moveRight;
+- (void) moveLeft;
 
-- (void) updateWithGravity: (float) gravity onGrid: (Grid*) grid;
+- (void) updateWithGravity: (float) gravity;
 - (void) drawIn: (SpriteBatch*) batch info: (GridPresentationInfo) info;
 
 @end

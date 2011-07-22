@@ -118,7 +118,7 @@ GridCell MakeCell(int column, int row)
 
 - (Gem*) put: (GemType) type at: (GridCell) cell
 {
-    Gem* gem = [[Gem alloc] initWithType: type at: cell resources: resources];
+    Gem* gem = [[Gem alloc] initWithType: type at: cell grid: self resources: resources];
     [self put: gem];
     return gem;
 }
@@ -145,7 +145,7 @@ GridCell MakeCell(int column, int row)
 {
     for (Droppable* droppable in droppables)
     {
-        [droppable updateWithGravity: gravity onGrid: self];
+        [droppable updateWithGravity: gravity];
     }    
 }
 

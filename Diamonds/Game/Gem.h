@@ -17,7 +17,7 @@ GemType;
 
 @property (readonly) GemType type;
 
-- (id) initWithType: (GemType) gemType at: (GridCell) cell resources: (ResourceManager*) resources;
+- (id) initWithType: (GemType) gemType at: (GridCell) cell grid: (Grid*) grid_ resources: (ResourceManager*) resources;
 
 - (void) drawIn: (SpriteBatch*) batch info: (GridPresentationInfo) info;
 

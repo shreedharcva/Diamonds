@@ -47,7 +47,7 @@
         gems[1] = Ruby;
         
         // TODO: create a DroppableFactory class to hide the resource manager        
-        droppablePair = [[DroppablePair alloc] initAt: spawnCell with: gems resources: grid.resources];
+        droppablePair = [[DroppablePair alloc] initWithGrid: self.grid at: spawnCell with: gems resources: grid.resources];
         [grid put: droppablePair];
     }
     else
@@ -68,22 +68,22 @@
 
 - (void) moveRight
 {
-    [droppablePair moveRightOn: grid];
+    [droppablePair moveRight];
 }
 
 - (void) moveLeft
 {
-    [droppablePair moveLeftOn: grid];
+    [droppablePair moveLeft];
 }
 
 - (void) rotateLeft
 {
-    [droppablePair rotateLeft: self.grid];    
+    [droppablePair rotateLeft];    
 }
 
 - (void) rotateRight
 {
-    [droppablePair rotateRight: self.grid];    
+    [droppablePair rotateRight];    
 }
 
 - (void) update

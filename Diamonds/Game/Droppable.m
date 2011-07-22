@@ -12,12 +12,16 @@
     int height;
     
 @protected
+    Grid* grid;
+    
     GridCell cell;
     DroppableState state;
     
 @private
     Droppable* __weak parent;
 }
+
+@synthesize grid;
 
 @synthesize width;
 @synthesize height;
@@ -28,22 +32,30 @@
 
 @synthesize parent;
 
-- (id) initAt: (GridCell) cell_ width: (int) width_ height: (int) height_;
+- (id) initWithGrid: (Grid*) grid_ at: (GridCell) cell_ width: (int) width_ height: (int) height_
 {
     self = [super init];
     if (self == nil)
     {
         return nil;
     }
-    
-    cell = cell_;
+
     width = width_;
     height = height_;
+
+    grid = grid_;
+    
+    cell = cell_;
     
     state = Stopped;    
     cellHeight = 0.0f;
     
     return self;    
+}
+
+- (id) initAt: (GridCell) cell_ width: (int) width_ height: (int) height_;
+{
+    return [self initWithGrid: nil at: cell_ width: width_ height: height_]; 
 }
 
 - (void) setCell: (GridCell) cell_
@@ -77,7 +89,7 @@
         cell_.row < droppableCell.row + self.height && cell_.column < droppableCell.column + self.width;
 }
 
-- (bool) canMoveRight: (Grid*) grid
+- (bool) canMoveRight: (Grid*) grid_
 {
     GridCell newCell = self.cell;
     newCell.column += 1;
@@ -85,7 +97,7 @@
     return [grid isAreaEmptyAt: newCell width: self.width height: self.height ignore: self];
 }
 
-- (bool) canMoveLeft: (Grid*) grid
+- (bool) canMoveLeft: (Grid*) grid_
 {
     GridCell newCell = self.cell;
     newCell.column -= 1;
@@ -93,7 +105,7 @@
     return [grid isAreaEmptyAt: newCell width: self.width height: self.height ignore: self];
 }
 
-- (bool) canMoveDown: (Grid*) grid
+- (bool) canMoveDown: (Grid*) grid_
 {
     GridCell newCell = self.cell;
     newCell.row -= 1;
@@ -101,7 +113,7 @@
     return [grid isAreaEmptyAt: newCell width: self.width height: self.height ignore: self];
 }
 
-- (void) moveRightOn: (Grid*) grid
+- (void) moveRight
 {
     if ([self canMoveRight: grid])
     {
@@ -109,7 +121,7 @@
     }
 }
 
-- (void) moveLeftOn: (Grid*) grid
+- (void) moveLeft
 {
     if ([self canMoveLeft: grid])
     {
@@ -117,7 +129,7 @@
     }
 }
 
-- (void) updateWithGravity: (float) gravity onGrid: (Grid*) grid
+- (void) updateWithGravity: (float) gravity
 {
     if (state == Falling)
     {

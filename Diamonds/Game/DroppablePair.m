@@ -23,15 +23,6 @@ typedef struct OrientationState
     
 } OrientationState;
 
-typedef enum Direction
-{
-    Left = 0,
-    Right = 1,
-    Up = 2,
-    Down = 3,    
-} 
-Direction;
-
 OrientationState orientations[] =
 {
     { HorizontalLeft,   HorizontalRight,    1, 2, { 0, 0 }, { 0, 1 }, {  0,  0 }, { { -1,  0 }, {  1,  0 } } },
@@ -63,14 +54,14 @@ OrientationState orientations[] =
 
 - (Gem*) addGem: (GemType) gemType at: (GridCell) cell_ resources: (ResourceManager*) resources;
 {
-    Gem* gem = [[Gem alloc] initWithType: gemType at: cell_ resources: resources];
+    Gem* gem = [[Gem alloc] initWithType: gemType at: cell_ grid: self.grid resources: resources];
     [self add: gem];
     return gem;    
 }
 
-- (id) initAt: (GridCell) cell_ with: (GemType[]) gems resources: (ResourceManager*) resources
+- (id) initWithGrid: (Grid*) grid_ at: (GridCell) cell_ with: (GemType[]) gems resources: (ResourceManager*) resources
 {
-    self = [super initAt: cell_ width: 1 height: 2];
+    self = [super initWithGrid: grid_ at: cell_ width: 1 height: 2];
     if (self == nil)
     {
         return nil;
@@ -101,9 +92,9 @@ OrientationState orientations[] =
     [self.buddy setCell: state.buddyCell];    
 }
 
-- (bool) canRotate: (Direction) direction grid: (Grid*) grid
+- (bool) canRotate: (Direction) direction 
 {
-    if (grid == nil)
+    if (self.grid == nil)
         return true;
     
     GridCell cellToTest = self.cell;
@@ -111,30 +102,25 @@ OrientationState orientations[] =
     cellToTest.row += orientations[orientation].rotationCheckRelativeToPivot[direction].row;
     cellToTest.column += orientations[orientation].rotationCheckRelativeToPivot[direction].column;
 
-    return [grid isAreaEmptyAt: cellToTest width: self.width height: self.height ignore: self];
+    return [self.grid isAreaEmptyAt: cellToTest width: self.width height: self.height ignore: self];
 }
 
-- (void) rotateLeft: (Grid*) grid
+- (void) rotateLeft
 {
-    if ([self canRotate: Left grid: grid])
+    if ([self canRotate: Left])
     {
         orientation = orientations[orientation].left;
         [self updatePairAfterRotation];        
     }
 }
 
-- (void) rotateRight: (Grid*) grid
+- (void) rotateRight
 {
-    if ([self canRotate: Right grid: grid])
+    if ([self canRotate: Right])
     {
         orientation = orientations[orientation].right;
         [self updatePairAfterRotation];    
     }
-}
-
-- (void) updateWithGravity: (float) gravity onGrid: (Grid*) grid
-{
-    [super updateWithGravity: gravity onGrid: grid];
 }
 
 - (void) drawIn: (SpriteBatch*) batch info: (GridPresentationInfo) info

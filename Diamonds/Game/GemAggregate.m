@@ -7,15 +7,14 @@
 
 #import "Grid.h"
 
-
 @implementation GemAggregate
 {
     NSMutableArray* droppables;
 }
 
-- (id) initAt: (GridCell) cell_ width: (int) width_ height: (int) height_
+- (id) initWithGrid: (Grid*) grid_ at: (GridCell) cell_ width: (int) width_ height: (int) height_;
 {
-    self = [super initAt: cell_ width: width_ height: height_];
+    self = [super initWithGrid: grid_ at: cell_ width: width_ height: height_];
     if (self == nil)
         return nil;
     

@@ -25,7 +25,7 @@
 - (Gem*) makeGem: (GemType) type at: (GridCell) cell
 {
     ResourceManager* resourceManager = [ResourceManager new];    
-    gem = [[Gem alloc] initWithType: type at: cell resources: resourceManager];    
+    gem = [[Gem alloc] initWithType: type at: cell grid: nil resources: resourceManager];    
     return gem;
 }
 

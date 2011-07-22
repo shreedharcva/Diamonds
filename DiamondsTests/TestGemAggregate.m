@@ -29,7 +29,7 @@
 
 - (void) setUp
 {
-    aggregate = [[GemAggregate alloc] initAt: MakeCell(1, 1) width: 2 height: 2];
+    aggregate = [[GemAggregate alloc] initWithGrid: nil at: MakeCell(1, 1) width: 2 height: 2];
 }
 
 @end

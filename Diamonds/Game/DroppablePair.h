@@ -21,12 +21,11 @@ PairOrientation;
 @property (readonly) Gem* pivot;
 @property (readonly) Gem* buddy;
 
-- (id) initAt: (GridCell) cell_ with: (GemType[]) gems resources: (ResourceManager*) resources;
+- (id) initWithGrid: (Grid*) grid_ at: (GridCell) cell_ with: (GemType[]) gems resources: (ResourceManager*) resources;
 
-- (void) rotateLeft: (Grid*) grid;
-- (void) rotateRight: (Grid*) grid;
+- (void) rotateLeft;
+- (void) rotateRight;
 
-- (void) updateWithGravity: (float) gravity onGrid: (Grid*) grid;
 - (void) drawIn: (SpriteBatch*) batch info: (GridPresentationInfo) info;
 
 @end
