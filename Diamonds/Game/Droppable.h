@@ -27,6 +27,7 @@ typedef struct GridCell
 GridCell;
 
 GridCell MakeCell(int column, int row);
+void MoveCell(GridCell* cell, GridCell delta);
 
 typedef enum Direction
 {
@@ -66,6 +67,7 @@ Direction;
 
 - (bool) contains: (GridCell) cell_;
 
+- (void) move: (Direction) direction;
 - (void) moveRight;
 - (void) moveLeft;
 

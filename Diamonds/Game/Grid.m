@@ -13,6 +13,12 @@ GridCell MakeCell(int column, int row)
     return cell;    
 }
 
+void MoveCell(GridCell* cell, GridCell delta)
+{    
+    cell->column += delta.column;
+    cell->row += delta.row;
+}
+
 @implementation Grid
 {
     ResourceManager* resources;
@@ -28,7 +34,7 @@ GridCell MakeCell(int column, int row)
 
 @synthesize resources;
 
-- (id) initWithResources: (ResourceManager*) resourceManager width: (int) gridWidth height: (int) gridHeight
+- (id) initWithResources: (ResourceManager*) resourceManager width: (int) width_ height: (int) height_
 {
     self = [super init];
     if (self == nil)
@@ -36,8 +42,8 @@ GridCell MakeCell(int column, int row)
     
     resources = resourceManager;
 
-    width = gridWidth;
-    height = gridHeight;
+    width = width_;
+    height = height_;
 
     droppables = [NSMutableSet new];
     

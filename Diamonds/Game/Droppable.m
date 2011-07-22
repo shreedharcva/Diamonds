@@ -6,13 +6,21 @@
 
 #import "Grid.h"
 
+GridCell movementMap[4] = 
+{
+    { -1,  0 },      // left
+    {  1,  0 },      // right
+    {  0,  1 },      // up
+    {  0, -1 },      // down
+};
+
 @implementation Droppable
 {
     int width;
     int height;
     
 @protected
-    Grid* grid;
+    Grid* __weak grid;
     
     GridCell cell;
     DroppableState state;
@@ -89,44 +97,35 @@
         cell_.row < droppableCell.row + self.height && cell_.column < droppableCell.column + self.width;
 }
 
-- (bool) canMoveRight: (Grid*) grid_
+- (bool) canMove: (Direction) direction
 {
     GridCell newCell = self.cell;
-    newCell.column += 1;
-
-    return [grid isAreaEmptyAt: newCell width: self.width height: self.height ignore: self];
+    MoveCell(&newCell, movementMap[direction]);
+    
+    return [grid isAreaEmptyAt: newCell width: self.width height: self.height ignore: self];    
 }
 
-- (bool) canMoveLeft: (Grid*) grid_
+- (void) moveBy: (GridCell) delta
 {
-    GridCell newCell = self.cell;
-    newCell.column -= 1;
-    
-    return [grid isAreaEmptyAt: newCell width: self.width height: self.height ignore: self];
+    MoveCell(&cell, delta);
 }
 
-- (bool) canMoveDown: (Grid*) grid_
+- (void) move: (Direction) direction
 {
-    GridCell newCell = self.cell;
-    newCell.row -= 1;
-    
-    return [grid isAreaEmptyAt: newCell width: self.width height: self.height ignore: self];
+    if ([self canMove: direction])
+    {
+        [self moveBy: movementMap[direction]];
+    }
 }
 
 - (void) moveRight
 {
-    if ([self canMoveRight: grid])
-    {
-        cell.column += 1;
-    }
+    [self move: Right];
 }
 
 - (void) moveLeft
 {
-    if ([self canMoveLeft: grid])
-    {
-        cell.column -= 1;
-    }
+    [self move: Left];
 }
 
 - (void) updateWithGravity: (float) gravity
@@ -139,7 +138,7 @@
         {
             cellHeight += 1.00f;
             
-            if ([self canMoveDown: grid])
+            if ([self canMove: Down])
             {
                 cell.row -= 1;
             }
@@ -153,9 +152,10 @@
     else
     if (state == Stopped)
     {
-        if ([self canMoveDown: grid])
+        if ([self canMove: Down])
         {
             cell.row -= 1;
+            
             cellHeight = 1.00f - gravity;
             if (cellHeight > 0.0)
             {
