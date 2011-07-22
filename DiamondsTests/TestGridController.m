@@ -174,8 +174,7 @@
     assertEquals(HorizontalLeft, [controller droppablePair].orientation);
 }
 
-/*
-- (void) testGridControllerDoesntRotatesThePairLeftIfTheLeftCellIsNotEmpty
+- (void) testGridControllerDoesntRotateThePairLeftIfTheLeftCellIsNotEmpty
 {
     [controller spawnAt: MakeCell(2, 2)];
     [controller.grid put: Diamond at: MakeCell(1, 2)];
@@ -183,7 +182,39 @@
     
     assertEquals(VerticalUp, [controller droppablePair].orientation);
 }
- */
+
+- (void) testGridControllerDoesntRotateAnHorizontalPairLeftIfTheCellUnderneathIsNotEmpty
+{
+    [controller spawnAt: MakeCell(2, 2)];
+    [controller.grid put: Diamond at: MakeCell(1, 1)];
+    [controller rotateLeft];
+    [controller rotateLeft];
+    
+    assertEquals(HorizontalLeft, [controller droppablePair].orientation);
+}
+
+- (void) testGridControllerDoesntRotateAVerticalDownPairLeftIfTheCellOnTheRightIsNotEmpty
+{
+    [controller spawnAt: MakeCell(2, 2)];
+    [controller.grid put: Diamond at: MakeCell(3, 1)];
+    [controller rotateLeft];
+    [controller rotateLeft];
+    [controller rotateLeft];
+    
+    assertEquals(VerticalDown, [controller droppablePair].orientation);
+}
+
+- (void) testGridControllerDoesntRotateAnHorizontalRightPairLeftIfTheCellAboveIsNotEmpty
+{
+    [controller spawnAt: MakeCell(2, 2)];
+    [controller.grid put: Diamond at: MakeCell(3, 3)];
+    [controller rotateLeft];
+    [controller rotateLeft];
+    [controller rotateLeft];
+    [controller rotateLeft];
+    
+    assertEquals(HorizontalRight, [controller droppablePair].orientation);
+}
 
 - (void) testGridControllerRotatesThePairRight
 {
@@ -193,6 +224,15 @@
     assertEquals(HorizontalRight, [controller droppablePair].orientation);
 }
 
+- (void) testGridControllerDoesntRotateThePairRightIfTheCellOnTheRightIsNotEmpty
+{
+    [controller spawnAt: MakeCell(2, 2)];
+    [controller.grid put: Diamond at: MakeCell(3, 2)];
+    [controller rotateRight];
+    
+    assertEquals(VerticalUp, [controller droppablePair].orientation);
+}
+
 @end
 
 @interface TestGridControllerWithDroppablePair : TestGridControllerBase 
@@ -200,7 +240,7 @@
 
 @implementation TestGridControllerWithDroppablePair
 
- - (void) testGridControllerSpawnsANewPairWhenAVerticalDownDropPairCollidesWithTwoGemsUnderneath
+- (void) testGridControllerSpawnsANewPairWhenAVerticalDownDropPairCollidesWithTwoGemsUnderneath
 {
     [controller.grid put: Diamond at: MakeCell(1, 0)];
     [controller.grid put: Diamond at: MakeCell(1, 1)];

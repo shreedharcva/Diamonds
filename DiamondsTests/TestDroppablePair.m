@@ -250,8 +250,6 @@
     assertEquals(MakeCell(2, 2), pair.cell);    
 }
 
-
-
 @end
 
 @interface TestDroppablePairDrawing : TestGemDrawingBase 
