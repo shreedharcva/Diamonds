@@ -83,8 +83,7 @@ OrientationState orientations[] =
     [self setHeight: state.height]; 
     
     GridCell newBaseCell = self.pivot.cell;
-    newBaseCell.column += state.baseCellRelativeToPivot.column;
-    newBaseCell.row += state.baseCellRelativeToPivot.row;
+    MoveCell(&newBaseCell, state.baseCellRelativeToPivot);
     
     [self setCell: newBaseCell];
     
@@ -98,10 +97,8 @@ OrientationState orientations[] =
         return true;
     
     GridCell cellToTest = self.cell;
+    MoveCell(&cellToTest, orientations[orientation].rotationCheckRelativeToPivot[direction]);
     
-    cellToTest.row += orientations[orientation].rotationCheckRelativeToPivot[direction].row;
-    cellToTest.column += orientations[orientation].rotationCheckRelativeToPivot[direction].column;
-
     return [self.grid isAreaEmptyAt: cellToTest width: self.width height: self.height ignore: self];
 }
 
