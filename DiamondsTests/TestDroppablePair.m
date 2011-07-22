@@ -232,9 +232,14 @@
     Grid* grid;
 }
 
+- (void) setUp
+{
+    [super setUp];
+    grid = [[Grid alloc] initWithResources: nil width: 8 height: 14];    
+}
+
 - (void) testHorizontalDroppableGemCanMoveRight
 {
-    grid = [[Grid alloc] initWithResources: nil width: 8 height: 14];
     [self makePairAt: MakeCell(1, 2)];
     [grid put: pair];
     
@@ -243,6 +248,8 @@
     
     assertEquals(MakeCell(2, 2), pair.cell);    
 }
+
+
 
 @end
 

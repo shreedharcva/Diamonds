@@ -130,9 +130,31 @@
     });
 }
 
+- (void) testIsAreaEmptyReturnsTrueForAnEmptyArea
+{    
+    assertTrue([grid isAreaEmptyAt: MakeCell(0, 0) width: 2 height: 2]);
+}
+
+- (void) testIsAreaEmptyReturnsFalseForANonEmptyArea
+{   
+    [grid put: Diamond at: MakeCell(1, 1)];
+    assertTrue(![grid isAreaEmptyAt: MakeCell(0, 0) width: 2 height: 2]);
+}
+
+- (void) testIsAreaEmptyReturnsFalseForAnAreaOutOfBound
+{   
+    assertTrue(![grid isAreaEmptyAt: MakeCell(13, 0) width: 2 height: 2]);
+}
+
+- (void) testIsAreaEmptyReturnsTrueForAnAreaOverlappingADroppableToIgnore
+{   
+    Droppable* gem = [grid put: Diamond at: MakeCell(1, 1)];
+    assertTrue([grid isAreaEmptyAt: MakeCell(0, 0) width: 2 height: 2 ignore: gem]);
+}
+
 @end
 
-@interface TestGemFallingInGrid : TestGrid 
+@interface TestGemFallingInGrid : TestGridBase
 @end
 
 @implementation TestGemFallingInGrid

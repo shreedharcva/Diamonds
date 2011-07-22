@@ -102,6 +102,11 @@ OrientationState orientations[] =
     [self updatePairAfterRotation];    
 }
 
+- (void) updateWithGravity: (float) gravity onGrid: (Grid*) grid
+{
+    [super updateWithGravity: gravity onGrid: grid];
+}
+
 - (void) drawIn: (SpriteBatch*) batch info: (GridPresentationInfo) info
 {
     [pivot drawIn: batch info: info];

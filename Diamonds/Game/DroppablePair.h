@@ -26,6 +26,7 @@ PairOrientation;
 - (void) rotateLeft;
 - (void) rotateRight;
 
+- (void) updateWithGravity: (float) gravity onGrid: (Grid*) grid;
 - (void) drawIn: (SpriteBatch*) batch info: (GridPresentationInfo) info;
 
 @end

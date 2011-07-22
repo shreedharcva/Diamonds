@@ -49,6 +49,40 @@ GridCell MakeCell(int column, int row)
     return [droppables count] == 0;
 }
 
+- (bool) isAreaEmptyAt: (GridCell) cell width: (int) width_ height: (int) height_ ignore: (Droppable*) ignore
+{
+    for (int i = cell.column; i < cell.column + width_; ++i)
+    {
+        for (int j = cell.row; j < cell.row + height_; ++j)
+        {
+            GridCell cellToTest = MakeCell(i, j);
+            if (!
+                [self isCellValid: cellToTest])
+            {
+                return false;
+            }
+            
+            Droppable* droppable = [self get: cellToTest];
+            if (ignore != nil && droppable == ignore)
+            {
+                continue;
+            }
+
+            if (droppable != nil)
+            {
+                return false;
+            }
+        }
+    }
+    
+    return true;    
+}
+
+- (bool) isAreaEmptyAt: (GridCell) cell width: (int) width_ height: (int) height_
+{
+    return [self isAreaEmptyAt: cell width: width_ height: height_ ignore: nil];
+}
+
 - (bool) isCellEmpty: (GridCell) cell
 {
     return [self get: cell] == Nil;
@@ -56,9 +90,11 @@ GridCell MakeCell(int column, int row)
 
 - (bool) isCellValid: (GridCell) cell
 {
+    if (cell.column == self.width / 2 && cell.row == self.height)
+        return true;
     if (cell.column < 0 || cell.column >= self.width)
         return false;
-    if (cell.row < 0)
+    if (cell.row < 0 || cell.row >= self.height)
         return false;
     
     return true;

@@ -16,6 +16,9 @@
 - (bool) isCellEmpty: (GridCell) cell;
 - (bool) isCellValid: (GridCell) cell;
 
+- (bool) isAreaEmptyAt: (GridCell) cell width: (int) width_ height: (int) height_;
+- (bool) isAreaEmptyAt: (GridCell) cell width: (int) width_ height: (int) height_ ignore: (Droppable*) ignore;
+
 - (Droppable*) put: (Droppable*) droppable;
 - (Gem*) put: (GemType) type at: (GridCell) cell;
 

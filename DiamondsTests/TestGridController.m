@@ -16,20 +16,21 @@
 
 @end
 
-@interface TestGridController : TestCase 
-@end
-
 @interface GridController (test)
 
 - (void) spawnAt: (GridCell) cell;
 
 @end
 
-@implementation TestGridController
+@interface TestGridControllerBase : TestCase 
 {
     Grid* grid;
     GridController* controller;
 }
+
+@end
+
+@implementation TestGridControllerBase
 
 - (void) setUp
 {
@@ -38,6 +39,13 @@
     grid = [[Grid alloc] initWithResources: nil width: 8 height: 14];
     controller = [[GridController alloc] initWithGrid: grid];
 }
+
+@end
+
+@interface TestGridController : TestGridControllerBase 
+@end
+
+@implementation TestGridController
 
 - (void) testGridControllerCreatesADroppablePairAtTheCorrectCellInTheGridWhenAskedToSpawn 
 {
@@ -160,4 +168,25 @@
 
 @end
 
+@interface TestGridControllerWithDroppablePair : TestGridControllerBase 
+@end
+
+@implementation TestGridControllerWithDroppablePair
+
+ - (void) testVerticalDownDropPairStopsWhenItCollidesWithTwoGemsUnderneath
+{
+    [controller.grid put: Diamond at: MakeCell(1, 0)];
+    [controller.grid put: Diamond at: MakeCell(1, 1)];
+
+    [controller spawnAt: MakeCell(0, 2)];
+
+    [controller.droppablePair rotateRight];
+
+    [controller setGravity: 1.0f];    
+    [controller update];
+    
+    assertEquals(MakeCell(0, 2), controller.droppablePair.cell);
+}
+
+@end
 

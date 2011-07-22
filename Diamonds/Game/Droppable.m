@@ -104,10 +104,7 @@
     GridCell newCell = self.cell;
     newCell.row -= 1;
     
-    if (![grid isCellValid: newCell])
-        return false;
-    
-    return [grid isCellEmpty: newCell];    
+    return [grid isAreaEmptyAt: newCell width: self.width height: self.height ignore: self];
 }
 
 - (void) moveRightOn: (Grid*) grid
