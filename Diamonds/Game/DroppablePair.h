@@ -21,11 +21,14 @@ PairOrientation;
 @property (readonly) Gem* pivot;
 @property (readonly) Gem* buddy;
 
++ (void) setDroppingGravity: (float) droppingGravity_;
+
 - (id) initWithGrid: (Grid*) grid_ at: (GridCell) cell_ with: (GemType[]) gems;
 
 - (void) rotateLeft;
 - (void) rotateRight;
 
-- (void) drawIn: (SpriteBatch*) batch info: (GridPresentationInfo) info;
+- (void) drop;
+- (bool) isDropping;
 
 @end

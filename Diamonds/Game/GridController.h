@@ -24,6 +24,8 @@
 - (void) rotateLeft;
 - (void) rotateRight;
 
+- (void) drop;
+
 - (void) update;
 
 @property (readonly, nonatomic) Grid* grid;

@@ -74,6 +74,7 @@ Direction;
 - (void) moveLeft;
 
 - (void) updateWithGravity: (float) gravity;
+
 - (void) drawIn: (SpriteBatch*) batch info: (GridPresentationInfo) info;
 
 @end

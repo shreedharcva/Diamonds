@@ -21,6 +21,7 @@
 
 @interface TestGemAggregateBase : TestGemBase 
 {
+    Grid* grid;
     GemAggregate* aggregate;
 }
 @end
@@ -29,7 +30,9 @@
 
 - (void) setUp
 {
-    aggregate = [[GemAggregate alloc] initWithGrid: nil at: MakeCell(1, 1) width: 2 height: 2];
+    grid = [[Grid alloc] initWithResources: nil width: 8 height: 14];
+
+    aggregate = [[GemAggregate alloc] initWithGrid: grid at: MakeCell(1, 1) width: 2 height: 2];
 }
 
 @end
@@ -118,16 +121,6 @@
 @end
 
 @implementation TestGemAggregateInGrid
-{
-    Grid* grid;
-}
-
-- (void) setUp
-{
-    [super setUp];
-    
-    grid = [[Grid alloc] initWithResources: nil width: 8 height: 14];
-}
 
 - (void) testGemAggregateIsAddedToTheGrid
 {
@@ -141,8 +134,7 @@
     [grid put: aggregate];
     
     GridCell cell = aggregate.cell;
-    cell.row += 1;
-    cell.column += 1;
+    MoveCell(&cell, MakeCell(1, 1));
     
     assertIsKindOfClass(GemAggregate, [grid get: cell]);
 }
@@ -153,7 +145,7 @@
     [aggregate add: [self makeGem: Ruby at: MakeCell(0, 1)]];
 
     [grid put: aggregate];    
-    [aggregate releaseOn: grid];
+    [aggregate releaseOnGrid];
         
     assertIsKindOfClass(Gem, [grid get: aggregate.cell]);
 }

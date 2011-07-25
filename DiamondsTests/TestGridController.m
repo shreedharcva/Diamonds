@@ -266,3 +266,86 @@
 
 @end
 
+@interface TestGridControllerWithDroppingDroppablePair : TestGridControllerBase 
+@end
+
+@implementation TestGridControllerWithDroppingDroppablePair
+{
+    float droppingGravity;
+}
+
+- (void) setUp
+{
+    [super setUp];
+
+    droppingGravity = 10.0f;
+    [DroppablePair setDroppingGravity: droppingGravity];    
+}
+
+- (DroppablePair*) getPairAtSpawn
+{
+    return (DroppablePair*) [controller.grid get: controller.grid.spawnCell];
+}
+
+- (void) testSpawnedPairIsNotDropping
+{
+    [controller spawn];
+    
+    assertTrue(![[self getPairAtSpawn] isDropping]);
+}
+
+- (void) testDroppedPairIsDropping
+{
+    [controller spawn];
+    [controller drop];
+
+    assertTrue([[self getPairAtSpawn] isDropping]);
+}
+
+- (void) testDroppedPairHasMovedByTenCellsAfterAnUpdate
+{
+    [controller spawn];
+    [controller drop];
+    [controller update];
+    
+    GridCell cell = controller.grid.spawnCell;
+    cell.row -= 1;
+    cell.row -= droppingGravity;
+    
+    assertEquals(cell, controller.droppablePair.cell);
+}
+
+- (void) testDroppedPairReleasesGemsOnTheBottomOfTheGridAfterTwoUpdates
+{
+    [controller spawn];
+    [controller drop];
+    
+    [controller update];
+    [controller update];
+    
+    GridCell bottomCell = controller.grid.spawnCell;
+    bottomCell.row = 0;
+    
+    assertIsKindOfClass(Gem, [controller.grid get: bottomCell]);
+}
+
+
+/*
+- (void) testDroppedPairReleasesGems
+{
+    [controller spawn];
+    [controller drop];
+    
+    assertIsKindOfClass(Gem, [controller.grid get: controller.grid.spawnCell]);
+}
+
+- (void) testDroppedPairReleasesGemsDropping
+{
+    [controller spawn];
+    [controller drop];
+    
+    assertEquals(Dropping, [controller.grid get: controller.grid.spawnCell].state);
+}
+*/
+
+@end
