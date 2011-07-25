@@ -81,6 +81,11 @@ GridCell movementMap[4] =
     height = height_;
 }
 
+- (void) setState: (DroppableState) state_
+{
+    state = state_;
+}
+
 - (void) detachFromParent
 {
     cell.column += self.parent.cell.column;
@@ -95,6 +100,19 @@ GridCell movementMap[4] =
     return 
         cell_.row >= droppableCell.row && cell_.column >= droppableCell.column &&
         cell_.row < droppableCell.row + self.height && cell_.column < droppableCell.column + self.width;
+}
+
+
+- (bool) canMove: (Direction) direction by: (int) cells
+{
+    GridCell newCell = self.cell;
+    GridCell movement = movementMap[direction];
+    movement.row *= cells;
+    movement.column *= cells;
+    
+    MoveCell(&newCell, movement);
+    
+    return [grid isAreaEmptyAt: newCell width: self.width height: self.height ignore: self];        
 }
 
 - (bool) canMove: (Direction) direction
@@ -136,16 +154,26 @@ GridCell movementMap[4] =
         
         if (cellHeight < 0.00f)
         {
-            cellHeight += 1.00f;
-            
-            if ([self canMove: Down])
+            int numberOfCells = -floor(cellHeight);
+            cellHeight += numberOfCells;
+
+            for (int i = 0; i < numberOfCells; ++i)
             {
+                if (![self canMove: Down])
+                {                        
+                    state = Stopped;
+                    cellHeight = 0.00f;
+
+                    break;                        
+                }
+                
                 cell.row -= 1;
             }
-            else
+            
+            if (cellHeight <= 0.00f && ![self canMove: Down])
             {
                 state = Stopped;
-                cellHeight = 0.00f;
+                cellHeight = 0.00f;                
             }
         }
     }    

@@ -38,6 +38,11 @@
     gravity = newGravity;
 }
 
+- (void) setDroppingGravity: (float) droppingGravity
+{
+    [DroppablePair setDroppingGravity: droppingGravity];
+}
+
 - (void) spawnAt: (GridCell) spawnCell
 {
     if ([grid isCellEmpty: spawnCell])
@@ -86,12 +91,18 @@
     [droppablePair rotateRight];    
 }
 
+- (void) drop
+{
+    [[self droppablePair] drop];
+}
+
 - (void) update
 {
     [self.grid updateWithGravity: gravity];
+    
     if ([self droppablePair].state == Stopped)
     {
-        [[self droppablePair] releaseOn: self.grid];
+        [[self droppablePair] releaseOnGrid];
         [self spawn];
     }
 }

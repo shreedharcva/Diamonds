@@ -15,6 +15,7 @@
 - (id) initWithGrid: (Grid*) grid;
 
 - (void) setGravity: (float) newGravity;
+- (void) setDroppingGravity: (float) droppingGravity;
 
 - (void) spawn;
 
@@ -23,6 +24,8 @@
 
 - (void) rotateLeft;
 - (void) rotateRight;
+
+- (void) drop;
 
 - (void) update;
 

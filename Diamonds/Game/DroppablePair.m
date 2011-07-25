@@ -31,10 +31,14 @@ OrientationState orientations[] =
     { VerticalUp,       VerticalDown,       2, 1, { 0, 0 }, { 1, 0 }, {  0,  0 }, { {  0,  1 }, {  1,  0 } } },
 };
 
+float droppingGravity = 10.0f;
+
 @interface Droppable (private)
 
 - (void) setWidth: (int) width_;
 - (void) setHeight: (int) height_;
+
+- (void) setState: (DroppableState) state_;
 
 - (void) setCell: (GridCell) cell_;
 
@@ -46,11 +50,18 @@ OrientationState orientations[] =
     Gem* pivot;
     
     PairOrientation orientation;
+    
+    bool isDropping;
 }
 
 @synthesize orientation;
 @synthesize pivot;
 @synthesize buddy;
+
++ (void) setDroppingGravity: (float) droppingGravity_
+{
+    droppingGravity = droppingGravity_;
+}
 
 - (Gem*) addGem: (GemType) gemType at: (GridCell) cell_
 {
@@ -71,6 +82,8 @@ OrientationState orientations[] =
 
     pivot = [self addGem: gems[0] at: MakeCell(0, 0)];
     buddy = [self addGem: gems[1] at: MakeCell(0, 1)];
+    
+    [self setState: Falling];
     
     return self;
 }
@@ -118,6 +131,25 @@ OrientationState orientations[] =
         orientation = orientations[orientation].right;
         [self updatePairAfterRotation];    
     }
+}
+
+- (void) drop
+{
+    isDropping = true;
+}
+
+- (bool) isDropping
+{
+    return isDropping;
+}
+
+- (void) updateWithGravity: (float) gravity
+{
+    if (isDropping)
+    {
+        gravity = droppingGravity;
+    }
+    [super updateWithGravity: gravity];
 }
 
 - (void) drawIn: (SpriteBatch*) batch info: (GridPresentationInfo) info

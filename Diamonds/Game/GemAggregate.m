@@ -69,15 +69,15 @@
     return (Gem*) [droppables objectAtIndex: index];
 }
 
-- (void) releaseOn: (Grid*) grid
+- (void) releaseOnGrid
 {
-    [grid remove: self];
+    [self.grid remove: self];
     
     for (Droppable* droppable in droppables)
     {
         [droppable detachFromParent];
         
-        [grid put: droppable];
+        [self.grid put: droppable];
     }
 }
 

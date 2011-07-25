@@ -51,6 +51,12 @@ xxxxxx
     swipeRight.direction = UISwipeGestureRecognizerDirectionRight;
     
     [self.view addGestureRecognizer: swipeRight];    
+
+    UISwipeGestureRecognizer* swipeDown = [[UISwipeGestureRecognizer alloc] initWithTarget: self action: @selector(handleSwipeDownFrom:)];
+    
+    swipeDown.direction = UISwipeGestureRecognizerDirectionDown;
+    
+    [self.view addGestureRecognizer: swipeDown];    
 }
 
 - (void) initializeGame
@@ -67,7 +73,6 @@ xxxxxx
 - (void) handleTapFrom: (UITapGestureRecognizer*) recognizer
 {
     CGPoint point = [recognizer locationInView: self.view];
-    NSLog(@"Touch! (%2.1f %2.1f)", point.x, point.y);
 
     if (point.x < self.view.bounds.size.width / 2)
     {
@@ -81,14 +86,17 @@ xxxxxx
 
 - (void) handleSwipeLeftFrom: (UITapGestureRecognizer*) recognizer
 {
-    NSLog(@"Swipe Left!");
     [game rotateLeft];
 }
 
 - (void) handleSwipeRightFrom: (UITapGestureRecognizer*) recognizer
 {
-    NSLog(@"Swipe Right!");
     [game rotateRight];
+}
+
+- (void) handleSwipeDownFrom: (UITapGestureRecognizer*) recognizer
+{
+    [game drop];
 }
 
 - (void) awakeFromNib

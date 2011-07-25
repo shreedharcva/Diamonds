@@ -12,6 +12,6 @@
 - (void) add: (Droppable*) droppable;
 - (Gem*) gem: (int) index;
 
-- (void) releaseOn: (Grid*) grid;
+- (void) releaseOnGrid;
 
 @end
