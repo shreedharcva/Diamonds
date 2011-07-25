@@ -176,7 +176,7 @@ bool CellIsEqualToCell(GridCell left, GridCell right)
     Sprite* backgroundSprite;
 }
 
-- (id) initWithGrid: (Grid*) gridToDraw info: (GridPresentationInfo) presentationInfo
+- (id) initWithGrid: (Grid*) grid_ info: (GridPresentationInfo) presentationInfo
 {
     self = [super init];
     if (self == nil)
@@ -184,7 +184,7 @@ bool CellIsEqualToCell(GridCell left, GridCell right)
         return nil;
     }
     
-    grid = gridToDraw;
+    grid = grid_;
     info = presentationInfo;
     
     return self;

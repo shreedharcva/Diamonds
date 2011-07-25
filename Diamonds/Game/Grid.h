@@ -10,7 +10,7 @@
 
 @property (readonly) NSArray* droppables;
 
-- (id) initWithResources: (ResourceManager*) resourceManager width: (int) gridWidth height: (int) gridHeight;
+- (id) initWithResources: (ResourceManager*) resourceManager width: (int) width_ height: (int) height_;
 
 - (bool) isEmpty;
 - (bool) isCellEmpty: (GridCell) cell;
@@ -42,7 +42,7 @@
 
 @interface GridDrawer : NSObject
 
-- (id) initWithGrid: (Grid*) gridToDraw info: (GridPresentationInfo) presentationInfo;
+- (id) initWithGrid: (Grid*) grid_ info: (GridPresentationInfo) presentationInfo;
 
 - (void) setBackground: (Sprite*) background;
 
