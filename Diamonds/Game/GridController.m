@@ -38,6 +38,11 @@
     gravity = newGravity;
 }
 
+- (void) setDroppingGravity: (float) droppingGravity
+{
+    [DroppablePair setDroppingGravity: droppingGravity];
+}
+
 - (void) spawnAt: (GridCell) spawnCell
 {
     if ([grid isCellEmpty: spawnCell])

@@ -12,4 +12,6 @@
 - (void) rotateLeft;
 - (void) rotateRight;
 
+- (void) drop;
+
 @end

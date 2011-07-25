@@ -46,6 +46,11 @@
     [gridController rotateRight];    
 }
 
+- (void) drop
+{
+    [gridController drop];
+}
+
 - (void) loadResources: (ResourceManager*) resources
 {        
     background = [[Sprite alloc] initWithTexture: [resources loadTexture: @"back000"]];
@@ -73,7 +78,9 @@
     gridController = [[GridController alloc] initWithGrid: grid];
 
     [gridController setGravity: 0.05];
+    [gridController setDroppingGravity: 2.00f];
     [gridController spawn];
+
         
     nextUpdateTime = 0.0f;
 }
