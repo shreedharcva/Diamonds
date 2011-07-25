@@ -155,26 +155,19 @@ GridCell movementMap[4] =
         if (cellHeight < 0.00f)
         {
             int numberOfCells = -floor(cellHeight);
-            
-            if ([self canMove: Down by: numberOfCells])
+            cellHeight += numberOfCells;
+
+            for (int i = 0; i < numberOfCells; ++i)
             {
-                cellHeight += numberOfCells;
-                cell.row -= numberOfCells;
-            }
-            else
-            {
-                for (int i = 0; i < numberOfCells; ++i)
-                {
-                    if (![self canMove: Down])
-                    {
-                        break;                        
-                    }
-                    
-                    cell.row -= 1;
+                if (![self canMove: Down])
+                {                        
+                    state = Stopped;
+                    cellHeight = 0.00f;
+
+                    break;                        
                 }
                 
-                state = Stopped;
-                cellHeight = 0.00f;
+                cell.row -= 1;
             }
             
             if (cellHeight <= 0.00f && ![self canMove: Down])
