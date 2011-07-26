@@ -83,12 +83,26 @@
 
 @end
 
-@implementation BigGem 
-{
-    GemType type;
-}
+@interface Droppable (private)
 
-@synthesize type;
+- (void) setWidth: (int) width_;
+- (void) setHeight: (int) height_;
+
+@end
+
+@implementation BigGem 
+
+- (id) initWithType: (GemType) gemType at: (GridCell) cell_ grid: (Grid*) grid_ width: (int) width_ height: (int) height_
+{
+    self = [super initWithType: gemType at: cell_ grid: grid_];
+    if (self == nil)
+        return nil;
+    
+    [self setWidth: width_];
+    [self setHeight: height_];
+    
+    return self;
+}
 
 - (void) placeInGrid
 {
@@ -98,8 +112,6 @@
         {
             GridCell gemCell = MakeCell(self.cell.column + i, self.cell.row + j);
             Gem* gem = (Gem*) [self.grid get: gemCell];
-            
-            type = gem.type;
             
             [self.grid remove: gem];            
         }

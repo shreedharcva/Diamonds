@@ -381,11 +381,23 @@
     assertIsKindOfClass(BigGem, [self bigGem]);    
 }
 
+- (void) testBigGemFormedIs2X2
+{
+    [controller parseGridFrom: 
+     @"dd\n"
+     @"dd"];    
+    
+    BigGem* bigGem = [self formBigGem];
+    
+    assertEquals(2, bigGem.width);    
+    assertEquals(2, bigGem.height);    
+}
+
 - (void) testABigGemIsOfTheSameTypeOfTheGemsItReplaced
 {
     [controller parseGridFrom: 
-         @"dd\n"
-         @"dd"];    
+     @"dd\n"
+     @"dd"];    
     
     [self formBigGem];
     
@@ -400,6 +412,32 @@
     
     assertNotNil([self formBigGem]);
 }
+
+- (void) testBigGemFormedIs3X2
+{
+    [controller parseGridFrom: 
+     @"ddd\n"
+     @"ddd"];    
+    
+    BigGem* bigGem = [self formBigGem];
+    
+    assertEquals(3, bigGem.width);    
+    assertEquals(2, bigGem.height);    
+}
+
+- (void) testBigGemFormedIs3X3
+{
+    [controller parseGridFrom: 
+     @"ddd\n"
+     @"ddd\n"
+     @"ddd"];    
+    
+    BigGem* bigGem = [self formBigGem];
+    
+    assertEquals(3, bigGem.width);    
+    assertEquals(3, bigGem.height);    
+}
+
 
 @end
 

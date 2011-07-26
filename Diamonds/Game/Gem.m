@@ -64,30 +64,69 @@
     return self;
 }
 
-- (BigGem*) formBigGem
+- (bool) isCellCandidateToFormBigGem: (GridCell) cell_
 {
-    for (int j = 0; j < 2; ++j)
+    Droppable* droppable = [self.grid get: cell_];
+    
+    if (![droppable isKindOfClass: [Gem class]])
     {
-        for (int i = 0; i < 2; ++i)
+        return NO;
+    }
+    
+    Gem* gem = (Gem*) droppable;
+    
+    if ([gem type] != [self type])
+    {
+        return NO;
+    }            
+    
+    return YES;
+}
+
+- (bool) isRowCandidateToFormBigGem: (int) row_ width: (int) width_
+{
+    for (int i = 0; i < width_; ++i)
+    {
+        if (![self isCellCandidateToFormBigGem: MakeCell(i, row_)])
         {
-            Droppable* droppable = [self.grid get: MakeCell(i, j)];
-            
-            if (![droppable isKindOfClass: [Gem class]])
-            {
-                return nil;
-            }
-            
-            Gem* gem = (Gem*) droppable;
-            
-            if ([gem type] != [self type])
-            {
-                return nil;
-            }                                     
+            return NO;
         }
     }
     
-    BigGem* bigGem = [[BigGem alloc] initWithGrid: self.grid at: self.cell width: 2 height: 2];
+    return YES;
+}
+
+- (BigGem*) formBigGem
+{
+    int i = self.cell.column;
+    int j = self.cell.row;
     
+    while ([self isCellCandidateToFormBigGem: MakeCell(i, j)])
+    {
+        ++i;
+    }
+    
+    int bigGemWidth = i - self.cell.column; 
+    if (bigGemWidth < 2)
+    {
+        return nil;
+    }
+    
+    while ([self isRowCandidateToFormBigGem: j width: bigGemWidth])
+    {
+        ++j;
+    }
+
+    int bigGemHeight = j - self.cell.row; 
+    if (bigGemHeight < 2)
+    {
+        return nil;
+    }
+    
+//    BigGem* bigGem = [[BigGem alloc] initWithGrid: self.grid at: self.cell width: bigGemWidth height: bigGemHeight];
+
+    BigGem* bigGem = [[BigGem alloc] initWithType: self.type at: self.cell grid: self.grid width: bigGemWidth height: bigGemHeight];
+
     [bigGem placeInGrid];
     
     return bigGem;
