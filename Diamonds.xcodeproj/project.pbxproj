@@ -49,6 +49,7 @@
 		134DFF5313A79FE900DA67FC /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 134DFF5113A79FE900DA67FC /* InfoPlist.strings */; };
 		134DFF5613A79FE900DA67FC /* DiamondsTests.h in Resources */ = {isa = PBXBuildFile; fileRef = 134DFF5513A79FE900DA67FC /* DiamondsTests.h */; };
 		134DFF5813A79FE900DA67FC /* DiamondsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 134DFF5713A79FE900DA67FC /* DiamondsTests.m */; };
+		138E8CEE13DEF0E500C571A2 /* GridController+Testing.m in Sources */ = {isa = PBXBuildFile; fileRef = 138E8CED13DEF0E500C571A2 /* GridController+Testing.m */; };
 		13B7AB2613D6FF2600005E5B /* GemAggregate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B7AB2513D6FF2600005E5B /* GemAggregate.m */; };
 		13B7AB2713D6FF2600005E5B /* GemAggregate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B7AB2513D6FF2600005E5B /* GemAggregate.m */; };
 		13B7AB2E13D7015300005E5B /* DroppablePair.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B7AB2D13D7015300005E5B /* DroppablePair.m */; };
@@ -150,6 +151,8 @@
 		134DFF5713A79FE900DA67FC /* DiamondsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DiamondsTests.m; sourceTree = "<group>"; };
 		1379207813CCECEB00CAB641 /* Diamonds.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Diamonds.entitlements; sourceTree = "<group>"; };
 		13827F0D13BB907A00C90A92 /* Testing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Testing.h; sourceTree = "<group>"; };
+		138E8CEC13DEF0E500C571A2 /* GridController+Testing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GridController+Testing.h"; sourceTree = "<group>"; };
+		138E8CED13DEF0E500C571A2 /* GridController+Testing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GridController+Testing.m"; sourceTree = "<group>"; };
 		13B7AB2413D6FF2600005E5B /* GemAggregate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GemAggregate.h; path = Diamonds/Game/GemAggregate.h; sourceTree = "<group>"; };
 		13B7AB2513D6FF2600005E5B /* GemAggregate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GemAggregate.m; path = Diamonds/Game/GemAggregate.m; sourceTree = "<group>"; };
 		13B7AB2C13D7015300005E5B /* DroppablePair.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DroppablePair.h; path = Diamonds/Game/DroppablePair.h; sourceTree = "<group>"; };
@@ -401,6 +404,8 @@
 		13FB534213BE1D3300852C87 /* Game */ = {
 			isa = PBXGroup;
 			children = (
+				138E8CEC13DEF0E500C571A2 /* GridController+Testing.h */,
+				138E8CED13DEF0E500C571A2 /* GridController+Testing.m */,
 				130012EF13CB2A4F00D6E02E /* TestGem.h */,
 				13B7AB3013D702A400005E5B /* TestGem.m */,
 				13B7AB3213D7030C00005E5B /* TestGemAggregate.m */,
@@ -609,6 +614,7 @@
 				13B7AB3113D702A400005E5B /* TestGem.m in Sources */,
 				13B7AB3313D7030C00005E5B /* TestGemAggregate.m in Sources */,
 				13B7AB3513D703B600005E5B /* TestDroppablePair.m in Sources */,
+				138E8CEE13DEF0E500C571A2 /* GridController+Testing.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

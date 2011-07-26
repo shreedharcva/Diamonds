@@ -8,6 +8,7 @@
 #import "SpriteBatch.h"
 #import "ResourceManager.h"
 #import "Grid.h"
+#import "GemAggregate.h"
 
 @interface Gem (private)
 @property (readonly) Sprite* sprite;
@@ -61,6 +62,35 @@
     [self initSpriteForType: gemType resources: self.grid.resources];
     
     return self;
+}
+
+- (BigGem*) formBigGem
+{
+    for (int j = 0; j < 2; ++j)
+    {
+        for (int i = 0; i < 2; ++i)
+        {
+            Droppable* droppable = [self.grid get: MakeCell(i, j)];
+            
+            if (![droppable isKindOfClass: [Gem class]])
+            {
+                return nil;
+            }
+            
+            Gem* gem = (Gem*) droppable;
+            
+            if ([gem type] != [self type])
+            {
+                return nil;
+            }                                     
+        }
+    }
+    
+    BigGem* bigGem = [[BigGem alloc] initWithGrid: self.grid at: self.cell width: 2 height: 2];
+    
+    [bigGem placeInGrid];
+    
+    return bigGem;
 }
 
 - (void) drawIn: (SpriteBatch*) batch info: (GridPresentationInfo) info;

@@ -3,6 +3,7 @@
 //  Diamonds
 
 #include "Droppable.h"
+#include "Gem.h"
 
 @class Gem;
 
@@ -13,5 +14,13 @@
 - (Gem*) gem: (int) index;
 
 - (void) releaseOnGrid;
+
+@end
+
+@interface BigGem : GemAggregate 
+
+- (void) placeInGrid;
+
+@property (readonly) GemType type;
 
 @end

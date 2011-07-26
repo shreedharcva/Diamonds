@@ -9,7 +9,7 @@
 
 @implementation GemAggregate
 {
-    NSMutableArray* droppables;
+    NSMutableArray* droppables;    
 }
 
 - (id) initWithGrid: (Grid*) grid_ at: (GridCell) cell_ width: (int) width_ height: (int) height_;
@@ -79,6 +79,33 @@
         
         [self.grid put: droppable];
     }
+}
+
+@end
+
+@implementation BigGem 
+{
+    GemType type;
+}
+
+@synthesize type;
+
+- (void) placeInGrid
+{
+    for (int j = 0; j < self.height; ++j)
+    {
+        for (int i = 0; i < self.height; ++i)
+        {
+            GridCell gemCell = MakeCell(self.cell.column + i, self.cell.row + j);
+            Gem* gem = (Gem*) [self.grid get: gemCell];
+            
+            type = gem.type;
+            
+            [self.grid remove: gem];            
+        }
+    }
+    
+    [self.grid put: self];
 }
 
 @end

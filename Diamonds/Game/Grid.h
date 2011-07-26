@@ -8,7 +8,7 @@
 
 @interface Grid : NSObject
 
-@property (readonly) NSArray* droppables;
++ (GridCell) origin;
 
 - (id) initWithResources: (ResourceManager*) resourceManager width: (int) gridWidth height: (int) gridHeight;
 
@@ -28,10 +28,13 @@
 
 - (void) updateWithGravity: (float) gravity;
 
+@property (readonly) NSArray* droppables;
+
 @property (readonly, nonatomic) int width;
 @property (readonly, nonatomic) int height;
 
 @property (readonly, nonatomic) GridCell spawnCell;
+@property (readonly, nonatomic) GridCell origin;
 
 @property (readonly) ResourceManager* resources;
 

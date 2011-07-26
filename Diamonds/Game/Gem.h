@@ -19,6 +19,8 @@ GemType;
 
 - (id) initWithType: (GemType) gemType at: (GridCell) cell grid: (Grid*) grid_;
 
+- (BigGem*) formBigGem;
+
 - (void) drawIn: (SpriteBatch*) batch info: (GridPresentationInfo) info;
 
 @end

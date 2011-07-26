@@ -43,6 +43,7 @@ Direction;
 @class SpriteBatch;
 @class ResourceManager;
 @class Grid;
+@class BigGem;
 
 @interface Droppable : NSObject
 {
@@ -73,8 +74,9 @@ Direction;
 - (void) moveRight;
 - (void) moveLeft;
 
-- (void) updateWithGravity: (float) gravity;
+- (BigGem*) formBigGem;
 
+- (void) updateWithGravity: (float) gravity;
 - (void) drawIn: (SpriteBatch*) batch info: (GridPresentationInfo) info;
 
 @end

@@ -7,6 +7,7 @@
 #import "Sprite.h"
 
 #import "GridController.h"
+#import "GridController+Testing.h"
 #import "Grid.h"
 #import "DroppablePair.h"
 
@@ -329,23 +330,76 @@
     assertIsKindOfClass(Gem, [controller.grid get: bottomCell]);
 }
 
+@end
 
-/*
-- (void) testDroppedPairReleasesGems
+@interface  TestBigGemBase : TestGridControllerBase 
+@end
+
+@implementation TestBigGemBase
+
+- (BigGem*) formBigGem
 {
-    [controller spawn];
-    [controller drop];
-    
-    assertIsKindOfClass(Gem, [controller.grid get: controller.grid.spawnCell]);
+    return [[controller.grid get: [Grid origin]] formBigGem];    
 }
 
-- (void) testDroppedPairReleasesGemsDropping
+- (BigGem*) bigGem
 {
-    [controller spawn];
-    [controller drop];
-    
-    assertEquals(Dropping, [controller.grid get: controller.grid.spawnCell].state);
+    return (BigGem*) [controller.grid get: [Grid origin]];
 }
-*/
 
 @end
+
+@interface TestBigGem :  TestBigGemBase 
+@end
+
+@implementation TestBigGem 
+
+- (void) testFormBigGemReturnsNilForASingleGem
+{
+    [controller parseGridFrom: @"D"];    
+    
+    assertNil([self formBigGem]);
+}
+
+- (void) testFormBigGemReturnsABigGemIfPartOfASquareOfGemsOfTheSameType
+{
+    [controller parseGridFrom: 
+         @"dd\n"
+         @"dd"];    
+    
+    assertNotNil([self formBigGem]);
+}
+
+- (void) testABigGemReplacesASquareOfGemsOfTheSameType
+{
+    [controller parseGridFrom: 
+         @"dd\n"
+         @"dd"];    
+    
+    [self formBigGem];
+    
+    assertIsKindOfClass(BigGem, [self bigGem]);    
+}
+
+- (void) testABigGemIsOfTheSameTypeOfTheGemsItReplaced
+{
+    [controller parseGridFrom: 
+         @"dd\n"
+         @"dd"];    
+    
+    [self formBigGem];
+    
+    assertEquals(Diamond, [self bigGem].type);    
+}
+
+- (void) testFormBigGemReturnsABigGemIfPartOf3X2BlockOfGemsOfTheSameType
+{
+    [controller parseGridFrom: 
+     @"ddd\n"
+     @"ddd"];    
+    
+    assertNotNil([self formBigGem]);
+}
+
+@end
+

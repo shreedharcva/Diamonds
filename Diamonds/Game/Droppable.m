@@ -193,6 +193,11 @@ GridCell movementMap[4] =
     }
 }
 
+- (BigGem*) formBigGem
+{
+    return nil;
+}
+
 - (void) drawIn: (SpriteBatch*) batch info: (GridPresentationInfo) info
 {
 }

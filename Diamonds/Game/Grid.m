@@ -39,6 +39,11 @@ bool CellIsEqualToCell(GridCell left, GridCell right)
 
 @synthesize resources;
 
++ (GridCell) origin
+{
+    return MakeCell(0, 0);
+}
+
 - (id) initWithResources: (ResourceManager*) resourceManager width: (int) width_ height: (int) height_
 {
     self = [super init];
@@ -159,11 +164,23 @@ bool CellIsEqualToCell(GridCell left, GridCell right)
     {
         [droppable updateWithGravity: gravity];
     }    
+
+    /*
+    for (Droppable* droppable in droppables)
+    {
+        [droppable tryFormABigGem];
+    } 
+     */
 }
 
 - (GridCell) spawnCell
 {
     return MakeCell(self.width / 2, self.height);    
+}
+
+- (GridCell) origin
+{
+    return [Grid origin];
 }
 
 @end
