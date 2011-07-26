@@ -31,6 +31,15 @@ void MoveCell(GridCell* cell, GridCell delta);
 
 bool CellIsEqualToCell(GridCell left, GridCell right);
 
+typedef struct DroppableSize
+{
+    int width;
+    int height;
+}
+DroppableSize;
+
+DroppableSize MakeSize(int width, int height);
+
 typedef enum Direction
 {
     Left    = 0,

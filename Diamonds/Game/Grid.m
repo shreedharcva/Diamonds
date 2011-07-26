@@ -24,6 +24,14 @@ bool CellIsEqualToCell(GridCell left, GridCell right)
     return left.row == right.row && left.column == right.column;    
 }
 
+DroppableSize MakeSize(int width, int height)
+{
+    DroppableSize size;
+    size.width = width;
+    size.height = height;
+    return size;
+}
+
 @implementation Grid
 {
     ResourceManager* resources;

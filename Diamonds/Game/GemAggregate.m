@@ -111,9 +111,7 @@
         for (int i = 0; i < self.height; ++i)
         {
             GridCell gemCell = MakeCell(self.cell.column + i, self.cell.row + j);
-            Gem* gem = (Gem*) [self.grid get: gemCell];
-            
-            [self.grid remove: gem];            
+            [self.grid remove: [self.grid get: gemCell]];            
         }
     }
     
