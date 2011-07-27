@@ -3,6 +3,7 @@
 //  Diamonds
 
 #import "Gem.h"
+#import "BigGem.h"
 
 #import "Sprite.h"
 #import "SpriteBatch.h"

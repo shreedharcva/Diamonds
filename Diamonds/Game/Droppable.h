@@ -64,20 +64,6 @@ Direction;
     GridCell cell;
 }
 
-@property (readonly, nonatomic) Grid* grid;
-
-@property (readonly, nonatomic) int width;
-@property (readonly, nonatomic) int height;
-
-@property (readonly) GridCell relativeCell;
-@property (readonly) GridCell cell;
-
-@property (readonly) DroppableState state;
-
-@property (readonly) float cellHeight;
-
-@property (weak) Droppable* parent;
-
 - (id) initWithGrid: (Grid*) grid_ at: (GridCell) cell_ width: (int) width_ height: (int) height_;
 
 - (void) attachToGrid: (Grid*) grid_;
@@ -95,5 +81,19 @@ Direction;
 
 - (void) updateWithGravity: (float) gravity;
 - (void) drawIn: (SpriteBatch*) batch info: (GridPresentationInfo) info;
+
+@property (readonly, nonatomic) Grid* grid;
+
+@property (readonly, nonatomic) int width;
+@property (readonly, nonatomic) int height;
+
+@property (readonly, nonatomic) GridCell relativeCell;
+@property (readonly, nonatomic) GridCell cell;
+
+@property (readonly, nonatomic) DroppableState state;
+
+@property (readonly, nonatomic) float cellHeight;
+
+@property (weak) Droppable* parent;
 
 @end

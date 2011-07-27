@@ -4,7 +4,7 @@
 
 
 #import "GridController+Testing.h"
-#import "GemAggregate.h"
+#import "BigGem.h"
 
 @implementation GridController (Testing)
 
@@ -35,8 +35,6 @@
         }
     }
     
-    NSLog(@"%@", self);
-
     for (Droppable* droppable in self.grid.droppables)
     {
         [droppable formBigGem];
