@@ -31,6 +31,15 @@ void MoveCell(GridCell* cell, GridCell delta);
 
 bool CellIsEqualToCell(GridCell left, GridCell right);
 
+typedef struct DroppableSize
+{
+    int width;
+    int height;
+}
+DroppableSize;
+
+DroppableSize MakeSize(int width, int height);
+
 typedef enum Direction
 {
     Left    = 0,
@@ -43,29 +52,24 @@ Direction;
 @class SpriteBatch;
 @class ResourceManager;
 @class Grid;
+@class BigGem;
 
 @interface Droppable : NSObject
 {
-    float cellHeight;
+@private
+    int width;
+    int height;
+
+    DroppableState state;
+    GridCell cell;
 }
-
-@property (readonly, nonatomic) Grid* grid;
-
-@property (readonly, nonatomic) int width;
-@property (readonly, nonatomic) int height;
-
-@property (readonly) GridCell relativeCell;
-@property (readonly) GridCell cell;
-
-@property (readonly) DroppableState state;
-
-@property (readonly) float cellHeight;
-
-@property (weak) Droppable* parent;
 
 - (id) initWithGrid: (Grid*) grid_ at: (GridCell) cell_ width: (int) width_ height: (int) height_;
 
+- (void) attachToGrid: (Grid*) grid_;
+
 - (void) detachFromParent;
+- (void) detachFromGrid;
 
 - (bool) contains: (GridCell) cell_;
 
@@ -73,8 +77,24 @@ Direction;
 - (void) moveRight;
 - (void) moveLeft;
 
+- (BigGem*) formBigGem;
+
 - (void) updateWithGravity: (float) gravity;
 
 - (void) drawIn: (SpriteBatch*) batch info: (GridPresentationInfo) info;
+
+@property (readonly, nonatomic) Grid* grid;
+
+@property (readonly, nonatomic) int width;
+@property (readonly, nonatomic) int height;
+
+@property (readonly, nonatomic) GridCell relativeCell;
+@property (readonly, nonatomic) GridCell cell;
+
+@property (readonly, nonatomic) DroppableState state;
+
+@property (readonly, nonatomic) float cellHeight;
+
+@property (weak) Droppable* parent;
 
 @end

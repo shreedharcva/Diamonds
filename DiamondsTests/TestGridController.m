@@ -7,6 +7,7 @@
 #import "Sprite.h"
 
 #import "GridController.h"
+#import "GridController+Testing.h"
 #import "Grid.h"
 #import "DroppablePair.h"
 
@@ -19,14 +20,6 @@
 @interface GridController (test)
 
 - (void) spawnAt: (GridCell) cell;
-
-@end
-
-@interface TestGridControllerBase : TestCase 
-{
-    Grid* grid;
-    GridController* controller;
-}
 
 @end
 
@@ -329,23 +322,6 @@
     assertIsKindOfClass(Gem, [controller.grid get: bottomCell]);
 }
 
-
-/*
-- (void) testDroppedPairReleasesGems
-{
-    [controller spawn];
-    [controller drop];
-    
-    assertIsKindOfClass(Gem, [controller.grid get: controller.grid.spawnCell]);
-}
-
-- (void) testDroppedPairReleasesGemsDropping
-{
-    [controller spawn];
-    [controller drop];
-    
-    assertEquals(Dropping, [controller.grid get: controller.grid.spawnCell].state);
-}
-*/
-
 @end
+
+

@@ -19,12 +19,10 @@ CGVector CGVectorMake(float x, float y);
 
 - (void) setSourceRectangle: (CGRect) rect;
 
-
 - (void) moveTo: (CGPoint) newPosition;
 - (void) moveBy: (CGVector) speed;
 
 - (void) resizeTo: (CGSize) size;
-
 
 - (void) drawIn: (SpriteBatch*) batch;
 

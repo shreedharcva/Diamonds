@@ -3,6 +3,7 @@
 //  Diamonds
 
 #include "Droppable.h"
+#include "Gem.h"
 
 @class Gem;
 

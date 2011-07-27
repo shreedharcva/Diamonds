@@ -9,7 +9,7 @@
 
 @implementation GemAggregate
 {
-    NSMutableArray* droppables;
+    NSMutableArray* droppables;    
 }
 
 - (id) initWithGrid: (Grid*) grid_ at: (GridCell) cell_ width: (int) width_ height: (int) height_;
@@ -71,13 +71,15 @@
 
 - (void) releaseOnGrid
 {
-    [self.grid remove: self];
+    Grid* grid_ = self.grid;
+    
+    [grid_ remove: self];
     
     for (Droppable* droppable in droppables)
     {
         [droppable detachFromParent];
         
-        [self.grid put: droppable];
+        [grid_ put: droppable];
     }
 }
 

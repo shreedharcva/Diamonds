@@ -3,20 +3,20 @@
 //  Diamonds
 
 #import "Gem.h"
+#import "BigGem.h"
 
 #import "Sprite.h"
 #import "SpriteBatch.h"
 #import "ResourceManager.h"
 #import "Grid.h"
+#import "GemAggregate.h"
 
 @interface Gem (private)
 @property (readonly) Sprite* sprite;
 @end
 
 @implementation Gem
-{
-    GemType type; 
-        
+{        
     Sprite* sprite;
 }
 
@@ -61,6 +61,82 @@
     [self initSpriteForType: gemType resources: self.grid.resources];
     
     return self;
+}
+
+- (bool) isCellCandidateToFormBigGem: (GridCell) cell_
+{
+    Droppable* droppable = [self.grid get: cell_];
+    
+    if (![droppable isKindOfClass: [Gem class]])
+    {
+        return NO;
+    }
+    
+    Gem* gem = (Gem*) droppable;
+    
+    if ([gem type] != [self type])
+    {
+        return NO;
+    }            
+    
+    return YES;
+}
+
+- (bool) isRowCandidateToFormBigGem: (int) row_ width: (int) width_
+{
+    for (int i = 0; i < width_; ++i)
+    {
+        if (![self isCellCandidateToFormBigGem: MakeCell(i, row_)])
+        {
+            return NO;
+        }
+    }
+    
+    return YES;
+}
+
+- (BigGem*) formBigGem
+{
+    // TODO: Refactor this method
+    
+    if (self.grid == nil)
+        return nil;
+    
+    int i = self.cell.column;
+    int j = self.cell.row;
+    
+    while ([self isCellCandidateToFormBigGem: MakeCell(i, j)])
+    {
+        ++i;
+    }
+    
+    int bigGemWidth = i - self.cell.column; 
+    if (bigGemWidth < 2)
+    {
+        return nil;
+    }
+    
+    while ([self isRowCandidateToFormBigGem: j width: bigGemWidth])
+    {
+        ++j;
+    }
+
+    int bigGemHeight = j - self.cell.row; 
+    if (bigGemHeight < 2)
+    {
+        return nil;
+    }
+    
+    if (bigGemWidth < self.width || bigGemHeight < self.height)
+    {
+        return nil;
+    }
+    
+    BigGem* bigGem = [[BigGem alloc] initWithType: self.type at: self.cell grid: self.grid width: bigGemWidth height: bigGemHeight];
+
+    [bigGem placeInGrid];
+    
+    return bigGem;
 }
 
 - (void) drawIn: (SpriteBatch*) batch info: (GridPresentationInfo) info;

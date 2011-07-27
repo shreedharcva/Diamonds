@@ -24,6 +24,14 @@ bool CellIsEqualToCell(GridCell left, GridCell right)
     return left.row == right.row && left.column == right.column;    
 }
 
+DroppableSize MakeSize(int width, int height)
+{
+    DroppableSize size;
+    size.width = width;
+    size.height = height;
+    return size;
+}
+
 @implementation Grid
 {
     ResourceManager* resources;
@@ -38,6 +46,11 @@ bool CellIsEqualToCell(GridCell left, GridCell right)
 @synthesize height;
 
 @synthesize resources;
+
++ (GridCell) origin
+{
+    return MakeCell(0, 0);
+}
 
 - (id) initWithResources: (ResourceManager*) resourceManager width: (int) width_ height: (int) height_
 {
@@ -124,7 +137,9 @@ bool CellIsEqualToCell(GridCell left, GridCell right)
         @throw [NSException exceptionWithName:@"Grid" reason: @"Grid cell is not empty" userInfo: nil];
     }
 
-    [droppables addObject: droppable];   
+    [droppables addObject: droppable];
+    [droppable attachToGrid: self];
+    
     return droppable;
 }
 
@@ -150,8 +165,21 @@ bool CellIsEqualToCell(GridCell left, GridCell right)
 
 - (void) remove: (Droppable*) droppable
 {
+    if (droppable == nil)
+        return;
+    
+    [droppable detachFromGrid];
     [droppables removeObject: droppable];
 }
+
+/*- (void) formBigGems
+{
+    for (Droppable* droppable in droppables)
+    {
+        [droppable formBigGem];
+    } 
+}
+ */
 
 - (void) updateWithGravity: (float) gravity
 {
@@ -159,11 +187,17 @@ bool CellIsEqualToCell(GridCell left, GridCell right)
     {
         [droppable updateWithGravity: gravity];
     }    
+
 }
 
 - (GridCell) spawnCell
 {
     return MakeCell(self.width / 2, self.height);    
+}
+
+- (GridCell) origin
+{
+    return [Grid origin];
 }
 
 @end
