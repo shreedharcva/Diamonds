@@ -80,6 +80,7 @@ Direction;
 - (BigGem*) formBigGem;
 
 - (void) updateWithGravity: (float) gravity;
+
 - (void) drawIn: (SpriteBatch*) batch info: (GridPresentationInfo) info;
 
 @property (readonly, nonatomic) Grid* grid;

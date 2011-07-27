@@ -40,4 +40,8 @@
     [self.grid put: self];
 }
 
+- (void) drawIn: (SpriteBatch*) batch info: (GridPresentationInfo) info
+{
+}
+
 @end
