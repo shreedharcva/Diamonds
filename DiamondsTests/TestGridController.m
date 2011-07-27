@@ -337,14 +337,24 @@
 
 @implementation TestBigGemBase
 
+- (BigGem*) formBigGemAt: (GridCell) cell
+{
+    return [[controller.grid get: cell] formBigGem];    
+}
+
 - (BigGem*) formBigGem
 {
-    return [[controller.grid get: [Grid origin]] formBigGem];    
+    return [self formBigGemAt: [Grid origin]];    
+}
+
+- (BigGem*) bigGemAt: (GridCell) cell
+{
+    return (BigGem*) [controller.grid get: cell];
 }
 
 - (BigGem*) bigGem
 {
-    return (BigGem*) [controller.grid get: [Grid origin]];
+    return [self bigGemAt: [Grid origin]];
 }
 
 @end
@@ -395,13 +405,13 @@
 
 - (void) testABigGemIsOfTheSameTypeOfTheGemsItReplaced
 {
-    [controller parseGridFrom: 
+    [controller parseGridAt: MakeCell(1, 0) from: 
      @"dd\n"
      @"dd"];    
     
-    [self formBigGem];
+    [self formBigGemAt: MakeCell(1, 0)];
     
-    assertEquals(Diamond, [self bigGem].type);    
+    assertEquals(Diamond, [self bigGemAt: MakeCell(1, 0)].type);    
 }
 
 - (void) testFormBigGemReturnsABigGemIfPartOf3X2BlockOfGemsOfTheSameType
@@ -436,6 +446,30 @@
     
     assertEquals(3, bigGem.width);    
     assertEquals(3, bigGem.height);    
+}
+
+- (void) testBigGemIsExtendedByTwoMoreHorizontalGems
+{
+    [controller parseGridFrom: 
+     @"DDd\n"
+     @"DDd"];    
+    
+    BigGem* bigGem = [self formBigGem];
+    
+    assertEquals(3, bigGem.width);    
+    assertEquals(2, bigGem.height);    
+}
+
+- (void) testBigGemIsNotExtendedIfTheresAGap
+{
+    [controller parseGridFrom: 
+     @"DD.d\n"
+     @"DDdd"];    
+    
+    BigGem* bigGem = [self bigGem];
+    
+    assertEquals(2, bigGem.width);    
+    assertEquals(2, bigGem.height);    
 }
 
 

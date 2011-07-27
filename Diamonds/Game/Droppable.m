@@ -15,16 +15,12 @@ GridCell movementMap[4] =
 };
 
 @implementation Droppable
-{
-    int width;
-    int height;
-    
+{    
 @protected
-    Grid* __weak grid;
+    Grid* __weak grid;    
     
-    GridCell cell;
-    DroppableState state;
-    
+    float cellHeight;
+
 @private
     Droppable* __weak parent;
 }

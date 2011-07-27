@@ -56,7 +56,12 @@ Direction;
 
 @interface Droppable : NSObject
 {
-    float cellHeight;
+@private
+    int width;
+    int height;
+
+    DroppableState state;
+    GridCell cell;
 }
 
 @property (readonly, nonatomic) Grid* grid;

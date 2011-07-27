@@ -15,9 +15,7 @@
 @end
 
 @implementation Gem
-{
-    GemType type; 
-        
+{        
     Sprite* sprite;
 }
 
@@ -123,8 +121,6 @@
         return nil;
     }
     
-//    BigGem* bigGem = [[BigGem alloc] initWithGrid: self.grid at: self.cell width: bigGemWidth height: bigGemHeight];
-
     BigGem* bigGem = [[BigGem alloc] initWithType: self.type at: self.cell grid: self.grid width: bigGemWidth height: bigGemHeight];
 
     [bigGem placeInGrid];

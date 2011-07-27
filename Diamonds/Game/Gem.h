@@ -14,14 +14,17 @@ typedef enum GemType
 GemType;
 
 @interface Gem : Droppable
-
-@property (readonly) GemType type;
+{
+    GemType type; 
+}
 
 - (id) initWithType: (GemType) gemType at: (GridCell) cell grid: (Grid*) grid_;
 
 - (BigGem*) formBigGem;
 
 - (void) drawIn: (SpriteBatch*) batch info: (GridPresentationInfo) info;
+
+@property (readonly) GemType type;
 
 @end
 

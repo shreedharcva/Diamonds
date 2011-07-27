@@ -12,30 +12,60 @@
 {
     NSArray* lines = [string componentsSeparatedByCharactersInSet: [NSCharacterSet newlineCharacterSet]];
     
-    int row = 0;
-    
-    for (NSString* line in lines)
-    {        
-        for (int column = 0; column < [line length]; ++column)
-        {
-            GridCell cell = MakeCell(
-                                     originCell.column + column,
-                                     originCell.row - row + [lines count] - 1);
+
+    {
+        int row = 0;
+        
+        for (NSString* line in lines)
+        {        
+            for (int column = 0; column < [line length]; ++column)
+            {
+                GridCell cell = MakeCell(
+                                         originCell.column + column,
+                                         originCell.row - row + [lines count] - 1);
+                
+                unichar ch = [line characterAtIndex: column];
+                if (ch == 'D')
+                    [self.grid put: Diamond at: cell];
+
+                
+            }
             
-            unichar ch = [line characterAtIndex: column];
-            if (ch == '.')
-                continue;
-            else
+            ++row;
+        }
+    }
+    
+    for (Droppable* droppable in self.grid.droppables)
+    {
+        [droppable formBigGem];
+    }
+    
+    {
+        int row = 0;
+
+        for (NSString* line in lines)
+        {        
+            for (int column = 0; column < [line length]; ++column)
+            {
+                GridCell cell = MakeCell(
+                                         originCell.column + column,
+                                         originCell.row - row + [lines count] - 1);
+                
+                unichar ch = [line characterAtIndex: column];
+                if (ch == '.')
+                    continue;
+                else
                 if (ch == 'd')
                     [self.grid put: Diamond at: cell];
                 else
-                    if (ch == 'r')
-                        [self.grid put: Ruby at: cell];                
+                if (ch == 'r')
+                    [self.grid put: Ruby at: cell];                
+                
+            }
             
+            ++row;
         }
-        
-        ++row;
-    }    
+    }
 }
 
 - (void) parseGridFrom: (NSString*) string

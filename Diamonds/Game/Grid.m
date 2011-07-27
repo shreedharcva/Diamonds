@@ -163,8 +163,19 @@ DroppableSize MakeSize(int width, int height)
 
 - (void) remove: (Droppable*) droppable
 {
+    if (droppable == nil)
+        return;
     [droppables removeObject: droppable];
 }
+
+/*- (void) formBigGems
+{
+    for (Droppable* droppable in droppables)
+    {
+        [droppable formBigGem];
+    } 
+}
+ */
 
 - (void) updateWithGravity: (float) gravity
 {
@@ -173,12 +184,6 @@ DroppableSize MakeSize(int width, int height)
         [droppable updateWithGravity: gravity];
     }    
 
-    /*
-    for (Droppable* droppable in droppables)
-    {
-        [droppable tryFormABigGem];
-    } 
-     */
 }
 
 - (GridCell) spawnCell
