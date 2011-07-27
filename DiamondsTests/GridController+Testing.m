@@ -35,11 +35,15 @@
         }
     }
     
+    NSLog(@"%@", self);
+
     for (Droppable* droppable in self.grid.droppables)
     {
         [droppable formBigGem];
     }
-    
+
+    NSLog(@"%@", self);
+
     {
         int row = 0;
 

@@ -80,7 +80,10 @@ Direction;
 
 - (id) initWithGrid: (Grid*) grid_ at: (GridCell) cell_ width: (int) width_ height: (int) height_;
 
+- (void) attachToGrid: (Grid*) grid_;
+
 - (void) detachFromParent;
+- (void) detachFromGrid;
 
 - (bool) contains: (GridCell) cell_;
 

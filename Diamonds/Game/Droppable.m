@@ -46,13 +46,13 @@ GridCell movementMap[4] =
 
     width = width_;
     height = height_;
-
-    grid = grid_;
     
     cell = cell_;
     
     state = Stopped;    
     cellHeight = 0.0f;
+
+    [self attachToGrid: grid_];
     
     return self;    
 }
@@ -82,12 +82,22 @@ GridCell movementMap[4] =
     state = state_;
 }
 
+- (void) attachToGrid: (Grid*) grid_
+{
+    grid = grid_;
+}
+
 - (void) detachFromParent
 {
     cell.column += self.parent.cell.column;
     cell.row += self.parent.cell.row;
     
     self.parent = nil;
+}
+
+- (void) detachFromGrid
+{
+    grid = nil;
 }
 
 - (bool) contains: (GridCell) cell_
@@ -144,6 +154,8 @@ GridCell movementMap[4] =
 
 - (void) updateWithGravity: (float) gravity
 {
+    // TODO: Refactor this method
+    
     if (state == Falling)
     {
         cellHeight -= gravity;

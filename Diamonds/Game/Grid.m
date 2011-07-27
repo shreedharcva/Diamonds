@@ -137,7 +137,9 @@ DroppableSize MakeSize(int width, int height)
         @throw [NSException exceptionWithName:@"Grid" reason: @"Grid cell is not empty" userInfo: nil];
     }
 
-    [droppables addObject: droppable];   
+    [droppables addObject: droppable];
+    [droppable attachToGrid: self];
+    
     return droppable;
 }
 
@@ -165,6 +167,8 @@ DroppableSize MakeSize(int width, int height)
 {
     if (droppable == nil)
         return;
+    
+    [droppable detachFromGrid];
     [droppables removeObject: droppable];
 }
 

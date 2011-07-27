@@ -70,6 +70,16 @@
     assertEquals(EmptyGem, [self get: MakeCell(0, 0)].type);
 }
 
+- (void) testGemGridIsNilWhenTheGemIsReturned
+{
+    [grid put: Diamond at: MakeCell(0, 0)];
+    
+    Droppable* gem = [self get: MakeCell(0, 0)];
+    [grid remove: [self get: MakeCell(0, 0)]];
+    
+    assertNil(gem.grid);
+}
+
 - (void) testGridReturnsTheCorrectGemTypeAtThePositionWhenADifferentGemTypeIsPut
 {
     [grid put: Ruby at: MakeCell(0, 0)];

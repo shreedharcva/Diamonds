@@ -96,6 +96,11 @@
 
 - (BigGem*) formBigGem
 {
+    // TODO: Refactor this method
+    
+    if (self.grid == nil)
+        return nil;
+    
     int i = self.cell.column;
     int j = self.cell.row;
     
@@ -117,6 +122,11 @@
 
     int bigGemHeight = j - self.cell.row; 
     if (bigGemHeight < 2)
+    {
+        return nil;
+    }
+    
+    if (bigGemWidth < self.width || bigGemHeight < self.height)
     {
         return nil;
     }

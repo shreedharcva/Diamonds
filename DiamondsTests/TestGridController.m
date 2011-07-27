@@ -465,13 +465,27 @@
     [controller parseGridFrom: 
      @"DD.d\n"
      @"DDdd"];    
+
+    [self formBigGem];
     
-    BigGem* bigGem = [self bigGem];
-    
-    assertEquals(2, bigGem.width);    
-    assertEquals(2, bigGem.height);    
+    assertEquals(2, [self bigGem].width);    
+    assertEquals(2, [self bigGem].height);    
 }
 
+- (void) testBigGemIsNotExtendedIfTheresAGapOnTheThirdRow
+{
+    [controller parseGridFrom: 
+     @"DD.d\n"
+     @"DDdd\n"
+     @"DDdd"];    
+    
+    NSLog(@"%@", controller);
+    
+    [self formBigGem];
+    
+    assertEquals(2, [self bigGem].width);    
+    assertEquals(3, [self bigGem].height);    
+}
 
 @end
 
