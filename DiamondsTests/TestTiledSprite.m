@@ -137,9 +137,88 @@
 - (void) setUp
 {
     [super setUp];
-    
+ 
+    [sprite setGridWidth: 4];
+    [sprite setGridHeight: 4];
+
+    [sprite removeTile: MakeTile(0, 0)];
+
     engine = [MockEngine new];
     batch = [[MockSpriteBatch alloc] initWithEngine: engine];
+}
+
+- (void) testTwoSpritesAreSubmittedWhenTheTiledSpriteHasTwoTiles
+{
+    [sprite setTile: MakeTile(0, 0) with: MakeTile(0, 0)];
+    [sprite setTile: MakeTile(1, 1) with: MakeTile(0, 0)];
+    
+    [batch begin];
+    [sprite drawIn: batch];
+    [batch end];
+    
+    assertEquals(2, batch.numberOfSpritesDrawn);
+}
+
+- (void) testTiledSpriteDrawsTileAtTheCorrectPosition
+{
+    [sprite setTile: MakeTile(2, 1) with: MakeTile(0, 0)];
+    [sprite updateSizeFromTiles];
+    
+    [batch begin];
+    [sprite drawIn: batch];
+    [batch end];
+    
+    assertEquals(CGPointMake(64, 32), batch.lastSprite.position);
+}
+
+- (void) testTiledSpriteDrawsTileAtTheCorrectPositionWhenTheSpriteIsResized
+{
+    [sprite setTile: MakeTile(1, 1) with: MakeTile(0, 0)];
+    [sprite updateSizeFromTiles];
+    [sprite resizeTo: CGSizeMake(128, 128)];
+    
+    [batch begin];
+    [sprite drawIn: batch];
+    [batch end];
+    
+    assertEquals(CGPointMake(64, 64), batch.lastSprite.position);
+}
+
+- (void) testTiledSpriteDrawsTileWitTheCorrectSizeWhenTheSpriteIsResized
+{
+    [sprite setTile: MakeTile(1, 1) with: MakeTile(0, 0)];
+    [sprite updateSizeFromTiles];
+    [sprite resizeTo: CGSizeMake(128, 128)];
+    
+    [batch begin];
+    [sprite drawIn: batch];
+    [batch end];
+    
+    assertEquals(CGSizeMake(64, 64), batch.lastSprite.size);
+}
+
+- (void) testTiledSpriteDrawsTileWithTheCorrectSize
+{
+    [sprite setTile: MakeTile(2, 1) with: MakeTile(0, 0)];
+    [sprite updateSizeFromTiles];
+    
+    [batch begin];
+    [sprite drawIn: batch];
+    [batch end];
+    
+    assertEquals(CGSizeMake(32, 32), batch.lastSprite.size);
+}
+
+- (void) testTiledSpriteDrawsTileWithTheCorrectSourceRectangle
+{
+    [sprite setTile: MakeTile(2, 1) with: MakeTile(2, 1)];
+    [sprite updateSizeFromTiles];
+    
+    [batch begin];
+    [sprite drawIn: batch];
+    [batch end];
+    
+    assertEquals(CGRectMake(64, 32, 32, 32), batch.lastSprite.sourceRect);
 }
 
 

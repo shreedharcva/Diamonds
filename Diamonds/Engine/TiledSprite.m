@@ -5,6 +5,7 @@
 #import "TiledSprite.h"
 #import "Texture.h"
 #import "Sprite.h"
+#import "SpriteBatch.h"
 
 TileCoordinates MakeTile(int x, int y)
 {
@@ -82,7 +83,7 @@ TileCoordinates MakeTile(int x, int y)
 {
     if (source.x >= gridWidth || source.y >= gridHeight)
     {
-        @throw [NSException exceptionWithName:@"TiledSprite" reason: @"Source tile out of bounds" userInfo: nil];        
+        @throw [NSException exceptionWithName: @"TiledSprite" reason: @"Source tile out of bounds" userInfo: nil];        
     }
     if (coordinates.x + 1 > widthInTiles)
     {
@@ -102,6 +103,15 @@ TileCoordinates MakeTile(int x, int y)
     }
     
     tile.source = source;
+}
+
+- (void) removeTile: (TileCoordinates) coordinates
+{
+    Tile* tile = [self getTile: coordinates];
+    if (tile != nil)
+    {
+        [tiles removeObject: tile];
+    }    
 }
 
 - (Tile*) getTile: (TileCoordinates) coordinates
@@ -124,6 +134,35 @@ TileCoordinates MakeTile(int x, int y)
     [self resizeTo: CGSizeMake(
         self.tileSize.width * self.widthInTiles,
         self.tileSize.height * self.heightInTiles)];
+}
+
+- (void) drawIn: (SpriteBatch*) batch
+{
+    CGSize gridSize;
+    gridSize.width = self.tileSize.width * self.widthInTiles;
+    gridSize.height = self.tileSize.height * self.heightInTiles;
+    
+    CGSize sizeRatio;
+    sizeRatio.width = self.size.width / gridSize.width;;
+    sizeRatio.height = self.size.height / gridSize.height;
+    
+    for (Tile* tile in tiles)
+    {
+        CGPoint position = self.position;
+        position.x += sizeRatio.width * tile.coordinates.x * self.tileSize.width;
+        position.y += sizeRatio.height * tile.coordinates.y * self.tileSize.height;
+        
+        CGSize size = self.tileSize;
+        size.width *= sizeRatio.width;
+        size.height *= sizeRatio.height;
+
+        CGRect sourceRectangle;        
+        sourceRectangle.origin.x = tile.source.x * self.tileSize.width;
+        sourceRectangle.origin.y = tile.source.y * self.tileSize.height;
+        sourceRectangle.size = self.tileSize;
+        
+        [batch drawQuad: position size: size texture: self.texture sourceRect: sourceRectangle];        
+    }
 }
 
 @end

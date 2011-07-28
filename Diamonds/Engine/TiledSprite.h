@@ -30,8 +30,10 @@ TileCoordinates MakeTile(int x, int y);
 
 - (id) initWithTexture: (Texture*) texture_ tileSize: (CGSize) tileSize_;
 
-- (void) setTile: (TileCoordinates) tile with: (TileCoordinates) source;
-- (Tile*) getTile: (TileCoordinates) tile;
+- (void) setTile: (TileCoordinates) coordinates with: (TileCoordinates) source;
+- (void) removeTile: (TileCoordinates) coordinates;
+
+- (Tile*) getTile: (TileCoordinates) coordinates;
 
 - (void) updateSizeFromTiles;
 
