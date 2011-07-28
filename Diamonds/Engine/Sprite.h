@@ -12,10 +12,7 @@ CGVector CGVectorMake(float x, float y);
 
 @interface Sprite : NSObject 
 
-@property (readonly) CGSize size;
-@property (readonly) CGPoint position;
-
-- (id) initWithTexture: (Texture*) texture;
+- (id) initWithTexture: (Texture*) texture_;
 
 - (void) setSourceRectangle: (CGRect) rect;
 
@@ -25,5 +22,9 @@ CGVector CGVectorMake(float x, float y);
 - (void) resizeTo: (CGSize) size;
 
 - (void) drawIn: (SpriteBatch*) batch;
+
+@property (readonly) Texture* texture;
+@property (readonly) CGSize size;
+@property (readonly) CGPoint position;
 
 @end
