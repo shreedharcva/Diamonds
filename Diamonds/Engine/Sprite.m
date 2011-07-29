@@ -33,17 +33,21 @@ CGVector CGVectorMake(float x, float y)
     
     texture = texture_;
     size = texture_.size;
-    sourceRectangle = CGRectMake(0.0, 0.0, 1.0, 1.0);
+    sourceRectangle.origin = CGPointMake(0, 0);
+    sourceRectangle.size = size;
     
     return self;
 }
 
 - (void) setSourceRectangle: (CGRect) rect
 {
+    sourceRectangle = rect;
+    /*
     sourceRectangle.origin.x = rect.origin.x / texture.size.width;
     sourceRectangle.origin.y = rect.origin.y / texture.size.height;
     sourceRectangle.size.width = rect.size.width / texture.size.width;
     sourceRectangle.size.height = rect.size.height / texture.size.height;
+     */
 }
 
 - (void) moveTo: (CGPoint) newPosition

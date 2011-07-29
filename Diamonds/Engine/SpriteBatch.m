@@ -111,10 +111,10 @@ static ShaderProgram* program;
     glVertexAttribPointer(ATTRIB_VERTEX, 2, GL_FLOAT, 0, 0, squareVertices);
     glEnableVertexAttribArray(ATTRIB_VERTEX);
     
-    float src_x0 = source.origin.x;
-    float src_y0 = source.origin.y;
-    float src_x1 = source.origin.x + source.size.width;
-    float src_y1 = source.origin.y + source.size.height;
+    float src_x0 = source.origin.x / texture.size.width;
+    float src_y0 = source.origin.y / texture.size.width;
+    float src_x1 = (source.origin.x + source.size.width)  / texture.size.width;
+    float src_y1 = (source.origin.y + source.size.height) / texture.size.height;
 
     const GLfloat texCoords[8] = 
     {

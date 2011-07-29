@@ -102,7 +102,7 @@
     [self makeGem: Ruby];
     [self drawGem];
     
-    assertEquals(CGRectMake(0, 0, 0.5, 0.125), [batch lastSprite].sourceRect);    
+    assertEquals(CGRectMake(0, 0, 32, 32), [batch lastSprite].sourceRect);    
 }
 
 @end
