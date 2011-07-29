@@ -50,7 +50,7 @@ TileCoordinates MakeTile(int x, int y)
 @synthesize widthInTiles;
 @synthesize heightInTiles;
 
-- (id) initWithTexture: (Texture*) texture_ tileSize: (CGSize) tileSize_
+- (id) initWithTexture: (Texture*) texture_
 {
     self = [super initWithTexture: texture_];
     if (self == nil)
@@ -58,7 +58,7 @@ TileCoordinates MakeTile(int x, int y)
         return nil;
     }
     
-    tileSize = tileSize_;
+    tileSize = self.texture.size;
     
     widthInTiles = 1;
     heightInTiles = 1;
@@ -82,6 +82,8 @@ TileCoordinates MakeTile(int x, int y)
 
 - (void) setTile: (TileCoordinates) coordinates with: (TileCoordinates) source
 {
+    NSLog(@"%@ %d %d", texture, [self gridWidth], [self gridHeight]); 
+    
     if (source.x >= [self gridWidth] || source.y >= [self gridHeight])
     {
         @throw [NSException exceptionWithName: @"TiledSprite" reason: @"Source tile out of bounds" userInfo: nil];        

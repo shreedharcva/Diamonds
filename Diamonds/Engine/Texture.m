@@ -8,11 +8,8 @@
 #import <OpenGLES/ES2/glext.h>
 
 @implementation Texture
-{
-    NSString* name;
-    
+{    
     GLuint texture;
-    CGSize size;
 }
 
 @synthesize size;
@@ -74,6 +71,11 @@
 - (void) bind
 {
     glBindTexture(GL_TEXTURE_2D, texture);
+}
+
+- (NSString*) description
+{
+    return [NSString stringWithFormat: @"Texture: %@ [%d %d]", name, size.width, size.height];
 }
 
 @end

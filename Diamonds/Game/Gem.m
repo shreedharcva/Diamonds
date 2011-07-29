@@ -22,6 +22,11 @@
 
 @synthesize type;
 
+- (Class) spriteClass
+{
+    return [Sprite class];
+}
+
 - (NSString*) getTextureNameFromType: (GemType) gemType
 {
     if (gemType == Diamond)
@@ -44,7 +49,8 @@
 
 - (void) initSpriteForType: (GemType) gemType resources: (ResourceManager*) resources   
 {
-    sprite = [[Sprite alloc] initWithTexture: [self getTextureFromType: gemType resources: resources]];
+    Texture* texture = [self getTextureFromType: gemType resources: resources];
+    sprite = [[[self spriteClass] alloc] initWithTexture: texture];
 
     [sprite setSourceRectangle: CGRectMake(0, 0, 32, 32)];
     [sprite resizeTo: CGSizeMake(32, 32)];
@@ -55,11 +61,11 @@
     self = [super initWithGrid: grid_ at: cell_ width: 1 height: 1];
     if (self == nil)
         return nil;
-    
+
     type = gemType;
     
     [self initSpriteForType: gemType resources: self.grid.resources];
-    
+
     return self;
 }
 

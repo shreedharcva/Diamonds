@@ -28,7 +28,8 @@ TileCoordinates MakeTile(int x, int y);
 
 @interface TiledSprite : Sprite
 
-- (id) initWithTexture: (Texture*) texture_ tileSize: (CGSize) tileSize_;
+//- (id) initWithTexture: (Texture*) texture_ tileSize: (CGSize) tileSize_;
+- (id) initWithTexture: (Texture*) texture_;
 
 - (void) setTile: (TileCoordinates) coordinates with: (TileCoordinates) source;
 - (void) removeTile: (TileCoordinates) coordinates;
@@ -37,7 +38,7 @@ TileCoordinates MakeTile(int x, int y);
 
 - (void) updateSizeFromTiles;
 
-@property (readonly, nonatomic) CGSize tileSize;
+@property (assign, nonatomic) CGSize tileSize;
 
 @property (readonly, nonatomic) int widthInTiles;
 @property (readonly, nonatomic) int heightInTiles;

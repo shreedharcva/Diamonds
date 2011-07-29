@@ -25,7 +25,8 @@
     texture = [MockTexture new];
     [texture setSize: CGSizeMake(128, 128)];
     
-    sprite = [[TiledSprite alloc] initWithTexture: texture tileSize: CGSizeMake(32, 32)];    
+    sprite = [[TiledSprite alloc] initWithTexture: texture];
+    sprite.tileSize = CGSizeMake(32, 32);    
 }
 
 @end

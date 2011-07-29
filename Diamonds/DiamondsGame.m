@@ -83,23 +83,6 @@
     [gridController setGravity: 0.05];
     [gridController setDroppingGravity: 2.00f];
     [gridController spawn];
-
-    test = [[TiledSprite alloc] initWithTexture: [resources loadTexture: @"ruby" from: @"BigGems"] tileSize: CGSizeMake(32, 32)];
-    
-//    [test setGridWidth: 3];
-//    [test setGridHeight: 3];
-        
-    [test setTile: MakeTile(0, 0) with: MakeTile(0, 0)];
-    [test setTile: MakeTile(1, 0) with: MakeTile(1, 0)];
-    [test setTile: MakeTile(2, 0) with: MakeTile(2, 0)];
-
-    [test setTile: MakeTile(0, 1) with: MakeTile(0, 1)];
-    [test setTile: MakeTile(1, 1) with: MakeTile(1, 1)];
-    [test setTile: MakeTile(2, 1) with: MakeTile(2, 1)];
-
-    [test setTile: MakeTile(0, 2) with: MakeTile(0, 2)];
-    [test setTile: MakeTile(1, 2) with: MakeTile(1, 2)];
-    [test setTile: MakeTile(2, 2) with: MakeTile(2, 2)];
     
     [test updateSizeFromTiles];
 

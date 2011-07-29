@@ -5,6 +5,8 @@
 #import "BigGem.h"
 #import "Grid.h"
 
+#import "TiledSprite.h"
+
 @interface Droppable (private)
 
 - (void) setWidth: (int) width_;
@@ -13,6 +15,11 @@
 @end
 
 @implementation BigGem 
+
+- (Class) spriteClass
+{
+    return [TiledSprite class];
+}
 
 - (id) initWithType: (GemType) gemType at: (GridCell) cell_ grid: (Grid*) grid_ width: (int) width_ height: (int) height_
 {

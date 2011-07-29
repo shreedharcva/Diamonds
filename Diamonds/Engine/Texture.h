@@ -6,6 +6,10 @@
 @class TextureFactory;
 
 @interface Texture : NSObject 
+{
+    NSString* name;
+    CGSize size;
+}
 
 @property (readonly, nonatomic) NSString* name;
 @property (readonly, nonatomic) CGSize size;

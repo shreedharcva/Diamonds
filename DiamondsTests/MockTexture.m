@@ -14,6 +14,7 @@
 
 - (void) load: (NSString*) folder
 {
+    size = CGSizeMake(128, 128);
     loadWasCalled = true;
 }
 
@@ -33,8 +34,8 @@
 
 - (Texture*) create: (NSString*) name
 {
-    return [[MockTexture alloc] initWithName: name];
+    Texture* texture = [[MockTexture alloc] initWithName: name];
+    return texture;
 }
-
 
 @end

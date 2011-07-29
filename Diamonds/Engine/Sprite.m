@@ -14,8 +14,6 @@ CGVector CGVectorMake(float x, float y)
 
 @implementation Sprite
 {
-    Texture* texture;
-
     CGPoint position;
     CGSize size;
     CGRect sourceRectangle;

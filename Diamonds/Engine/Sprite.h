@@ -11,6 +11,9 @@ typedef CGPoint CGVector;
 CGVector CGVectorMake(float x, float y);
 
 @interface Sprite : NSObject 
+{
+    Texture* texture;
+}
 
 - (id) initWithTexture: (Texture*) texture_;
 

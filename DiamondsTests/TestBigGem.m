@@ -9,6 +9,8 @@
 #import "GridController.h"
 #import "GridController+Testing.h"
 
+#import "TiledSprite.h"
+
 @implementation TestBigGemBase
 
 - (BigGem*) formBigGemAt: (GridCell) cell
@@ -31,6 +33,9 @@
     return [self bigGemAt: [Grid origin]];
 }
 
+@end
+
+@interface TestBigGem :  TestBigGemBase 
 @end
 
 @implementation TestBigGem 
@@ -159,4 +164,27 @@
 }
 
 @end
+
+@interface BigGem (testing)
+- (Sprite*) sprite;
+@end
+
+@interface TestBigGemDrawing :  TestBigGemBase 
+@end
+
+@implementation TestBigGemDrawing
+
+- (void) testBigGemSpriteClassIsTiledSprite
+{
+    [controller parseGridFrom: 
+     @"ddd\n"
+     @"ddd"];    
+    
+    BigGem* bigGem = [self formBigGem];
+
+    assertIsKindOfClass(TiledSprite, bigGem.sprite);
+}
+
+@end
+
 
