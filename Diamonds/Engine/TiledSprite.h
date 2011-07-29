@@ -28,7 +28,6 @@ TileCoordinates MakeTile(int x, int y);
 
 @interface TiledSprite : Sprite
 
-//- (id) initWithTexture: (Texture*) texture_ tileSize: (CGSize) tileSize_;
 - (id) initWithTexture: (Texture*) texture_;
 
 - (void) setTile: (TileCoordinates) coordinates with: (TileCoordinates) source;

@@ -11,6 +11,9 @@
 
 #import "TiledSprite.h"
 
+#import "MockSpriteBatch.h"
+#import "MockEngine.h"
+
 @implementation TestBigGemBase
 
 - (BigGem*) formBigGemAt: (GridCell) cell
@@ -166,23 +169,55 @@
 @end
 
 @interface BigGem (testing)
-- (Sprite*) sprite;
+- (TiledSprite*) tiledSprite;
 @end
 
 @interface TestBigGemDrawing :  TestBigGemBase 
 @end
 
 @implementation TestBigGemDrawing
+{
+    BigGem* bigGem;
+    MockSpriteBatch* batch;
+    GridPresentationInfo info;
+}
+
+- (void) setUp
+{
+    [super setUp];
+    
+    [controller parseGridFrom: 
+     @"dddd\n"
+     @"dddd"];    
+    
+    bigGem = [self formBigGem];
+    
+    batch = [[MockSpriteBatch alloc] initWithEngine: [MockEngine new]];
+
+}
 
 - (void) testBigGemSpriteClassIsTiledSprite
 {
-    [controller parseGridFrom: 
-     @"ddd\n"
-     @"ddd"];    
-    
-    BigGem* bigGem = [self formBigGem];
+    assertIsKindOfClass(TiledSprite, bigGem.tiledSprite);
+}
 
-    assertIsKindOfClass(TiledSprite, bigGem.sprite);
+- (void) testBigGemDrawsSixQuads
+{
+    [batch begin];
+    [bigGem drawIn: batch info: info];
+    [batch end];
+    
+    assertEquals(8, batch.numberOfSpritesDrawn);
+}
+
+- (void) testBigGemSpriteUpperLeftTileIsCorrect
+{
+    assertEquals(MakeTile(0, 0), [bigGem.tiledSprite getTile: MakeTile(0, 0)].coordinates);
+}
+
+- (void) testBigGemSpriteUpperRightTileIsCorrect
+{
+//    assertEquals(MakeTile(2, 0), [bigGem.tiledSprite getTile: MakeTile(3, 0)].coordinates);
 }
 
 @end

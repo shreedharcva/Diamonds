@@ -14,11 +14,34 @@
 
 @end
 
+@interface Gem (private)
+
+- (Sprite*) sprite;
+
+@end
+
 @implementation BigGem 
 
 - (Class) spriteClass
 {
     return [TiledSprite class];
+}
+
+- (TiledSprite*) tiledSprite
+{
+    return (TiledSprite*) self.sprite;
+}
+
+- (void) setUpTiles
+{
+    for (int j = 0; j < self.height; ++j)
+    {
+        for (int i = 0; i < self.width; ++i)
+        {
+            [[self tiledSprite] setTile: MakeTile(i, j) with: MakeTile(0, 0)];            
+        }
+    }
+    
 }
 
 - (id) initWithType: (GemType) gemType at: (GridCell) cell_ grid: (Grid*) grid_ width: (int) width_ height: (int) height_
@@ -29,6 +52,8 @@
     
     [self setWidth: width_];
     [self setHeight: height_];
+
+    [self setUpTiles];
     
     return self;
 }
@@ -45,10 +70,6 @@
     }
     
     [self.grid put: self];
-}
-
-- (void) drawIn: (SpriteBatch*) batch info: (GridPresentationInfo) info
-{
 }
 
 @end
