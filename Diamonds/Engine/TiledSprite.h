@@ -42,7 +42,7 @@ TileCoordinates MakeTile(int x, int y);
 @property (readonly, nonatomic) int widthInTiles;
 @property (readonly, nonatomic) int heightInTiles;
 
-@property (assign, nonatomic) int gridWidth;
-@property (assign, nonatomic) int gridHeight;
+@property (readonly, nonatomic) int gridWidth;
+@property (readonly, nonatomic) int gridHeight;
 
 @end

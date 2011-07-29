@@ -47,17 +47,8 @@
     assertEquals(1, sprite.heightInTiles);    
 }
 
-- (void) testTiledSpriteGridIs1x1WhenCreated
-{
-    assertEquals(1, sprite.gridWidth);
-    assertEquals(1, sprite.gridHeight);
-}
-
 - (void) testTiledSpriteHasTheCorrectGridSize
 {
-    [sprite setGridWidth: 4];
-    [sprite setGridHeight: 4];
-
     assertEquals(4, sprite.gridWidth);
     assertEquals(4, sprite.gridHeight);
 }
@@ -73,14 +64,6 @@
 @end
 
 @implementation TestTiledSpriteWithTiles
-
-- (void) setUp
-{
-    [super setUp];
-
-    [sprite setGridWidth: 4];
-    [sprite setGridHeight: 4];
-}
 
 - (void) testSetTileUpdatesAnEmptyTileCorrectly
 {
@@ -138,9 +121,6 @@
 {
     [super setUp];
  
-    [sprite setGridWidth: 4];
-    [sprite setGridHeight: 4];
-
     [sprite removeTile: MakeTile(0, 0)];
 
     engine = [MockEngine new];
