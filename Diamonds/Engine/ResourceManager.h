@@ -13,5 +13,6 @@
 @property (readonly) int numberOfTextures;
 
 - (Texture*) loadTexture: (NSString*) name;
+- (Texture*) loadTexture: (NSString*) name from: (NSString*) folder;
 
 @end

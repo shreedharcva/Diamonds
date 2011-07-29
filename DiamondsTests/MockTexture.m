@@ -12,7 +12,7 @@
 @synthesize loadWasCalled;
 
 
-- (void) load;
+- (void) load: (NSString*) folder
 {
     loadWasCalled = true;
 }

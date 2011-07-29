@@ -12,7 +12,7 @@
 
 - (id) initWithName: (NSString*) textureName;
 
-- (void) load;
+- (void) load: (NSString*) folder;
 - (void) bind;
 
 @end

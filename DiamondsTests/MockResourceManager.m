@@ -10,12 +10,13 @@
     MockTexture* lastTextureLoaded;
 }
 
-- (Texture*) loadTexture:(NSString *)name
+- (Texture*) loadTexture: (NSString*) name from: (NSString*) folder
 {
-    Texture* texture = [super loadTexture: name];
+    Texture* texture = [super loadTexture: name from: folder];
     lastTextureLoaded = (MockTexture*) texture;
     return texture;
 }
+
 
 - (void) setTextureFactory: (TextureFactory*) newFactory
 {
