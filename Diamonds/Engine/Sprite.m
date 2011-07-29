@@ -42,12 +42,6 @@ CGVector CGVectorMake(float x, float y)
 - (void) setSourceRectangle: (CGRect) rect
 {
     sourceRectangle = rect;
-    /*
-    sourceRectangle.origin.x = rect.origin.x / texture.size.width;
-    sourceRectangle.origin.y = rect.origin.y / texture.size.height;
-    sourceRectangle.size.width = rect.size.width / texture.size.width;
-    sourceRectangle.size.height = rect.size.height / texture.size.height;
-     */
 }
 
 - (void) moveTo: (CGPoint) newPosition
