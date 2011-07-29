@@ -34,11 +34,27 @@
 
 - (void) setUpTiles
 {
+    [[self tiledSprite] setTileSize: CGSizeMake(32, 32)];
+    
     for (int j = 0; j < self.height; ++j)
     {
         for (int i = 0; i < self.width; ++i)
         {
-            [[self tiledSprite] setTile: MakeTile(i, j) with: MakeTile(0, 0)];            
+            TileCoordinates tile = MakeTile(1, 1);
+            
+            if (i == 0 && j == 0)
+                tile = MakeTile(0, 0);
+            else
+            if (i == self.width - 1 && j == 0)
+                tile = MakeTile(2, 0);
+            else
+            if (i == 0 && j == self.height - 1)
+                tile = MakeTile(0, 2);
+            else
+            if (i == self.width -1 && j == self.height - 1)
+                tile = MakeTile(1, 1);
+            
+            [[self tiledSprite] setTile: MakeTile(i, j) with: tile];            
         }
     }
     

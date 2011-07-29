@@ -193,7 +193,6 @@
     bigGem = [self formBigGem];
     
     batch = [[MockSpriteBatch alloc] initWithEngine: [MockEngine new]];
-
 }
 
 - (void) testBigGemSpriteClassIsTiledSprite
