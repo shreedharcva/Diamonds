@@ -173,7 +173,7 @@
     assertEquals(3, [self bigGem].height);    
 }
 
-- (void) testBigGemFormedIsFormedAfterAnUpdate
+- (void) testBigGemIsFormedAfterAnUpdate
 {
     [controller parseGridFrom: 
      @"ddd\n"
@@ -184,6 +184,20 @@
     assertEquals(3, [self bigGem].width);    
     assertEquals(2, [self bigGem].height);    
 }
+
+/*
+- (void) testBigGemIsFormedWhenTheFirstRowIsLongerThanTheFinalWidth
+{
+    [controller parseGridFrom: 
+     @"dd.\n"
+     @"ddd"];        
+    
+    [controller update];
+    
+    assertEquals(2, [self bigGem].width);    
+    assertEquals(2, [self bigGem].height);    
+}
+ */
 
 - (void) testBigGemFormedIsFormedOnTheSecondColumn
 {
@@ -222,7 +236,6 @@
     
     assertEquals(Ruby, [self gemAt: MakeCell(2, 0)].type);    
 }
-
 
 @end
 
