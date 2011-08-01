@@ -247,6 +247,16 @@
     assertEquals(MakeCell(2, 2), pair.cell);    
 }
 
+- (void) testVerticalDroppablePairOnTheFirstColumnCantRotateLeft
+{
+    [self makePairAt: MakeCell(0, 2)];
+    [grid put: pair];
+    
+    [pair rotateLeft];
+    
+    assertEquals(VerticalUp, pair.orientation);    
+}
+
 @end
 
 @interface TestDroppablePairDrawing : TestGemDrawingBase 

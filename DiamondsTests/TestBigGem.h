@@ -8,5 +8,3 @@
 @end
 
 
-@interface TestBigGem :  TestBigGemBase 
-@end

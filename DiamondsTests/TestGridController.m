@@ -11,6 +11,8 @@
 #import "Grid.h"
 #import "DroppablePair.h"
 
+#import "MockResourceManager.h"
+
 @interface Gem (testing)
 
 - (Sprite*) sprite;
@@ -29,7 +31,9 @@
 {
     [super setUp];
     
-    grid = [[Grid alloc] initWithResources: nil width: 8 height: 14];
+    resources = [MockResourceManager new];
+    
+    grid = [[Grid alloc] initWithResources: resources width: 8 height: 14];
     controller = [[GridController alloc] initWithGrid: grid];
 }
 
@@ -323,5 +327,6 @@
 }
 
 @end
+
 
 

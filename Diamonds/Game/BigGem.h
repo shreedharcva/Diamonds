@@ -10,6 +10,4 @@
 
 - (void) placeInGrid;
 
-- (void) drawIn: (SpriteBatch*) batch info: (GridPresentationInfo) info;
-
 @end

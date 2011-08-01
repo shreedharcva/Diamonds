@@ -133,7 +133,7 @@
     [sprite drawIn: batch];
     [batch end];
     
-    assertEquals(CGRectMake(0, 0, 0.50, 0.25), [batch lastSprite].sourceRect);
+    assertEquals(CGRectMake(0, 0, 32, 32), [batch lastSprite].sourceRect);
 }
 
 @end

@@ -6,6 +6,7 @@
 
 #import "Engine.h"
 #import "Sprite.h"
+#import "TiledSprite.h"
 #import "SpriteBatch.h"
 #import "ResourceManager.h"
 
@@ -22,6 +23,8 @@
     Grid* grid;
     GridDrawer* gridDrawer;
     GridController* gridController;
+    
+    TiledSprite* test;
     
     float nextUpdateTime;
 }
@@ -80,8 +83,9 @@
     [gridController setGravity: 0.05];
     [gridController setDroppingGravity: 2.00f];
     [gridController spawn];
+    
+    [test updateSizeFromTiles];
 
-        
     nextUpdateTime = 0.0f;
 }
 
@@ -108,6 +112,8 @@
     [background drawIn: batch];
     [gridDrawer drawBackgroundIn: batch];
     [gridDrawer drawIn: batch];
+    
+    [test drawIn: batch];
     
     [batch end];
 }

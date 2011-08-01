@@ -7,7 +7,6 @@
 
 @interface GridController : NSObject
 {
-    DroppablePair* droppablePair;
 }
 
 @property (readonly) DroppablePair* droppablePair;

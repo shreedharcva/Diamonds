@@ -12,7 +12,7 @@
 @synthesize loadWasCalled;
 
 
-- (void) load;
+- (void) load: (NSString*) folder
 {
     loadWasCalled = true;
 }
@@ -30,11 +30,31 @@
 @end
 
 @implementation MockTextureFactory
+{
+    CGSize textureSize;
+}
+
+- (id) init
+{
+    self = [super init];
+    if (self == nil)
+        return nil;
+    
+    textureSize = CGSizeMake(128, 128);
+    
+    return self;
+}
+
+- (void) setTextureSize: (CGSize) size_
+{
+    textureSize = size_;
+}
 
 - (Texture*) create: (NSString*) name
 {
-    return [[MockTexture alloc] initWithName: name];
+    MockTexture* texture = [[MockTexture alloc] initWithName: name];
+    [texture setSize: textureSize];
+    return texture;
 }
-
 
 @end

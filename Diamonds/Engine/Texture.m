@@ -8,11 +8,8 @@
 #import <OpenGLES/ES2/glext.h>
 
 @implementation Texture
-{
-    NSString* name;
-    
+{    
     GLuint texture;
-    CGSize size;
 }
 
 @synthesize size;
@@ -31,7 +28,7 @@
     return self;
 }
 
-- (void) load
+- (void) load: (NSString*) folder
 {
     glGenTextures(1, &texture);
     glBindTexture(GL_TEXTURE_2D, texture);
@@ -39,7 +36,7 @@
     glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_LINEAR); 
     glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_LINEAR);
     
-    NSString *path = [[NSBundle mainBundle] pathForResource: self.name ofType: @"png"];
+    NSString *path = [[NSBundle mainBundle] pathForResource: self.name ofType: @"png" inDirectory: folder];
     NSData *texData = [[NSData alloc] initWithContentsOfFile:path];
     UIImage *image = [[UIImage alloc] initWithData:texData];
     
@@ -76,9 +73,17 @@
     glBindTexture(GL_TEXTURE_2D, texture);
 }
 
+- (NSString*) description
+{
+    return [NSString stringWithFormat: @"Texture: %@ [%d %d]", name, size.width, size.height];
+}
+
 @end
 
 @implementation TextureFactory
+{
+    CGSize textureSize;
+}
 
 - (Texture*) create: (NSString*) name
 {

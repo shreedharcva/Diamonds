@@ -7,7 +7,7 @@
 #import "Gem.h"
 #import "DroppablePair.h"
 
-@interface Gem (testing)
+@interface Gem (private)
 - (Sprite*) sprite;
 @end
 
@@ -15,6 +15,8 @@
 {
     Grid* grid;
     float gravity;
+    
+    DroppablePair* droppablePair;
 }
 
 @synthesize grid;
@@ -51,7 +53,6 @@
         gems[0] = Diamond;
         gems[1] = Ruby;
         
-        // TODO: create a DroppableFactory class to hide the resource manager        
         droppablePair = [[DroppablePair alloc] initWithGrid: self.grid at: spawnCell with: gems];
         [grid put: droppablePair];
     }
@@ -96,13 +97,18 @@
     [[self droppablePair] drop];
 }
 
+- (void) releasePair
+{
+    [[self droppablePair] releaseOnGrid];    
+}
+
 - (void) update
 {
     [self.grid updateWithGravity: gravity];
     
     if ([self droppablePair].state == Stopped)
     {
-        [[self droppablePair] releaseOnGrid];
+        [self releasePair];
         [self spawn];
     }
 }

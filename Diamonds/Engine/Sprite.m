@@ -14,8 +14,6 @@ CGVector CGVectorMake(float x, float y)
 
 @implementation Sprite
 {
-    Texture* textureObject;
-
     CGPoint position;
     CGSize size;
     CGRect sourceRectangle;
@@ -23,26 +21,25 @@ CGVector CGVectorMake(float x, float y)
 
 @synthesize size;
 @synthesize position;
+@synthesize texture;
 
-- (id) initWithTexture: (Texture*) texture
+- (id) initWithTexture: (Texture*) texture_
 {
     self = [super init];
     if (self == nil)
         return nil;
     
-    textureObject = texture;
-    size = textureObject.size;
-    sourceRectangle = CGRectMake(0.0, 0.0, 1.0, 1.0);
+    texture = texture_;
+    size = texture_.size;
+    sourceRectangle.origin = CGPointMake(0, 0);
+    sourceRectangle.size = size;
     
     return self;
 }
 
 - (void) setSourceRectangle: (CGRect) rect
 {
-    sourceRectangle.origin.x = rect.origin.x / textureObject.size.width;
-    sourceRectangle.origin.y = rect.origin.y / textureObject.size.height;
-    sourceRectangle.size.width = rect.size.width / textureObject.size.width;
-    sourceRectangle.size.height = rect.size.height / textureObject.size.height;
+    sourceRectangle = rect;
 }
 
 - (void) moveTo: (CGPoint) newPosition
@@ -63,7 +60,7 @@ CGVector CGVectorMake(float x, float y)
 
 - (void) drawIn: (SpriteBatch*) batch
 {        
-    [batch drawQuad: position size: size texture: textureObject sourceRect: sourceRectangle];
+    [batch drawQuad: position size: size texture: texture sourceRect: sourceRectangle];
 }
 
 @end

@@ -13,4 +13,7 @@
 @end
 
 @interface MockTextureFactory : TextureFactory 
+
+- (void) setTextureSize: (CGSize) size_;
+
 @end

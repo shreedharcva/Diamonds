@@ -6,11 +6,13 @@
 
 @class Grid;
 @class GridController;
+@class MockResourceManager;
 
 @interface TestGridControllerBase : TestCase 
 {
     Grid* grid;
     GridController* controller;
+    MockResourceManager* resources;
 }
 
 @end

@@ -7,6 +7,7 @@
 #import "Sprite.h"
 #import "SpriteBatch.h"
 #import "Engine.h"
+#import "Texture.h"
 
 #import "MockEngine.h"
 
@@ -54,7 +55,7 @@
     lastSprite.position = position;
     lastSprite.size = size;
     lastSprite.sourceRect = source;
-    
+
     SpriteDescriptorObject* descriptor = [SpriteDescriptorObject new]; 
 
     descriptor.texture = texture;

@@ -22,6 +22,11 @@
 
 @synthesize type;
 
+- (Class) spriteClass
+{
+    return [Sprite class];
+}
+
 - (NSString*) getTextureNameFromType: (GemType) gemType
 {
     if (gemType == Diamond)
@@ -34,17 +39,23 @@
     return nil;
 }
 
+- (NSString*) textureFolder
+{
+    return nil;
+}
+
 - (Texture*) getTextureFromType: (GemType) gemType resources: (ResourceManager*) resources
 {
     if (gemType == EmptyGem)
         return nil;
     
-    return [resources loadTexture: [self getTextureNameFromType: gemType]];
+    return [resources loadTexture: [self getTextureNameFromType: gemType] from: [self textureFolder]];
 }
 
 - (void) initSpriteForType: (GemType) gemType resources: (ResourceManager*) resources   
 {
-    sprite = [[Sprite alloc] initWithTexture: [self getTextureFromType: gemType resources: resources]];
+    Texture* texture = [self getTextureFromType: gemType resources: resources];
+    sprite = [[[self spriteClass] alloc] initWithTexture: texture];
 
     [sprite setSourceRectangle: CGRectMake(0, 0, 32, 32)];
     [sprite resizeTo: CGSizeMake(32, 32)];
@@ -55,11 +66,11 @@
     self = [super initWithGrid: grid_ at: cell_ width: 1 height: 1];
     if (self == nil)
         return nil;
-    
+
     type = gemType;
     
     [self initSpriteForType: gemType resources: self.grid.resources];
-    
+
     return self;
 }
 
@@ -84,7 +95,7 @@
 
 - (bool) isRowCandidateToFormBigGem: (int) row_ width: (int) width_
 {
-    for (int i = 0; i < width_; ++i)
+    for (int i = self.cell.column; i < self.cell.column + width_; ++i)
     {
         if (![self isCellCandidateToFormBigGem: MakeCell(i, row_)])
         {
@@ -144,7 +155,11 @@
     CGPoint spritePosition = info.origin;
     
     spritePosition.x += info.cellSize.width * self.cell.column; 
-    spritePosition.y -= info.cellSize.height * self.cell.row - (info.cellSize.height * (info.heightInCells - 1)); 
+    
+    // TODO: refactor
+    spritePosition.y -= info.cellSize.height * (self.cell.row);
+    spritePosition.y -= info.cellSize.height * (self.height - 1);
+    spritePosition.y += (info.cellSize.height * (info.heightInCells - 1)); 
     spritePosition.y += (-self.cellHeight) * info.cellSize.height;
     
     [sprite moveTo: spritePosition];
