@@ -38,6 +38,11 @@
     return [self bigGemAt: [Grid origin]];
 }
 
+- (Gem*) gemAt: (GridCell) cell
+{
+    return (Gem*) [controller.grid get: cell];
+}
+
 @end
 
 @interface TestBigGem :  TestBigGemBase 
@@ -205,6 +210,19 @@
     assertEquals(2, [self bigGemAt: MakeCell(1, 0)].width);    
     assertEquals(2, [self bigGemAt: MakeCell(1, 0)].height);    
 }
+
+- (void) testGemsDontDisappearWhenTheBigGemIsExtendedUp
+{
+    [controller parseGridFrom: 
+     @"dd.\n"
+     @"DDr\n"
+     @"DDr"];    
+    
+    [controller update];
+    
+    assertEquals(Ruby, [self gemAt: MakeCell(2, 0)].type);    
+}
+
 
 @end
 
