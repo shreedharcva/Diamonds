@@ -27,6 +27,9 @@ TileCoordinates MakeTile(int x, int y);
 @end
 
 @interface TiledSprite : Sprite
+{
+    CGSize tileSize;
+}
 
 - (id) initWithTexture: (Texture*) texture_;
 

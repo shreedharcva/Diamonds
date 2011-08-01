@@ -172,14 +172,13 @@ DroppableSize MakeSize(int width, int height)
     [droppables removeObject: droppable];
 }
 
-/*- (void) formBigGems
+- (void) formBigGems
 {
-    for (Droppable* droppable in droppables)
+    for (Droppable* droppable in [droppables copy])
     {
         [droppable formBigGem];
     } 
 }
- */
 
 - (void) updateWithGravity: (float) gravity
 {
@@ -187,6 +186,8 @@ DroppableSize MakeSize(int width, int height)
     {
         [droppable updateWithGravity: gravity];
     }    
+    
+    [self formBigGems];
 
 }
 

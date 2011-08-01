@@ -81,6 +81,9 @@
 @end
 
 @implementation TextureFactory
+{
+    CGSize textureSize;
+}
 
 - (Texture*) create: (NSString*) name
 {

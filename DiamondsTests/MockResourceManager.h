@@ -6,10 +6,13 @@
 
 @class MockTexture;
 @class TextureFactory;
+@class MockTextureFactory;
 
 @interface MockResourceManager : ResourceManager 
 
-- (void) setTextureFactory: (TextureFactory*) newFactory;
+- (void) setTextureFactory: (MockTextureFactory*) newFactory;
 - (MockTexture*) lastTexture;
+
+@property (readonly) MockTextureFactory* textureFactory; 
 
 @end

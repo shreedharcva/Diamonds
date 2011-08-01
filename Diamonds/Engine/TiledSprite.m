@@ -37,8 +37,6 @@ TileCoordinates MakeTile(int x, int y)
 
 @implementation TiledSprite
 {
-    CGSize tileSize;
-    
     int widthInTiles;
     int heightInTiles;
     
@@ -72,7 +70,7 @@ TileCoordinates MakeTile(int x, int y)
 
 - (int) gridWidth
 {
-    return floor(self.texture.size.width / tileSize.height);
+    return floor(self.texture.size.width / tileSize.width);
 }
 
 - (int) gridHeight
@@ -80,14 +78,22 @@ TileCoordinates MakeTile(int x, int y)
     return floor(self.texture.size.height / tileSize.height);
 }
 
-- (void) setTile: (TileCoordinates) coordinates with: (TileCoordinates) source
+- (void) throwError: (TileCoordinates) source
 {
-    NSLog(@"%@ %d %d", texture, [self gridWidth], [self gridHeight]); 
+    NSString* reason = [NSString stringWithFormat: @"%@\nSource tile out of bounds: [%d %d]", self, source.x, source.y];  
     
+    NSDictionary* userInfo = [NSDictionary dictionaryWithObject: self forKey: @"self"];
+        
+    @throw [NSException exceptionWithName: @"TiledSprite" reason: reason userInfo: userInfo];    
+}
+
+- (void) setTile: (TileCoordinates) coordinates with: (TileCoordinates) source
+{    
     if (source.x >= [self gridWidth] || source.y >= [self gridHeight])
     {
-        @throw [NSException exceptionWithName: @"TiledSprite" reason: @"Source tile out of bounds" userInfo: nil];        
+        [self throwError: source];
     }
+                            
     if (coordinates.x + 1 > widthInTiles)
     {
         widthInTiles = coordinates.x + 1;
@@ -166,6 +172,15 @@ TileCoordinates MakeTile(int x, int y)
         
         [batch drawQuad: position size: size texture: self.texture sourceRect: sourceRectangle];        
     }
+}
+
+- (NSString*) description
+{
+    return [NSString stringWithFormat: @"%@ [tileSize: %2.0f %2.0f grid: %d %d]",
+            [super description], 
+            tileSize.width, tileSize.height,
+            [self gridWidth], [self gridHeight]];
+            
 }
 
 @end

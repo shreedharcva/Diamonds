@@ -13,6 +13,8 @@
 
 #import "MockSpriteBatch.h"
 #import "MockEngine.h"
+#import "MockTexture.h"
+#import "MockResourceManager.h"
 
 @implementation TestBigGemBase
 
@@ -166,7 +168,46 @@
     assertEquals(3, [self bigGem].height);    
 }
 
+- (void) testBigGemFormedIsFormedAfterAnUpdate
+{
+    [controller parseGridFrom: 
+     @"ddd\n"
+     @"ddd"];        
+
+    [controller update];
+    
+    assertEquals(3, [self bigGem].width);    
+    assertEquals(2, [self bigGem].height);    
+}
+
+- (void) testBigGemFormedIsFormedOnTheSecondColumn
+{
+    [controller parseGridFrom: 
+     @".dd\n"
+     @".dd"];        
+    
+    [controller update];
+    
+    assertEquals(2, [self bigGemAt: MakeCell(1, 0)].width);    
+    assertEquals(2, [self bigGemAt: MakeCell(1, 0)].height);    
+}
+
+- (void) testBigGemIsFormedOnTheSecondColumnWhenTheTextureIsNotSquare
+{
+    [[resources textureFactory] setTextureSize: CGSizeMake(128, 256)];
+    
+    [controller parseGridFrom: 
+     @".dd\n"
+     @".dd"];        
+    
+    [controller update];
+    
+    assertEquals(2, [self bigGemAt: MakeCell(1, 0)].width);    
+    assertEquals(2, [self bigGemAt: MakeCell(1, 0)].height);    
+}
+
 @end
+
 
 @interface BigGem (testing)
 - (TiledSprite*) tiledSprite;
@@ -192,6 +233,9 @@
     
     bigGem = [self formBigGem];
     
+    info.cellSize = CGSizeMake(32, 32);
+    info.heightInCells = 14;
+    
     batch = [[MockSpriteBatch alloc] initWithEngine: [MockEngine new]];
 }
 
@@ -209,14 +253,37 @@
     assertEquals(8, batch.numberOfSpritesDrawn);
 }
 
+- (void) testBigGemDrawsQuadsAtTheCorrectPosition
+{
+    [batch begin];
+    [bigGem drawIn: batch info: info];
+    [batch end];
+    
+    assertEquals(CGPointMake(96, 416), batch.lastSprite.position);
+}
+
+- (void) testBigGemDrawsQuadsWithTheCorrectSize
+{
+    [batch begin];
+    [bigGem drawIn: batch info: info];
+    [batch end];
+    
+    assertEquals(CGSizeMake(32, 32), batch.lastSprite.size);
+}
+
 - (void) testBigGemSpriteUpperLeftTileIsCorrect
 {
-    assertEquals(MakeTile(0, 0), [bigGem.tiledSprite getTile: MakeTile(0, 0)].coordinates);
+    assertEquals(MakeTile(0, 0), [bigGem.tiledSprite getTile: MakeTile(0, 0)].source);
 }
 
 - (void) testBigGemSpriteUpperRightTileIsCorrect
 {
-//    assertEquals(MakeTile(2, 0), [bigGem.tiledSprite getTile: MakeTile(3, 0)].coordinates);
+    assertEquals(MakeTile(2, 0), [bigGem.tiledSprite getTile: MakeTile(3, 0)].source);
+}
+
+- (void) testBigGemSpriteLowerRightTileIsCorrect
+{
+    assertEquals(MakeTile(2, 2), [bigGem.tiledSprite getTile: MakeTile(3, 1)].source);
 }
 
 @end

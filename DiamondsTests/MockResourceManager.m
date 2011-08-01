@@ -38,4 +38,9 @@
     return lastTextureLoaded;
 }
 
+- (MockTextureFactory*) textureFactory
+{
+    return (MockTextureFactory*) textureFactory;
+}
+
 @end

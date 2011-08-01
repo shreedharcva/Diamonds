@@ -31,7 +31,7 @@
 {
     [super setUp];
     
-    ResourceManager* resources = [MockResourceManager new];
+    resources = [MockResourceManager new];
     
     grid = [[Grid alloc] initWithResources: resources width: 8 height: 14];
     controller = [[GridController alloc] initWithGrid: grid];
@@ -327,5 +327,6 @@
 }
 
 @end
+
 
 
