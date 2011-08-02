@@ -7,6 +7,9 @@
 @class Droppable;
 
 @interface Grid : NSObject
+{
+    NSMutableSet* droppables;
+}
 
 + (GridCell) origin;
 
@@ -24,11 +27,12 @@
 
 - (Droppable*) get: (GridCell) cell;
 
-- (void) remove: (Droppable*) droppable;
+- (Grid*) remove: (Droppable*) droppable;
 
 - (void) updateWithGravity: (float) gravity;
 
 @property (readonly) NSArray* droppables;
+@property (readonly) NSArray* bigGems;
 
 @property (readonly, nonatomic) int width;
 @property (readonly, nonatomic) int height;

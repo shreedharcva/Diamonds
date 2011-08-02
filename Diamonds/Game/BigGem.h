@@ -8,6 +8,6 @@
 
 - (id) initWithType: (GemType) gemType at: (GridCell) cell grid: (Grid*) grid_ width: (int) width_ height: (int) height_;
 
-- (void) placeInGrid;
+- (void) placeIn: (Grid*) grid;
 
 @end

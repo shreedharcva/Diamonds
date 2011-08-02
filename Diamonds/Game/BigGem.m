@@ -9,6 +9,8 @@
 
 @interface Droppable (private)
 
+- (void) setCell: (GridCell) cell_;
+
 - (void) setWidth: (int) width_;
 - (void) setHeight: (int) height_;
 
@@ -17,6 +19,8 @@
 @interface Gem (private)
 
 - (Sprite*) sprite;
+
+- (bool) isCellCandidateToFormBigGem: (GridCell) cell_;
 
 @end
 
@@ -80,18 +84,70 @@
     return self;
 }
 
-- (void) placeInGrid
+- (bool) isColumnCandidateToFormBigGem: (int) column height: (int) height
 {
+    for (int i = self.cell.row; i < self.cell.row + height; ++i)
+    {
+        if (![self isCellCandidateToFormBigGem: MakeCell(column, i)])
+        {
+            return NO;
+        }
+    }
+    
+    return YES;
+    
+}
+
+- (void) extendLeft
+{
+    int column = self.cell.column - 1;
+    
+    while ([self isColumnCandidateToFormBigGem: column height: self.height])
+    {
+        --column;        
+    }
+    
+    [self setWidth: self.width + (self.cell.column - column - 1)];
+    [self setCell: MakeCell(column + 1, self.cell.row)];
+}
+
+- (void) extendRight
+{
+    int column = self.cell.column + self.width;
+    
+    while ([self isColumnCandidateToFormBigGem: column height: self.height])
+    {
+        ++column;        
+    }
+    
+    [self setWidth: column - self.cell.column];
+}
+
+- (BigGem*) formBigGem
+{
+    [self extendRight];    
+    [self extendLeft]; 
+    
+    [self placeIn: self.grid];
+    
+    return self;
+}
+
+- (void) placeIn: (Grid*) grid
+{
+    [grid remove: self];
+
     for (int j = 0; j < self.height; ++j)
     {
         for (int i = 0; i < self.width; ++i)
         {
             GridCell gemCell = MakeCell(self.cell.column + i, self.cell.row + j);
-            [self.grid remove: [self.grid get: gemCell]];            
+            Droppable* droppable = [grid get: gemCell];
+            [grid remove: droppable];            
         }
     }
     
-    [self.grid put: self];
+    [grid put: self];
 }
 
 @end
