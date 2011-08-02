@@ -21,6 +21,7 @@
 - (Sprite*) sprite;
 
 - (bool) isCellCandidateToFormBigGem: (GridCell) cell_;
+- (bool) isRowCandidateToFormBigGem: (int) row_ width: (int) width_;
 
 @end
 
@@ -123,10 +124,38 @@
     [self setWidth: column - self.cell.column];
 }
 
+- (void) extendUp
+{
+    int row = self.cell.row + self.height;
+    
+    while ([self isRowCandidateToFormBigGem: row width: self.width])
+    {
+        ++row;        
+    }
+    
+    [self setHeight: row - self.cell.row];
+}
+
+
+- (void) extendDown
+{
+    int row = self.cell.row - 1;
+    
+    while ([self isRowCandidateToFormBigGem: row width: self.width])
+    {
+        --row;        
+    }
+    
+    [self setHeight: self.height + (self.cell.row - row - 1)];
+    [self setCell: MakeCell(self.cell.column, row + 1)];
+}
+
 - (BigGem*) formBigGem
 {
     [self extendRight];    
     [self extendLeft]; 
+    [self extendUp]; 
+    [self extendDown]; 
     
     [self placeIn: self.grid];
     
