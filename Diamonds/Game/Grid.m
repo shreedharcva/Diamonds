@@ -4,6 +4,7 @@
 
 #import "Grid.h"
 #import "Gem.h"
+#import "BigGem.h"
 
 #import "Sprite.h"
 
@@ -38,8 +39,6 @@ DroppableSize MakeSize(int width, int height)
 
     int width;
     int height;
-    
-    NSMutableSet* droppables;
 }
 
 @synthesize width;
@@ -130,6 +129,34 @@ DroppableSize MakeSize(int width, int height)
     return [droppables allObjects];
 }
 
+- (NSArray*) gems
+{
+    NSMutableArray* gems = [NSMutableArray array];
+    for (Droppable* droppable in droppables)
+    {
+        if ([droppable isKindOfClass: [Gem class]])
+        {
+            [gems addObject: droppable];
+        }
+        
+    }
+    return gems;    
+}
+
+- (NSArray*) bigGems
+{
+    NSMutableArray* bigGems = [NSMutableArray array];
+    for (Droppable* droppable in droppables)
+    {
+        if ([droppable isKindOfClass: [BigGem class]])
+        {
+            [bigGems addObject: droppable];
+        }
+        
+    }
+    return bigGems;
+}
+
 - (Droppable*) put: (Droppable*) droppable
 {
     if (![self isCellEmpty: droppable.cell])
@@ -163,32 +190,42 @@ DroppableSize MakeSize(int width, int height)
     return nil;
 }
 
-- (void) remove: (Droppable*) droppable
+- (Grid*) remove: (Droppable*) droppable
 {
     if (droppable == nil)
-        return;
+        return self;
     
     [droppable detachFromGrid];
     [droppables removeObject: droppable];
+    
+    return self;
 }
 
 - (void) formBigGems
 {
-    for (Droppable* droppable in [droppables copy])
+    for (BigGem* bigGem in self.bigGems)
     {
-        [droppable formBigGem];
+        [bigGem formBigGem];
+    } 
+
+    for (Gem* gem in self.gems)
+    {
+        [gem formBigGem];
     } 
 }
 
-- (void) updateWithGravity: (float) gravity
+- (void) updateDroppablesWith: (float) gravity
 {
     for (Droppable* droppable in droppables)
     {
         [droppable updateWithGravity: gravity];
-    }    
-    
-    [self formBigGems];
+    }        
+}
 
+- (void) updateWithGravity: (float) gravity
+{
+    [self updateDroppablesWith: gravity];
+    [self formBigGems];
 }
 
 - (GridCell) spawnCell

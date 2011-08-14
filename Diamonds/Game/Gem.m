@@ -145,7 +145,7 @@
     
     BigGem* bigGem = [[BigGem alloc] initWithType: self.type at: self.cell grid: self.grid width: bigGemWidth height: bigGemHeight];
 
-    [bigGem placeInGrid];
+    [bigGem placeIn: self.grid];
     
     return bigGem;
 }

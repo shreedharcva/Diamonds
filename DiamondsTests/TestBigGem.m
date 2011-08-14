@@ -134,16 +134,54 @@
     assertEquals(3, bigGem.height);    
 }
 
-- (void) testBigGemIsExtendedByTwoMoreHorizontalGems
+- (void) testBigGemIsExtendedOnTheRight
 {
     [controller parseGridFrom: 
      @"DDd\n"
      @"DDd"];    
     
-    BigGem* bigGem = [self formBigGem];
+    [self formBigGem];
     
-    assertEquals(3, bigGem.width);    
-    assertEquals(2, bigGem.height);    
+    assertEquals(3, [self bigGem].width);    
+    assertEquals(2, [self bigGem].height);    
+}
+
+- (void) testBigGemIsExtendedOnTheLeft
+{
+    [controller parseGridFrom: 
+     @"dDD\n"
+     @"dDD"];    
+    
+    [self formBigGemAt: MakeCell(1, 0)];
+    
+    assertEquals(3, [self bigGem].width);    
+    assertEquals(2, [self bigGem].height);    
+}
+
+- (void) testBigGemIsExtendedUp
+{
+    [controller parseGridFrom: 
+     @"dd\n"
+     @"DD\n"
+     @"DD"];    
+    
+    [self formBigGemAt: MakeCell(1, 0)];
+    
+    assertEquals(2, [self bigGem].width);    
+    assertEquals(3, [self bigGem].height);    
+}
+
+- (void) testBigGemIsExtendedDown
+{
+    [controller parseGridFrom: 
+     @"DD\n"
+     @"DD\n"
+     @"dd"];    
+    
+    [self formBigGemAt: MakeCell(1, 1)];
+    
+    assertEquals(2, [self bigGem].width);    
+    assertEquals(3, [self bigGem].height);    
 }
 
 - (void) testBigGemIsNotExtendedIfTheresAGap
